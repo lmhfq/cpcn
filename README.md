@@ -1,1 +1,1 @@
-# cpcn
+# 中金支付PHP SDK
