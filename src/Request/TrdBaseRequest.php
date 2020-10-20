@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Cpcn\Request;
 
 
+use Cpcn\Exception\InvalidConfigException;
 use Cpcn\Support\SignatureFactory;
 
 /**
@@ -109,9 +110,13 @@ abstract class TrdBaseRequest extends BaseRequest
     }
 
 
-    public abstract function toXml();
+    public abstract function handle();
 
-    protected function handle(string $xml)
+    /**
+     * @param string $xml
+     * @throws InvalidConfigException
+     */
+    protected function process(string $xml)
     {
         $this->requestPlainText = $xml;
         $this->requestPlainText = mb_convert_encoding($this->requestPlainText, "UTF-8", "GBK");

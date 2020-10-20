@@ -45,7 +45,7 @@ class TrdClient
         $request->setMsghdPtncd($this->config['ptnCode']);
         $request->setMsghdBkcd($this->config['ptnCode']);
         SignatureFactory::setSigner(new PriKeySigner($this->config['keystoreFilename']));
-        $request->toXml();
+        $request->handle();
         $data = [
             'message' => $request->getRequestMessage(),
             'signature' => $request->getRequestSignature(),
@@ -53,7 +53,7 @@ class TrdClient
             'ptncode' => $request->getMsghdPtncd(),
         ];
         $resultMessage = $this->request($data);
-        $response->toXml($resultMessage);
+        $response->handle($resultMessage);
         return $response;
     }
 
@@ -67,6 +67,9 @@ class TrdClient
             'http' => [
                 'timeout' => 30.0,
                 'base_uri' => 'https://zhirong.cpcn.com.cn/acswk/interfaceII.htm',
+            ],
+            'log' => [
+
             ],
             'ptnCode' => 'WYAN0002',
             'bkCode' => 'ZBANK001',
@@ -83,7 +86,6 @@ class TrdClient
      */
     private function request(array $data)
     {
-
         $client = new Client($this->config['http']);
         $options = [
             'headers' => [

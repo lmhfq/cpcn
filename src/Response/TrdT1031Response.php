@@ -204,10 +204,9 @@ class TrdT1031Response extends TrdBaseResponse
     }
 
 
-    public function toXml(string $message)
+    public function handle(string $message)
     {
-        parent::handle($message);
-
+        parent::process($message);
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
             $cltAcc = ArrayUtil::get('CltAcc', $this->responseData, []);
             if ($cltAcc) {

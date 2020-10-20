@@ -125,9 +125,9 @@ abstract class TrdBaseResponse
     }
 
 
-    public abstract function toXml(string $message);
+    public abstract function handle(string $message);
 
-    public function handle(string $message)
+    protected function process(string $message)
     {
         $this->responseMessage = $message;
         $this->responsePlainText = trim(base64_decode($message));

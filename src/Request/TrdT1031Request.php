@@ -10,13 +10,17 @@ declare(strict_types=1);
 namespace Cpcn\Request;
 
 
+use Cpcn\Exception\InvalidConfigException;
 use Cpcn\Support\Xml;
 
 class TrdT1031Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T1031";
 
-    public function toXml()
+    /**
+     * @throws InvalidConfigException
+     */
+    public function handle()
     {
         $data = [];
         $data = array_merge($data, parent::getMsghd());
@@ -28,6 +32,6 @@ class TrdT1031Request extends TrdBaseRequest
         ]);
 
         $xml = Xml::build($data);
-        parent::handle($xml);
+        parent::process($xml);
     }
 }
