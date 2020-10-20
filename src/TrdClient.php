@@ -12,28 +12,17 @@ namespace Cpcn;
 
 use Cpcn\Request\TrdBaseRequest;
 use Cpcn\Response\TrdBaseResponse;
+use Cpcn\Support\Logger;
 use Cpcn\Support\PriKeySigner;
+use Cpcn\Support\ServiceContainer;
 use Cpcn\Support\SignatureFactory;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Psr\Log\LoggerInterface;
 
 
-class TrdClient
+class TrdClient extends ServiceContainer
 {
-    /**
-     * @var array
-     */
-    protected $config;
-
-    /**
-     * TrdClient constructor.
-     * @param array $config
-     */
-    public function __construct(array $config)
-    {
-        $this->config = $this->getConfig($config);
-    }
-
     /**
      * @param TrdBaseRequest $request
      * @param TrdBaseResponse $response
@@ -42,42 +31,26 @@ class TrdClient
      */
     public function execute(TrdBaseRequest $request, TrdBaseResponse $response): TrdBaseResponse
     {
-        $request->setMsghdPtncd($this->config['ptnCode']);
-        $request->setMsghdBkcd($this->config['ptnCode']);
-        SignatureFactory::setSigner(new PriKeySigner($this->config['keystoreFilename']));
+        $request->setMsghdPtncd($this->offsetGet("config")['ptnCode']);
+        $request->setMsghdBkcd($this->offsetGet("config")['ptnCode']);
+        SignatureFactory::setSigner(new PriKeySigner($this->offsetGet("config")['keystoreFilename']));
         $request->handle();
-        $data = [
+        $params = [
             'message' => $request->getRequestMessage(),
             'signature' => $request->getRequestSignature(),
             'trdcode' => $request->getMsghdTrcd(),
             'ptncode' => $request->getMsghdPtncd(),
         ];
-        $resultMessage = $this->request($data);
+        /**
+         * @var LoggerInterface $logger
+         */
+        $logger = $this->offsetGet("logger");
+        $logger->debug("请求原文", [$request->getRequestPlainText()]);
+        $resultMessage = $this->request($params);
         $response->handle($resultMessage);
         return $response;
     }
 
-    /**
-     * @param array $userConfig
-     * @return array
-     */
-    public function getConfig(array $userConfig)
-    {
-        $base = [
-            'http' => [
-                'timeout' => 30.0,
-                'base_uri' => 'https://zhirong.cpcn.com.cn/acswk/interfaceII.htm',
-            ],
-            'log' => [
-
-            ],
-            'ptnCode' => 'WYAN0002',
-            'bkCode' => 'ZBANK001',
-            'keystoreFilename' => '',
-            'certificateFilename' => '',
-        ];
-        return array_replace_recursive($base, $userConfig);
-    }
 
     /**
      * @param array $data
@@ -86,7 +59,7 @@ class TrdClient
      */
     private function request(array $data)
     {
-        $client = new Client($this->config['http']);
+        $client = new Client($this->offsetGet("config")['http']);
         $options = [
             'headers' => [
                 'Accept' => 'text/xml; charset=UTF8',

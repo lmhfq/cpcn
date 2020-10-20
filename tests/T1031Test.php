@@ -19,11 +19,17 @@ use PHPUnit\Framework\TestCase;
 class T1031Test extends TestCase
 {
 
-    public function test(){
+    public function test()
+    {
         $config = [
             'http' => [
                 'timeout' => 30.0,
                 'base_uri' => 'https://ctest.cpcn.com.cn/acswk/interfaceII.htm',
+            ],
+            'log' => [
+                'name' => 'cpcn',
+                'path' => __DIR__ . '/cpcn.log',
+                'level' => 'debug',
             ],
             'ptnCode' => 'ZWYA2019',
             'bkCode' => 'ZBANK001',
