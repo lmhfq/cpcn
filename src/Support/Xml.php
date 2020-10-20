@@ -1,11 +1,6 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: lmh <lmh@weiyian.com>
- * Date: 2020/10/20
- * Time: 上午10:10
- */
+
 
 namespace Cpcn\Support;
 

@@ -1,18 +1,12 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: lmh <lmh@weiyian.com>
- * Date: 2020/10/16
- * Time: 下午8:27
- */
+
 
 namespace Cpcn;
 
 
 use Cpcn\Request\TrdBaseRequest;
 use Cpcn\Response\TrdBaseResponse;
-use Cpcn\Support\Logger;
 use Cpcn\Support\PriKeySigner;
 use Cpcn\Support\ServiceContainer;
 use Cpcn\Support\SignatureFactory;
