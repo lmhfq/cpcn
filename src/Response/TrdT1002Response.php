@@ -8,7 +8,7 @@ namespace Cpcn\Response;
 use Cpcn\Support\ArrayUtil;
 use Cpcn\Support\ResponseCode;
 
-class TrdT1031Response extends TrdBaseResponse
+class TrdT1002Response extends TrdBaseResponse
 {
     protected $cltacc_cltno;
     protected $cltacc_cltpid;
@@ -18,9 +18,7 @@ class TrdT1031Response extends TrdBaseResponse
     protected $cltacc_openbkcd;
     protected $cltacc_openbknm;
     protected $cltacc_acctcd;
-    protected $amount;
-    protected $actideadline;
-    protected $actiinfo;
+    protected $stat;
 
     /**
      * @return mixed
@@ -153,49 +151,17 @@ class TrdT1031Response extends TrdBaseResponse
     /**
      * @return mixed
      */
-    public function getAmount()
+    public function getStat()
     {
-        return $this->amount;
+        return $this->stat;
     }
 
     /**
-     * @param mixed $amount
+     * @param mixed $stat
      */
-    public function setAmount($amount): void
+    public function setStat($stat): void
     {
-        $this->amount = $amount;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getActideadline()
-    {
-        return $this->actideadline;
-    }
-
-    /**
-     * @param mixed $actideadline
-     */
-    public function setActideadline($actideadline): void
-    {
-        $this->actideadline = $actideadline;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getActiinfo()
-    {
-        return $this->actiinfo;
-    }
-
-    /**
-     * @param mixed $actiinfo
-     */
-    public function setActiinfo($actiinfo): void
-    {
-        $this->actiinfo = $actiinfo;
+        $this->stat = $stat;
     }
 
 
@@ -214,9 +180,7 @@ class TrdT1031Response extends TrdBaseResponse
                 $this->cltacc_openbknm = ArrayUtil::get('OpenBkNm', $cltAcc);
                 $this->cltacc_acctcd = ArrayUtil::get('AcctCd', $cltAcc);
             }
-            $this->amount = ArrayUtil::get('Amount', $this->responseData);
-            $this->actideadline = ArrayUtil::get('ActiDeadline', $this->responseData);
-            $this->actiinfo = ArrayUtil::get('ActiInfo', $this->responseData);
+            $this->stat = ArrayUtil::get('Stat', $this->responseData);
         }
     }
 }

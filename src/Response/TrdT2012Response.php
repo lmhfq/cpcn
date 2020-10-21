@@ -8,51 +8,13 @@ namespace Cpcn\Response;
 use Cpcn\Support\ArrayUtil;
 use Cpcn\Support\ResponseCode;
 
-class TrdT1031Response extends TrdBaseResponse
+class TrdT2012Response extends TrdBaseResponse
 {
-    protected $cltacc_cltno;
-    protected $cltacc_cltpid;
     protected $cltacc_subno;
     protected $cltacc_cltnm;
-    protected $cltacc_bnkeid;
-    protected $cltacc_openbkcd;
-    protected $cltacc_openbknm;
-    protected $cltacc_acctcd;
-    protected $amount;
-    protected $actideadline;
-    protected $actiinfo;
-
-    /**
-     * @return mixed
-     */
-    public function getCltaccCltno()
-    {
-        return $this->cltacc_cltno;
-    }
-
-    /**
-     * @param mixed $cltacc_cltno
-     */
-    public function setCltaccCltno($cltacc_cltno): void
-    {
-        $this->cltacc_cltno = $cltacc_cltno;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCltaccCltpid()
-    {
-        return $this->cltacc_cltpid;
-    }
-
-    /**
-     * @param mixed $cltacc_cltpid
-     */
-    public function setCltaccCltpid($cltacc_cltpid): void
-    {
-        $this->cltacc_cltpid = $cltacc_cltpid;
-    }
+    protected $amt_aclamt;
+    protected $amt_feeamt;
+    protected $amt_ccycd;
 
     /**
      * @return mixed
@@ -89,49 +51,49 @@ class TrdT1031Response extends TrdBaseResponse
     /**
      * @return mixed
      */
-    public function getCltaccBnkeid()
+    public function getAmtAclamt()
     {
-        return $this->cltacc_bnkeid;
+        return $this->amt_aclamt;
     }
 
     /**
-     * @param mixed $cltacc_bnkeid
+     * @param mixed $amt_aclamt
      */
-    public function setCltaccBnkeid($cltacc_bnkeid): void
+    public function setAmtAclamt($amt_aclamt): void
     {
-        $this->cltacc_bnkeid = $cltacc_bnkeid;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCltaccOpenbkcd()
-    {
-        return $this->cltacc_openbkcd;
-    }
-
-    /**
-     * @param mixed $cltacc_openbkcd
-     */
-    public function setCltaccOpenbkcd($cltacc_openbkcd): void
-    {
-        $this->cltacc_openbkcd = $cltacc_openbkcd;
+        $this->amt_aclamt = $amt_aclamt;
     }
 
     /**
      * @return mixed
      */
-    public function getCltaccOpenbknm()
+    public function getAmtFeeamt()
     {
-        return $this->cltacc_openbknm;
+        return $this->amt_feeamt;
     }
 
     /**
-     * @param mixed $cltacc_openbknm
+     * @param mixed $amt_feeamt
      */
-    public function setCltaccOpenbknm($cltacc_openbknm): void
+    public function setAmtFeeamt($amt_feeamt): void
     {
-        $this->cltacc_openbknm = $cltacc_openbknm;
+        $this->amt_feeamt = $amt_feeamt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmtCcycd()
+    {
+        return $this->amt_ccycd;
+    }
+
+    /**
+     * @param mixed $amt_ccycd
+     */
+    public function setAmtCcycd($amt_ccycd): void
+    {
+        $this->amt_ccycd = $amt_ccycd;
     }
 
     /**

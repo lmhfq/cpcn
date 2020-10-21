@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace tests;
 
 
-use Cpcn\Request\TrdT1031Request;
-use Cpcn\Response\TrdT1031Response;
+use Cpcn\Request\TrdT4043Request;
+use Cpcn\Response\TrdT4043Response;
 use Cpcn\Support\ResponseCode;
 use Cpcn\TrdClient;
 use PHPUnit\Framework\TestCase;
 
-class T1031Test extends TestCase
+class T4043Test extends TestCase
 {
 
     public function test()
@@ -33,11 +33,11 @@ class T1031Test extends TestCase
         ];
 
         $trdClient = new TrdClient($config);
-        $trdT1001Request = new TrdT1031Request();
+        $trdT1001Request = new TrdT4043Request();
         /**
-         * @var TrdT1031Response $response
+         * @var TrdT4043Response $response
          */
-        $response = $trdClient->execute($trdT1001Request, new TrdT1031Response());
+        $response = $trdClient->execute($trdT1001Request, new TrdT4043Response());
         $this->assertEquals(ResponseCode::SUCCESS, $response->getMsghdRspcode());
     }
 }
