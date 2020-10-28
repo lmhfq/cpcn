@@ -2,11 +2,11 @@
 declare(strict_types=1);
 
 
-namespace Cpcn\Response;
+namespace Lmh\Cpcn\Response;
 
 
-use Cpcn\Support\ArrayUtil;
-use Cpcn\Support\Xml;
+use Lmh\Cpcn\Support\ArrayUtil;
+use Lmh\Cpcn\Support\Xml;
 
 abstract class TrdBaseResponse
 {

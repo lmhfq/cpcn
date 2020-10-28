@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Cpcn\Support;
+namespace Lmh\Cpcn\Support;
 
 
-use Cpcn\Exception\InvalidConfigException;
+use Lmh\Cpcn\Exception\InvalidConfigException;
 use Exception;
 
 class PriKeySigner

@@ -2,10 +2,10 @@
 declare(strict_types=1);
 
 
-namespace Cpcn\Provider;
+namespace Lmh\Cpcn\Provider;
 
 
-use Cpcn\Support\ServiceContainer;
+use Lmh\Cpcn\Support\ServiceContainer;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 

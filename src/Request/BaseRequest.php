@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 
-namespace Cpcn\Request;
+namespace Lmh\Cpcn\Request;
 
 /**
  * Class BaseRequest

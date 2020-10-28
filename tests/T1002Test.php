@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace tests;
 
 
-use Cpcn\Request\TrdT1002Request;
-use Cpcn\Response\TrdT1002Response;
-use Cpcn\Support\ResponseCode;
-use Cpcn\TrdClient;
+use Lmh\Cpcn\Request\TrdT1002Request;
+use Lmh\Cpcn\Response\TrdT1002Response;
+use Lmh\Cpcn\Support\ResponseCode;
+use Lmh\Cpcn\TrdClient;
 use PHPUnit\Framework\TestCase;
 
 class T1002Test extends TestCase

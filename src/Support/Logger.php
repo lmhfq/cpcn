@@ -1,6 +1,6 @@
 <?php
 
-namespace Cpcn\Support;
+namespace Lmh\Cpcn\Support;
 
 
 use Monolog\Handler\StreamHandler;

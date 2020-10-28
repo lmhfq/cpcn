@@ -2,11 +2,11 @@
 declare(strict_types=1);
 
 
-namespace Cpcn\Support;
+namespace Lmh\Cpcn\Support;
 
 
-use Cpcn\Provider\ConfigServiceProvider;
-use Cpcn\Provider\LogServiceProvider;
+use Lmh\Cpcn\Provider\ConfigServiceProvider;
+use Lmh\Cpcn\Provider\LogServiceProvider;
 use Pimple\Container;
 
 class ServiceContainer extends Container

@@ -11,15 +11,11 @@
         "psr/log": "^1.0",
         "monolog/monolog": "^1.25.5",
         "pimple/pimple": "^3.0",
-        "ext-simplexml": "*",
-        "ext-libxml": "*",
-        "ext-openssl": "*",
-        "guzzlehttp/guzzle": "^6.5",
-        "ext-mbstring": "*"
+        "guzzlehttp/guzzle": "^6.5"
     },
     "autoload": {
         "psr-4": {
-            "Cpcn\\": "src"
+            "Lmh\\Cpcn\\": "src"
         },
         "files": []
     },

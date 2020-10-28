@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Cpcn\Request;
+namespace Lmh\Cpcn\Request;
 
 
-use Cpcn\Exception\InvalidConfigException;
-use Cpcn\Support\SignatureFactory;
+use Lmh\Cpcn\Exception\InvalidConfigException;
+use Lmh\Cpcn\Support\SignatureFactory;
 
 /**
  * Class TrdBaseRequest

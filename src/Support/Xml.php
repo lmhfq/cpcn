@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 
-namespace Cpcn\Support;
+namespace Lmh\Cpcn\Support;
 
 
 use SimpleXMLElement;
