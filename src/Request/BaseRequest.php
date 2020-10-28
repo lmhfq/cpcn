@@ -59,7 +59,7 @@ abstract class BaseRequest
     /**
      * @param mixed $requestPlainText
      */
-    public function setRequestPlainText($requestPlainText)
+    protected function setRequestPlainText($requestPlainText)
     {
         $this->requestPlainText = $requestPlainText;
     }
@@ -75,7 +75,7 @@ abstract class BaseRequest
     /**
      * @param mixed $requestMessage
      */
-    public function setRequestMessage($requestMessage)
+    protected function setRequestMessage($requestMessage)
     {
         $this->requestMessage = $requestMessage;
     }
@@ -91,10 +91,8 @@ abstract class BaseRequest
     /**
      * @param mixed $requestSignature
      */
-    public function setRequestSignature($requestSignature)
+    protected function setRequestSignature($requestSignature)
     {
         $this->requestSignature = $requestSignature;
     }
-
-
 }

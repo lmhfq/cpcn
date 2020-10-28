@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Lmh\Cpcn;
 
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Lmh\Cpcn\Request\TrdBaseRequest;
 use Lmh\Cpcn\Response\TrdBaseResponse;
 use Lmh\Cpcn\Support\PriKeySigner;
 use Lmh\Cpcn\Support\ServiceContainer;
 use Lmh\Cpcn\Support\SignatureFactory;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Log\LoggerInterface;
 
 
@@ -25,10 +25,15 @@ class TrdClient extends ServiceContainer
      */
     public function execute(TrdBaseRequest $request, TrdBaseResponse $response): TrdBaseResponse
     {
-        $request->setMsghdPtncd($this->offsetGet("config")['ptnCode']);
-        $request->setMsghdBkcd($this->offsetGet("config")['ptnCode']);
+        if (!$request->getMsghdPtncd()) {
+            $request->setMsghdPtncd($this->offsetGet("config")['ptnCode']);
+        }
+        if (!$request->getMsghdBkcd()) {
+            $request->setMsghdBkcd($this->offsetGet("config")['bkCode']);
+        }
         SignatureFactory::setSigner(new PriKeySigner($this->offsetGet("config")['keystoreFilename']));
         $request->handle();
+
         $params = [
             'message' => $request->getRequestMessage(),
             'signature' => $request->getRequestSignature(),
@@ -39,9 +44,14 @@ class TrdClient extends ServiceContainer
          * @var LoggerInterface $logger
          */
         $logger = $this->offsetGet("logger");
-        $logger->debug("请求原文", [$request->getRequestPlainText()]);
+        if ($this->offsetGet("config")['debug']) {
+            $logger->debug("请求原文", [$request->getRequestPlainText()]);
+        }
         $resultMessage = $this->request($params);
         $response->handle($resultMessage);
+        if ($this->offsetGet("config")['debug']) {
+            $logger->debug("响应原文", [$response->getResponsePlainText()]);
+        }
         return $response;
     }
 

@@ -17,10 +17,8 @@ class T1005Test extends TestCase
     public function test()
     {
         $config = [
-            'http' => [
-                'timeout' => 30.0,
-                'base_uri' => 'https://ctest.cpcn.com.cn/acswk/interfaceII.htm',
-            ],
+            'sandbox' => true,
+            'debug' => true,
             'log' => [
                 'name' => 'cpcn',
                 'path' => __DIR__ . '/cpcn.log',
@@ -28,12 +26,13 @@ class T1005Test extends TestCase
             ],
             'ptnCode' => 'ZWYA2019',
             'bkCode' => 'ZBANK001',
-            'keystoreFilename' =>__DIR__ . '/../../config/ptntest.pfx',
-            'certificateFilename' => __DIR__ . '/../../config/pfdstest.cer',
+            'keystoreFilename' => __DIR__ . '/zj_store//ptntest.pfx',
+            'certificateFilename' => __DIR__ . '/zj_store/pfdstest.cer',
         ];
 
         $trdClient = new TrdClient($config);
         $trdT1001Request = new TrdT1005Request();
+
         /**
          * @var TrdT1005Response $response
          */

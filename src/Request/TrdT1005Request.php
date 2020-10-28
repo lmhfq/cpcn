@@ -12,9 +12,41 @@ class TrdT1005Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T1005";
 
-    public $cltacc_subno;
+    protected $cltacc_subno;
 
-    public $cltacc_cltnm;
+    protected $cltacc_cltnm;
+
+    /**
+     * @return mixed
+     */
+    public function getCltaccSubno()
+    {
+        return $this->cltacc_subno;
+    }
+
+    /**
+     * @param mixed $cltacc_subno
+     */
+    public function setCltaccSubno($cltacc_subno): void
+    {
+        $this->cltacc_subno = $cltacc_subno;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCltaccCltnm()
+    {
+        return $this->cltacc_cltnm;
+    }
+
+    /**
+     * @param mixed $cltacc_cltnm
+     */
+    public function setCltaccCltnm($cltacc_cltnm): void
+    {
+        $this->cltacc_cltnm = $cltacc_cltnm;
+    }
 
     /**
      * @throws InvalidConfigException

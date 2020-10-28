@@ -25,16 +25,19 @@ class T2031Test extends TestCase
             ],
             'ptnCode' => 'ZWYA2019',
             'bkCode' => 'ZBANK001',
-            'keystoreFilename' => __DIR__ . '/../../config/ptntest.pfx',
-            'certificateFilename' => __DIR__ . '/../../config/pfdstest.cer',
+            'keystoreFilename' =>  __DIR__ . '/zj_store/ptntest.pfx',
+            'certificateFilename' => __DIR__ . '/zj_store/pfdstest.cer',
         ];
 
         $trdClient = new TrdClient($config);
         $trdT1001Request = new TrdT2031Request();
+
+
         /**
          * @var TrdT2031Response $response
          */
         $response = $trdClient->execute($trdT1001Request, new TrdT2031Response());
+        var_dump($response);exit;
         $this->assertEquals(ResponseCode::SUCCESS, $response->getMsghdRspcode());
     }
 }

@@ -54,6 +54,7 @@ class ServiceContainer extends Container
                 'timeout' => 30.0,
                 'base_uri' => 'https://zhirong.cpcn.com.cn/acswk/interfaceII.htm',
             ],
+            'debug' => false,
             'log' => [
                 'name' => 'cpcn',
                 'path' => '/tmp/cpcn.log',
