@@ -11,6 +11,7 @@ use Pimple\Container;
 
 class ServiceContainer extends Container
 {
+    protected $sandbox = false;
     /**
      * @var array
      */
@@ -23,11 +24,11 @@ class ServiceContainer extends Container
 
     public function __construct(array $config = [], array $prepends = [], string $id = null)
     {
-        $this->registerProviders($this->getProviders());
-
         parent::__construct($prepends);
 
         $this->userConfig = $config;
+
+        $this->registerProviders($this->getProviders());
     }
 
     /**
@@ -38,8 +39,8 @@ class ServiceContainer extends Container
     public function getProviders()
     {
         return array_merge([
-              ConfigServiceProvider::class,
-              LogServiceProvider::class,
+            ConfigServiceProvider::class,
+            LogServiceProvider::class,
         ], $this->providers);
     }
 
@@ -63,6 +64,9 @@ class ServiceContainer extends Container
             'keystoreFilename' => '',
             'certificateFilename' => '',
         ];
+        if (isset($this->userConfig['sandbox']) && $this->userConfig['sandbox'] == true) {
+            $base['http']['base_uri'] = 'https://ctest.cpcn.com.cn/acswk/interfaceII.htm';
+        }
         return array_replace_recursive($base, $this->userConfig);
     }
 

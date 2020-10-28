@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 
-namespace tests;
+namespace Test;
 
 
 use Lmh\Cpcn\Request\TrdT2031Request;
@@ -17,10 +17,7 @@ class T2031Test extends TestCase
     public function test()
     {
         $config = [
-            'http' => [
-                'timeout' => 30.0,
-                'base_uri' => 'https://ctest.cpcn.com.cn/acswk/interfaceII.htm',
-            ],
+            'sandbox' => true,
             'log' => [
                 'name' => 'cpcn',
                 'path' => __DIR__ . '/cpcn.log',
@@ -28,7 +25,7 @@ class T2031Test extends TestCase
             ],
             'ptnCode' => 'ZWYA2019',
             'bkCode' => 'ZBANK001',
-            'keystoreFilename' =>__DIR__ . '/../../config/ptntest.pfx',
+            'keystoreFilename' => __DIR__ . '/../../config/ptntest.pfx',
             'certificateFilename' => __DIR__ . '/../../config/pfdstest.cer',
         ];
 

@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 
-namespace tests;
+namespace Test;
 
 
 use Lmh\Cpcn\Request\TrdT1031Request;
@@ -28,8 +28,8 @@ class T1031Test extends TestCase
             ],
             'ptnCode' => 'ZWYA2019',
             'bkCode' => 'ZBANK001',
-            'keystoreFilename' =>__DIR__ . '/../../config/ptntest.pfx',
-            'certificateFilename' => __DIR__ . '/../../config/pfdstest.cer',
+            'keystoreFilename' => __DIR__ . '/zj_store/ptntest.pfx',
+            'certificateFilename' => __DIR__ . '/zj_store//pfdstest.cer',
         ];
 
         $trdClient = new TrdClient($config);

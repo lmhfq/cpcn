@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 
-namespace tests;
+namespace Test;
 
 
 use Lmh\Cpcn\Request\TrdT3005Request;
