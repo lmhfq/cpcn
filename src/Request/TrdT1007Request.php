@@ -12,9 +12,9 @@ class TrdT1007Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T1007";
 
-    public $cltacc_subno;
+    protected $cltacc_subno;
 
-    public $cltacc_cltnm;
+    protected $cltacc_cltnm;
 
     /**
      * @return mixed

@@ -12,7 +12,7 @@ class TrdT1008Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T1008";
 
-    public $qryflag;
+    protected $qryflag;
 
     /**
      * @return mixed

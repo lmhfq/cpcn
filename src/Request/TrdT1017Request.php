@@ -12,17 +12,17 @@ class TrdT1017Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T1017";
 
-    public $qryflag;
+    protected $qryflag;
 
-    public $bkid;
+    protected $bkid;
 
-    public $openbkcd;
+    protected $openbkcd;
 
-    public $openbknm;
+    protected $openbknm;
 
-    public $citycd;
+    protected $citycd;
 
-    public $querynum;
+    protected $querynum;
 
     /**
      * @return mixed

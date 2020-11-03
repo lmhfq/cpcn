@@ -12,15 +12,15 @@ class TrdT1032Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T1032";
 
-    public $cltacc_subno;
+    protected $cltacc_subno;
 
-    public $cltacc_cltnm;
+    protected $cltacc_cltnm;
 
-    public $pbusitype;
+    protected $pbusitype;
 
-    public $actiflag;
+    protected $actiflag;
 
-    public $actiinfo;
+    protected $actiinfo;
 
     /**
      * @return mixed

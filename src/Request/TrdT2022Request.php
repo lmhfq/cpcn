@@ -12,27 +12,27 @@ class TrdT2022Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T2022";
 
-    public $cltacc_subno;
+    protected $cltacc_subno;
 
-    public $cltacc_cltnm;
+    protected $cltacc_cltnm;
 
-    public $bkacc_accno;
+    protected $bkacc_accno;
 
-    public $bkacc_accnm;
+    protected $bkacc_accnm;
 
-    public $amt_aclamt;
+    protected $amt_aclamt;
 
-    public $amt_feeamt;
+    protected $amt_feeamt;
 
-    public $amt_tamt;
+    protected $amt_tamt;
 
-    public $amt_ccycd;
+    protected $amt_ccycd;
 
-    public $usage;
+    protected $usage;
 
-    public $trsflag;
+    protected $trsflag;
 
-    public $balflag;
+    protected $balflag;
 
     /**
      * @return mixed

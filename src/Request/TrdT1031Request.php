@@ -14,117 +14,117 @@ class TrdT1031Request extends TrdBaseRequest
 
     public $fcflg;
 
-    public $acctp;
+    protected $acctp;
 
-    public $cltacc_cltno;
+    protected $cltacc_cltno;
 
-    public $cltacc_cltnm;
+    protected $cltacc_cltnm;
 
-    public $clt_kd;
+    protected $clt_kd;
 
-    public $clt_nm;
+    protected $clt_nm;
 
-    public $clt_cdtp;
+    protected $clt_cdtp;
 
-    public $clt_cdno;
+    protected $clt_cdno;
 
-    public $clt_cdisdt;
+    protected $clt_cdisdt;
 
-    public $clt_cdexdt;
+    protected $clt_cdexdt;
 
-    public $clt_uscid;
+    protected $clt_uscid;
 
-    public $clt_uscexdt;
+    protected $clt_uscexdt;
 
-    public $clt_orgcd;
+    protected $clt_orgcd;
 
-    public $clt_bslic;
+    protected $clt_bslic;
 
-    public $clt_swdjh;
+    protected $clt_swdjh;
 
-    public $clt_mobno;
+    protected $clt_mobno;
 
-    public $clt_email;
+    protected $clt_email;
 
-    public $clt_postno;
+    protected $clt_postno;
 
-    public $clt_addr;
+    protected $clt_addr;
 
-    public $clt_citycd;
+    protected $clt_citycd;
 
-    public $clt_inducode;
+    protected $clt_inducode;
 
-    public $clt_scale;
+    protected $clt_scale;
 
-    public $clt_basicacctno;
+    protected $clt_basicacctno;
 
-    public $clt_authcapital;
+    protected $clt_authcapital;
 
-    public $clt_busiscope;
+    protected $clt_busiscope;
 
-    public $oper_nm;
+    protected $oper_nm;
 
-    public $oper_cdno;
+    protected $oper_cdno;
 
-    public $oper_mobno;
+    protected $oper_mobno;
 
-    public $fleinfo_dtlno;
+    protected $fleinfo_dtlno;
 
-    public $fleinfo_bsity;
+    protected $fleinfo_bsity;
 
-    public $fleinfo_fletheme;
+    protected $fleinfo_fletheme;
 
-    public $fleinfo_flemeo;
+    protected $fleinfo_flemeo;
 
-    public $fleinfo_flety;
+    protected $fleinfo_flety;
 
-    public $fleinfo_flenm;
+    protected $fleinfo_flenm;
 
-    public $fleinfo_flepth;
+    protected $fleinfo_flepth;
 
-    public $fleinfo_flecont;
+    protected $fleinfo_flecont;
 
-    public $bkacc_bkid;
+    protected $bkacc_bkid;
 
-    public $bkacc_accno;
+    protected $bkacc_accno;
 
-    public $bkacc_crdtp;
+    protected $bkacc_crdtp;
 
-    public $bkacc_cdtp;
+    protected $bkacc_cdtp;
 
-    public $bkacc_cdno;
+    protected $bkacc_cdno;
 
-    public $bkacc_phone;
+    protected $bkacc_phone;
 
-    public $bkacc_crsmk;
+    protected $bkacc_crsmk;
 
-    public $bkacc_openbkcd;
+    protected $bkacc_openbkcd;
 
-    public $bkacc_openbknm;
+    protected $bkacc_openbknm;
 
-    public $bkacc_prccd;
+    protected $bkacc_prccd;
 
-    public $bkacc_prcnm;
+    protected $bkacc_prcnm;
 
-    public $bkacc_citycd;
+    protected $bkacc_citycd;
 
-    public $bkacc_citynm;
+    protected $bkacc_citynm;
 
-    public $operator_docuopname;
+    protected $operator_docuopname;
 
-    public $operator_docuopmobile;
+    protected $operator_docuopmobile;
 
-    public $operator_docuopidcard;
+    protected $operator_docuopidcard;
 
-    public $operator_checkername;
+    protected $operator_checkername;
 
-    public $operator_checkermobile;
+    protected $operator_checkermobile;
 
-    public $operator_checkeridcard;
+    protected $operator_checkeridcard;
 
-    public $actiflag;
+    protected $actiflag;
 
-    public $notificationurl;
+    protected $notificationurl;
 
     /**
      * @return mixed

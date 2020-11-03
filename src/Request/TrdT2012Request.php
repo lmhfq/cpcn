@@ -12,7 +12,7 @@ class TrdT2012Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T2012";
 
-    public $orgsrl;
+    protected $orgsrl;
 
     /**
      * @return mixed

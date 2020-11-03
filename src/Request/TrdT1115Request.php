@@ -12,7 +12,7 @@ class TrdT1115Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T1115";
 
-    public $bkacc_accno;
+    protected $bkacc_accno;
 
     /**
      * @return mixed

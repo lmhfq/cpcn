@@ -12,7 +12,7 @@ class TrdT1002Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T1002";
 
-    public $srcsrl;
+    protected $srcsrl;
 
     /**
      * @return mixed

@@ -12,41 +12,41 @@ class TrdT1004Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T1004";
 
-    public $cltacc_cltnm;
+    protected $cltacc_cltnm;
 
-    public $bkacc_souraccno;
+    protected $bkacc_souraccno;
 
-    public $bkacc_bkid;
+    protected $bkacc_bkid;
 
-    public $bkacc_accno;
+    protected $bkacc_accno;
 
-    public $bkacc_accnm;
+    protected $bkacc_accnm;
 
-    public $bkacc_acctp;
+    protected $bkacc_acctp;
 
-    public $bkacc_crdtp;
+    protected $bkacc_crdtp;
 
-    public $bkacc_cdtp;
+    protected $bkacc_cdtp;
 
-    public $bkacc_cdno;
+    protected $bkacc_cdno;
 
-    public $bkacc_phone;
+    protected $bkacc_phone;
 
-    public $bkacc_crsmk;
+    protected $bkacc_crsmk;
 
-    public $bkacc_openbkcd;
+    protected $bkacc_openbkcd;
 
-    public $bkacc_openbknm;
+    protected $bkacc_openbknm;
 
-    public $bkacc_prccd;
+    protected $bkacc_prccd;
 
-    public $bkacc_prcnm;
+    protected $bkacc_prcnm;
 
-    public $bkacc_citycd;
+    protected $bkacc_citycd;
 
-    public $bkacc_citynm;
+    protected $bkacc_citynm;
 
-    public $fcflg;
+    protected $fcflg;
 
     /**
      * @return mixed

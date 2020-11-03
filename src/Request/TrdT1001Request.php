@@ -12,47 +12,47 @@ class TrdT1001Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T1001";
 
-    public $cltacc_cltno;
+    protected $cltacc_cltno;
 
-    public $cltacc_subno;
+    protected $cltacc_subno;
 
-    public $cltacc_cltnm;
+    protected $cltacc_cltnm;
 
-    public $clt_kd;
+    protected $clt_kd;
 
-    public $clt_nm;
+    protected $clt_nm;
 
-    public $clt_cdtp;
+    protected $clt_cdtp;
 
-    public $clt_cdno;
+    protected $clt_cdno;
 
-    public $clt_uscid;
+    protected $clt_uscid;
 
-    public $clt_orgcd;
+    protected $clt_orgcd;
 
-    public $clt_bslic;
+    protected $clt_bslic;
 
-    public $clt_swdjh;
+    protected $clt_swdjh;
 
-    public $clt_mobno;
+    protected $clt_mobno;
 
-    public $clt_email;
+    protected $clt_email;
 
-    public $clt_postno;
+    protected $clt_postno;
 
-    public $clt_addr;
+    protected $clt_addr;
 
-    public $oper_nm;
+    protected $oper_nm;
 
-    public $oper_cdno;
+    protected $oper_cdno;
 
-    public $oper_mobno;
+    protected $oper_mobno;
 
-    public $fcflg;
+    protected $fcflg;
 
-    public $acctp;
+    protected $acctp;
 
-    public $hxsubno;
+    protected $hxsubno;
 
     /**
      * @return mixed
