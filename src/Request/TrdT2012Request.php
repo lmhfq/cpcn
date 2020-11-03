@@ -15,6 +15,22 @@ class TrdT2012Request extends TrdBaseRequest
     public $orgsrl;
 
     /**
+     * @return mixed
+     */
+    public function getOrgsrl()
+    {
+        return $this->orgsrl;
+    }
+
+    /**
+     * @param mixed $orgsrl
+     */
+    public function setOrgsrl($orgsrl): void
+    {
+        $this->orgsrl = $orgsrl;
+    }
+
+    /**
      * @throws InvalidConfigException
      */
     public function handle()

@@ -15,6 +15,22 @@ class TrdT1008Request extends TrdBaseRequest
     public $qryflag;
 
     /**
+     * @return mixed
+     */
+    public function getQryflag()
+    {
+        return $this->qryflag;
+    }
+
+    /**
+     * @param mixed $qryflag
+     */
+    public function setQryflag($qryflag): void
+    {
+        $this->qryflag = $qryflag;
+    }
+
+    /**
      * @throws InvalidConfigException
      */
     public function handle()

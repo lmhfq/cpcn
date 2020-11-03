@@ -63,7 +63,10 @@ class ServiceContainer extends Container
             'ptnCode' => '',
             'bkCode' => '',
             'keystoreFilename' => '',
+            'keystorePassword' => '',
+            'keyContent' => '',
             'certificateFilename' => '',
+            'certContent' => '',
         ];
         if (isset($this->userConfig['sandbox']) && $this->userConfig['sandbox'] == true) {
             $base['http']['base_uri'] = 'https://ctest.cpcn.com.cn/acswk/interfaceII.htm';

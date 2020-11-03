@@ -15,6 +15,22 @@ class TrdT1115Request extends TrdBaseRequest
     public $bkacc_accno;
 
     /**
+     * @return mixed
+     */
+    public function getBkaccAccno()
+    {
+        return $this->bkacc_accno;
+    }
+
+    /**
+     * @param mixed $bkacc_accno
+     */
+    public function setBkaccAccno($bkacc_accno): void
+    {
+        $this->bkacc_accno = $bkacc_accno;
+    }
+
+    /**
      * @throws InvalidConfigException
      */
     public function handle()

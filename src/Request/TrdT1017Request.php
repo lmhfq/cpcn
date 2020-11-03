@@ -25,6 +25,102 @@ class TrdT1017Request extends TrdBaseRequest
     public $querynum;
 
     /**
+     * @return mixed
+     */
+    public function getQryflag()
+    {
+        return $this->qryflag;
+    }
+
+    /**
+     * @param mixed $qryflag
+     */
+    public function setQryflag($qryflag): void
+    {
+        $this->qryflag = $qryflag;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBkid()
+    {
+        return $this->bkid;
+    }
+
+    /**
+     * @param mixed $bkid
+     */
+    public function setBkid($bkid): void
+    {
+        $this->bkid = $bkid;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOpenbkcd()
+    {
+        return $this->openbkcd;
+    }
+
+    /**
+     * @param mixed $openbkcd
+     */
+    public function setOpenbkcd($openbkcd): void
+    {
+        $this->openbkcd = $openbkcd;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOpenbknm()
+    {
+        return $this->openbknm;
+    }
+
+    /**
+     * @param mixed $openbknm
+     */
+    public function setOpenbknm($openbknm): void
+    {
+        $this->openbknm = $openbknm;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCitycd()
+    {
+        return $this->citycd;
+    }
+
+    /**
+     * @param mixed $citycd
+     */
+    public function setCitycd($citycd): void
+    {
+        $this->citycd = $citycd;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getQuerynum()
+    {
+        return $this->querynum;
+    }
+
+    /**
+     * @param mixed $querynum
+     */
+    public function setQuerynum($querynum): void
+    {
+        $this->querynum = $querynum;
+    }
+
+    /**
      * @throws InvalidConfigException
      */
     public function handle()

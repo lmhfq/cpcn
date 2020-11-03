@@ -31,9 +31,14 @@ class TrdClient extends ServiceContainer
         if (!$request->getMsghdBkcd()) {
             $request->setMsghdBkcd($this->offsetGet("config")['bkCode']);
         }
-        SignatureFactory::setSigner(new PriKeySigner($this->offsetGet("config")['keystoreFilename']));
+        SignatureFactory::setSigner(new PriKeySigner(
+            $this->offsetGet("config")['keystoreFilename'],
+            $this->offsetGet("config")['keystorePassword'],
+            $this->offsetGet("config")['keyContent'],
+            $this->offsetGet("config")['certificateFilename'],
+            $this->offsetGet("config")['certContent']
+        ));
         $request->handle();
-
         $params = [
             'message' => $request->getRequestMessage(),
             'signature' => $request->getRequestSignature(),
@@ -70,7 +75,6 @@ class TrdClient extends ServiceContainer
             ],
             'form_params' => $data,
         ];
-
         $response = $client->request('POST', '', $options);
         return $response->getBody()->getContents();
     }

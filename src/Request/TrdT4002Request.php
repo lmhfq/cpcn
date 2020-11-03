@@ -12,9 +12,41 @@ class TrdT4002Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T4002";
 
-    public $qpy_accno;
+    protected $qpy_accno;
 
-    public $qpy_smsmsg;
+    protected $qpy_smsmsg;
+
+    /**
+     * @return mixed
+     */
+    public function getQpyAccno()
+    {
+        return $this->qpy_accno;
+    }
+
+    /**
+     * @param mixed $qpy_accno
+     */
+    public function setQpyAccno($qpy_accno): void
+    {
+        $this->qpy_accno = $qpy_accno;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getQpySmsmsg()
+    {
+        return $this->qpy_smsmsg;
+    }
+
+    /**
+     * @param mixed $qpy_smsmsg
+     */
+    public function setQpySmsmsg($qpy_smsmsg): void
+    {
+        $this->qpy_smsmsg = $qpy_smsmsg;
+    }
     /**
      * @throws InvalidConfigException
      */

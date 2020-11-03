@@ -12,7 +12,23 @@ class TrdT4003Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T4003";
 
-    public $qpy_accno;
+    protected $qpy_accno;
+
+    /**
+     * @return mixed
+     */
+    public function getQpyAccno()
+    {
+        return $this->qpy_accno;
+    }
+
+    /**
+     * @param mixed $qpy_accno
+     */
+    public function setQpyAccno($qpy_accno): void
+    {
+        $this->qpy_accno = $qpy_accno;
+    }
 
     /**
      * @throws InvalidConfigException

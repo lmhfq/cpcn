@@ -35,6 +35,182 @@ class TrdT2022Request extends TrdBaseRequest
     public $balflag;
 
     /**
+     * @return mixed
+     */
+    public function getCltaccSubno()
+    {
+        return $this->cltacc_subno;
+    }
+
+    /**
+     * @param mixed $cltacc_subno
+     */
+    public function setCltaccSubno($cltacc_subno): void
+    {
+        $this->cltacc_subno = $cltacc_subno;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCltaccCltnm()
+    {
+        return $this->cltacc_cltnm;
+    }
+
+    /**
+     * @param mixed $cltacc_cltnm
+     */
+    public function setCltaccCltnm($cltacc_cltnm): void
+    {
+        $this->cltacc_cltnm = $cltacc_cltnm;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBkaccAccno()
+    {
+        return $this->bkacc_accno;
+    }
+
+    /**
+     * @param mixed $bkacc_accno
+     */
+    public function setBkaccAccno($bkacc_accno): void
+    {
+        $this->bkacc_accno = $bkacc_accno;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBkaccAccnm()
+    {
+        return $this->bkacc_accnm;
+    }
+
+    /**
+     * @param mixed $bkacc_accnm
+     */
+    public function setBkaccAccnm($bkacc_accnm): void
+    {
+        $this->bkacc_accnm = $bkacc_accnm;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmtAclamt()
+    {
+        return $this->amt_aclamt;
+    }
+
+    /**
+     * @param mixed $amt_aclamt
+     */
+    public function setAmtAclamt($amt_aclamt): void
+    {
+        $this->amt_aclamt = $amt_aclamt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmtFeeamt()
+    {
+        return $this->amt_feeamt;
+    }
+
+    /**
+     * @param mixed $amt_feeamt
+     */
+    public function setAmtFeeamt($amt_feeamt): void
+    {
+        $this->amt_feeamt = $amt_feeamt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmtTamt()
+    {
+        return $this->amt_tamt;
+    }
+
+    /**
+     * @param mixed $amt_tamt
+     */
+    public function setAmtTamt($amt_tamt): void
+    {
+        $this->amt_tamt = $amt_tamt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmtCcycd()
+    {
+        return $this->amt_ccycd;
+    }
+
+    /**
+     * @param mixed $amt_ccycd
+     */
+    public function setAmtCcycd($amt_ccycd): void
+    {
+        $this->amt_ccycd = $amt_ccycd;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsage()
+    {
+        return $this->usage;
+    }
+
+    /**
+     * @param mixed $usage
+     */
+    public function setUsage($usage): void
+    {
+        $this->usage = $usage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTrsflag()
+    {
+        return $this->trsflag;
+    }
+
+    /**
+     * @param mixed $trsflag
+     */
+    public function setTrsflag($trsflag): void
+    {
+        $this->trsflag = $trsflag;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBalflag()
+    {
+        return $this->balflag;
+    }
+
+    /**
+     * @param mixed $balflag
+     */
+    public function setBalflag($balflag): void
+    {
+        $this->balflag = $balflag;
+    }
+
+    /**
      * @throws InvalidConfigException
      */
     public function handle()

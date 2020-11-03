@@ -12,7 +12,23 @@ class TrdT3069Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T3069";
 
-    public $billinfo_billno;
+    protected $billinfo_billno;
+
+    /**
+     * @return mixed
+     */
+    public function getBillinfoBillno()
+    {
+        return $this->billinfo_billno;
+    }
+
+    /**
+     * @param mixed $billinfo_billno
+     */
+    public function setBillinfoBillno($billinfo_billno): void
+    {
+        $this->billinfo_billno = $billinfo_billno;
+    }
 
     /**
      * @throws InvalidConfigException

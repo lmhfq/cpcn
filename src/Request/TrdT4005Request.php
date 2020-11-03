@@ -12,9 +12,41 @@ class TrdT4005Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T4005";
 
-    public $qpy_ptnsrl;
+    protected $qpy_ptnsrl;
 
-    public $qpy_smsmsg;
+    protected $qpy_smsmsg;
+
+    /**
+     * @return mixed
+     */
+    public function getQpyPtnsrl()
+    {
+        return $this->qpy_ptnsrl;
+    }
+
+    /**
+     * @param mixed $qpy_ptnsrl
+     */
+    public function setQpyPtnsrl($qpy_ptnsrl): void
+    {
+        $this->qpy_ptnsrl = $qpy_ptnsrl;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getQpySmsmsg()
+    {
+        return $this->qpy_smsmsg;
+    }
+
+    /**
+     * @param mixed $qpy_smsmsg
+     */
+    public function setQpySmsmsg($qpy_smsmsg): void
+    {
+        $this->qpy_smsmsg = $qpy_smsmsg;
+    }
 
     /**
      * @throws InvalidConfigException

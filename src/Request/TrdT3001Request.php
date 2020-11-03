@@ -12,17 +12,113 @@ class TrdT3001Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T3001";
 
-    public $cltacc_subno;
+    protected $cltacc_subno;
 
-    public $cltacc_cltnm;
+    protected $cltacc_cltnm;
 
-    public $amt_aclamt;
+    protected $amt_aclamt;
 
-    public $amt_ccycd;
+    protected $amt_ccycd;
 
-    public $trsflag;
+    protected $trsflag;
 
-    public $usage;
+    protected $usage;
+
+    /**
+     * @return mixed
+     */
+    public function getCltaccSubno()
+    {
+        return $this->cltacc_subno;
+    }
+
+    /**
+     * @param mixed $cltacc_subno
+     */
+    public function setCltaccSubno($cltacc_subno): void
+    {
+        $this->cltacc_subno = $cltacc_subno;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCltaccCltnm()
+    {
+        return $this->cltacc_cltnm;
+    }
+
+    /**
+     * @param mixed $cltacc_cltnm
+     */
+    public function setCltaccCltnm($cltacc_cltnm): void
+    {
+        $this->cltacc_cltnm = $cltacc_cltnm;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmtAclamt()
+    {
+        return $this->amt_aclamt;
+    }
+
+    /**
+     * @param mixed $amt_aclamt
+     */
+    public function setAmtAclamt($amt_aclamt): void
+    {
+        $this->amt_aclamt = $amt_aclamt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmtCcycd()
+    {
+        return $this->amt_ccycd;
+    }
+
+    /**
+     * @param mixed $amt_ccycd
+     */
+    public function setAmtCcycd($amt_ccycd): void
+    {
+        $this->amt_ccycd = $amt_ccycd;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTrsflag()
+    {
+        return $this->trsflag;
+    }
+
+    /**
+     * @param mixed $trsflag
+     */
+    public function setTrsflag($trsflag): void
+    {
+        $this->trsflag = $trsflag;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsage()
+    {
+        return $this->usage;
+    }
+
+    /**
+     * @param mixed $usage
+     */
+    public function setUsage($usage): void
+    {
+        $this->usage = $usage;
+    }
 
     /**
      * @throws InvalidConfigException

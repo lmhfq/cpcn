@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Support;
 
 
-use Lmh\Cpcn\Exception\InvalidConfigException;
 use Exception;
+use Lmh\Cpcn\Exception\InvalidConfigException;
 
 class PriKeySigner
 {
@@ -13,10 +13,30 @@ class PriKeySigner
      * @var string
      */
     private $keystoreFilename;
+    /**
+     * @var string
+     */
+    private $password;
+    /**
+     * @var string
+     */
+    private $keyContent;
+    /**
+     * @var string
+     */
+    private $certificateFilename;
+    /**
+     * @var string
+     */
+    private $certContent;
 
-    public function __construct(string $filepath)
+    public function __construct(string $filepath = '', string $password = '', string $keyContent = '', string $certificateFilename = '', string $certContent = '')
     {
         $this->keystoreFilename = $filepath;
+        $this->password = $password;
+        $this->keyContent = $keyContent;
+        $this->certificateFilename = $certificateFilename;
+        $this->certContent = $certContent;
     }
 
     /**
@@ -26,20 +46,39 @@ class PriKeySigner
      */
     public function sign(string $plainText)
     {
-        $p12cert = [];
-        $fd = fopen($this->keystoreFilename, 'r');
-        if ($fd === false) {
+        if ($this->keyContent) {
+            $privateKeyId = $this->keyContent;
+        } else if ($this->keystoreFilename) {
+            $certStore = file_get_contents($this->keystoreFilename);
+            openssl_pkcs12_read($certStore, $p12cert, $this->password);
+            $privateKeyId = $p12cert["pkey"];
+        } else {
             throw new InvalidConfigException('合作方的签名证书配置错误');
         }
-        $p12buf = fread($fd, filesize($this->keystoreFilename));
-        fclose($fd);
-        openssl_pkcs12_read($p12buf, $p12cert, '1');
-        $pkeyId = $p12cert["pkey"];
         $signature = "";
         try {
-            openssl_sign($plainText, $signature, $pkeyId, OPENSSL_ALGO_SHA1);
+            openssl_sign($plainText, $signature, $privateKeyId, OPENSSL_ALGO_SHA1);
         } catch (Exception $e) {
         }
         return bin2hex($signature);
+    }
+
+    /**
+     * @param string $plainText
+     * @param $signature
+     * @return int
+     * @throws InvalidConfigException
+     */
+    public function verify(string $plainText, $signature)
+    {
+        if ($this->certContent) {
+            $cert = $this->certContent;
+        } else if ($this->certificateFilename) {
+            $cert = file_get_contents($this->certificateFilename);
+        } else {
+            throw new InvalidConfigException('合作方的签名证书配置错误');
+        }
+        $binarySignature = pack("H" . strlen($signature), $signature);
+        return openssl_verify($plainText, $binarySignature, $cert);
     }
 }

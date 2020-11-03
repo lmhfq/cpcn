@@ -15,6 +15,22 @@ class TrdT1002Request extends TrdBaseRequest
     public $srcsrl;
 
     /**
+     * @return mixed
+     */
+    public function getSrcsrl()
+    {
+        return $this->srcsrl;
+    }
+
+    /**
+     * @param mixed $srcsrl
+     */
+    public function setSrcsrl($srcsrl): void
+    {
+        $this->srcsrl = $srcsrl;
+    }
+
+    /**
      * @throws InvalidConfigException
      */
     public function handle()

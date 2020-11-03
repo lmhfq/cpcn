@@ -12,7 +12,24 @@ class TrdT3003Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T3003";
 
-    public $orgsrl;
+    protected $orgsrl;
+
+    /**
+     * @return mixed
+     */
+    public function getOrgsrl()
+    {
+        return $this->orgsrl;
+    }
+
+    /**
+     * @param mixed $orgsrl
+     */
+    public function setOrgsrl($orgsrl): void
+    {
+        $this->orgsrl = $orgsrl;
+    }
+
     /**
      * @throws InvalidConfigException
      */

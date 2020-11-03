@@ -12,29 +12,222 @@ class TrdT3005Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T3005";
 
-    public $billinfo_psubno;
+    protected $billinfo_psubno;
 
-    public $billinfo_pnm;
+    protected $billinfo_pnm;
 
-    public $billinfo_rsubno;
+    protected $billinfo_rsubno;
 
-    public $billinfo_rcltnm;
+    protected $billinfo_rcltnm;
 
-    public $billinfo_orderno;
+    protected $billinfo_orderno;
 
-    public $billinfo_billno;
+    protected $billinfo_billno;
 
-    public $billinfo_aclamt;
+    protected $billinfo_aclamt;
 
-    public $billinfo_payfee;
+    protected $billinfo_payfee;
 
-    public $billinfo_payeefee;
+    protected $billinfo_payeefee;
 
-    public $billinfo_ccycd;
+    protected $billinfo_ccycd;
 
-    public $billinfo_usage;
+    protected $billinfo_usage;
 
-    public $billinfo_trsflag;
+    protected $billinfo_trsflag;
+
+    /**
+     * @return mixed
+     */
+    public function getBillinfoPsubno()
+    {
+        return $this->billinfo_psubno;
+    }
+
+    /**
+     * @param mixed $billinfo_psubno
+     */
+    public function setBillinfoPsubno($billinfo_psubno): void
+    {
+        $this->billinfo_psubno = $billinfo_psubno;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBillinfoPnm()
+    {
+        return $this->billinfo_pnm;
+    }
+
+    /**
+     * @param mixed $billinfo_pnm
+     */
+    public function setBillinfoPnm($billinfo_pnm): void
+    {
+        $this->billinfo_pnm = $billinfo_pnm;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBillinfoRsubno()
+    {
+        return $this->billinfo_rsubno;
+    }
+
+    /**
+     * @param mixed $billinfo_rsubno
+     */
+    public function setBillinfoRsubno($billinfo_rsubno): void
+    {
+        $this->billinfo_rsubno = $billinfo_rsubno;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBillinfoRcltnm()
+    {
+        return $this->billinfo_rcltnm;
+    }
+
+    /**
+     * @param mixed $billinfo_rcltnm
+     */
+    public function setBillinfoRcltnm($billinfo_rcltnm): void
+    {
+        $this->billinfo_rcltnm = $billinfo_rcltnm;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBillinfoOrderno()
+    {
+        return $this->billinfo_orderno;
+    }
+
+    /**
+     * @param mixed $billinfo_orderno
+     */
+    public function setBillinfoOrderno($billinfo_orderno): void
+    {
+        $this->billinfo_orderno = $billinfo_orderno;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBillinfoBillno()
+    {
+        return $this->billinfo_billno;
+    }
+
+    /**
+     * @param mixed $billinfo_billno
+     */
+    public function setBillinfoBillno($billinfo_billno): void
+    {
+        $this->billinfo_billno = $billinfo_billno;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBillinfoAclamt()
+    {
+        return $this->billinfo_aclamt;
+    }
+
+    /**
+     * @param mixed $billinfo_aclamt
+     */
+    public function setBillinfoAclamt($billinfo_aclamt): void
+    {
+        $this->billinfo_aclamt = $billinfo_aclamt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBillinfoPayfee()
+    {
+        return $this->billinfo_payfee;
+    }
+
+    /**
+     * @param mixed $billinfo_payfee
+     */
+    public function setBillinfoPayfee($billinfo_payfee): void
+    {
+        $this->billinfo_payfee = $billinfo_payfee;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBillinfoPayeefee()
+    {
+        return $this->billinfo_payeefee;
+    }
+
+    /**
+     * @param mixed $billinfo_payeefee
+     */
+    public function setBillinfoPayeefee($billinfo_payeefee): void
+    {
+        $this->billinfo_payeefee = $billinfo_payeefee;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBillinfoCcycd()
+    {
+        return $this->billinfo_ccycd;
+    }
+
+    /**
+     * @param mixed $billinfo_ccycd
+     */
+    public function setBillinfoCcycd($billinfo_ccycd): void
+    {
+        $this->billinfo_ccycd = $billinfo_ccycd;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBillinfoUsage()
+    {
+        return $this->billinfo_usage;
+    }
+
+    /**
+     * @param mixed $billinfo_usage
+     */
+    public function setBillinfoUsage($billinfo_usage): void
+    {
+        $this->billinfo_usage = $billinfo_usage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBillinfoTrsflag()
+    {
+        return $this->billinfo_trsflag;
+    }
+
+    /**
+     * @param mixed $billinfo_trsflag
+     */
+    public function setBillinfoTrsflag($billinfo_trsflag): void
+    {
+        $this->billinfo_trsflag = $billinfo_trsflag;
+    }
+
 
     /**
      * @throws InvalidConfigException
