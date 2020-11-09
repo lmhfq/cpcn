@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Request;
 
 
+use InvalidArgumentException;
+use Lmh\Cpcn\Entity\FileInfoEntity;
 use Lmh\Cpcn\Exception\InvalidConfigException;
 use Lmh\Cpcn\Support\Xml;
 
@@ -68,21 +70,11 @@ class TrdT1031Request extends TrdBaseRequest
 
     protected $oper_mobno;
 
-    protected $fleinfo_dtlno;
-
-    protected $fleinfo_bsity;
-
-    protected $fleinfo_fletheme;
-
-    protected $fleinfo_flemeo;
-
-    protected $fleinfo_flety;
-
-    protected $fleinfo_flenm;
-
-    protected $fleinfo_flepth;
-
-    protected $fleinfo_flecont;
+    /**
+     * @var array[FileInfoEntity] 证件照片信息(0~N 条)
+     * @see FileInfoEntity
+     */
+    public $fleinfo = [];
 
     protected $bkacc_bkid;
 
@@ -575,132 +567,21 @@ class TrdT1031Request extends TrdBaseRequest
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getFleinfoDtlno()
+    public function getFleinfo(): array
     {
-        return $this->fleinfo_dtlno;
+        return $this->fleinfo;
     }
 
     /**
-     * @param mixed $fleinfo_dtlno
+     * @param array $fleinfo
      */
-    public function setFleinfoDtlno($fleinfo_dtlno): void
+    public function setFleinfo(array $fleinfo): void
     {
-        $this->fleinfo_dtlno = $fleinfo_dtlno;
+        $this->fleinfo = $fleinfo;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getFleinfoBsity()
-    {
-        return $this->fleinfo_bsity;
-    }
-
-    /**
-     * @param mixed $fleinfo_bsity
-     */
-    public function setFleinfoBsity($fleinfo_bsity): void
-    {
-        $this->fleinfo_bsity = $fleinfo_bsity;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFleinfoFletheme()
-    {
-        return $this->fleinfo_fletheme;
-    }
-
-    /**
-     * @param mixed $fleinfo_fletheme
-     */
-    public function setFleinfoFletheme($fleinfo_fletheme): void
-    {
-        $this->fleinfo_fletheme = $fleinfo_fletheme;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFleinfoFlemeo()
-    {
-        return $this->fleinfo_flemeo;
-    }
-
-    /**
-     * @param mixed $fleinfo_flemeo
-     */
-    public function setFleinfoFlemeo($fleinfo_flemeo): void
-    {
-        $this->fleinfo_flemeo = $fleinfo_flemeo;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFleinfoFlety()
-    {
-        return $this->fleinfo_flety;
-    }
-
-    /**
-     * @param mixed $fleinfo_flety
-     */
-    public function setFleinfoFlety($fleinfo_flety): void
-    {
-        $this->fleinfo_flety = $fleinfo_flety;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFleinfoFlenm()
-    {
-        return $this->fleinfo_flenm;
-    }
-
-    /**
-     * @param mixed $fleinfo_flenm
-     */
-    public function setFleinfoFlenm($fleinfo_flenm): void
-    {
-        $this->fleinfo_flenm = $fleinfo_flenm;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFleinfoFlepth()
-    {
-        return $this->fleinfo_flepth;
-    }
-
-    /**
-     * @param mixed $fleinfo_flepth
-     */
-    public function setFleinfoFlepth($fleinfo_flepth): void
-    {
-        $this->fleinfo_flepth = $fleinfo_flepth;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFleinfoFlecont()
-    {
-        return $this->fleinfo_flecont;
-    }
-
-    /**
-     * @param mixed $fleinfo_flecont
-     */
-    public function setFleinfoFlecont($fleinfo_flecont): void
-    {
-        $this->fleinfo_flecont = $fleinfo_flecont;
-    }
 
     /**
      * @return mixed
@@ -1043,9 +924,54 @@ class TrdT1031Request extends TrdBaseRequest
      */
     public function handle()
     {
+        $fileInfo = [];
+        foreach ($this->fleinfo as $v) {
+            if ($v && !$v instanceof FileInfoEntity) {
+                throw new InvalidArgumentException("fleinfo 格式不支持");
+            }
+            /**
+             * @var $v FileInfoEntity
+             */
+            $fileInfo[] = [
+                'DtlNo' => $v->fleinfo_dtlno,
+                'BsiTy' => $v->fleinfo_bsity,
+                'FleTheme' => $v->fleinfo_fletheme,
+                'FleMeo' => $v->fleinfo_flemeo,
+                'FleTy' => $v->fleinfo_flety,
+                'FleNm' => $v->fleinfo_flenm,
+                'FlePth' => $v->fleinfo_flepth,
+                'FleCont' => $v->fleinfo_flecont,
+            ];
+        }
         $data = [];
         $data = array_merge($data, parent::getMsghd());
         $data = array_merge($data, parent::getSrl());
+
+        $clt = [
+            'Kd' => $this->clt_kd,
+            'Nm' => $this->clt_nm,
+            'CdTp' => $this->clt_cdtp,
+            'CdNo' => $this->clt_cdno,
+            'MobNo' => $this->clt_mobno,
+            'Email' => $this->clt_email,
+            'PostNo' => $this->clt_postno,
+            'Addr' => $this->clt_addr,
+            'CityCd' => $this->clt_citycd,
+            'InduCode' => $this->clt_inducode,
+            'Scale' => $this->clt_scale,
+            'BasicAcctNo' => $this->clt_basicacctno,
+            'AuthCapital' => $this->clt_authcapital,
+            'BusiScope' => $this->clt_busiscope,
+        ];
+        if ($this->clt_kd) {
+            $clt = array_merge($clt, [
+                'CdIsDt' => $this->clt_cdisdt,
+                'CdExDt' => $this->clt_cdexdt,
+                'UscId' => $this->clt_uscid,
+                'UscExDt' => $this->clt_uscexdt,
+                'OrgCd' => $this->clt_orgcd,
+            ]);
+        }
         $data = array_merge($data, [
             'FcFlg' => $this->fcflg,
             'AccTp' => $this->acctp,
@@ -1053,44 +979,7 @@ class TrdT1031Request extends TrdBaseRequest
                 'CltNo' => $this->cltacc_cltno,
                 'CltNm' => $this->cltacc_cltnm,
             ],
-            'Clt' => [
-                'Kd' => $this->clt_kd,
-                'Nm' => $this->clt_nm,
-                'CdTp' => $this->clt_cdtp,
-                'CdNo' => $this->clt_cdno,
-                'CdIsDt' => $this->clt_cdisdt,
-                'CdExDt' => $this->clt_cdexdt,
-                'UscId' => $this->clt_uscid,
-                'UscExDt' => $this->clt_uscexdt,
-                'OrgCd' => $this->clt_orgcd,
-                'BsLic' => $this->clt_bslic,
-                'Swdjh' => $this->clt_swdjh,
-                'MobNo' => $this->clt_mobno,
-                'Email' => $this->clt_email,
-                'PostNo' => $this->clt_postno,
-                'Addr' => $this->clt_addr,
-                'CityCd' => $this->clt_citycd,
-                'InduCode' => $this->clt_inducode,
-                'Scale' => $this->clt_scale,
-                'BasicAcctNo' => $this->clt_basicacctno,
-                'AuthCapital' => $this->clt_authcapital,
-                'BusiScope' => $this->clt_busiscope,
-            ],
-            'Oper' => [
-                'Nm' => $this->oper_nm,
-                'CdNo' => $this->oper_cdno,
-                'MobNo' => $this->oper_mobno,
-            ],
-            'FleInfo' => [
-                'DtlNo' => $this->fleinfo_dtlno,
-                'BsiTy' => $this->fleinfo_bsity,
-                'FleTheme' => $this->fleinfo_fletheme,
-                'FleMeo' => $this->fleinfo_flemeo,
-                'FleTy' => $this->fleinfo_flety,
-                'FleNm' => $this->fleinfo_flenm,
-                'FlePth' => $this->fleinfo_flepth,
-                'FleCont' => $this->fleinfo_flecont,
-            ],
+            'Clt' => $clt,
             'BkAcc' => [
                 'BkId' => $this->bkacc_bkid,
                 'AccNo' => $this->bkacc_accno,
@@ -1106,17 +995,19 @@ class TrdT1031Request extends TrdBaseRequest
                 'CityCd' => $this->bkacc_citycd,
                 'CityNm' => $this->bkacc_citynm,
             ],
-            'Operator' => [
-                'docuOpName' => $this->operator_docuopname,
-                'docuOpMobile' => $this->operator_docuopmobile,
-                'docuOpIdCard' => $this->operator_docuopidcard,
-                'checkerName' => $this->operator_checkername,
-                'checkerMobile' => $this->operator_checkermobile,
-                'checkerIdCard' => $this->operator_checkeridcard,
-            ],
             'ActiFlag' => $this->actiflag,
             'NotificationURL' => $this->notificationurl,
         ]);
+        if ($this->clt_kd) {
+            $data = array_merge($data, [
+                'Oper' => [
+                    'Nm' => $this->oper_nm,
+                    'CdNo' => $this->oper_cdno,
+                    'MobNo' => $this->oper_mobno,
+                ],
+                'FleInfo' => $fileInfo,
+            ]);
+        }
         $xml = Xml::build($data);
         parent::process($xml);
     }
