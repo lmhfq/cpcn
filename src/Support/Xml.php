@@ -37,7 +37,7 @@ class Xml
      */
     public static function build(
         $data,
-        $root = 'xml',
+        $root = 'MSG',
         $item = 'item',
         $attr = '',
         $id = 'id'
@@ -53,7 +53,7 @@ class Xml
 
         $attr = trim($attr);
         $attr = empty($attr) ? '' : " {$attr}";
-        $xml = "<{$root}{$attr}>";
+        $xml = "<?xml version=\"1.0\" encoding=\"GBK\"?><{$root}{$attr}>";
         $xml .= self::data2Xml($data, $item, $id);
         $xml .= "</{$root}>";
 
