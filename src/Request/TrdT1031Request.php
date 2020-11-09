@@ -939,14 +939,12 @@ class TrdT1031Request extends TrdBaseRequest
              * @var $v FileInfoEntity
              */
             $fileInfo[] = [
-                'DtlNo' => $v->fleinfo_dtlno,
-                'BsiTy' => $v->fleinfo_bsity,
-                'FleTheme' => $v->fleinfo_fletheme,
-                'FleMeo' => $v->fleinfo_flemeo,
-                'FleTy' => $v->fleinfo_flety,
-                'FleNm' => $v->fleinfo_flenm,
-                'FlePth' => $v->fleinfo_flepth,
-                'FleCont' => $v->fleinfo_flecont,
+                'DtlNo' => $v->getFleinfoDtlno(),
+                'BsiTy' => $v->getFleinfoBsity(),
+                'FleTheme' => $v->getFleinfoFletheme(),
+                'FleTy' => $v->getFleinfoFlety(),
+                'FleNm' => $v->getFleinfoFlenm(),
+                'FleCont' => $v->getFleinfoFlecont(),
             ];
         }
         $data = [];

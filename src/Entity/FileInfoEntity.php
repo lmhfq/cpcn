@@ -12,22 +12,34 @@ namespace Lmh\Cpcn\Entity;
 
 class FileInfoEntity
 {
+    /**
+     * @var string  明细编号-不允许重复
+     */
+    protected $fleinfo_dtlno;
+    /**
+     * @var string 影像资料类型 1101:法定代表人/自然人身 份证正面 1102:法定代表人/自然人身 份证反面 1103:经办人身份证正面 1104:经办人身份证反面 1201:统一社会信用代码证
+     */
+    protected $fleinfo_bsity;
+    /**
+     * @var string 文件主题
+     */
+    protected $fleinfo_fletheme;
 
-    public $fleinfo_dtlno;
+    protected $fleinfo_flemeo;
+    /**
+     * @var string 文件格式
+     */
+    protected $fleinfo_flety = "11";
+    /**
+     * @var string 文件名称
+     */
+    protected $fleinfo_flenm;
 
-    public $fleinfo_bsity;
-
-    public $fleinfo_fletheme;
-
-    public $fleinfo_flemeo;
-
-    public $fleinfo_flety;
-
-    public $fleinfo_flenm;
-
-    public $fleinfo_flepth;
-
-    public $fleinfo_flecont;
+    protected $fleinfo_flepth;
+    /**
+     * @var string 图片内容，base64 编码
+     */
+    protected $fleinfo_flecont;
 
     /**
      * @return mixed
