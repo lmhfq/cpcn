@@ -153,8 +153,7 @@ abstract class TrdBaseRequest extends BaseRequest
     protected function process(string $xml)
     {
         $this->requestPlainText = $xml;
-        $this->requestPlainText = mb_convert_encoding($this->requestPlainText, "UTF-8", "GBK");
-
+        // $this->requestPlainText = mb_convert_encoding($this->requestPlainText, "UTF-8", "GBK");
         $this->requestMessage = base64_encode(trim($this->requestPlainText));
         $this->requestSignature = SignatureFactory::getSigner()->sign(trim($this->requestPlainText));
         $this->sign = true;
