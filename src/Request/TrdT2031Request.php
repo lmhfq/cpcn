@@ -10,61 +10,34 @@ use Lmh\Cpcn\Support\Xml;
 
 class TrdT2031Request extends TrdBaseRequest
 {
-    protected $msghd_trcd = "T2031";
-
     public $cltacc_subno;
-
     public $cltacc_cltnm;
-
     public $billinfo_aclamt;
-
     public $billinfo_payeefee;
-
     public $billinfo_ccycd;
-
     public $billinfo_paytype;
-
     public $billinfo_secpaytype;
-
     public $billinfo_bankid;
-
     public $billinfo_kjbndsrl;
-
     public $billinfo_kjsmsflg;
-
     public $billinfo_subject;
-
     public $billinfo_goodsdesc;
-
     public $billinfo_userid;
-
     public $billinfo_minitag;
-
     public $billinfo_appid;
-
     public $reqflg;
-
     public $merchantid;
-
     public $notificationurl;
-
     public $servnoticurl;
-
     public $usage;
-
     public $dremark1;
-
     public $dremark2;
-
     public $dremark3;
-
     public $dremark4;
-
     public $dremark5;
-
     public $dremark6;
-
     public $trsflag;
+    protected $msghd_trcd = "T2031";
 
     /**
      * @return mixed

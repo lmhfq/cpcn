@@ -40,6 +40,47 @@ abstract class TrdBaseRequest extends BaseRequest
     /**
      * @return mixed
      */
+    public function getSrlPtnsrl()
+    {
+        return $this->srl_ptnsrl;
+    }
+
+    /**
+     * @param mixed $srl_ptnsrl
+     */
+    public function setSrlPtnsrl($srl_ptnsrl)
+    {
+        $this->srl_ptnsrl = $srl_ptnsrl;
+    }
+
+    public abstract function handle();
+
+    /**
+     * @return array[]
+     */
+    public function getMsghd(): array
+    {
+        if (empty($this->getMsghdTrdt())) {
+            $this->setMsghdTrdt(date('Ymd'));
+        }
+        if (empty($this->getMsghdTrtm())) {
+            $this->setMsghdTrtm(date('His'));
+        }
+        return [
+            "MSGHD" => [
+                'TrCd' => $this->getMsghdTrcd(),
+                'TrSrc' => $this->getMsghdTrsrc(),
+                'TrDt' => $this->getMsghdTrdt(),
+                'TrTm' => $this->getMsghdTrtm(),
+                'PtnCd' => $this->getMsghdPtncd(),
+                'BkCd' => $this->getMsghdBkcd(),
+            ]
+        ];
+    }
+
+    /**
+     * @return mixed
+     */
     public function getMsghdTrdt()
     {
         return $this->msghd_trdt;
@@ -94,23 +135,16 @@ abstract class TrdBaseRequest extends BaseRequest
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getSrlPtnsrl()
+    public function getSrl(): array
     {
-        return $this->srl_ptnsrl;
+        return [
+            "Srl" => [
+                'PtnSrl' => $this->srl_ptnsrl,
+            ]
+        ];
     }
-
-    /**
-     * @param mixed $srl_ptnsrl
-     */
-    public function setSrlPtnsrl($srl_ptnsrl)
-    {
-        $this->srl_ptnsrl = $srl_ptnsrl;
-    }
-
-
-    public abstract function handle();
 
     /**
      * @param string $xml
@@ -124,40 +158,5 @@ abstract class TrdBaseRequest extends BaseRequest
         $this->requestMessage = base64_encode(trim($this->requestPlainText));
         $this->requestSignature = SignatureFactory::getSigner()->sign(trim($this->requestPlainText));
         $this->sign = true;
-    }
-
-    /**
-     * @return array[]
-     */
-    public function getMsghd(): array
-    {
-        if (empty($this->getMsghdTrdt())) {
-            $this->setMsghdTrdt(date('Ymd'));
-        }
-        if (empty($this->getMsghdTrtm())) {
-            $this->setMsghdTrtm(date('His'));
-        }
-        return [
-            "MSGHD" => [
-                'TrCd' => $this->getMsghdTrcd(),
-                'TrSrc' => $this->getMsghdTrsrc(),
-                'TrDt' => $this->getMsghdTrdt(),
-                'TrTm' => $this->getMsghdTrtm(),
-                'PtnCd' => $this->getMsghdPtncd(),
-                'BkCd' => $this->getMsghdBkcd(),
-            ]
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public function getSrl(): array
-    {
-        return [
-            "Srl" => [
-                'PtnSrl' => $this->srl_ptnsrl,
-            ]
-        ];
     }
 }

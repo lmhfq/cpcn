@@ -47,6 +47,7 @@ class TrdT4002Request extends TrdBaseRequest
     {
         $this->qpy_smsmsg = $qpy_smsmsg;
     }
+
     /**
      * @throws InvalidConfigException
      */

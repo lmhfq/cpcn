@@ -12,7 +12,7 @@ class TrdT1031Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T1031";
 
-    public $fcflg;
+    public $fcflg = '1';
 
     protected $acctp;
 
