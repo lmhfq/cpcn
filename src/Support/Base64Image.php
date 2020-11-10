@@ -69,18 +69,20 @@ class Base64Image
 
 
     /**
-     * @param string $fileName
+     * @param string $path
      * @param array $allowedFormats
      * @return Base64Image
      */
-    public static function fromFileName(string $fileName, array $allowedFormats = self::DEFAULT_ALLOWED_FORMATS): self
+    public static function fromPath(string $path, array $allowedFormats = self::DEFAULT_ALLOWED_FORMATS): self
     {
-        if (!is_readable($fileName)) {
-            throw new RuntimeException("file is not readable");
+        $imgInfo = getimagesize($path);
+        if (!$imgInfo) {
+            throw new RuntimeException("文件不存在");
         }
-        $mimeType = mime_content_type($fileName);
+        $mimeType = $imgInfo['mime'];
         self::validate($mimeType, $allowedFormats);
-        return new static($mimeType, self::encode(file_get_contents($fileName)));
+        $contents = file_get_contents($path);
+        return new static($mimeType, self::encode($contents));
     }
 
     /**

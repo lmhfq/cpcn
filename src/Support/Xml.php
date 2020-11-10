@@ -30,33 +30,13 @@ class Xml
      * @param mixed $data
      * @param string $root
      * @param string $item
-     * @param string $attr
-     * @param string $id
-     *
      * @return string
      */
-    public static function build(
-        $data,
-        $root = 'MSG',
-        $item = 'item',
-        $attr = '',
-        $id = 'id'
-    )
+    public static function build($data, $root = 'MSG', $item = 'FleInfo')
     {
-        if (is_array($attr)) {
-            $_attr = [];
-            foreach ($attr as $key => $value) {
-                $_attr[] = "{$key}=\"{$value}\"";
-            }
-            $attr = implode(' ', $_attr);
-        }
-
-        $attr = trim($attr);
-        $attr = empty($attr) ? '' : " {$attr}";
-        $xml = "<?xml version=\"1.0\" encoding=\"GBK\"?><{$root}{$attr}>";
-        $xml .= self::data2Xml($data, $item, $id);
+        $xml = "<?xml version=\"1.0\" encoding=\"GBK\"?><{$root}>";
+        $xml .= self::data2Xml($data, $item);
         $xml .= "</{$root}>";
-
         return $xml;
     }
 
@@ -109,31 +89,23 @@ class Xml
      *
      * @param array $data
      * @param string $item
-     * @param string $id
-     *
      * @return string
      */
-    protected static function data2Xml(array $data, $item = 'item', $id = 'id')
+    protected static function data2Xml(array $data, $item = 'item')
     {
-        $xml = $attr = '';
-
+        $xml = '';
         foreach ($data as $key => $val) {
             if (is_numeric($key)) {
-                $id && $attr = " {$id}=\"{$key}\"";
                 $key = $item;
             }
-
-            $xml .= "<{$key}{$attr}>";
-
+            $xml .= "<{$key}>";
             if ((is_array($val) || is_object($val))) {
-                $xml .= self::data2Xml((array)$val, $item, $id);
+                $xml .= self::data2Xml((array)$val, $item);
             } else {
                 $xml .= is_numeric($val) ? $val : self::cdata($val);
             }
-
             $xml .= "</{$key}>";
         }
-
         return $xml;
     }
 
