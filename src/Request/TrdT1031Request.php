@@ -1008,11 +1008,11 @@ class TrdT1031Request extends TrdBaseRequest
                     'Nm' => $this->oper_nm,
                     'CdNo' => $this->oper_cdno,
                     'MobNo' => $this->oper_mobno,
-                ],
-                'FleInfo' => $fileInfo,
+                ]
             ]);
+            $data = array_merge($data, $fileInfo);
         }
-        $xml = Xml::build($data);
+        $xml = Xml::build($data, 'MSG', 'FleInfo');
         parent::process($xml);
     }
 }
