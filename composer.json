@@ -14,7 +14,8 @@
         "guzzlehttp/guzzle": "^6.5",
         "ext-openssl": "*",
         "ext-mbstring": "*",
-        "ext-libxml": "*"
+        "ext-libxml": "*",
+        "ext-fileinfo": "*"
     },
     "autoload": {
         "psr-4": {
