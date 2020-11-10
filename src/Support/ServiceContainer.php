@@ -22,7 +22,7 @@ class ServiceContainer extends Container
     protected $providers = [];
 
 
-    public function __construct(array $config = [], array $prepends = [], string $id = null)
+    public function __construct(array $config = [], array $prepends = [])
     {
         parent::__construct($prepends);
 
@@ -51,7 +51,7 @@ class ServiceContainer extends Container
     {
         $base = [
             'http' => [
-                'timeout' => 30.0,
+                'timeout' => 60.0,
                 'base_uri' => 'https://zhirong.cpcn.com.cn/acswk/interfaceII.htm',
             ],
             'debug' => false,
