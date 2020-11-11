@@ -13,7 +13,9 @@ class TrdT1004Request extends TrdBaseRequest
     protected $msghd_trcd = "T1004";
 
     protected $cltacc_cltnm;
-
+    /**
+     * @var string 原银行账号(卡号) FcFlg=2/3 时填写原绑定银 行卡号，如果只绑定一张结 算银行卡 ，可以不填写
+     */
     protected $bkacc_souraccno;
 
     protected $bkacc_bkid;
@@ -21,7 +23,9 @@ class TrdT1004Request extends TrdBaseRequest
     protected $bkacc_accno;
 
     protected $bkacc_accnm;
-
+    /**
+     * @var string 账户类型(1: 对公; 2: 对 私)
+     */
     protected $bkacc_acctp;
 
     protected $bkacc_crdtp;
@@ -45,8 +49,10 @@ class TrdT1004Request extends TrdBaseRequest
     protected $bkacc_citycd;
 
     protected $bkacc_citynm;
-
-    protected $fcflg;
+    /**
+     * @var string 业务功能标示(1:绑定、2： 变更、3：删除)
+     */
+    protected $fcflg = 2;
 
     /**
      * @return mixed
