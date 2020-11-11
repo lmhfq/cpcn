@@ -18,14 +18,17 @@ class TrdT1031Request extends TrdBaseRequest
      * @var string 功能标示 (1:开户)
      */
     public $fcflg = '1';
-
     /**
      * @var string 账户类型( 1:客户资金账户 3:合作方收益账户 4:手续费账户)
      */
     protected $acctp = "1";
-
+    /**
+     * @var string 资金账号
+     */
     protected $cltacc_cltno;
-
+    /**
+     * @var string 户名
+     */
     protected $cltacc_cltnm;
 
     protected $clt_kd;
@@ -93,8 +96,10 @@ class TrdT1031Request extends TrdBaseRequest
     protected $bkacc_cdno;
 
     protected $bkacc_phone;
-
-    protected $bkacc_crsmk;
+    /**
+     * @var string  ★ 2 提现账户-跨行标示(1:本 行;2:跨行)
+     */
+    protected $bkacc_crsmk = "2";
 
     protected $bkacc_openbkcd;
 
