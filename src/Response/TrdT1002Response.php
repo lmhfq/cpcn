@@ -31,6 +31,10 @@ class TrdT1002Response extends TrdBaseResponse
      * @var string 开户状态 0: 开户中 1: 已开户 3: 已销户 4: 冻结 8: 开户失败
      */
     protected $stat;
+    /**
+     * @var string 失败原因
+     */
+    protected $option;
 
     /**
      * @return mixed
@@ -176,6 +180,22 @@ class TrdT1002Response extends TrdBaseResponse
         $this->stat = $stat;
     }
 
+    /**
+     * @return string
+     */
+    public function getOption(): string
+    {
+        return $this->option;
+    }
+
+    /**
+     * @param string $option
+     */
+    public function setOption(string $option): void
+    {
+        $this->option = $option;
+    }
+
 
     public function handle(string $message)
     {
@@ -193,6 +213,7 @@ class TrdT1002Response extends TrdBaseResponse
                 $this->cltacc_acctcd = ArrayUtil::get('AcctCd', $cltAcc);
             }
             $this->stat = ArrayUtil::get('Stat', $this->responseData);
+            $this->option = $cltAcc = ArrayUtil::get('Opion', $this->responseData);
         }
     }
 }

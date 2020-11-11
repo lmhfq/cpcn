@@ -122,6 +122,10 @@ abstract class TrdBaseResponse
 
     public abstract function handle(string $message);
 
+    /**
+     *
+     * @param string $message
+     */
     protected function process(string $message)
     {
         $this->responseMessage = $message;
