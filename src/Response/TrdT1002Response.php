@@ -10,14 +10,26 @@ use Lmh\Cpcn\Support\ResponseCode;
 
 class TrdT1002Response extends TrdBaseResponse
 {
+    /**
+     * @var string 客户号
+     */
     protected $cltacc_cltno;
+    /**
+     * @var string
+     */
     protected $cltacc_cltpid;
     protected $cltacc_subno;
     protected $cltacc_cltnm;
+    /**
+     * @var string 银行电子账号（跨行收款 账号）
+     */
     protected $cltacc_bnkeid;
     protected $cltacc_openbkcd;
     protected $cltacc_openbknm;
     protected $cltacc_acctcd;
+    /**
+     * @var string 开户状态 0: 开户中 1: 已开户 3: 已销户 4: 冻结 8: 开户失败
+     */
     protected $stat;
 
     /**
@@ -149,7 +161,7 @@ class TrdT1002Response extends TrdBaseResponse
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getStat()
     {

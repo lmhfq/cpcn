@@ -11,7 +11,9 @@ use Lmh\Cpcn\Support\Xml;
 class TrdT1002Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T1002";
-
+    /**
+     * @var string 开户时合作方交易流水号
+     */
     protected $srcsrl;
 
     /**
