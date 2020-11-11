@@ -6,7 +6,7 @@ namespace Lmh\Cpcn\Response;
 
 
 use Lmh\Cpcn\Support\ArrayUtil;
-use Lmh\Cpcn\Support\ResponseCode;
+use Lmh\Cpcn\Constant\ResponseCode;
 
 class TrdT2031Response extends TrdBaseResponse
 {

@@ -6,12 +6,21 @@ namespace Lmh\Cpcn\Response;
 
 
 use Lmh\Cpcn\Support\ArrayUtil;
-use Lmh\Cpcn\Support\ResponseCode;
+use Lmh\Cpcn\Constant\ResponseCode;
 
 class TrdT1032Response extends TrdBaseResponse
 {
+    /**
+     * @var string 0 激活/验证处理中 1 激活/验证成功 2 验证成功，需人工审核激活 4 验证成功，需要再次验证 打款金额 9 激活/验证失败
+     */
     protected $state;
+    /**
+     * @var string
+     */
     protected $amount;
+    /**
+     * @var string
+     */
     protected $actideadline;
 
     /**

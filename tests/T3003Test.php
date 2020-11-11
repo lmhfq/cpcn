@@ -7,7 +7,7 @@ namespace Test;
 
 use Lmh\Cpcn\Request\TrdT3003Request;
 use Lmh\Cpcn\Response\TrdT3003Response;
-use Lmh\Cpcn\Support\ResponseCode;
+use Lmh\Cpcn\Constant\ResponseCode;
 use Lmh\Cpcn\TrdClient;
 use PHPUnit\Framework\TestCase;
 

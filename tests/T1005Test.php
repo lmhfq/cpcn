@@ -8,7 +8,7 @@ namespace Test;
 use GuzzleHttp\Exception\GuzzleException;
 use Lmh\Cpcn\Request\TrdT1005Request;
 use Lmh\Cpcn\Response\TrdT1005Response;
-use Lmh\Cpcn\Support\ResponseCode;
+use Lmh\Cpcn\Constant\ResponseCode;
 use Lmh\Cpcn\TrdClient;
 use PHPUnit\Framework\TestCase;
 
