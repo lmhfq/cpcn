@@ -59,7 +59,7 @@ class TrdT1004Request extends TrdBaseRequest
     /**
      * @var string 跨行标示(1:本行;2:跨行) 默认 2 跨行
      */
-    protected $bkacc_crsmk;
+    protected $bkacc_crsmk = "2";
     /**
      * @var string 开户网点编号
      */
