@@ -37,9 +37,9 @@ class TrdT1004Request extends TrdBaseRequest
      */
     protected $bkacc_accnm;
     /**
-     * @var string 账户类型(1: 对公; 2: 对 私)
+     * @var string 账户类型(1: 对公; 2: 对私)
      */
-    protected $bkacc_acctp;
+    protected $bkacc_acctp = "2";
     /**
      * @var string 银行账户(卡)类型 1:个人借记卡(储蓄卡)，默 认2:个人贷记卡(信用卡) 3:个人电子账户(银行二类 户) A:企业一般结算账户，默认 B:企业电子账户
      */
@@ -47,7 +47,7 @@ class TrdT1004Request extends TrdBaseRequest
     /**
      * @var string 开户证件类型
      */
-    protected $bkacc_cdtp;
+    protected $bkacc_cdtp = 'A';
     /**
      * @var string 证件号码
      */

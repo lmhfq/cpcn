@@ -99,7 +99,7 @@ class TrdT1031Request extends TrdBaseRequest
     /**
      * @var string 开户证件类型
      */
-    protected $bkacc_cdtp;
+    protected $bkacc_cdtp = "A";
     /**
      * @var string 证件号码
      */

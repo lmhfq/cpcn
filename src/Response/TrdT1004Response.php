@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Response;
 
 
-use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Constant\ResponseCode;
+use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT1004Response extends TrdBaseResponse
 {
     protected $state;
-
+    /**
+     * @var string 1 绑定/变更/删除成功（此 模式下无需验证） 2 申请绑定/变更成功，需人 工审核激活 3 申请绑定/变更成功，需要 短信验证 4 申请绑定/变更成功，需要 打款验证（被动打款） 5 申请绑定/变更成功，需要 异步网关页面激活
+     */
     protected $actiinfo;
 
     /**
