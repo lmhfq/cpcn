@@ -98,6 +98,22 @@ class TrdT1004Request extends TrdBaseRequest
     }
 
     /**
+     * @return string
+     */
+    public function getCltaccSubno(): string
+    {
+        return $this->cltacc_subno;
+    }
+
+    /**
+     * @param string $cltacc_subno
+     */
+    public function setCltaccSubno(string $cltacc_subno): void
+    {
+        $this->cltacc_subno = $cltacc_subno;
+    }
+
+    /**
      * @return mixed
      */
     public function getBkaccSouraccno()
