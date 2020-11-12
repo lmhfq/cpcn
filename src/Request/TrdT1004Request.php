@@ -11,35 +11,62 @@ use Lmh\Cpcn\Support\Xml;
 class TrdT1004Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T1004";
-
+    /**
+     * @var string 资金账号
+     */
+    protected $cltacc_subno;
+    /**
+     * @var string 户名
+     */
     protected $cltacc_cltnm;
+
     /**
      * @var string 原银行账号(卡号) FcFlg=2/3 时填写原绑定银 行卡号，如果只绑定一张结 算银行卡 ，可以不填写
      */
     protected $bkacc_souraccno;
-
+    /**
+     * @var string 银行编号
+     */
     protected $bkacc_bkid;
-
+    /**
+     * @var string 银行账号(卡号)
+     */
     protected $bkacc_accno;
-
+    /**
+     * @var string 开户名称
+     */
     protected $bkacc_accnm;
     /**
      * @var string 账户类型(1: 对公; 2: 对 私)
      */
     protected $bkacc_acctp;
-
+    /**
+     * @var string 银行账户(卡)类型 1:个人借记卡(储蓄卡)，默 认2:个人贷记卡(信用卡) 3:个人电子账户(银行二类 户) A:企业一般结算账户，默认 B:企业电子账户
+     */
     protected $bkacc_crdtp;
-
+    /**
+     * @var string 开户证件类型
+     */
     protected $bkacc_cdtp;
-
+    /**
+     * @var string 证件号码
+     */
     protected $bkacc_cdno;
-
+    /**
+     * @var string 银行预留手机号码 个人银行卡时必填
+     */
     protected $bkacc_phone;
-
+    /**
+     * @var string 跨行标示(1:本行;2:跨行) 默认 2 跨行
+     */
     protected $bkacc_crsmk;
-
+    /**
+     * @var string 开户网点编号
+     */
     protected $bkacc_openbkcd;
-
+    /**
+     * @var string
+     */
     protected $bkacc_openbknm;
 
     protected $bkacc_prccd;

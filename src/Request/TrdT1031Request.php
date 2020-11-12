@@ -84,23 +84,37 @@ class TrdT1031Request extends TrdBaseRequest
      * @see FileInfoEntity
      */
     public $fleinfo = [];
-
+    /**
+     * @var string 银行编号
+     */
     protected $bkacc_bkid;
-
+    /**
+     * @var string 银行账号(卡号)
+     */
     protected $bkacc_accno;
-
+    /**
+     * @var string 银行账户(卡)类型 1:个人借记卡(储蓄卡)，默 认2:个人贷记卡(信用卡) 3:个人电子账户(银行二类 户) A:企业一般结算账户，默认 B:企业电子账户
+     */
     protected $bkacc_crdtp;
-
+    /**
+     * @var string 开户证件类型
+     */
     protected $bkacc_cdtp;
-
+    /**
+     * @var string 证件号码
+     */
     protected $bkacc_cdno;
-
+    /**
+     * @var string 银行预留手机号码 个人银行卡时必填
+     */
     protected $bkacc_phone;
     /**
      * @var string  ★ 2 提现账户-跨行标示(1:本 行;2:跨行)
      */
     protected $bkacc_crsmk = "2";
-
+    /**
+     * @var string 开户网点编号
+     */
     protected $bkacc_openbkcd;
 
     protected $bkacc_openbknm;

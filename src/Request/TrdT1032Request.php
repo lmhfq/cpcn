@@ -12,14 +12,23 @@ class TrdT1032Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T1032";
 
+    /**
+     * @var string 资金账号
+     */
     protected $cltacc_subno;
-
+    /**
+     * @var string 户名
+     */
     protected $cltacc_cltnm;
 
     protected $pbusitype;
-
+    /**
+     * @var string 激活方式 1 企业主动打款激活; 3 短信验证激活; 4 企业被动打款激活
+     */
     protected $actiflag;
-
+    /**
+     * @var string 激活内容 ActiFlag=3 时填写短信验 证码; ActiFlag=4 时填写来账金 额（以分为单位）
+     */
     protected $actiinfo;
 
     /**

@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Support;
 
 
+use Exception;
 use InvalidArgumentException;
 use RuntimeException;
 
@@ -75,8 +76,9 @@ class Base64Image
      */
     public static function fromPath(string $path, array $allowedFormats = self::DEFAULT_ALLOWED_FORMATS): self
     {
-        $imgInfo = getimagesize($path);
-        if (!$imgInfo) {
+        try {
+            $imgInfo = getimagesize($path);
+        } catch (\Throwable $exception) {
             throw new RuntimeException("文件不存在");
         }
         $mimeType = $imgInfo['mime'];
