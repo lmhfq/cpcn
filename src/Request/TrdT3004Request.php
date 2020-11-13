@@ -11,31 +11,53 @@ use Lmh\Cpcn\Support\Xml;
 class TrdT3004Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T3004";
-
+    /**
+     * @var string 付款方资金账号
+     */
     protected $billinfo_psubno;
-
+    /**
+     * @var string 付款方户名
+     */
     protected $billinfo_pnm;
-
+    /**
+     * @var string 收款方资金账号
+     */
     protected $billinfo_rsubno;
-
+    /**
+     * @var string 收款方户名
+     */
     protected $billinfo_rcltnm;
 
     protected $billinfo_orderno;
-
+    /**
+     * @var string 支付单号
+     */
     protected $billinfo_billno;
-
+    /**
+     * @var string  支付金额
+     */
     protected $billinfo_aclamt;
-
+    /**
+     * @var string 付款方手续费,默认 0
+     */
     protected $billinfo_payfee;
-
+    /**
+     * @var string 收款方手续费,默认 0
+     */
     protected $billinfo_payeefee;
 
-    protected $billinfo_ccycd;
-
-    protected $billinfo_usage;
-
+    protected $billinfo_ccycd = 'CNY';
+    /**
+     * @var string 资金用途(附言)
+     */
+    protected $billinfo_usage = '';
+    /**
+     * @var string 商品信息
+     */
     protected $billinfo_goodsmess;
-
+    /**
+     * @var string 业务标示 A00 普通订单支付 B00 收款方收款成功后，再冻结资金 B01 付款方解冻资金后，再 支付给收款方 Y01 预付款 资金资金支付 后生成预付款 Y02 冲抵预付款 按照预付 款生产时间积累减少预付款 可用额度
+     */
     protected $trsflag;
 
     /**
