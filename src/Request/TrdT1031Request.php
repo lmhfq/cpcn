@@ -995,6 +995,31 @@ class TrdT1031Request extends TrdBaseRequest
                 'OrgCd' => $this->clt_orgcd,
             ]);
         }
+        $bkacc = [
+            'BkId' => $this->bkacc_bkid,
+            'AccNo' => $this->bkacc_accno,
+            'CrdTp' => $this->bkacc_crdtp,
+            'CdTp' => $this->bkacc_cdtp,
+            'CdNo' => $this->bkacc_cdno,
+            'Phone' => $this->bkacc_phone,
+            'CrsMk' => $this->bkacc_crsmk,
+            'OpenBkCd' => $this->bkacc_openbkcd
+        ];
+        if ($this->bkacc_openbknm) {
+            $bkacc['OpenBkNm'] = $this->bkacc_openbknm;
+        }
+        if ($this->bkacc_prccd) {
+            $bkacc['PrcCd'] = $this->bkacc_prccd;
+        }
+        if ($this->bkacc_prcnm) {
+            $bkacc['PrcNm'] = $this->bkacc_prcnm;
+        }
+        if ($this->bkacc_citycd) {
+            $bkacc['CityCd'] = $this->bkacc_citycd;
+        }
+        if ($this->bkacc_citynm) {
+            $bkacc['CityNm'] = $this->bkacc_citynm;
+        }
         $data = array_merge($data, [
             'FcFlg' => $this->fcflg,
             'AccTp' => $this->acctp,
@@ -1003,21 +1028,7 @@ class TrdT1031Request extends TrdBaseRequest
                 'CltNm' => $this->cltacc_cltnm,
             ],
             'Clt' => $clt,
-            'BkAcc' => [
-                'BkId' => $this->bkacc_bkid,
-                'AccNo' => $this->bkacc_accno,
-                'CrdTp' => $this->bkacc_crdtp,
-                'CdTp' => $this->bkacc_cdtp,
-                'CdNo' => $this->bkacc_cdno,
-                'Phone' => $this->bkacc_phone,
-                'CrsMk' => $this->bkacc_crsmk,
-                'OpenBkCd' => $this->bkacc_openbkcd,
-//                'OpenBkNm' => $this->bkacc_openbknm,
-//                'PrcCd' => $this->bkacc_prccd,
-//                'PrcNm' => $this->bkacc_prcnm,
-//                'CityCd' => $this->bkacc_citycd,
-//                'CityNm' => $this->bkacc_citynm,
-            ],
+            'BkAcc' => $bkacc,
             'ActiFlag' => $this->actiflag,
             'NotificationURL' => $this->notificationurl,
         ]);

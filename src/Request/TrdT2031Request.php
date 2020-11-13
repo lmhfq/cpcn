@@ -10,25 +10,89 @@ use Lmh\Cpcn\Support\Xml;
 
 class TrdT2031Request extends TrdBaseRequest
 {
+    protected $msghd_trcd = "T2031";
+    /**
+     * @var string 资金账号
+     */
     public $cltacc_subno;
+    /**
+     * @var string 户名
+     */
     public $cltacc_cltnm;
     public $billinfo_aclamt;
-    public $billinfo_payeefee;
-    public $billinfo_ccycd;
+    /**
+     * @var string 收款方手续费
+     */
+    public $billinfo_payeefee = "0";
+    /**
+     * @var string 币种，默认“CNY”
+     */
+    public $billinfo_ccycd = "CNY";
+    /**
+     * @var string 支付方式： 2：网银 5：快捷支付 6：正扫支付 8：公众号支付 9：银联无卡支付 A：手机APP 跳转支付 H：H5支付 L：移动大额支付
+     */
     public $billinfo_paytype;
+    /**
+     * @var string 支付方式二级分类
+     * 1：企业网银 PayType=2 必输
+     * 2：个人网银 PayType=2 必输
+     * 3：支付宝  PayType=6/8/A/H 必输
+     * 4：微信PayType=6/8/A/H 必输
+     * 5：银联PayType=6/A/H 必输
+     * 8：手机网银 PayType=A/H 必输
+     */
     public $billinfo_secpaytype;
+    /**
+     * @var string 付款银行编号 PayType=2 时必输
+     */
     public $billinfo_bankid;
+    /**
+     * @var string 原快捷绑卡交易流水号 PayType=5 时必输 可通过 T4001 交易完成绑卡 操作
+     */
     public $billinfo_kjbndsrl;
+    /**
+     * @var string 快捷业务是否需要短信确认 1：需要 2：不需要 PayType=5 时必输
+     */
     public $billinfo_kjsmsflg;
+    /**
+     * @var string 订单标题 PayType=6/8/A 时必输
+     */
     public $billinfo_subject;
+    /**
+     * @var string 商品描述（微信平台配置的 商品标记，用于满减和优惠 券）PayType=6/7/8/A 时必输 注意：PayType=8 时该字段 长度不超过 30；PayType=A 时该字段超度不超过 60。
+     */
     public $billinfo_goodsdesc;
+    /**
+     * @var string 用户 ID PayType=8 时必输 微信：openid 支付宝：buyer_user_id PayType=A 填写 app 的 AppId
+     */
     public $billinfo_userid;
-    public $billinfo_minitag;
+    /**
+     * @var string 小程序标识 PayType=8 时必输 微信：0 非小程序 1 小程序
+     */
+    public $billinfo_minitag = "0";
+    /**
+     * @var string 微信小程序、公众号 APPID
+     */
     public $billinfo_appid;
-    public $reqflg;
+    /**
+     * @var string 发送端标记:0 手机;1PC 端
+     */
+    public $reqflg = "0";
+    /**
+     * @var string 终端商户号
+     */
     public $merchantid;
-    public $notificationurl;
-    public $servnoticurl;
+    /**
+     * @var string 页面通知 URL
+     */
+    public $notificationurl = "";
+    /**
+     * @var string 后台通知 URL 若不传值则默认按照后台配 置的地址进行通知交易结果
+     */
+    public $servnoticurl = "";
+    /**
+     * @var string 资金用途(附言)
+     */
     public $usage;
     public $dremark1;
     public $dremark2;
@@ -37,7 +101,7 @@ class TrdT2031Request extends TrdBaseRequest
     public $dremark5;
     public $dremark6;
     public $trsflag;
-    protected $msghd_trcd = "T2031";
+
 
     /**
      * @return mixed
@@ -479,39 +543,54 @@ class TrdT2031Request extends TrdBaseRequest
         $data = [];
         $data = array_merge($data, parent::getMsghd());
         $data = array_merge($data, parent::getSrl());
+        $billInfo = [
+            'AclAmt' => $this->billinfo_aclamt,
+            'PayeeFee' => $this->billinfo_payeefee,
+            'CcyCd' => $this->billinfo_ccycd,
+            'PayType' => $this->billinfo_paytype,
+            'SecPayType' => $this->billinfo_secpaytype,
+            'Subject' => $this->billinfo_subject,
+            'GoodsDesc' => $this->billinfo_goodsdesc,
+            'UserID' => $this->billinfo_userid,
+            'MiniTag' => $this->billinfo_minitag,
+        ];
+        if ($this->billinfo_bankid) {
+            $billInfo['BankID'] = $this->billinfo_bankid;
+        }
+        if ($this->billinfo_kjbndsrl) {
+            $billInfo['KJBndSrl'] = $this->billinfo_kjbndsrl;
+        }
+        if ($this->billinfo_kjsmsflg) {
+            $billInfo['KJSMSFlg'] = $this->billinfo_kjsmsflg;
+        }
+        if ($this->billinfo_appid) {
+            $billInfo['AppID'] = $this->billinfo_appid;
+        }
         $data = array_merge($data, [
             'CltAcc' => [
-                'SubNo' => '$this->cltacc_subno',
-                'CltNm' => '$this->cltacc_cltnm',
+                'SubNo' => $this->cltacc_subno,
+                'CltNm' => $this->cltacc_cltnm,
             ],
-            'billInfo' => [
-                'AclAmt' => $this->billinfo_aclamt,
-                'PayeeFee' => $this->billinfo_payeefee,
-                'CcyCd' => $this->billinfo_ccycd,
-                'PayType' => $this->billinfo_paytype,
-                'SecPayType' => $this->billinfo_secpaytype,
-                'BankID' => $this->billinfo_bankid,
-                'KJBndSrl' => $this->billinfo_kjbndsrl,
-                'KJSMSFlg' => $this->billinfo_kjsmsflg,
-                'Subject' => $this->billinfo_subject,
-                'GoodsDesc' => $this->billinfo_goodsdesc,
-                'UserID' => $this->billinfo_userid,
-                'MiniTag' => $this->billinfo_minitag,
-                'AppID' => $this->billinfo_appid,
-            ],
+            'billInfo' => $billInfo,
             'ReqFlg' => $this->reqflg,
             'MerchantId' => $this->merchantid,
             'NotificationURL' => $this->notificationurl,
             'ServNoticURL' => $this->servnoticurl,
             'Usage' => $this->usage,
-            'DRemark1' => $this->dremark1,
-            'DRemark2' => $this->dremark2,
-            'DRemark3' => $this->dremark3,
-            'DRemark4' => $this->dremark4,
-            'DRemark5' => $this->dremark5,
-            'DRemark6' => $this->dremark6,
             'TrsFlag' => $this->trsflag,
         ]);
+        if ($this->dremark1) {
+            $data['DRemark1'] = $this->dremark1;
+        }
+        if ($this->dremark2) {
+            $data['DRemark2'] = $this->dremark2;
+        }
+        if ($this->dremark3) {
+            $data['DRemark3'] = $this->dremark3;
+        }
+        if ($this->dremark4) {
+            $data['DRemark4'] = $this->dremark4;
+        }
         $xml = Xml::build($data);
         parent::process($xml);
     }
