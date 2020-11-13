@@ -12,28 +12,45 @@ class TrdT3005Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T3005";
 
+    /**
+     * @var string 付款方资金账号
+     */
     protected $billinfo_psubno;
-
+    /**
+     * @var string 付款方户名
+     */
     protected $billinfo_pnm;
-
+    /**
+     * @var string 收款方资金账号
+     */
     protected $billinfo_rsubno;
-
+    /**
+     * @var string 收款方户名
+     */
     protected $billinfo_rcltnm;
 
     protected $billinfo_orderno;
-
+    /**
+     * @var string 支付单号
+     */
     protected $billinfo_billno;
-
+    /**
+     * @var string  支付金额
+     */
     protected $billinfo_aclamt;
 
-    protected $billinfo_payfee;
+    protected $billinfo_payfee = "0";
 
-    protected $billinfo_payeefee;
+    protected $billinfo_payeefee = "0";
 
-    protected $billinfo_ccycd;
-
-    protected $billinfo_usage;
-
+    protected $billinfo_ccycd = 'CNY';
+    /**
+     * @var string 资金用途(附言)
+     */
+    protected $billinfo_usage = '';
+    /**
+     * @var string 业务标示 A00 普通订单支付 B00 收款方收款成功后，再 冻结资金 B01 付款方解冻资金后，再 支付给收款方
+     */
     protected $billinfo_trsflag;
 
     /**
@@ -242,7 +259,7 @@ class TrdT3005Request extends TrdBaseRequest
                 'PNm' => $this->billinfo_pnm,
                 'RSubNo' => $this->billinfo_rsubno,
                 'RCltNm' => $this->billinfo_rcltnm,
-                'OrderNo' => $this->billinfo_orderno,
+                //'OrderNo' => $this->billinfo_orderno,
                 'BillNo' => $this->billinfo_billno,
                 'AclAmt' => $this->billinfo_aclamt,
                 'PayFee' => $this->billinfo_payfee,

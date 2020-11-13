@@ -40,11 +40,11 @@ class TrdT3004Request extends TrdBaseRequest
     /**
      * @var string 付款方手续费,默认 0
      */
-    protected $billinfo_payfee;
+    protected $billinfo_payfee = "0";
     /**
      * @var string 收款方手续费,默认 0
      */
-    protected $billinfo_payeefee;
+    protected $billinfo_payeefee = "0";
 
     protected $billinfo_ccycd = 'CNY';
     /**
@@ -281,7 +281,7 @@ class TrdT3004Request extends TrdBaseRequest
                 'PNm' => $this->billinfo_pnm,
                 'RSubNo' => $this->billinfo_rsubno,
                 'RCltNm' => $this->billinfo_rcltnm,
-                'OrderNo' => $this->billinfo_orderno,
+                //'OrderNo' => $this->billinfo_orderno,
                 'BillNo' => $this->billinfo_billno,
                 'AclAmt' => $this->billinfo_aclamt,
                 'PayFee' => $this->billinfo_payfee,
