@@ -19,7 +19,6 @@ class TrdT1004Request extends TrdBaseRequest
      * @var string 户名
      */
     protected $cltacc_cltnm;
-
     /**
      * @var string 原银行账号(卡号) FcFlg=2/3 时填写原绑定银 行卡号，如果只绑定一张结 算银行卡 ，可以不填写
      */
@@ -410,11 +409,11 @@ class TrdT1004Request extends TrdBaseRequest
                 'Phone' => $this->bkacc_phone,
                 'CrsMk' => $this->bkacc_crsmk,
                 'OpenBkCd' => $this->bkacc_openbkcd,
-                'OpenBkNm' => $this->bkacc_openbknm,
-                'PrcCd' => $this->bkacc_prccd,
-                'PrcNm' => $this->bkacc_prcnm,
-                'CityCd' => $this->bkacc_citycd,
-                'CityNm' => $this->bkacc_citynm,
+//                'OpenBkNm' => $this->bkacc_openbknm,
+//                'PrcCd' => $this->bkacc_prccd,
+//                'PrcNm' => $this->bkacc_prcnm,
+//                'CityCd' => $this->bkacc_citycd,
+//                'CityNm' => $this->bkacc_citynm,
             ],
             'FcFlg' => $this->fcflg,
         ]);
