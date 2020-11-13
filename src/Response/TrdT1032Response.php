@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Response;
 
 
-use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Constant\ResponseCode;
+use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT1032Response extends TrdBaseResponse
 {
@@ -74,7 +74,7 @@ class TrdT1032Response extends TrdBaseResponse
     public function handle(string $message)
     {
         parent::process($message);
-        if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
+        if ($this->msghd_rspcode == ResponseCode::SUCCESS || $this->msghd_rspcode == ResponseCode::E3010) {
             $this->state = ArrayUtil::get('State', $this->responseData);
             $this->amount = ArrayUtil::get('Amount', $this->responseData);
             $this->actideadline = ArrayUtil::get('ActiDeadline', $this->responseData);
