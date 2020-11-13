@@ -969,7 +969,6 @@ class TrdT1031Request extends TrdBaseRequest
         $data = [];
         $data = array_merge($data, parent::getMsghd());
         $data = array_merge($data, parent::getSrl());
-
         $clt = [
             'Kd' => $this->clt_kd,
             'Nm' => $this->clt_nm,

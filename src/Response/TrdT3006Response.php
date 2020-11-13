@@ -24,8 +24,17 @@ class TrdT3006Response extends TrdBaseResponse
     protected $billinfo_usage;
     protected $billinfo_goodsmess;
     protected $billinfo_billstate;
+    /**
+     * @var string 失败原因
+     */
     protected $billinfo_opion;
+    /**
+     * @var string 交易时间
+     */
     protected $billinfo_resttime;
+    /**
+     * @var string 业务标示 A00 普通订单支付 B00 收款方收款成功后，再 冻结资金 B01 付款方解冻资金后，再 支付给收款方
+     */
     protected $trsflag;
 
     /**

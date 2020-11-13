@@ -11,7 +11,9 @@ use Lmh\Cpcn\Support\Xml;
 class TrdT1115Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T1115";
-
+    /**
+     * @var string 银行卡号
+     */
     protected $bkacc_accno;
 
     /**
