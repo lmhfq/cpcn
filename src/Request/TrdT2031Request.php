@@ -91,6 +91,10 @@ class TrdT2031Request extends TrdBaseRequest
      */
     public $servnoticurl = "";
     /**
+     * @var string 业务标示 A00 正常入金 B00 入金成功后，再冻结资金
+     */
+    public $trsflag = 'B00';
+    /**
      * @var string 资金用途(附言)
      */
     public $usage;
@@ -100,7 +104,6 @@ class TrdT2031Request extends TrdBaseRequest
     public $dremark4;
     public $dremark5;
     public $dremark6;
-    public $trsflag;
 
 
     /**
