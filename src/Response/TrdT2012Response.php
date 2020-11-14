@@ -35,7 +35,7 @@ class TrdT2012Response extends TrdBaseResponse
      */
     protected $state;
     /**
-     * @var string 交易成功/失败时间(渠道通 知时间) 出金时指交易成功时间，不 是到账时间 格式:YYYYMMDDHH24MISS
+     * @var string 交易成功/失败时间(渠道通知时间) 出金时指交易成功时间，不 是到账时间 格式:YYYYMMDDHH24MISS
      */
     protected $resttime;
     /**
@@ -47,11 +47,11 @@ class TrdT2012Response extends TrdBaseResponse
      */
     protected $usage;
     /**
-     * @var string 出金结算状态(查询出金结 果时返回) 0 未结算 1 已发送结算申请
+     * @var string 出金结算状态(查询出金结果时返回) 0 未结算 1 已发送结算申请
      */
     protected $ubalsta;
     /**
-     * @var string 出金结算时间(查询出金结 果时返回) 格式 YYYYMMDDHH24MISS UBalSta=1 时指成功发送结 算申请的时间
+     * @var string 出金结算时间(查询出金结果时返回) 格式 YYYYMMDDHH24MISS UBalSta=1 时指成功发送结 算申请的时间
      */
     protected $ubaltim;
     /**
@@ -324,8 +324,7 @@ class TrdT2012Response extends TrdBaseResponse
             $amt = ArrayUtil::get('Amt', $this->responseData, []);
             if ($amt) {
                 $this->amt_aclamt = ArrayUtil::get('AclAmt', $amt);
-                $this->amt_payfee = ArrayUtil::get('PayFee', $amt);
-                $this->amt_payeefee = ArrayUtil::get('PayeeFee', $amt);
+                $this->amt_feeamt = ArrayUtil::get('FeeAmt', $amt);
                 $this->amt_ccycd = ArrayUtil::get('CcyCd', $amt);
             }
             $this->state = ArrayUtil::get('State', $this->responseData);
