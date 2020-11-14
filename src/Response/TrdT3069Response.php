@@ -454,17 +454,17 @@ class TrdT3069Response extends TrdBaseResponse
             }
             $billInfo = ArrayUtil::get('billInfo', $this->responseData, []);
             if ($billInfo) {
-                $this->billinfo_rsubno = ArrayUtil::get('AcctCd', $billInfo);
-                $this->billinfo_rcltnm = ArrayUtil::get('AcctCd', $billInfo);
-                $this->billinfo_billno = ArrayUtil::get('AcctCd', $billInfo);
-                $this->billinfo_orderno = ArrayUtil::get('AcctCd', $billInfo);
-                $this->billinfo_billamt = ArrayUtil::get('AcctCd', $billInfo);
-                $this->billinfo_aclamt = ArrayUtil::get('AcctCd', $billInfo);
-                $this->billinfo_payfee = ArrayUtil::get('AcctCd', $billInfo);
-                $this->billinfo_payeefee = ArrayUtil::get('AcctCd', $billInfo);
-                $this->billinfo_ccycd = ArrayUtil::get('AcctCd', $billInfo);
-                $this->billinfo_paytype = ArrayUtil::get('AcctCd', $billInfo);
-                $this->billinfo_secpaytype = ArrayUtil::get('AcctCd', $billInfo);
+                $this->billinfo_rsubno = ArrayUtil::get('RSubNo', $billInfo);
+                $this->billinfo_rcltnm = ArrayUtil::get('RCltNm', $billInfo);
+                $this->billinfo_billno = ArrayUtil::get('BillNo', $billInfo);
+                $this->billinfo_orderno = ArrayUtil::get('OrderNo', $billInfo);
+                $this->billinfo_billamt = ArrayUtil::get('BillAmt', $billInfo);
+                $this->billinfo_aclamt = ArrayUtil::get('AclAmt', $billInfo);
+                $this->billinfo_payfee = ArrayUtil::get('PayFee', $billInfo);
+                $this->billinfo_payeefee = ArrayUtil::get('PayeeFee', $billInfo);
+                $this->billinfo_ccycd = ArrayUtil::get('CcyCd', $billInfo);
+                $this->billinfo_paytype = ArrayUtil::get('PayType', $billInfo);
+                $this->billinfo_secpaytype = ArrayUtil::get('SecPayType', $billInfo);
             }
             $this->trsflag = ArrayUtil::get('TrsFlag', $this->responseData);
             $this->merchantid = ArrayUtil::get('MerchantId', $this->responseData);

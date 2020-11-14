@@ -5,159 +5,310 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Response;
 
 
-use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Constant\ResponseCode;
+use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT2012Response extends TrdBaseResponse
 {
+    /**
+     * @var string 资金账号
+     */
     protected $cltacc_subno;
+    /**
+     * @var string 户名
+     */
     protected $cltacc_cltnm;
+    /**
+     * @var string 发生额
+     */
     protected $amt_aclamt;
+    /**
+     * @var string 转账手续费
+     */
     protected $amt_feeamt;
+    /**
+     * @var string
+     */
     protected $amt_ccycd;
+    /**
+     * @var string 交易结果: 1 成功 2 失败 3 处理中
+     */
+    protected $state;
+    /**
+     * @var string 交易成功/失败时间(渠道通 知时间) 出金时指交易成功时间，不 是到账时间 格式:YYYYMMDDHH24MISS
+     */
+    protected $resttime;
+    /**
+     * @var string  失败原因
+     */
+    protected $opion;
+    /**
+     * @var string 资金用途(附言)
+     */
+    protected $usage;
+    /**
+     * @var string 出金结算状态(查询出金结 果时返回) 0 未结算 1 已发送结算申请
+     */
+    protected $ubalsta;
+    /**
+     * @var string 出金结算时间(查询出金结 果时返回) 格式 YYYYMMDDHH24MISS UBalSta=1 时指成功发送结 算申请的时间
+     */
+    protected $ubaltim;
+    /**
+     * @var string 业务标示 入金业务时指： A00 正常入金 B00 入金成功后，再冻结资 金出金业务时指： A00 正常出金 B01 解冻资金后，再出金
+     */
+    protected $trsflag;
+    /**
+     * @var string 终端商户号
+     */
+    protected $merchantid;
+    /**
+     * @var string 原交易日期
+     */
+    protected $fdate;
+    /**
+     * @var string 原交易时间
+     */
+    protected $ftime;
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getCltaccSubno()
+    public function getCltaccSubno(): string
     {
         return $this->cltacc_subno;
     }
 
     /**
-     * @param mixed $cltacc_subno
+     * @param string $cltacc_subno
      */
-    public function setCltaccSubno($cltacc_subno): void
+    public function setCltaccSubno(string $cltacc_subno): void
     {
         $this->cltacc_subno = $cltacc_subno;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getCltaccCltnm()
+    public function getCltaccCltnm(): string
     {
         return $this->cltacc_cltnm;
     }
 
     /**
-     * @param mixed $cltacc_cltnm
+     * @param string $cltacc_cltnm
      */
-    public function setCltaccCltnm($cltacc_cltnm): void
+    public function setCltaccCltnm(string $cltacc_cltnm): void
     {
         $this->cltacc_cltnm = $cltacc_cltnm;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getAmtAclamt()
+    public function getAmtAclamt(): string
     {
         return $this->amt_aclamt;
     }
 
     /**
-     * @param mixed $amt_aclamt
+     * @param string $amt_aclamt
      */
-    public function setAmtAclamt($amt_aclamt): void
+    public function setAmtAclamt(string $amt_aclamt): void
     {
         $this->amt_aclamt = $amt_aclamt;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getAmtFeeamt()
+    public function getAmtFeeamt(): string
     {
         return $this->amt_feeamt;
     }
 
     /**
-     * @param mixed $amt_feeamt
+     * @param string $amt_feeamt
      */
-    public function setAmtFeeamt($amt_feeamt): void
+    public function setAmtFeeamt(string $amt_feeamt): void
     {
         $this->amt_feeamt = $amt_feeamt;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getAmtCcycd()
+    public function getAmtCcycd(): string
     {
         return $this->amt_ccycd;
     }
 
     /**
-     * @param mixed $amt_ccycd
+     * @param string $amt_ccycd
      */
-    public function setAmtCcycd($amt_ccycd): void
+    public function setAmtCcycd(string $amt_ccycd): void
     {
         $this->amt_ccycd = $amt_ccycd;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getCltaccAcctcd()
+    public function getState(): string
     {
-        return $this->cltacc_acctcd;
+        return $this->state;
     }
 
     /**
-     * @param mixed $cltacc_acctcd
+     * @param string $state
      */
-    public function setCltaccAcctcd($cltacc_acctcd): void
+    public function setState(string $state): void
     {
-        $this->cltacc_acctcd = $cltacc_acctcd;
+        $this->state = $state;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getAmount()
+    public function getResttime(): string
     {
-        return $this->amount;
+        return $this->resttime;
     }
 
     /**
-     * @param mixed $amount
+     * @param string $resttime
      */
-    public function setAmount($amount): void
+    public function setResttime(string $resttime): void
     {
-        $this->amount = $amount;
+        $this->resttime = $resttime;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getActideadline()
+    public function getOpion(): string
     {
-        return $this->actideadline;
+        return $this->opion;
     }
 
     /**
-     * @param mixed $actideadline
+     * @param string $opion
      */
-    public function setActideadline($actideadline): void
+    public function setOpion(string $opion): void
     {
-        $this->actideadline = $actideadline;
+        $this->opion = $opion;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getActiinfo()
+    public function getUsage(): string
     {
-        return $this->actiinfo;
+        return $this->usage;
     }
 
     /**
-     * @param mixed $actiinfo
+     * @param string $usage
      */
-    public function setActiinfo($actiinfo): void
+    public function setUsage(string $usage): void
     {
-        $this->actiinfo = $actiinfo;
+        $this->usage = $usage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUbalsta(): string
+    {
+        return $this->ubalsta;
+    }
+
+    /**
+     * @param string $ubalsta
+     */
+    public function setUbalsta(string $ubalsta): void
+    {
+        $this->ubalsta = $ubalsta;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUbaltim(): string
+    {
+        return $this->ubaltim;
+    }
+
+    /**
+     * @param string $ubaltim
+     */
+    public function setUbaltim(string $ubaltim): void
+    {
+        $this->ubaltim = $ubaltim;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTrsflag(): string
+    {
+        return $this->trsflag;
+    }
+
+    /**
+     * @param string $trsflag
+     */
+    public function setTrsflag(string $trsflag): void
+    {
+        $this->trsflag = $trsflag;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMerchantid(): string
+    {
+        return $this->merchantid;
+    }
+
+    /**
+     * @param string $merchantid
+     */
+    public function setMerchantid(string $merchantid): void
+    {
+        $this->merchantid = $merchantid;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFdate(): string
+    {
+        return $this->fdate;
+    }
+
+    /**
+     * @param string $fdate
+     */
+    public function setFdate(string $fdate): void
+    {
+        $this->fdate = $fdate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFtime(): string
+    {
+        return $this->ftime;
+    }
+
+    /**
+     * @param string $ftime
+     */
+    public function setFtime(string $ftime): void
+    {
+        $this->ftime = $ftime;
     }
 
 
@@ -167,18 +318,26 @@ class TrdT2012Response extends TrdBaseResponse
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
             $cltAcc = ArrayUtil::get('CltAcc', $this->responseData, []);
             if ($cltAcc) {
-                $this->cltacc_cltno = ArrayUtil::get('CltNo', $cltAcc);
-                $this->cltacc_cltpid = ArrayUtil::get('CltPid', $cltAcc);
                 $this->cltacc_subno = ArrayUtil::get('SubNo', $cltAcc);
                 $this->cltacc_cltnm = ArrayUtil::get('CltNm', $cltAcc);
-                $this->cltacc_bnkeid = ArrayUtil::get('BnkEid', $cltAcc);
-                $this->cltacc_openbkcd = ArrayUtil::get('OpenBkCd', $cltAcc);
-                $this->cltacc_openbknm = ArrayUtil::get('OpenBkNm', $cltAcc);
-                $this->cltacc_acctcd = ArrayUtil::get('AcctCd', $cltAcc);
             }
-            $this->amount = ArrayUtil::get('Amount', $this->responseData);
-            $this->actideadline = ArrayUtil::get('ActiDeadline', $this->responseData);
-            $this->actiinfo = ArrayUtil::get('ActiInfo', $this->responseData);
+            $amt = ArrayUtil::get('Amt', $this->responseData, []);
+            if ($amt) {
+                $this->amt_aclamt = ArrayUtil::get('AclAmt', $amt);
+                $this->amt_payfee = ArrayUtil::get('PayFee', $amt);
+                $this->amt_payeefee = ArrayUtil::get('PayeeFee', $amt);
+                $this->amt_ccycd = ArrayUtil::get('CcyCd', $amt);
+            }
+            $this->state = ArrayUtil::get('State', $this->responseData);
+            $this->resttime = ArrayUtil::get('RestTime', $this->responseData);
+            $this->opion = ArrayUtil::get('Opion', $this->responseData);
+            $this->ubalsta = ArrayUtil::get('UBalSta', $this->responseData);
+            $this->ubaltim = ArrayUtil::get('UBalTim', $this->responseData);
+            $this->usage = ArrayUtil::get('Usage', $this->responseData);
+            $this->fdate = ArrayUtil::get('FDate', $this->responseData);
+            $this->ftime = ArrayUtil::get('FTime', $this->responseData);
+            $this->trsflag = ArrayUtil::get('TrsFlag', $this->responseData);
+            $this->merchantid = ArrayUtil::get('MerchantId', $this->responseData);
         }
     }
 }
