@@ -11,22 +11,30 @@ use Lmh\Cpcn\Support\Xml;
 class TrdT4041Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T4041";
-
-    protected $trsflag;
-
-    protected $dtrcd;
-
+    /**
+     * @var string 业务标示 A00:普通退款
+     */
+    protected $trsflag = 'A00';
+    /**
+     * @var string 原交易标志 UIN:渠道入金 ENTRCV:收款业务 JUHEPAY:聚合支付 PAY：订单支付 INPAY：入金支付
+     */
+    protected $dtrcd = 'UIN';
+    /**
+     * @var string 原交易的合作方交易流水号
+     */
     protected $dptnsrl;
-
+    /**
+     * @var string 退款原因
+     */
     protected $usage;
 
     protected $amt_aclamt;
 
-    protected $amt_ccycd;
+    protected $amt_ccycd = 'CNY';
 
-    protected $amt_payfee;
+    protected $amt_payfee = '0';
 
-    protected $amt_payeefee;
+    protected $amt_payeefee = '0';
 
     /**
      * @return mixed

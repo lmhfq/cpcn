@@ -13,6 +13,9 @@ class TrdT1115Response extends TrdBaseResponse
     protected $bkacc_bkid;
     protected $bkacc_bknm;
     protected $bkacc_accno;
+    /**
+     * @var string 银行卡类型 1:借记卡(储蓄卡) 2:贷记卡(信用卡)
+     */
     protected $bkacc_crdtp;
     protected $bkacc_crdbin;
 

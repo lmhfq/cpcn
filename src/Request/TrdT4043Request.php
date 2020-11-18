@@ -11,7 +11,6 @@ use Lmh\Cpcn\Support\Xml;
 class TrdT4043Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T4043";
-
     /**
      * @throws InvalidConfigException
      */
