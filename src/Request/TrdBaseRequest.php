@@ -53,31 +53,6 @@ abstract class TrdBaseRequest extends BaseRequest
         $this->srl_ptnsrl = $srl_ptnsrl;
     }
 
-    public abstract function handle();
-
-    /**
-     * @return array[]
-     */
-    public function getMsghd(): array
-    {
-        if (empty($this->getMsghdTrdt())) {
-            $this->setMsghdTrdt(date('Ymd'));
-        }
-        if (empty($this->getMsghdTrtm())) {
-            $this->setMsghdTrtm(date('His'));
-        }
-        return [
-            "MSGHD" => [
-                'TrCd' => $this->getMsghdTrcd(),
-                'TrSrc' => $this->getMsghdTrsrc(),
-                'TrDt' => $this->getMsghdTrdt(),
-                'TrTm' => $this->getMsghdTrtm(),
-                'PtnCd' => $this->getMsghdPtncd(),
-                'BkCd' => $this->getMsghdBkcd(),
-            ]
-        ];
-    }
-
     /**
      * @return mixed
      */
@@ -132,6 +107,31 @@ abstract class TrdBaseRequest extends BaseRequest
     public function setMsghdBkcd($msghd_bkcd)
     {
         $this->msghd_bkcd = $msghd_bkcd;
+    }
+
+    public abstract function handle();
+
+    /**
+     * @return array[]
+     */
+    public function getMsghd(): array
+    {
+        if (empty($this->getMsghdTrdt())) {
+            $this->setMsghdTrdt(date('Ymd'));
+        }
+        if (empty($this->getMsghdTrtm())) {
+            $this->setMsghdTrtm(date('His'));
+        }
+        return [
+            "MSGHD" => [
+                'TrCd' => $this->getMsghdTrcd(),
+                'TrSrc' => $this->getMsghdTrsrc(),
+                'TrDt' => $this->getMsghdTrdt(),
+                'TrTm' => $this->getMsghdTrtm(),
+                'PtnCd' => $this->getMsghdPtncd(),
+                'BkCd' => $this->getMsghdBkcd(),
+            ]
+        ];
     }
 
     /**
