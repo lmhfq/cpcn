@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Request;
 
 
+use Lmh\Cpcn\Constant\TransactionFlag;
 use Lmh\Cpcn\Exception\InvalidConfigException;
 use Lmh\Cpcn\Support\Xml;
 
@@ -14,7 +15,7 @@ class TrdT4041Request extends TrdBaseRequest
     /**
      * @var string 业务标示 A00:普通退款
      */
-    protected $trsflag = 'A00';
+    protected $trsflag = TransactionFlag::A00;
     /**
      * @var string 原交易标志 UIN:渠道入金 ENTRCV:收款业务 JUHEPAY:聚合支付 PAY：订单支付 INPAY：入金支付
      */

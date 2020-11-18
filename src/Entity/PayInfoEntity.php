@@ -39,9 +39,9 @@ class PayInfoEntity
      */
     protected $billinfo_aclamt;
 
-    protected $billinfo_payfee = "0";
+    protected $billinfo_payfee = 0;
 
-    protected $billinfo_payeefee = "0";
+    protected $billinfo_payeefee = 0;
 
     protected $billinfo_ccycd = 'CNY';
     /**

@@ -19,7 +19,7 @@ class TrdT2012Response extends TrdBaseResponse
      */
     protected $cltacc_cltnm;
     /**
-     * @var string 发生额
+     * @var int 发生额
      */
     protected $amt_aclamt;
     /**

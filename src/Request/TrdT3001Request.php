@@ -20,7 +20,7 @@ class TrdT3001Request extends TrdBaseRequest
      */
     protected $cltacc_cltnm;
     /**
-     * @var string 发生额
+     * @var int 发生额
      */
     protected $amt_aclamt;
 

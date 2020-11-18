@@ -5,34 +5,52 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Request;
 
 
+use Lmh\Cpcn\Constant\BalFlag;
+use Lmh\Cpcn\Constant\TransactionFlag;
 use Lmh\Cpcn\Exception\InvalidConfigException;
 use Lmh\Cpcn\Support\Xml;
 
 class TrdT2022Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T2022";
-
+    /**
+     * @var string 资金账号
+     */
     protected $cltacc_subno;
-
+    /**
+     * @var string 户名
+     */
     protected $cltacc_cltnm;
-
+    /**
+     * @var string 银行账号(卡号)
+     */
     protected $bkacc_accno;
-
+    /**
+     * @var string 开户名称
+     */
     protected $bkacc_accnm;
-
+    /**
+     * @var int 发生额
+     */
     protected $amt_aclamt;
-
-    protected $amt_feeamt;
-
-    protected $amt_tamt;
-
+    /**
+     * @var int 转账手续费
+     */
+    protected $amt_feeamt = 0;
+    /**
+     * @var int 总金额(发生额+转账手续费)
+     */
+    protected $amt_tamt = 0;
+    /**
+     * @var string 资金用途(附言)
+     */
     protected $amt_ccycd = 'CNY';
 
     protected $usage;
 
-    protected $trsflag;
+    protected $trsflag = TransactionFlag::A00;
 
-    protected $balflag;
+    protected $balflag = BalFlag::T1;
 
     /**
      * @return mixed

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Request;
 
 
+use Lmh\Cpcn\Constant\TransactionFlag;
 use Lmh\Cpcn\Exception\InvalidConfigException;
 use Lmh\Cpcn\Support\Xml;
 
@@ -96,7 +97,7 @@ class TrdT2031Request extends TrdBaseRequest
     /**
      * @var string 业务标示 A00 正常入金 B00 入金成功后，再冻结资金
      */
-    public $trsflag = 'B00';
+    public $trsflag = TransactionFlag::B00;
     /**
      * @var string 资金用途(附言)
      */

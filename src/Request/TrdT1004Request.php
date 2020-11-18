@@ -64,7 +64,7 @@ class TrdT1004Request extends TrdBaseRequest
      */
     protected $bkacc_openbkcd;
     /**
-     * @var string
+     * @var string 开户网点名称
      */
     protected $bkacc_openbknm;
 

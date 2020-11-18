@@ -11,7 +11,9 @@ use Lmh\Cpcn\Support\Xml;
 class TrdT2012Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T2012";
-
+    /**
+     * @var string 原出入金交易的合作方交易 流水号
+     */
     protected $orgsrl;
 
     /**

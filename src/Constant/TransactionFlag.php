@@ -13,7 +13,7 @@ namespace Lmh\Cpcn\Constant;
 class TransactionFlag
 {
     /**
-     * @var string 正常入金/普通订单支付/冻结
+     * @var string 正常入金/普通订单支付/冻结/正常出金
      */
     public const A00 = 'A00';
     /**
@@ -22,7 +22,7 @@ class TransactionFlag
     public const B00 = 'B00';
 
     /**
-     * @var string 付款方解冻资金后，再支付给收款方
+     * @var string 付款方解冻资金后，再支付给收款方/解冻资金后，再出金
      */
     public const B01 = 'B01';
     /**

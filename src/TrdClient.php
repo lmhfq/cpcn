@@ -7,6 +7,7 @@ namespace Lmh\Cpcn;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Lmh\Cpcn\Notify\NtcBaseRequest;
 use Lmh\Cpcn\Request\TrdBaseRequest;
 use Lmh\Cpcn\Response\TrdBaseResponse;
 use Lmh\Cpcn\Support\PriKeySigner;
@@ -39,12 +40,6 @@ class TrdClient extends ServiceContainer
             $this->offsetGet("config")['certContent']
         ));
         $request->handle();
-        $params = [
-            'message' => $request->getRequestMessage(),
-            'signature' => $request->getRequestSignature(),
-            'trdcode' => $request->getMsghdTrcd(),
-            'ptncode' => $request->getMsghdPtncd(),
-        ];
         /**
          * @var LoggerInterface $logger
          */
@@ -52,6 +47,12 @@ class TrdClient extends ServiceContainer
         if ($this->offsetGet("config")['debug']) {
             $logger->debug("请求原文", [$request->getRequestPlainText()]);
         }
+        $params = [
+            'message' => $request->getRequestMessage(),
+            'signature' => $request->getRequestSignature(),
+            'trdcode' => $request->getMsghdTrcd(),
+            'ptncode' => $request->getMsghdPtncd(),
+        ];
         $resultMessage = $this->request($params);
         $response->handle($resultMessage);
         if ($this->offsetGet("config")['debug']) {
@@ -77,5 +78,22 @@ class TrdClient extends ServiceContainer
         ];
         $response = $client->request('POST', '', $options);
         return $response->getBody()->getContents();
+    }
+
+    /**
+     * 处理回调
+     * @param string $message
+     * @param string $signature
+     * @param NtcBaseRequest $noticeRequest
+     * @return NtcBaseRequest
+     */
+    public function notify(string $message, string $signature, NtcBaseRequest $noticeRequest): NtcBaseRequest
+    {
+        $noticeRequest->handle($message, $signature);
+        $logger = $this->offsetGet("logger");
+        if ($this->offsetGet("config")['debug']) {
+            $logger->debug("回调原文", [$noticeRequest->getPlainText()]);
+        }
+        return $noticeRequest;
     }
 }
