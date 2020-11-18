@@ -13,11 +13,11 @@ namespace Lmh\Cpcn\Constant;
 class TransactionFlag
 {
     /**
-     * @var string 正常入金/普通订单支付
+     * @var string 正常入金/普通订单支付/冻结
      */
     public const A00 = 'A00';
     /**
-     * @var string 入金成功后，再冻结资金/收款方收款成功后，再冻结资金
+     * @var string 入金成功后再冻结资金/收款方收款成功后再冻结资金/解冻
      */
     public const B00 = 'B00';
 

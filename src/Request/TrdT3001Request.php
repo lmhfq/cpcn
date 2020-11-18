@@ -11,17 +11,27 @@ use Lmh\Cpcn\Support\Xml;
 class TrdT3001Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T3001";
-
+    /**
+     * @var string 资金账号
+     */
     protected $cltacc_subno;
-
+    /**
+     * @var string 户名
+     */
     protected $cltacc_cltnm;
-
+    /**
+     * @var string 发生额
+     */
     protected $amt_aclamt;
 
-    protected $amt_ccycd;
-
+    protected $amt_ccycd='CNY';
+    /**
+     * @var string 冻结业务标示 A00 冻结 B00 解冻
+     */
     protected $trsflag;
-
+    /**
+     * @var string 资金用途(附言)
+     */
     protected $usage;
 
     /**

@@ -26,7 +26,7 @@ class TrdT2022Request extends TrdBaseRequest
 
     protected $amt_tamt;
 
-    protected $amt_ccycd;
+    protected $amt_ccycd = 'CNY';
 
     protected $usage;
 

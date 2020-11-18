@@ -11,7 +11,9 @@ use Lmh\Cpcn\Support\Xml;
 class TrdT3003Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T3003";
-
+    /**
+     * @var string 原冻结/解冻交易的合作方 业务单号
+     */
     protected $orgsrl;
 
     /**

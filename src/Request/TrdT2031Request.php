@@ -19,6 +19,9 @@ class TrdT2031Request extends TrdBaseRequest
      * @var string 户名
      */
     public $cltacc_cltnm;
+    /**
+     * @var string 入金金额
+     */
     public $billinfo_aclamt;
     /**
      * @var string 收款方手续费
