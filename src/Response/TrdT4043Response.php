@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Response;
 
 
-use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Constant\ResponseCode;
+use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT4043Response extends TrdBaseResponse
 {
@@ -18,8 +18,17 @@ class TrdT4043Response extends TrdBaseResponse
     protected $amt_payfee;
     protected $amt_payeefee;
     protected $amt_ccycd;
+    /**
+     * @var string 退款结果 1 退款成功 2 退款失败 3 退款处理中
+     */
     protected $state;
+    /**
+     * @var string 退款成功/失败时间(渠 道通知时间) 格式:YYYYMMDDHH24MISS
+     */
     protected $resttime;
+    /**
+     * @var string 失败原因
+     */
     protected $opion;
     protected $fdate;
     protected $ftime;
