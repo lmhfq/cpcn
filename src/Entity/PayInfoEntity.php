@@ -150,17 +150,17 @@ class PayInfoEntity
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getBillinfoAclamt(): string
+    public function getBillinfoAclamt(): int
     {
         return $this->billinfo_aclamt;
     }
 
     /**
-     * @param string $billinfo_aclamt
+     * @param int $billinfo_aclamt
      */
-    public function setBillinfoAclamt(string $billinfo_aclamt): void
+    public function setBillinfoAclamt(int $billinfo_aclamt): void
     {
         $this->billinfo_aclamt = $billinfo_aclamt;
     }
