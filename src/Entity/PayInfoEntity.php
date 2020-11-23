@@ -35,7 +35,7 @@ class PayInfoEntity
      */
     protected $billinfo_billno;
     /**
-     * @var string  支付金额
+     * @var int  支付金额
      */
     protected $billinfo_aclamt;
 
