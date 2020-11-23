@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 
-namespace Test;
+namespace Lmh\Cpcn\Test;
 
 
 use GuzzleHttp\Exception\GuzzleException;
