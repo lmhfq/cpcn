@@ -23,6 +23,10 @@ class ResponseCode
      * 合作方不支持该交易
      */
     public const SDER07 = 'SDER07';
+    /**
+     * 该交易已经处理成功
+     */
+    public const PYSUCC='PYSUCC';
 
 
 }
