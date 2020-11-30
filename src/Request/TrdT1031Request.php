@@ -976,7 +976,6 @@ class TrdT1031Request extends TrdBaseRequest
             'CdNo' => $this->clt_cdno,
             'MobNo' => $this->clt_mobno,
             'Email' => $this->clt_email,
-            'PostNo' => $this->clt_postno,
             'Addr' => $this->clt_addr,
             'CityCd' => $this->clt_citycd,
             'InduCode' => $this->clt_inducode,
@@ -985,6 +984,9 @@ class TrdT1031Request extends TrdBaseRequest
             'AuthCapital' => $this->clt_authcapital,
             'BusiScope' => $this->clt_busiscope,
         ];
+        if ($this->clt_postno) {
+            $clt['PostNo'] = $this->clt_postno;
+        }
         if ($this->clt_kd) {
             $clt = array_merge($clt, [
                 'CdIsDt' => $this->clt_cdisdt,
