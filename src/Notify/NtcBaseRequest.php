@@ -11,16 +11,24 @@ namespace Lmh\Cpcn\Notify;
 
 
 use InvalidArgumentException;
+use Lmh\Cpcn\Exception\InvalidConfigException;
 use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Support\SignatureFactory;
 use Lmh\Cpcn\Support\Xml;
 
-class NtcBaseRequest
+abstract class NtcBaseRequest
 {
+    /**
+     * @var string
+     */
     protected $message;
-
+    /**
+     * @var string
+     */
     protected $noticeData;
-
+    /**
+     * @var string
+     */
     protected $plainText;
     /**
      * @var string 合作方编号
@@ -217,6 +225,11 @@ class NtcBaseRequest
 
     public abstract function handle(string $message, string $signature);
 
+    /**
+     * @param string $message
+     * @param string $signature
+     * @throws InvalidConfigException
+     */
     public function process(string $message, string $signature)
     {
         $this->message = $message;

@@ -20,6 +20,9 @@ class NoticeResponse extends NtcBaseResponse
         parent::__construct($request);
     }
 
+    /**
+     *
+     */
     public function process()
     {
         $data = [];

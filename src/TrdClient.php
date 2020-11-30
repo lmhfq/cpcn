@@ -89,7 +89,15 @@ class TrdClient extends ServiceContainer
      */
     public function notify(string $message, string $signature, NtcBaseRequest $noticeRequest): NtcBaseRequest
     {
+        SignatureFactory::setSigner(new PriKeySigner(
+            $this->offsetGet("config")['keystoreFilename'],
+            $this->offsetGet("config")['keystorePassword'],
+            $this->offsetGet("config")['keyContent'],
+            $this->offsetGet("config")['certificateFilename'],
+            $this->offsetGet("config")['certContent']
+        ));
         $noticeRequest->handle($message, $signature);
+
         $logger = $this->offsetGet("logger");
         if ($this->offsetGet("config")['debug']) {
             $logger->debug("回调原文", [$noticeRequest->getPlainText()]);

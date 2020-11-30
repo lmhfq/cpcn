@@ -12,12 +12,128 @@ namespace Lmh\Cpcn\Notify;
 
 class NtcBaseResponse
 {
-    public $plainText;
-    public $message;
-    public $msghd_rspcode = "000000";
-    public $msghd_rspmsg = "交易成功";
-    public $srl_ptnsrl;
-    public $srl_platsrl;
+    /**
+     * @var string
+     */
+    protected $plainText;
+    /**
+     * @var string
+     */
+    protected $message;
+    /**
+     * @var string
+     */
+    protected $msghd_rspcode = "000000";
+    /**
+     * @var string
+     */
+    protected $msghd_rspmsg = "交易成功";
+    /**
+     * @var string
+     */
+    protected $srl_ptnsrl;
+    /**
+     * @var string
+     */
+    protected $srl_platsrl;
+
+    /**
+     * @return string
+     */
+    public function getPlainText(): string
+    {
+        return $this->plainText;
+    }
+
+    /**
+     * @param string $plainText
+     */
+    public function setPlainText(string $plainText): void
+    {
+        $this->plainText = $plainText;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage(): string
+    {
+        return $this->message;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function setMessage(string $message): void
+    {
+        $this->message = $message;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMsghdRspcode(): string
+    {
+        return $this->msghd_rspcode;
+    }
+
+    /**
+     * @param string $msghd_rspcode
+     */
+    public function setMsghdRspcode(string $msghd_rspcode): void
+    {
+        $this->msghd_rspcode = $msghd_rspcode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMsghdRspmsg(): string
+    {
+        return $this->msghd_rspmsg;
+    }
+
+    /**
+     * @param string $msghd_rspmsg
+     */
+    public function setMsghdRspmsg(string $msghd_rspmsg): void
+    {
+        $this->msghd_rspmsg = $msghd_rspmsg;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSrlPtnsrl(): string
+    {
+        return $this->srl_ptnsrl;
+    }
+
+    /**
+     * @param string $srl_ptnsrl
+     */
+    public function setSrlPtnsrl(string $srl_ptnsrl): void
+    {
+        $this->srl_ptnsrl = $srl_ptnsrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSrlPlatsrl(): string
+    {
+        return $this->srl_platsrl;
+    }
+
+    /**
+     * @param string $srl_platsrl
+     */
+    public function setSrlPlatsrl(string $srl_platsrl): void
+    {
+        $this->srl_platsrl = $srl_platsrl;
+    }
+
+
 
 
     public function __construct(NtcBaseRequest $request)
@@ -25,7 +141,7 @@ class NtcBaseResponse
         $this->srl_platsrl = $request->getSrlPlatsrl();
     }
 
-    public function getMsghd()
+    protected function getMsghd()
     {
         return [
             "MSGHD" => [
@@ -35,7 +151,7 @@ class NtcBaseResponse
         ];
     }
 
-    public function getSrl(): array
+    protected function getSrl(): array
     {
         return [
             "Srl" => [
@@ -48,7 +164,7 @@ class NtcBaseResponse
     /**
      * @param string $xml
      */
-    public function postProcess(string $xml)
+    protected function postProcess(string $xml)
     {
         $this->plainText = $xml;
         $this->message = base64_encode(trim($xml));
