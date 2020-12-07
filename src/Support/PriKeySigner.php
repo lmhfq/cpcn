@@ -65,11 +65,11 @@ class PriKeySigner
 
     /**
      * @param string $plainText
-     * @param $signature
+     * @param string $signature
      * @return int
      * @throws InvalidConfigException
      */
-    public function verify(string $plainText, $signature)
+    public function verify(string $plainText, string $signature)
     {
         if ($this->certContent) {
             $cert = $this->certContent;
