@@ -236,7 +236,7 @@ abstract class NtcBaseRequest
         $this->plainText = trim(base64_decode($message));
         $result = SignatureFactory::getSigner()->verify($this->plainText, $signature);
         if ($result != 1) {
-            throw new InvalidArgumentException("MK2001", "验证签名失败。");
+            throw new InvalidArgumentException("MK2001", "验证签名失败");
         }
         $this->plainText = str_replace('encoding="GBK"', 'encoding="UTF-8"', $this->plainText);
         $this->noticeData = Xml::parse($this->plainText);

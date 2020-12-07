@@ -75,6 +75,7 @@ class TrdClient extends ServiceContainer
                 'Accept' => 'text/xml; charset=UTF8',
             ],
             'form_params' => $data,
+            'verify' => false
         ];
         $response = $client->request('POST', '', $options);
         return $response->getBody()->getContents();

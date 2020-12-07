@@ -134,8 +134,10 @@ class NtcBaseResponse
     }
 
 
-
-
+    /**
+     * NtcBaseResponse constructor.
+     * @param NtcBaseRequest $request
+     */
     public function __construct(NtcBaseRequest $request)
     {
         $this->srl_platsrl = $request->getSrlPlatsrl();

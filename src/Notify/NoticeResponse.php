@@ -14,7 +14,10 @@ use Lmh\Cpcn\Support\Xml;
 
 class NoticeResponse extends NtcBaseResponse
 {
-
+    /**
+     * NoticeResponse constructor.
+     * @param NtcBaseRequest $request
+     */
     public function __construct(NtcBaseRequest $request)
     {
         parent::__construct($request);
