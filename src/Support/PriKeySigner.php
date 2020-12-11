@@ -79,6 +79,6 @@ class PriKeySigner
             throw new InvalidConfigException('合作方的签名证书配置错误');
         }
         $binarySignature = pack("H" . strlen($signature), $signature);
-        return openssl_verify($plainText, $binarySignature, $cert);
+        return openssl_verify($plainText, $binarySignature, $cert, OPENSSL_ALGO_SHA1);
     }
 }
