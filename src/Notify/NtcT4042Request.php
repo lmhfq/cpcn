@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Notify;
 
 
+use Lmh\Cpcn\Exception\InvalidConfigException;
 use Lmh\Cpcn\Support\ArrayUtil;
 
 class NtcT4042Request extends NtcBaseRequest
@@ -275,12 +276,15 @@ class NtcT4042Request extends NtcBaseRequest
         $this->ftime = $ftime;
     }
 
-
+    /**
+     * @param string $message
+     * @param string $signature
+     * @throws InvalidConfigException
+     */
     public function handle(string $message, string $signature)
     {
         parent::process($message, $signature);
         if ($this->noticeData) {
-
             $this->state = ArrayUtil::get('State', $this->noticeData);
             $this->trsflag = ArrayUtil::get('TrsFlag', $this->noticeData);
             $this->dtrcd = ArrayUtil::get('DTrCd', $this->noticeData);
@@ -297,6 +301,5 @@ class NtcT4042Request extends NtcBaseRequest
             $this->amt_payeefee = ArrayUtil::get('PayeeFee', $amt);
             $this->amt_ccycd = ArrayUtil::get('CcyCd', $amt);
         }
-
     }
 }

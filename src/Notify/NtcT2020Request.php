@@ -10,6 +10,9 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Notify;
 
 
+use Lmh\Cpcn\Exception\InvalidConfigException;
+use Lmh\Cpcn\Support\ArrayUtil;
+
 class NtcT2020Request extends NtcBaseRequest
 {
     /**
@@ -41,9 +44,136 @@ class NtcT2020Request extends NtcBaseRequest
      */
     protected $ftime;
 
+    /**
+     * @return string
+     */
+    public function getCltaccSubno(): string
+    {
+        return $this->cltacc_subno;
+    }
 
+    /**
+     * @param string $cltacc_subno
+     */
+    public function setCltaccSubno(string $cltacc_subno): void
+    {
+        $this->cltacc_subno = $cltacc_subno;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCltaccCltnm(): string
+    {
+        return $this->cltacc_cltnm;
+    }
+
+    /**
+     * @param string $cltacc_cltnm
+     */
+    public function setCltaccCltnm(string $cltacc_cltnm): void
+    {
+        $this->cltacc_cltnm = $cltacc_cltnm;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsage(): string
+    {
+        return $this->usage;
+    }
+
+    /**
+     * @param string $usage
+     */
+    public function setUsage(string $usage): void
+    {
+        $this->usage = $usage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUbalsta(): string
+    {
+        return $this->ubalsta;
+    }
+
+    /**
+     * @param string $ubalsta
+     */
+    public function setUbalsta(string $ubalsta): void
+    {
+        $this->ubalsta = $ubalsta;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUbaltim(): string
+    {
+        return $this->ubaltim;
+    }
+
+    /**
+     * @param string $ubaltim
+     */
+    public function setUbaltim(string $ubaltim): void
+    {
+        $this->ubaltim = $ubaltim;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFdate(): string
+    {
+        return $this->fdate;
+    }
+
+    /**
+     * @param string $fdate
+     */
+    public function setFdate(string $fdate): void
+    {
+        $this->fdate = $fdate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFtime(): string
+    {
+        return $this->ftime;
+    }
+
+    /**
+     * @param string $ftime
+     */
+    public function setFtime(string $ftime): void
+    {
+        $this->ftime = $ftime;
+    }
+
+
+    /**
+     * @param string $message
+     * @param string $signature
+     * @throws InvalidConfigException
+     */
     public function handle(string $message, string $signature)
     {
-        // TODO: Implement handle() method.
+        parent::process($message, $signature);
+        if ($this->noticeData) {
+            $cltAcc = ArrayUtil::get('CltAcc', $this->noticeData);
+            $this->cltacc_subno = ArrayUtil::get('SubNo', $cltAcc);
+            $this->cltacc_cltnm = ArrayUtil::get('CltNm', $cltAcc);
+            $this->ubalsta = ArrayUtil::get('UBalSta', $this->noticeData);
+            $this->ubaltim = ArrayUtil::get('UBalTim', $this->noticeData);
+            $this->usage = ArrayUtil::get('Usage', $this->noticeData);
+            $this->fdate = ArrayUtil::get('FDate', $this->noticeData);
+            $this->ftime = ArrayUtil::get('FTime', $this->noticeData);
+        }
     }
 }
