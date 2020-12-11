@@ -23,7 +23,7 @@ abstract class NtcBaseRequest
      */
     protected $message;
     /**
-     * @var string
+     * @var array
      */
     protected $noticeData;
     /**
