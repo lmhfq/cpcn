@@ -251,7 +251,7 @@ abstract class NtcBaseRequest
         $this->msghd_ptncd = ArrayUtil::get('PtnCd', $msgHd, '');
         $this->msghd_bkcd = ArrayUtil::get('BkCd', $msgHd, '');
 
-        $this->srl_ptnsrl = ArrayUtil::get('SrcPtnSrl', $srl, '');
+        $this->srl_ptnsrl = ArrayUtil::get('PtnSrl', $srl, '');
         $this->srl_platsrl = ArrayUtil::get('PlatSrl', $srl, '');
     }
 }

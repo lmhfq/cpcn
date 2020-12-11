@@ -506,10 +506,12 @@ class NtcT2008Request extends NtcBaseRequest
         parent::process($message, $signature);
         if ($this->noticeData) {
             $this->srl_srcptnsrl = ArrayUtil::get('SrcPtnSrl', $this->noticeData);
+
             $cltAcc = ArrayUtil::get('CltAcc', $this->noticeData);
             $this->cltacc_subno = ArrayUtil::get('SubNo', $cltAcc);
             $this->cltacc_cltnm = ArrayUtil::get('CltNm', $cltAcc);
             $this->cltacc_cltno = ArrayUtil::get('CltNo', $cltAcc);
+
             $this->state = ArrayUtil::get('State', $this->noticeData);
             $this->trsflag = ArrayUtil::get('TrsFlag', $this->noticeData);
             $this->usage = ArrayUtil::get('Usage', $this->noticeData);
@@ -519,6 +521,7 @@ class NtcT2008Request extends NtcBaseRequest
             $this->merchantid = ArrayUtil::get('MerchantId', $this->noticeData);
             $this->dTrsFlag = ArrayUtil::get('DTrsFlag', $this->noticeData);
             $this->opion = ArrayUtil::get('Opion', $this->noticeData);
+
             $amt = ArrayUtil::get('Amt', $this->noticeData);
             $this->amt_tamt = ArrayUtil::get('AclAmt', $amt);
             $this->amt_feeamt = ArrayUtil::get('FeeAmt', $amt);
