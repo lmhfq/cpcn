@@ -43,6 +43,14 @@ class NtcT2020Request extends NtcBaseRequest
      * @var string 原交易时间
      */
     protected $ftime;
+    /**
+     * @var  string
+     */
+    protected $spec1;
+    /**
+     * @var string 备用 2 UBalSta=2 时返回失败原因
+     */
+    protected $spec2;
 
     /**
      * @return string
@@ -156,6 +164,38 @@ class NtcT2020Request extends NtcBaseRequest
         $this->ftime = $ftime;
     }
 
+    /**
+     * @return string
+     */
+    public function getSpec1(): string
+    {
+        return $this->spec1;
+    }
+
+    /**
+     * @param string $spec1
+     */
+    public function setSpec1(string $spec1): void
+    {
+        $this->spec1 = $spec1;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSpec2(): string
+    {
+        return $this->spec2;
+    }
+
+    /**
+     * @param string $spec2
+     */
+    public function setSpec2(string $spec2): void
+    {
+        $this->spec2 = $spec2;
+    }
+
 
     /**
      * @param string $message
@@ -174,6 +214,8 @@ class NtcT2020Request extends NtcBaseRequest
             $this->usage = ArrayUtil::get('Usage', $this->noticeData);
             $this->fdate = ArrayUtil::get('FDate', $this->noticeData);
             $this->ftime = ArrayUtil::get('FTime', $this->noticeData);
+            $this->spec1 = ArrayUtil::get('Spec1', $this->noticeData);
+            $this->spec2 = ArrayUtil::get('Spec2', $this->noticeData);
         }
     }
 }
