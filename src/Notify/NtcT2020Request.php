@@ -28,7 +28,7 @@ class NtcT2020Request extends NtcBaseRequest
      */
     protected $usage;
     /**
-     * @var string 出金结算状态(查询出金结果时返回) 0 未结算 1 已发送结算申请
+     * @var string 结算状态 1 已发送结算申请 2 结算失败
      */
     protected $ubalsta;
     /**
