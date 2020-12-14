@@ -5,11 +5,15 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Response;
 
 
+use ArrayAccess;
+use Lmh\Cpcn\Support\ArrayAccessTrait;
 use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Support\Xml;
 
-abstract class TrdBaseResponse
+abstract class TrdBaseResponse implements ArrayAccess
 {
+    use ArrayAccessTrait;
+
     /**
      * @var array
      */

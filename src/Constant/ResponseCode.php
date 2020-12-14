@@ -26,7 +26,11 @@ class ResponseCode
     /**
      * 该交易已经处理成功
      */
-    public const PYSUCC='PYSUCC';
+    public const PYSUCC = 'PYSUCC';
+    /**
+     * 查询不到 XXXX 数据
+     */
+    public const NW8574 = 'NW8574';
 
 
 }
