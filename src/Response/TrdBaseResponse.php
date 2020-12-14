@@ -5,15 +5,11 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Response;
 
 
-use ArrayAccess;
-use Lmh\Cpcn\Support\ArrayAccessTrait;
 use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Support\Xml;
 
-abstract class TrdBaseResponse implements ArrayAccess
+abstract class TrdBaseResponse
 {
-    use ArrayAccessTrait;
-
     /**
      * @var array
      */
@@ -144,5 +140,13 @@ abstract class TrdBaseResponse implements ArrayAccess
 
         $this->srl_ptnsrl = ArrayUtil::get('PtnSrl', $srl, '');
         $this->srl_platsrl = ArrayUtil::get('PlatSrl', $srl, '');
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return get_object_vars($this);
     }
 }
