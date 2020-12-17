@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Response;
 
 
-use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Constant\ResponseCode;
+use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT1007Response extends TrdBaseResponse
 {
@@ -25,6 +25,10 @@ class TrdT1007Response extends TrdBaseResponse
     protected $bkacc_prcnm;
     protected $bkacc_citycd;
     protected $bkacc_citynm;
+    /**
+     * @var array
+     */
+    protected $bkAcc;
 
     /**
      * @return mixed
@@ -266,12 +270,31 @@ class TrdT1007Response extends TrdBaseResponse
         $this->bkacc_citynm = $bkacc_citynm;
     }
 
+    /**
+     * @return array
+     */
+    public function getBkAcc(): array
+    {
+        return $this->bkAcc;
+    }
+
+    /**
+     * @param array $bkAcc
+     */
+    public function setBkAcc(array $bkAcc): void
+    {
+        $this->bkAcc = $bkAcc;
+    }
+
+
     public function handle(string $message)
     {
         parent::process($message);
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
             $bkAcc = ArrayUtil::get('BkAcc', $this->responseData, []);
-            if ($bkAcc) {
+            if (isset($bkAcc[0])) {
+                $this->bkAcc = $bkAcc;
+            } else {
                 $this->bkacc_state = ArrayUtil::get('State', $bkAcc);
                 $this->bkacc_bkid = ArrayUtil::get('BkId', $bkAcc);
                 $this->bkacc_bknm = ArrayUtil::get('BkNm', $bkAcc);

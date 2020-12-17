@@ -20,7 +20,6 @@ class TransactionFlag
      * @var string 入金成功后再冻结资金/收款方收款成功后再冻结资金/解冻
      */
     public const B00 = 'B00';
-
     /**
      * @var string 付款方解冻资金后，再支付给收款方/解冻资金后，再出金
      */

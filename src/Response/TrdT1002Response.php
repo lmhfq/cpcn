@@ -15,10 +15,16 @@ class TrdT1002Response extends TrdBaseResponse
      */
     protected $cltacc_cltno;
     /**
-     * @var string
+     * @var string 平台客户号
      */
     protected $cltacc_cltpid;
+    /**
+     * @var string 资金账号
+     */
     protected $cltacc_subno;
+    /**
+     * @var string
+     */
     protected $cltacc_cltnm;
     /**
      * @var string 银行电子账号（跨行收款 账号）
