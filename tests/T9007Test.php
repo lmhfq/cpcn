@@ -1,14 +1,13 @@
 <?php
 declare(strict_types=1);
 
+namespace Lmh\Cpcn\Test;
 
-namespace tests;
 
-
-use Cpcn\Request\TrdT9007Request;
-use Cpcn\Response\TrdT9007Response;
-use Cpcn\Support\ResponseCode;
-use Cpcn\TrdClient;
+use Lmh\Cpcn\Request\TrdT9007Request;
+use Lmh\Cpcn\Response\TrdT9007Response;
+use Lmh\Cpcn\Constant\ResponseCode;
+use Lmh\Cpcn\TrdClient;
 use PHPUnit\Framework\TestCase;
 
 class T9007Test extends TestCase
