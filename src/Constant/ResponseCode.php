@@ -31,6 +31,10 @@ class ResponseCode
      * 查询不到 XXXX 数据
      */
     public const NW8574 = 'NW8574';
+    /**
+     * 请稍后查询结果
+     */
+    public const SJYCLZ = 'SJYCLZ';
 
 
 }
