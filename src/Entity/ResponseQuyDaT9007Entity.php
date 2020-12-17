@@ -3,8 +3,7 @@ declare(strict_types=1);
 
 namespace Lmh\Cpcn\Entity;
 
-
-class PayResultEntityT9008
+class ResponseQuyDaT9007Entity
 {
     protected $quyda_dte;
     protected $quyda_tme;
@@ -23,8 +22,6 @@ class PayResultEntityT9008
     protected $quyda_dplatsrl;
     protected $quyda_usage;
     protected $quyda_ccycd;
-
-
 
     /**
      * @return mixed

@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Entity;
 
 
-class PayInfoEntity
+class RequestBillInfoT3005Entity
 {
     /**
      * @var string 付款方资金账号

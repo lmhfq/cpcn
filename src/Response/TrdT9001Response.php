@@ -6,7 +6,7 @@ namespace Lmh\Cpcn\Response;
 
 
 use Lmh\Cpcn\Constant\ResponseCode;
-use Lmh\Cpcn\Entity\PayResultEntityT9001;
+use Lmh\Cpcn\Entity\ResponseQuyDaT9001Entity;
 use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT9001Response extends TrdBaseResponse
@@ -17,7 +17,7 @@ class TrdT9001Response extends TrdBaseResponse
     /**
      * @var array
      */
-    protected $payRsutList = [];
+    protected $quyDa = [];
 
     /**
      * @return mixed
@@ -70,17 +70,17 @@ class TrdT9001Response extends TrdBaseResponse
     /**
      * @return array
      */
-    public function getPayRsutList(): array
+    public function getQuyDa(): array
     {
-        return $this->payRsutList;
+        return $this->quyDa;
     }
 
     /**
-     * @param array $payRsutList
+     * @param array $quyDa
      */
-    public function setPayRsutList(array $payRsutList): void
+    public function setQuyDa(array $quyDa): void
     {
-        $this->payRsutList = $payRsutList;
+        $this->quyDa = $quyDa;
     }
 
     public function handle(string $message)
@@ -95,7 +95,7 @@ class TrdT9001Response extends TrdBaseResponse
                 return;
             }
             foreach ($quyDa as $item) {
-                $payResultEntityT9001 = new PayResultEntityT9001();
+                $payResultEntityT9001 = new ResponseQuyDaT9001Entity();
                 $payResultEntityT9001->setQuydaDte(ArrayUtil::get('dte', $item));
                 $payResultEntityT9001->setQuydaTme(ArrayUtil::get('tme', $item));
                 $payResultEntityT9001->setQuydaCltno(ArrayUtil::get('CltNo', $item));
@@ -104,7 +104,7 @@ class TrdT9001Response extends TrdBaseResponse
                 $payResultEntityT9001->setQuydaTye(ArrayUtil::get('tye', $item));
                 $payResultEntityT9001->setQuydaPtnsrl(ArrayUtil::get('PtnSrl', $item));
                 $payResultEntityT9001->setQuydaPlatsrl(ArrayUtil::get('PlatSrl', $item));
-                $this->payRsutList[] = $payResultEntityT9001;
+                $this->quyDa[] = $payResultEntityT9001;
             }
         }
     }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Request;
 
 
-use Lmh\Cpcn\Entity\PayInfoEntity;
+use Lmh\Cpcn\Entity\RequestBillInfoT3005Entity;
 use Lmh\Cpcn\Exception\InvalidConfigException;
 use Lmh\Cpcn\Support\Xml;
 
@@ -15,22 +15,22 @@ class TrdT3005Request extends TrdBaseRequest
     /**
      * @var array[PayInfoEntity]
      */
-    protected $payInfoList = [];
+    protected $billInfo = [];
 
     /**
      * @return array
      */
-    public function getPayInfoList(): array
+    public function getBillInfo(): array
     {
-        return $this->payInfoList;
+        return $this->billInfo;
     }
 
     /**
-     * @param array $payInfoList
+     * @param array $billInfo
      */
-    public function setPayInfoList(array $payInfoList): void
+    public function setBillInfo(array $billInfo): void
     {
-        $this->payInfoList = $payInfoList;
+        $this->billInfo = $billInfo;
     }
 
     /**
@@ -42,9 +42,9 @@ class TrdT3005Request extends TrdBaseRequest
         $data = array_merge($data, parent::getMsghd());
 
         $billInfo = [];
-        foreach ($this->payInfoList as $item) {
+        foreach ($this->billInfo as $item) {
             /**
-             * @var PayInfoEntity $item
+             * @var RequestBillInfoT3005Entity $item
              */
             $billInfo[] = [
                 'PSubNo' => $item->getBillinfoPsubno(),

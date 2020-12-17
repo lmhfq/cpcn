@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Entity;
 
 
-class PayResultEntityT9001
+class ResponseQuyDaT9001Entity
 {
     protected $quyda_dte;
     protected $quyda_tme;

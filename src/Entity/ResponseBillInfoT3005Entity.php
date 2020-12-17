@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Entity;
 
 
-class PayResultEntity
+class ResponseBillInfoT3005Entity
 {
     protected $orderNo;
     protected $billno;

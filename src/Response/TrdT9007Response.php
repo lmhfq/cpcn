@@ -6,7 +6,7 @@ namespace Lmh\Cpcn\Response;
 
 
 use Lmh\Cpcn\Constant\ResponseCode;
-use Lmh\Cpcn\Entity\PayResultEntityT9007;
+use Lmh\Cpcn\Entity\ResponseQuyDaT9007Entity;
 use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT9007Response extends TrdBaseResponse
@@ -17,7 +17,7 @@ class TrdT9007Response extends TrdBaseResponse
     /**
      * @var array
      */
-    protected $payRsutList = [];
+    protected $quyDa = [];
 
     /**
      * @return mixed
@@ -70,17 +70,17 @@ class TrdT9007Response extends TrdBaseResponse
     /**
      * @return array
      */
-    public function getPayRsutList(): array
+    public function getQuyDa(): array
     {
-        return $this->payRsutList;
+        return $this->quyDa;
     }
 
     /**
-     * @param array $payRsutList
+     * @param array $quyDa
      */
-    public function setPayRsutList(array $payRsutList): void
+    public function setQuyDa(array $quyDa): void
     {
-        $this->payRsutList = $payRsutList;
+        $this->quyDa = $quyDa;
     }
 
     public function handle(string $message)
@@ -95,7 +95,7 @@ class TrdT9007Response extends TrdBaseResponse
                 return;
             }
             foreach ($quyDa as $item) {
-                $payResultEntityT9007 = new PayResultEntityT9007();
+                $payResultEntityT9007 = new ResponseQuyDaT9007Entity();
                 $payResultEntityT9007->setQuydaDte(ArrayUtil::get('dte', $item));
                 $payResultEntityT9007->setQuydaTme(ArrayUtil::get('tme', $item));
                 $payResultEntityT9007->setQuydaMnychgno(ArrayUtil::get('mnyChgNo', $item));
@@ -113,7 +113,7 @@ class TrdT9007Response extends TrdBaseResponse
                 $payResultEntityT9007->setQuydaDplatsrl(ArrayUtil::get('DPlatSrl', $item));
                 $payResultEntityT9007->setQuydaUsage(ArrayUtil::get('Usage', $item));
                 $payResultEntityT9007->setQuydaCcycd(ArrayUtil::get('CcyCd', $item));
-                $this->payRsutList[] = $payResultEntityT9007;
+                $this->quyDa[] = $payResultEntityT9007;
             }
         }
     }

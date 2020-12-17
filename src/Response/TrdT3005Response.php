@@ -6,7 +6,7 @@ namespace Lmh\Cpcn\Response;
 
 
 use Lmh\Cpcn\Constant\ResponseCode;
-use Lmh\Cpcn\Entity\PayResultEntity;
+use Lmh\Cpcn\Entity\ResponseBillInfoT3005Entity;
 use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT3005Response extends TrdBaseResponse
@@ -14,22 +14,22 @@ class TrdT3005Response extends TrdBaseResponse
     /**
      * @var array
      */
-    protected $payRsutList = [];
+    protected $billInfo = [];
 
     /**
      * @return array
      */
-    public function getPayRsutList(): array
+    public function getBillInfo(): array
     {
-        return $this->payRsutList;
+        return $this->billInfo;
     }
 
     /**
-     * @param array $payRsutList
+     * @param array $billInfo
      */
-    public function setPayRsutList(array $payRsutList): void
+    public function setBillInfo(array $billInfo): void
     {
-        $this->payRsutList = $payRsutList;
+        $this->billInfo = $billInfo;
     }
 
 
@@ -42,13 +42,13 @@ class TrdT3005Response extends TrdBaseResponse
                 return;
             }
             foreach ($billInfo as $item) {
-                $payResultEntity = new PayResultEntity();
+                $payResultEntity = new ResponseBillInfoT3005Entity();
                 $payResultEntity->setOrderNo(ArrayUtil::get('OrderNo', $item));
                 $payResultEntity->setBillno(ArrayUtil::get('BillNo', $item));
                 $payResultEntity->setPlatsrl(ArrayUtil::get('PlatSrl', $item));
                 $payResultEntity->setBillstate(ArrayUtil::get('BillState', $item));
                 $payResultEntity->setOpion(ArrayUtil::get('Opion', $item));
-                $this->payRsutList[] = $payResultEntity;
+                $this->billInfo[] = $payResultEntity;
             }
         }
     }
