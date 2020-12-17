@@ -15,7 +15,7 @@ class TrdT1031Request extends TrdBaseRequest
     protected $msghd_trcd = "T1031";
 
     /**
-     * @var string 功能标示 (1:开户)
+     * @var string 功能标示 (1:开户;2变更 3 销户)
      */
     public $fcflg = '1';
     /**
@@ -23,9 +23,13 @@ class TrdT1031Request extends TrdBaseRequest
      */
     protected $acctp = "1";
     /**
-     * @var string 资金账号
+     * @var string 客户号
      */
     protected $cltacc_cltno;
+    /**
+     * @var string  资金账号 FcFlg=2,3时必填
+     */
+    protected $cltacc_subno;
     /**
      * @var string 户名
      */
@@ -945,6 +949,22 @@ class TrdT1031Request extends TrdBaseRequest
     }
 
     /**
+     * @return string
+     */
+    public function getCltaccSubno(): string
+    {
+        return $this->cltacc_subno;
+    }
+
+    /**
+     * @param string $cltacc_subno
+     */
+    public function setCltaccSubno(string $cltacc_subno): void
+    {
+        $this->cltacc_subno = $cltacc_subno;
+    }
+
+    /**
      * @throws InvalidConfigException
      */
     public function handle()
@@ -1021,13 +1041,17 @@ class TrdT1031Request extends TrdBaseRequest
         if ($this->bkacc_citynm) {
             $bkacc['CityNm'] = $this->bkacc_citynm;
         }
+        $cltAcc = [
+            'CltNo' => $this->cltacc_cltno,
+            'CltNm' => $this->cltacc_cltnm,
+        ];
+        if ($this->cltacc_subno) {
+            $cltAcc['SubNo'] = $this->cltacc_subno;
+        }
         $data = array_merge($data, [
             'FcFlg' => $this->fcflg,
             'AccTp' => $this->acctp,
-            'CltAcc' => [
-                'CltNo' => $this->cltacc_cltno,
-                'CltNm' => $this->cltacc_cltnm,
-            ],
+            'CltAcc' => $cltAcc,
             'Clt' => $clt,
             'BkAcc' => $bkacc,
             'ActiFlag' => $this->actiflag,

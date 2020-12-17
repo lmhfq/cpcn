@@ -28,13 +28,14 @@ class TrdT1002Response extends TrdBaseResponse
     protected $cltacc_openbknm;
     protected $cltacc_acctcd;
     /**
-     * @var string 开户状态 0: 开户中 1: 已开户 3: 已销户 4: 冻结 8: 开户失败
+     * @var string 开户状态 0: 开户中 1: 已开户 3: 已销户 4: 冻结 8: 开户失败 A：开户成功但信息异常
      */
     protected $stat;
     /**
      * @var string 失败原因
      */
-    protected $option;
+    protected $opion;
+
 
     /**
      * @return mixed
@@ -183,19 +184,18 @@ class TrdT1002Response extends TrdBaseResponse
     /**
      * @return string
      */
-    public function getOption(): string
+    public function getOpion(): string
     {
-        return $this->option;
+        return $this->opion;
     }
 
     /**
-     * @param string $option
+     * @param string $opion
      */
-    public function setOption(string $option): void
+    public function setOpion(string $opion): void
     {
-        $this->option = $option;
+        $this->opion = $opion;
     }
-
 
     public function handle(string $message)
     {
@@ -213,7 +213,7 @@ class TrdT1002Response extends TrdBaseResponse
                 $this->cltacc_acctcd = ArrayUtil::get('AcctCd', $cltAcc);
             }
             $this->stat = ArrayUtil::get('Stat', $this->responseData);
-            $this->option = $cltAcc = ArrayUtil::get('Opion', $this->responseData);
+            $this->opion = $cltAcc = ArrayUtil::get('Opion', $this->responseData);
         }
     }
 }
