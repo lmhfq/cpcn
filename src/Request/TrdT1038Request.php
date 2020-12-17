@@ -8,15 +8,29 @@ namespace Lmh\Cpcn\Request;
 use Lmh\Cpcn\Exception\InvalidConfigException;
 use Lmh\Cpcn\Support\Xml;
 
-class TrdT9001Request extends TrdBaseRequest
+class TrdT1038Request extends TrdBaseRequest
 {
-    protected $msghd_trcd = "T9001";
+    protected $msghd_trcd = "T1038";
+    /**
+     * @var string
+     */
+    protected $srcsrl;
 
-    public $quydt;
+    /**
+     * @return mixed
+     */
+    public function getSrcsrl()
+    {
+        return $this->srcsrl;
+    }
 
-    public $pagsiz;
-
-    public $curpag;
+    /**
+     * @param mixed $srcsrl
+     */
+    public function setSrcsrl($srcsrl): void
+    {
+        $this->srcsrl = $srcsrl;
+    }
 
     /**
      * @throws InvalidConfigException
@@ -26,9 +40,7 @@ class TrdT9001Request extends TrdBaseRequest
         $data = [];
         $data = array_merge($data, parent::getMsghd());
         $data = array_merge($data, [
-            'QuyDt' => $this->quydt,
-            'PagSiz' => $this->pagsiz,
-            'CurPag' => $this->curpag,
+            'SrcSrl' => $this->srcsrl
         ]);
         $xml = Xml::build($data);
         parent::process($xml);
