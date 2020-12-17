@@ -33,11 +33,11 @@ class T9008Test extends TestCase
         ];
 
         $trdClient = new TrdClient($config);
-        $trdT1001Request = new TrdT9008Request();
+        $trdT9008Request = new TrdT9008Request();
         /**
          * @var TrdT9008Response $response
          */
-        $response = $trdClient->execute($trdT1001Request, new TrdT9008Response());
+        $response = $trdClient->execute($trdT9008Request, new TrdT9008Response());
         $this->assertEquals(ResponseCode::SUCCESS, $response->getMsghdRspcode());
     }
 }
