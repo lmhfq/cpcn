@@ -6,7 +6,7 @@ namespace Lmh\Cpcn\Response;
 
 
 use Lmh\Cpcn\Constant\ResponseCode;
-use Lmh\Cpcn\Entity\ResponseQuyDaT9007Entity;
+use Lmh\Cpcn\Entity\ResponseQuyDaEntity;
 use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT9007Response extends TrdBaseResponse
@@ -95,25 +95,25 @@ class TrdT9007Response extends TrdBaseResponse
                 return;
             }
             foreach ($quyDa as $item) {
-                $payResultEntityT9007 = new ResponseQuyDaT9007Entity();
-                $payResultEntityT9007->setQuydaDte(ArrayUtil::get('dte', $item));
-                $payResultEntityT9007->setQuydaTme(ArrayUtil::get('tme', $item));
-                $payResultEntityT9007->setQuydaMnychgno(ArrayUtil::get('mnyChgNo', $item));
-                $payResultEntityT9007->setQuydaSubno(ArrayUtil::get('SubNo', $item));
-                $payResultEntityT9007->setQuydaTye(ArrayUtil::get('tye', $item));
-                $payResultEntityT9007->setQuydaRsubno(ArrayUtil::get('RSubNo', $item));
-                $payResultEntityT9007->setQuydaRcltnm(ArrayUtil::get('RCltNm', $item));
-                $payResultEntityT9007->setQuydaAclamt(ArrayUtil::get('AclAmt', $item));
-                $payResultEntityT9007->setQuydaFeeamt(ArrayUtil::get('FeeAmt', $item));
-                $payResultEntityT9007->setQuydaBalamt(ArrayUtil::get('BalAmt', $item));
-                $payResultEntityT9007->setQuydaBsitye(ArrayUtil::get('bsiTye', $item));
-                $payResultEntityT9007->setQuydaBsidsc(ArrayUtil::get('bsiDsc', $item));
-                $payResultEntityT9007->setQuydaDtrdtype(ArrayUtil::get('DTrdType', $item));
-                $payResultEntityT9007->setQuydaDptnsrl(ArrayUtil::get('DPtnSrl', $item));
-                $payResultEntityT9007->setQuydaDplatsrl(ArrayUtil::get('DPlatSrl', $item));
-                $payResultEntityT9007->setQuydaUsage(ArrayUtil::get('Usage', $item));
-                $payResultEntityT9007->setQuydaCcycd(ArrayUtil::get('CcyCd', $item));
-                $this->quyDa[] = $payResultEntityT9007;
+                $responseQuyDaEntity = new ResponseQuyDaEntity();
+                $responseQuyDaEntity->setQuydaDte(ArrayUtil::get('dte', $item));
+                $responseQuyDaEntity->setQuydaTme(ArrayUtil::get('tme', $item));
+                $responseQuyDaEntity->setQuydaMnychgno(ArrayUtil::get('mnyChgNo', $item));
+                $responseQuyDaEntity->setQuydaSubno(ArrayUtil::get('SubNo', $item));
+                $responseQuyDaEntity->setQuydaTye(ArrayUtil::get('tye', $item));
+                $responseQuyDaEntity->setQuydaRsubno(ArrayUtil::get('RSubNo', $item));
+                $responseQuyDaEntity->setQuydaRcltnm(ArrayUtil::get('RCltNm', $item));
+                $responseQuyDaEntity->setQuydaAclamt(ArrayUtil::get('AclAmt', $item));
+                $responseQuyDaEntity->setQuydaFeeamt(ArrayUtil::get('FeeAmt', $item));
+                $responseQuyDaEntity->setQuydaBalamt(ArrayUtil::get('BalAmt', $item));
+                $responseQuyDaEntity->setQuydaBsitye(ArrayUtil::get('bsiTye', $item));
+                $responseQuyDaEntity->setQuydaBsidsc(ArrayUtil::get('bsiDsc', $item));
+                $responseQuyDaEntity->setQuydaDtrdtype(ArrayUtil::get('DTrdType', $item));
+                $responseQuyDaEntity->setQuydaDptnsrl(ArrayUtil::get('DPtnSrl', $item));
+                $responseQuyDaEntity->setQuydaDplatsrl(ArrayUtil::get('DPlatSrl', $item));
+                $responseQuyDaEntity->setQuydaUsage(ArrayUtil::get('Usage', $item));
+                $responseQuyDaEntity->setQuydaCcycd(ArrayUtil::get('CcyCd', $item));
+                $this->quyDa[] = $responseQuyDaEntity;
             }
         }
     }

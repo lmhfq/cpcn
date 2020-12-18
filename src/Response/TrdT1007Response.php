@@ -296,6 +296,7 @@ class TrdT1007Response extends TrdBaseResponse
             if (isset($bkAcc[0])) {
                 foreach ($bkAcc as $item) {
                     $responseBkAccT1020Entity = new BkAccEntity();
+                    $responseBkAccT1020Entity->setBkaccState(ArrayUtil::get('State', $item));
                     $responseBkAccT1020Entity->setBkaccBkid(ArrayUtil::get('BkId', $item));
                     $responseBkAccT1020Entity->setBkaccBknm(ArrayUtil::get('BkNm', $item));
                     $responseBkAccT1020Entity->setBkaccAccno(ArrayUtil::get('AccNo', $item));
@@ -310,7 +311,6 @@ class TrdT1007Response extends TrdBaseResponse
                     $responseBkAccT1020Entity->setBkaccPrcnm(ArrayUtil::get('PrcNm', $item));
                     $responseBkAccT1020Entity->setBkaccCitycd(ArrayUtil::get('CityCd', $item));
                     $responseBkAccT1020Entity->setBkaccCitynm(ArrayUtil::get('CityNm', $item));
-                    $responseBkAccT1020Entity->setBkaccCrdtp(ArrayUtil::get('CrdTp', $item));
                     $this->bkAcc[] = $responseBkAccT1020Entity;
                 }
             } else {

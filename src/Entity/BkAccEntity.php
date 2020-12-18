@@ -6,6 +6,7 @@ namespace Lmh\Cpcn\Entity;
 
 class BkAccEntity
 {
+    protected $bkacc_state;
     protected $bkacc_bkid;
     protected $bkacc_bknm;
     protected $bkacc_accno;
@@ -21,6 +22,22 @@ class BkAccEntity
     protected $bkacc_citycd;
     protected $bkacc_citynm;
     protected $bkacc_crdtp;
+
+    /**
+     * @return mixed
+     */
+    public function getBkaccState()
+    {
+        return $this->bkacc_state;
+    }
+
+    /**
+     * @param mixed $bkacc_state
+     */
+    public function setBkaccState($bkacc_state): void
+    {
+        $this->bkacc_state = $bkacc_state;
+    }
 
     /**
      * @return mixed

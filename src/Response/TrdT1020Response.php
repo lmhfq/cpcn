@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Response;
 
 
-use Lmh\Cpcn\Entity\ResponseBkAccT1020Entity;
+use Lmh\Cpcn\Entity\BkAccEntity;
 use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Constant\ResponseCode;
 
@@ -19,6 +19,22 @@ class TrdT1020Response extends TrdBaseResponse
     protected $cltacc_openbknm;
     protected $cltacc_acctcd;
     protected $resttime;
+    protected $bkacc_bkid;
+    protected $bkacc_bknm;
+    protected $bkacc_accno;
+    protected $bkacc_accnm;
+    protected $bkacc_acctp;
+    protected $bkacc_cdtp;
+    protected $bkacc_cdno;
+    protected $bkacc_crsmk;
+    protected $bkacc_openbkcd;
+    protected $bkacc_openbknm;
+    protected $bkacc_prccd;
+    protected $bkacc_prcnm;
+    protected $bkacc_citycd;
+    protected $bkacc_citynm;
+    protected $bkacc_crdtp;
+
     /**
      * @var array
      */
@@ -166,28 +182,43 @@ class TrdT1020Response extends TrdBaseResponse
                 $this->cltacc_openbknm = ArrayUtil::get('OpenBkNm', $cltAcc);
                 $this->cltacc_acctcd = ArrayUtil::get('AcctCd', $cltAcc);
             }
-            $bkacc = ArrayUtil::get('BkAcc', $this->responseData, []);
-            if ($bkacc) {
-                return;
-            }
-            foreach ($bkacc as $item) {
-                $responseBkAccT1020Entity = new ResponseBkAccT1020Entity();
-                $responseBkAccT1020Entity->setBkaccBkid(ArrayUtil::get('BkId', $item));
-                $responseBkAccT1020Entity->setBkaccBknm(ArrayUtil::get('BkNm', $item));
-                $responseBkAccT1020Entity->setBkaccAccno(ArrayUtil::get('AccNo', $item));
-                $responseBkAccT1020Entity->setBkaccAccnm(ArrayUtil::get('AccNm', $item));
-                $responseBkAccT1020Entity->setBkaccAcctp(ArrayUtil::get('AccTp', $item));
-                $responseBkAccT1020Entity->setBkaccCdtp(ArrayUtil::get('CdTp', $item));
-                $responseBkAccT1020Entity->setBkaccCdno(ArrayUtil::get('CdNo', $item));
-                $responseBkAccT1020Entity->setBkaccCrsmk(ArrayUtil::get('CrsMk', $item));
-                $responseBkAccT1020Entity->setBkaccOpenbkcd(ArrayUtil::get('OpenBkCd', $item));
-                $responseBkAccT1020Entity->setBkaccOpenbknm(ArrayUtil::get('OpenBkNm', $item));
-                $responseBkAccT1020Entity->setBkaccPrccd(ArrayUtil::get('PrcCd', $item));
-                $responseBkAccT1020Entity->setBkaccPrcnm(ArrayUtil::get('PrcNm', $item));
-                $responseBkAccT1020Entity->setBkaccCitycd(ArrayUtil::get('CityCd', $item));
-                $responseBkAccT1020Entity->setBkaccCitynm(ArrayUtil::get('CityNm', $item));
-                $responseBkAccT1020Entity->setBkaccCrdtp(ArrayUtil::get('CrdTp', $item));
-                $this->quyDa[] = $responseBkAccT1020Entity;
+            $bkAcc = ArrayUtil::get('BkAcc', $this->responseData, []);
+            if (isset($bkAcc[0])) {
+                foreach ($bkAcc as $item) {
+                    $bkAccEntity = new BkAccEntity();
+                    $bkAccEntity->setBkaccBkid(ArrayUtil::get('BkId', $item));
+                    $bkAccEntity->setBkaccBknm(ArrayUtil::get('BkNm', $item));
+                    $bkAccEntity->setBkaccAccno(ArrayUtil::get('AccNo', $item));
+                    $bkAccEntity->setBkaccAccnm(ArrayUtil::get('AccNm', $item));
+                    $bkAccEntity->setBkaccAcctp(ArrayUtil::get('AccTp', $item));
+                    $bkAccEntity->setBkaccCdtp(ArrayUtil::get('CdTp', $item));
+                    $bkAccEntity->setBkaccCdno(ArrayUtil::get('CdNo', $item));
+                    $bkAccEntity->setBkaccCrsmk(ArrayUtil::get('CrsMk', $item));
+                    $bkAccEntity->setBkaccOpenbkcd(ArrayUtil::get('OpenBkCd', $item));
+                    $bkAccEntity->setBkaccOpenbknm(ArrayUtil::get('OpenBkNm', $item));
+                    $bkAccEntity->setBkaccPrccd(ArrayUtil::get('PrcCd', $item));
+                    $bkAccEntity->setBkaccPrcnm(ArrayUtil::get('PrcNm', $item));
+                    $bkAccEntity->setBkaccCitycd(ArrayUtil::get('CityCd', $item));
+                    $bkAccEntity->setBkaccCitynm(ArrayUtil::get('CityNm', $item));
+                    $bkAccEntity->setBkaccCrdtp(ArrayUtil::get('CrdTp', $item));
+                    $this->quyDa[] = $bkAccEntity;
+                }
+            }else{
+                $this->bkacc_bkid = ArrayUtil::get('BkId', $bkAcc);
+                $this->bkacc_bknm = ArrayUtil::get('BkNm', $bkAcc);
+                $this->bkacc_accno = ArrayUtil::get('AccNo', $bkAcc);
+                $this->bkacc_accnm = ArrayUtil::get('AccNm', $bkAcc);
+                $this->bkacc_acctp = ArrayUtil::get('AccTp', $bkAcc);
+                $this->bkacc_cdtp = ArrayUtil::get('CdTp', $bkAcc);
+                $this->bkacc_cdno = ArrayUtil::get('CdNo', $bkAcc);
+                $this->bkacc_crsmk = ArrayUtil::get('CrsMk', $bkAcc);
+                $this->bkacc_openbkcd = ArrayUtil::get('OpenBkCd', $bkAcc);
+                $this->bkacc_openbknm = ArrayUtil::get('OpenBkNm', $bkAcc);
+                $this->bkacc_prccd = ArrayUtil::get('PrcCd', $bkAcc);
+                $this->bkacc_prcnm = ArrayUtil::get('PrcNm', $bkAcc);
+                $this->bkacc_citycd = ArrayUtil::get('CityCd', $bkAcc);
+                $this->bkacc_citynm = ArrayUtil::get('CityNm', $bkAcc);
+                $this->bkacc_crdtp = ArrayUtil::get('CrdTp', $bkAcc);
             }
         }
     }
