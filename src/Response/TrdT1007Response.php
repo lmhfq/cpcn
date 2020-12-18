@@ -6,6 +6,7 @@ namespace Lmh\Cpcn\Response;
 
 
 use Lmh\Cpcn\Constant\ResponseCode;
+use Lmh\Cpcn\Entity\BkAccEntity;
 use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT1007Response extends TrdBaseResponse
@@ -293,7 +294,25 @@ class TrdT1007Response extends TrdBaseResponse
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
             $bkAcc = ArrayUtil::get('BkAcc', $this->responseData, []);
             if (isset($bkAcc[0])) {
-                $this->bkAcc = $bkAcc;
+                foreach ($bkAcc as $item) {
+                    $responseBkAccT1020Entity = new BkAccEntity();
+                    $responseBkAccT1020Entity->setBkaccBkid(ArrayUtil::get('BkId', $item));
+                    $responseBkAccT1020Entity->setBkaccBknm(ArrayUtil::get('BkNm', $item));
+                    $responseBkAccT1020Entity->setBkaccAccno(ArrayUtil::get('AccNo', $item));
+                    $responseBkAccT1020Entity->setBkaccAccnm(ArrayUtil::get('AccNm', $item));
+                    $responseBkAccT1020Entity->setBkaccAcctp(ArrayUtil::get('AccTp', $item));
+                    $responseBkAccT1020Entity->setBkaccCdtp(ArrayUtil::get('CdTp', $item));
+                    $responseBkAccT1020Entity->setBkaccCdno(ArrayUtil::get('CdNo', $item));
+                    $responseBkAccT1020Entity->setBkaccCrsmk(ArrayUtil::get('CrsMk', $item));
+                    $responseBkAccT1020Entity->setBkaccOpenbkcd(ArrayUtil::get('OpenBkCd', $item));
+                    $responseBkAccT1020Entity->setBkaccOpenbknm(ArrayUtil::get('OpenBkNm', $item));
+                    $responseBkAccT1020Entity->setBkaccPrccd(ArrayUtil::get('PrcCd', $item));
+                    $responseBkAccT1020Entity->setBkaccPrcnm(ArrayUtil::get('PrcNm', $item));
+                    $responseBkAccT1020Entity->setBkaccCitycd(ArrayUtil::get('CityCd', $item));
+                    $responseBkAccT1020Entity->setBkaccCitynm(ArrayUtil::get('CityNm', $item));
+                    $responseBkAccT1020Entity->setBkaccCrdtp(ArrayUtil::get('CrdTp', $item));
+                    $this->bkAcc[] = $responseBkAccT1020Entity;
+                }
             } else {
                 $this->bkacc_state = ArrayUtil::get('State', $bkAcc);
                 $this->bkacc_bkid = ArrayUtil::get('BkId', $bkAcc);

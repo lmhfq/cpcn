@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Entity;
 
 
-class ResponseBkAccT1020Entity
+class BkAccEntity
 {
     protected $bkacc_bkid;
     protected $bkacc_bknm;
