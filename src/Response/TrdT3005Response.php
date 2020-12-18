@@ -38,7 +38,7 @@ class TrdT3005Response extends TrdBaseResponse
         parent::process($message);
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
             $billInfo = ArrayUtil::get('billInfo', $this->responseData, []);
-            if ($billInfo) {
+            if (!$billInfo) {
                 return;
             }
             foreach ($billInfo as $item) {

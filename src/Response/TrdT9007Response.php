@@ -91,7 +91,7 @@ class TrdT9007Response extends TrdBaseResponse
             $this->curpag = ArrayUtil::get('CurPag', $this->responseData);
             $this->talrcd = ArrayUtil::get('TalRcd', $this->responseData);
             $quyDa = ArrayUtil::get('QuyDa', $this->responseData, []);
-            if ($quyDa) {
+            if (!$quyDa) {
                 return;
             }
             foreach ($quyDa as $item) {
