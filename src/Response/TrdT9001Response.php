@@ -6,7 +6,7 @@ namespace Lmh\Cpcn\Response;
 
 
 use Lmh\Cpcn\Constant\ResponseCode;
-use Lmh\Cpcn\Entity\ResponseQuyDaT9001Entity;
+use Lmh\Cpcn\Entity\QuyDaT9001Entity;
 use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT9001Response extends TrdBaseResponse
@@ -95,7 +95,7 @@ class TrdT9001Response extends TrdBaseResponse
                 return;
             }
             foreach ($quyDa as $item) {
-                $payResultEntityT9001 = new ResponseQuyDaT9001Entity();
+                $payResultEntityT9001 = new QuyDaT9001Entity();
                 $payResultEntityT9001->setQuydaDte(ArrayUtil::get('dte', $item));
                 $payResultEntityT9001->setQuydaTme(ArrayUtil::get('tme', $item));
                 $payResultEntityT9001->setQuydaCltno(ArrayUtil::get('CltNo', $item));

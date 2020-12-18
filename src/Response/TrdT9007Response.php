@@ -6,7 +6,7 @@ namespace Lmh\Cpcn\Response;
 
 
 use Lmh\Cpcn\Constant\ResponseCode;
-use Lmh\Cpcn\Entity\ResponseQuyDaEntity;
+use Lmh\Cpcn\Entity\QuyDaEntity;
 use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT9007Response extends TrdBaseResponse
@@ -95,7 +95,7 @@ class TrdT9007Response extends TrdBaseResponse
                 return;
             }
             foreach ($quyDa as $item) {
-                $responseQuyDaEntity = new ResponseQuyDaEntity();
+                $responseQuyDaEntity = new QuyDaEntity();
                 $responseQuyDaEntity->setQuydaDte(ArrayUtil::get('dte', $item));
                 $responseQuyDaEntity->setQuydaTme(ArrayUtil::get('tme', $item));
                 $responseQuyDaEntity->setQuydaMnychgno(ArrayUtil::get('mnyChgNo', $item));

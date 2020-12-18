@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Entity;
 
 
-class ResponseQuyDaT9001Entity
+class QuyDaT9001Entity
 {
     protected $quyda_dte;
     protected $quyda_tme;
