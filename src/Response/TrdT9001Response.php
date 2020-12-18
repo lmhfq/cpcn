@@ -17,7 +17,7 @@ class TrdT9001Response extends TrdBaseResponse
     /**
      * @var array
      */
-    protected $quyDa = [];
+    protected $quyDa;
 
     /**
      * @return mixed

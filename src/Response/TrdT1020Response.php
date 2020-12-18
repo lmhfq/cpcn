@@ -19,6 +19,15 @@ class TrdT1020Response extends TrdBaseResponse
     protected $cltacc_openbknm;
     protected $cltacc_acctcd;
     protected $resttime;
+    protected $clt_kd;
+    protected $clt_nm;
+    protected $clt_cdtp;
+    protected $clt_cdno;
+    protected $clt_uscexdt;
+    protected $clt_mobno;
+    protected $clt_email;
+    protected $clt_addr;
+    protected $clt_basicacctno;
     protected $bkacc_bkid;
     protected $bkacc_bknm;
     protected $bkacc_accno;
@@ -38,7 +47,7 @@ class TrdT1020Response extends TrdBaseResponse
     /**
      * @var array
      */
-    protected $bkAcc = [];
+    protected $bkAcc;
     /**
      * @return mixed
      */
@@ -181,6 +190,18 @@ class TrdT1020Response extends TrdBaseResponse
                 $this->cltacc_openbkcd = ArrayUtil::get('OpenBkCd', $cltAcc);
                 $this->cltacc_openbknm = ArrayUtil::get('OpenBkNm', $cltAcc);
                 $this->cltacc_acctcd = ArrayUtil::get('AcctCd', $cltAcc);
+            }
+            $clt = ArrayUtil::get('Clt', $this->responseData, []);
+            if ($clt) {
+                $this->clt_kd = ArrayUtil::get('Kd', $cltAcc);
+                $this->clt_nm = ArrayUtil::get('Nm', $cltAcc);
+                $this->clt_cdtp = ArrayUtil::get('CdTp', $cltAcc);
+                $this->clt_cdno = ArrayUtil::get('CdNo', $cltAcc);
+                $this->clt_uscexdt = ArrayUtil::get('UscExDt', $cltAcc);
+                $this->clt_mobno = ArrayUtil::get('MobNo', $cltAcc);
+                $this->clt_email = ArrayUtil::get('Email', $cltAcc);
+                $this->clt_addr = ArrayUtil::get('Addr', $cltAcc);
+                $this->clt_basicacctno = ArrayUtil::get('BasicAcctNo', $cltAcc);
             }
             $bkAcc = ArrayUtil::get('BkAcc', $this->responseData, []);
             if (isset($bkAcc[0])) {

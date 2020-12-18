@@ -14,7 +14,7 @@ class TrdT3005Response extends TrdBaseResponse
     /**
      * @var array
      */
-    protected $billInfo = [];
+    protected $billInfo;
 
     /**
      * @return array
