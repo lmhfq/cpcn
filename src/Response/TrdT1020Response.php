@@ -201,7 +201,7 @@ class TrdT1020Response extends TrdBaseResponse
                     $bkAccEntity->setBkaccCitycd(ArrayUtil::get('CityCd', $item));
                     $bkAccEntity->setBkaccCitynm(ArrayUtil::get('CityNm', $item));
                     $bkAccEntity->setBkaccCrdtp(ArrayUtil::get('CrdTp', $item));
-                    $this->quyDa[] = $bkAccEntity;
+                    $this->bkAcc[] = $bkAccEntity;
                 }
             }else{
                 $this->bkacc_bkid = ArrayUtil::get('BkId', $bkAcc);
