@@ -20,7 +20,9 @@ class TrdT1032Request extends TrdBaseRequest
      * @var string 户名
      */
     protected $cltacc_cltnm;
-
+    /**
+     * @var string
+     */
     protected $pbusitype;
     /**
      * @var string 激活方式 1 企业主动打款激活; 3 短信验证激活; 4 企业被动打款激活

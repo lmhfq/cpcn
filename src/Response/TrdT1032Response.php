@@ -198,13 +198,15 @@ class TrdT1032Response extends TrdBaseResponse
         if ($this->msghd_rspcode == ResponseCode::SUCCESS || $this->msghd_rspcode == ResponseCode::E3010) {
             $this->state = ArrayUtil::get('State', $this->responseData);
             $this->amount = ArrayUtil::get('Amount', $this->responseData);
-            $cltAcc = ArrayUtil::get('CltAcc', $this->responseData);
-            $this->cltacc_cltno = ArrayUtil::get('CltNo', $cltAcc);
-            $this->cltacc_cltpid = ArrayUtil::get('CltPid', $cltAcc);
-            $this->cltacc_subno = ArrayUtil::get('SubNo', $cltAcc);
-            $this->cltacc_cltnm = ArrayUtil::get('CltNm', $cltAcc);
-            $this->cltacc_bnkvid = ArrayUtil::get('BnkVid', $cltAcc);
-            $this->cltacc_bnkeid = ArrayUtil::get('BnkEid', $cltAcc);
+            $cltAcc = ArrayUtil::get('CltAcc', $this->responseData, []);
+            if ($cltAcc) {
+                $this->cltacc_cltno = ArrayUtil::get('CltNo', $cltAcc);
+                $this->cltacc_cltpid = ArrayUtil::get('CltPid', $cltAcc);
+                $this->cltacc_subno = ArrayUtil::get('SubNo', $cltAcc);
+                $this->cltacc_cltnm = ArrayUtil::get('CltNm', $cltAcc);
+                $this->cltacc_bnkvid = ArrayUtil::get('BnkVid', $cltAcc);
+                $this->cltacc_bnkeid = ArrayUtil::get('BnkEid', $cltAcc);
+            }
         }
     }
 }
