@@ -193,15 +193,15 @@ class TrdT1020Response extends TrdBaseResponse
             }
             $clt = ArrayUtil::get('Clt', $this->responseData, []);
             if ($clt) {
-                $this->clt_kd = ArrayUtil::get('Kd', $cltAcc);
-                $this->clt_nm = ArrayUtil::get('Nm', $cltAcc);
-                $this->clt_cdtp = ArrayUtil::get('CdTp', $cltAcc);
-                $this->clt_cdno = ArrayUtil::get('CdNo', $cltAcc);
-                $this->clt_uscexdt = ArrayUtil::get('UscExDt', $cltAcc);
-                $this->clt_mobno = ArrayUtil::get('MobNo', $cltAcc);
-                $this->clt_email = ArrayUtil::get('Email', $cltAcc);
-                $this->clt_addr = ArrayUtil::get('Addr', $cltAcc);
-                $this->clt_basicacctno = ArrayUtil::get('BasicAcctNo', $cltAcc);
+                $this->clt_kd = ArrayUtil::get('Kd', $clt);
+                $this->clt_nm = ArrayUtil::get('Nm', $clt);
+                $this->clt_cdtp = ArrayUtil::get('CdTp', $clt);
+                $this->clt_cdno = ArrayUtil::get('CdNo', $clt);
+                $this->clt_uscexdt = ArrayUtil::get('UscExDt', $clt);
+                $this->clt_mobno = ArrayUtil::get('MobNo', $clt);
+                $this->clt_email = ArrayUtil::get('Email', $clt);
+                $this->clt_addr = ArrayUtil::get('Addr', $clt);
+                $this->clt_basicacctno = ArrayUtil::get('BasicAcctNo', $clt);
             }
             $bkAcc = ArrayUtil::get('BkAcc', $this->responseData, []);
             if (isset($bkAcc[0])) {
