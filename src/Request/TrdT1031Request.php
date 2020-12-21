@@ -34,21 +34,37 @@ class TrdT1031Request extends TrdBaseRequest
      * @var string 户名
      */
     protected $cltacc_cltnm;
-
+    /**
+     * @var string 客户性质(0 个人;1 公司)
+     */
     protected $clt_kd;
-
+    /**
+     * @var string  姓名(当 Clt.Kd=0 时，该节 点的内容必须与节点 CltAcc.CltNm 的内容一致) 公司：法定代表人 个人：自然人
+     */
     protected $clt_nm;
-
-    protected $clt_cdtp;
-
+    /**
+     * @var string 法定代表人/自然人 证件类型(
+     */
+    protected $clt_cdtp = 'A';
+    /**
+     * @var string 法定代表人/自然人 证件号码
+     */
     protected $clt_cdno;
-
+    /**
+     * @var string 法定代表人（公司必填） 证件签发日期
+     */
     protected $clt_cdisdt;
-
+    /**
+     * @var string 法定代表人（公司必填） 证件到期日期，若长期有效 请填写 20991231
+     */
     protected $clt_cdexdt;
-
+    /**
+     * @var string 统一社会信用代码(公司必 填)
+     */
     protected $clt_uscid;
-
+    /**
+     * @var string 统一社会信用代码到期日 (公司必填) 如证件未记录有效期则设定 为 21000101，当证件长期有 效时为 99991231
+     */
     protected $clt_uscexdt;
 
     protected $clt_orgcd;
@@ -56,31 +72,49 @@ class TrdT1031Request extends TrdBaseRequest
     protected $clt_bslic;
 
     protected $clt_swdjh;
-
+    /**
+     * @var string 手机号码
+     */
     protected $clt_mobno;
-
+    /**
+     * @var string 电子邮箱
+     */
     protected $clt_email;
-
+    /**
+     * @var string 邮政编码
+     */
     protected $clt_postno;
-
+    /**
+     * @var string 地址
+     */
     protected $clt_addr;
 
     protected $clt_citycd;
 
     protected $clt_inducode;
-
+    /**
+     * @var string 企业规模： 01：大型 02：中型 03：小型 04：微型 98：其他
+     */
     protected $clt_scale;
-
+    /**
+     * @var string 企业基本账号
+     */
     protected $clt_basicacctno;
 
     protected $clt_authcapital;
 
     protected $clt_busiscope;
-
+    /**
+     * @var string 经办人姓名
+     */
     protected $oper_nm;
-
+    /**
+     * @var string 经办人身份证号码
+     */
     protected $oper_cdno;
-
+    /**
+     * @var string 经办人手机号
+     */
     protected $oper_mobno;
 
     /**
@@ -1000,10 +1034,14 @@ class TrdT1031Request extends TrdBaseRequest
             'CityCd' => $this->clt_citycd,
             'InduCode' => $this->clt_inducode,
             'Scale' => $this->clt_scale,
-            'BasicAcctNo' => $this->clt_basicacctno,
-            'AuthCapital' => $this->clt_authcapital,
-            'BusiScope' => $this->clt_busiscope,
+            'BasicAcctNo' => $this->clt_basicacctno
         ];
+        if ($this->clt_authcapital) {
+            $clt['AuthCapital'] = $this->clt_authcapital;
+        }
+        if ($this->clt_busiscope) {
+            $clt['BusiScope'] = $this->clt_busiscope;
+        }
         if ($this->clt_postno) {
             $clt['PostNo'] = $this->clt_postno;
         }
@@ -1016,7 +1054,7 @@ class TrdT1031Request extends TrdBaseRequest
                 'OrgCd' => $this->clt_orgcd,
             ]);
         }
-        $bkacc = [
+        $bkAcc = [
             'BkId' => $this->bkacc_bkid,
             'AccNo' => $this->bkacc_accno,
             'CrdTp' => $this->bkacc_crdtp,
@@ -1027,19 +1065,19 @@ class TrdT1031Request extends TrdBaseRequest
             'OpenBkCd' => $this->bkacc_openbkcd
         ];
         if ($this->bkacc_openbknm) {
-            $bkacc['OpenBkNm'] = $this->bkacc_openbknm;
+            $bkAcc['OpenBkNm'] = $this->bkacc_openbknm;
         }
         if ($this->bkacc_prccd) {
-            $bkacc['PrcCd'] = $this->bkacc_prccd;
+            $bkAcc['PrcCd'] = $this->bkacc_prccd;
         }
         if ($this->bkacc_prcnm) {
-            $bkacc['PrcNm'] = $this->bkacc_prcnm;
+            $bkAcc['PrcNm'] = $this->bkacc_prcnm;
         }
         if ($this->bkacc_citycd) {
-            $bkacc['CityCd'] = $this->bkacc_citycd;
+            $bkAcc['CityCd'] = $this->bkacc_citycd;
         }
         if ($this->bkacc_citynm) {
-            $bkacc['CityNm'] = $this->bkacc_citynm;
+            $bkAcc['CityNm'] = $this->bkacc_citynm;
         }
         $cltAcc = [
             'CltNo' => $this->cltacc_cltno,
@@ -1053,7 +1091,7 @@ class TrdT1031Request extends TrdBaseRequest
             'AccTp' => $this->acctp,
             'CltAcc' => $cltAcc,
             'Clt' => $clt,
-            'BkAcc' => $bkacc,
+            'BkAcc' => $bkAcc,
             'ActiFlag' => $this->actiflag,
             'NotificationURL' => $this->notificationurl,
         ]);
