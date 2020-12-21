@@ -284,12 +284,10 @@ class TrdT4043Response extends TrdBaseResponse
             $this->dptnsrl = ArrayUtil::get('DPtnSrl', $this->responseData);
             $this->usage = ArrayUtil::get('Usage', $this->responseData);
             $amt = ArrayUtil::get('Amt', $this->responseData, []);
-            if ($amt) {
-                $this->amt_aclamt = ArrayUtil::get('AclAmt', $amt);
-                $this->amt_payfee = ArrayUtil::get('PayFee', $amt);
-                $this->amt_payeefee = ArrayUtil::get('PayeeFee', $amt);
-                $this->amt_ccycd = ArrayUtil::get('CcyCd', $amt);
-            }
+            $this->amt_aclamt = ArrayUtil::get('AclAmt', $amt);
+            $this->amt_payfee = ArrayUtil::get('PayFee', $amt);
+            $this->amt_payeefee = ArrayUtil::get('PayeeFee', $amt);
+            $this->amt_ccycd = ArrayUtil::get('CcyCd', $amt);
             $this->state = ArrayUtil::get('State', $this->responseData);
             $this->resttime = ArrayUtil::get('RestTime', $this->responseData);
             $this->opion = ArrayUtil::get('Opion', $this->responseData);

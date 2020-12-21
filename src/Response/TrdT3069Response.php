@@ -443,29 +443,23 @@ class TrdT3069Response extends TrdBaseResponse
         parent::process($message);
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
             $cltAcc = ArrayUtil::get('CltAcc', $this->responseData, []);
-            if ($cltAcc) {
-                $this->cltacc_subno = ArrayUtil::get('SubNo', $cltAcc);
-                $this->cltacc_cltnm = ArrayUtil::get('CltNm', $cltAcc);
-            }
+            $this->cltacc_subno = ArrayUtil::get('SubNo', $cltAcc);
+            $this->cltacc_cltnm = ArrayUtil::get('CltNm', $cltAcc);
             $amt = ArrayUtil::get('Amt', $this->responseData, []);
-            if ($amt) {
-                $this->amt_aclamt = ArrayUtil::get('AclAmt', $amt);
-                $this->amt_ccycd = ArrayUtil::get('CcyCd', $amt);
-            }
+            $this->amt_aclamt = ArrayUtil::get('AclAmt', $amt);
+            $this->amt_ccycd = ArrayUtil::get('CcyCd', $amt);
             $billInfo = ArrayUtil::get('billInfo', $this->responseData, []);
-            if ($billInfo) {
-                $this->billinfo_rsubno = ArrayUtil::get('RSubNo', $billInfo);
-                $this->billinfo_rcltnm = ArrayUtil::get('RCltNm', $billInfo);
-                $this->billinfo_billno = ArrayUtil::get('BillNo', $billInfo);
-                $this->billinfo_orderno = ArrayUtil::get('OrderNo', $billInfo);
-                $this->billinfo_billamt = ArrayUtil::get('BillAmt', $billInfo);
-                $this->billinfo_aclamt = ArrayUtil::get('AclAmt', $billInfo);
-                $this->billinfo_payfee = ArrayUtil::get('PayFee', $billInfo);
-                $this->billinfo_payeefee = ArrayUtil::get('PayeeFee', $billInfo);
-                $this->billinfo_ccycd = ArrayUtil::get('CcyCd', $billInfo);
-                $this->billinfo_paytype = ArrayUtil::get('PayType', $billInfo);
-                $this->billinfo_secpaytype = ArrayUtil::get('SecPayType', $billInfo);
-            }
+            $this->billinfo_rsubno = ArrayUtil::get('RSubNo', $billInfo);
+            $this->billinfo_rcltnm = ArrayUtil::get('RCltNm', $billInfo);
+            $this->billinfo_billno = ArrayUtil::get('BillNo', $billInfo);
+            $this->billinfo_orderno = ArrayUtil::get('OrderNo', $billInfo);
+            $this->billinfo_billamt = ArrayUtil::get('BillAmt', $billInfo);
+            $this->billinfo_aclamt = ArrayUtil::get('AclAmt', $billInfo);
+            $this->billinfo_payfee = ArrayUtil::get('PayFee', $billInfo);
+            $this->billinfo_payeefee = ArrayUtil::get('PayeeFee', $billInfo);
+            $this->billinfo_ccycd = ArrayUtil::get('CcyCd', $billInfo);
+            $this->billinfo_paytype = ArrayUtil::get('PayType', $billInfo);
+            $this->billinfo_secpaytype = ArrayUtil::get('SecPayType', $billInfo);
             $this->trsflag = ArrayUtil::get('TrsFlag', $this->responseData);
             $this->merchantid = ArrayUtil::get('MerchantId', $this->responseData);
             $this->state = ArrayUtil::get('State', $this->responseData);

@@ -14,7 +14,7 @@ class TrdT3005Response extends TrdBaseResponse
     /**
      * @var array
      */
-    protected $billInfo;
+    protected $billInfo = [];
 
     /**
      * @return array
@@ -38,9 +38,6 @@ class TrdT3005Response extends TrdBaseResponse
         parent::process($message);
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
             $billInfo = ArrayUtil::get('billInfo', $this->responseData, []);
-            if (!$billInfo) {
-                return;
-            }
             foreach ($billInfo as $item) {
                 $payResultEntity = new ResponseBillInfoT3005Entity();
                 $payResultEntity->setOrderNo(ArrayUtil::get('OrderNo', $item));
