@@ -84,12 +84,10 @@ class TrdT1005Response extends TrdBaseResponse
         parent::process($message);
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
             $amt = ArrayUtil::get('Amt', $this->responseData, []);
-            if ($amt) {
-                $this->amt_balamt = ArrayUtil::get('BalAmt', $amt);
-                $this->amt_useamt = ArrayUtil::get('UseAmt', $amt);
-                $this->amt_frzamt = ArrayUtil::get('FrzAmt', $amt);
-                $this->amt_ccycd = ArrayUtil::get('CcyCd', $amt);
-            }
+            $this->amt_balamt = ArrayUtil::get('BalAmt', $amt);
+            $this->amt_useamt = ArrayUtil::get('UseAmt', $amt);
+            $this->amt_frzamt = ArrayUtil::get('FrzAmt', $amt);
+            $this->amt_ccycd = ArrayUtil::get('CcyCd', $amt);
         }
     }
 }

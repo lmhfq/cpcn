@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Response;
 
 
-use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Constant\ResponseCode;
+use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT4003Response extends TrdBaseResponse
 {
@@ -51,10 +51,8 @@ class TrdT4003Response extends TrdBaseResponse
         parent::process($message);
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
             $qpy = ArrayUtil::get('Qpy', $this->responseData, []);
-            if ($qpy) {
-                $this->qpy_state = ArrayUtil::get('State', $qpy);
-                $this->qpy_opion = ArrayUtil::get('Opion', $qpy);
-            }
+            $this->qpy_state = ArrayUtil::get('State', $qpy);
+            $this->qpy_opion = ArrayUtil::get('Opion', $qpy);
         }
     }
 }

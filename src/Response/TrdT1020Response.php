@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Response;
 
 
+use Lmh\Cpcn\Constant\ResponseCode;
 use Lmh\Cpcn\Entity\BkAccEntity;
 use Lmh\Cpcn\Support\ArrayUtil;
-use Lmh\Cpcn\Constant\ResponseCode;
 
 class TrdT1020Response extends TrdBaseResponse
 {
@@ -48,6 +48,7 @@ class TrdT1020Response extends TrdBaseResponse
      * @var array
      */
     protected $bkAcc;
+
     /**
      * @return mixed
      */
@@ -182,27 +183,24 @@ class TrdT1020Response extends TrdBaseResponse
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
             $this->resttime = ArrayUtil::get('RestTime', $this->responseData);
             $cltAcc = ArrayUtil::get('CltAcc', $this->responseData, []);
-            if ($cltAcc) {
-                $this->cltacc_cltpid = ArrayUtil::get('CltPid', $cltAcc);
-                $this->cltacc_subno = ArrayUtil::get('SubNo', $cltAcc);
-                $this->cltacc_cltnm = ArrayUtil::get('CltNm', $cltAcc);
-                $this->cltacc_bnkeid = ArrayUtil::get('BnkEid', $cltAcc);
-                $this->cltacc_openbkcd = ArrayUtil::get('OpenBkCd', $cltAcc);
-                $this->cltacc_openbknm = ArrayUtil::get('OpenBkNm', $cltAcc);
-                $this->cltacc_acctcd = ArrayUtil::get('AcctCd', $cltAcc);
-            }
+            $this->cltacc_subno = ArrayUtil::get('SubNo', $cltAcc);
+            $this->cltacc_cltpid = ArrayUtil::get('CltPid', $cltAcc);
+            $this->cltacc_cltnm = ArrayUtil::get('CltNm', $cltAcc);
+            $this->cltacc_bnkeid = ArrayUtil::get('BnkEid', $cltAcc);
+            $this->cltacc_openbkcd = ArrayUtil::get('OpenBkCd', $cltAcc);
+            $this->cltacc_openbknm = ArrayUtil::get('OpenBkNm', $cltAcc);
+            $this->cltacc_acctcd = ArrayUtil::get('AcctCd', $cltAcc);
+
             $clt = ArrayUtil::get('Clt', $this->responseData, []);
-            if ($clt) {
-                $this->clt_kd = ArrayUtil::get('Kd', $clt);
-                $this->clt_nm = ArrayUtil::get('Nm', $clt);
-                $this->clt_cdtp = ArrayUtil::get('CdTp', $clt);
-                $this->clt_cdno = ArrayUtil::get('CdNo', $clt);
-                $this->clt_uscexdt = ArrayUtil::get('UscExDt', $clt);
-                $this->clt_mobno = ArrayUtil::get('MobNo', $clt);
-                $this->clt_email = ArrayUtil::get('Email', $clt);
-                $this->clt_addr = ArrayUtil::get('Addr', $clt);
-                $this->clt_basicacctno = ArrayUtil::get('BasicAcctNo', $clt);
-            }
+            $this->clt_kd = ArrayUtil::get('Kd', $clt);
+            $this->clt_nm = ArrayUtil::get('Nm', $clt);
+            $this->clt_cdtp = ArrayUtil::get('CdTp', $clt);
+            $this->clt_cdno = ArrayUtil::get('CdNo', $clt);
+            $this->clt_uscexdt = ArrayUtil::get('UscExDt', $clt);
+            $this->clt_mobno = ArrayUtil::get('MobNo', $clt);
+            $this->clt_email = ArrayUtil::get('Email', $clt);
+            $this->clt_addr = ArrayUtil::get('Addr', $clt);
+            $this->clt_basicacctno = ArrayUtil::get('BasicAcctNo', $clt);
             $bkAcc = ArrayUtil::get('BkAcc', $this->responseData, []);
             if (isset($bkAcc[0])) {
                 foreach ($bkAcc as $item) {
@@ -224,7 +222,7 @@ class TrdT1020Response extends TrdBaseResponse
                     $bkAccEntity->setBkaccCrdtp(ArrayUtil::get('CrdTp', $item));
                     $this->bkAcc[] = $bkAccEntity;
                 }
-            }else{
+            } else {
                 $this->bkacc_bkid = ArrayUtil::get('BkId', $bkAcc);
                 $this->bkacc_bknm = ArrayUtil::get('BkNm', $bkAcc);
                 $this->bkacc_accno = ArrayUtil::get('AccNo', $bkAcc);

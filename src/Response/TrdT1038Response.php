@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Response;
 
 
-use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Constant\ResponseCode;
+use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT1038Response extends TrdBaseResponse
 {
@@ -86,7 +86,7 @@ class TrdT1038Response extends TrdBaseResponse
     /**
      * @param string $srl_platsrl
      */
-    public function setSrlPlatsrl($srl_platsrl): void
+    public function setSrlPlatsrl(string $srl_platsrl): void
     {
         $this->srl_platsrl = $srl_platsrl;
     }
@@ -99,10 +99,8 @@ class TrdT1038Response extends TrdBaseResponse
             $this->stat = ArrayUtil::get('Stat', $this->responseData);
             $this->option = ArrayUtil::get('Opion', $this->responseData);
             $srl = ArrayUtil::get('Srl', $this->responseData, []);
-            if ($srl) {
-                $this->srl_ptnsrl = ArrayUtil::get('PtnSrl', $srl);
-                $this->srl_platsrl = ArrayUtil::get('PlatSrl', $srl);
-            }
+            $this->srl_ptnsrl = ArrayUtil::get('PtnSrl', $srl);
+            $this->srl_platsrl = ArrayUtil::get('PlatSrl', $srl);
             $this->option = $cltAcc = ArrayUtil::get('Opion', $this->responseData);
         }
     }

@@ -204,16 +204,14 @@ class TrdT1031Response extends TrdBaseResponse
         parent::process($message);
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
             $cltAcc = ArrayUtil::get('CltAcc', $this->responseData, []);
-            if ($cltAcc) {
-                $this->cltacc_cltno = ArrayUtil::get('CltNo', $cltAcc);
-                $this->cltacc_cltpid = ArrayUtil::get('CltPid', $cltAcc);
-                $this->cltacc_subno = ArrayUtil::get('SubNo', $cltAcc);
-                $this->cltacc_cltnm = ArrayUtil::get('CltNm', $cltAcc);
-                $this->cltacc_bnkeid = ArrayUtil::get('BnkEid', $cltAcc);
-                $this->cltacc_openbkcd = ArrayUtil::get('OpenBkCd', $cltAcc);
-                $this->cltacc_openbknm = ArrayUtil::get('OpenBkNm', $cltAcc);
-                $this->cltacc_acctcd = ArrayUtil::get('AcctCd', $cltAcc);
-            }
+            $this->cltacc_cltno = ArrayUtil::get('CltNo', $cltAcc);
+            $this->cltacc_cltpid = ArrayUtil::get('CltPid', $cltAcc);
+            $this->cltacc_subno = ArrayUtil::get('SubNo', $cltAcc);
+            $this->cltacc_cltnm = ArrayUtil::get('CltNm', $cltAcc);
+            $this->cltacc_bnkeid = ArrayUtil::get('BnkEid', $cltAcc);
+            $this->cltacc_openbkcd = ArrayUtil::get('OpenBkCd', $cltAcc);
+            $this->cltacc_openbknm = ArrayUtil::get('OpenBkNm', $cltAcc);
+            $this->cltacc_acctcd = ArrayUtil::get('AcctCd', $cltAcc);
             $this->amount = ArrayUtil::get('Amount', $this->responseData);
             $this->actideadline = ArrayUtil::get('ActiDeadline', $this->responseData);
             $this->actiinfo = ArrayUtil::get('ActiInfo', $this->responseData);

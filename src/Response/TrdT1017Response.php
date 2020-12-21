@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Response;
 
 
-use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Constant\ResponseCode;
+use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT1017Response extends TrdBaseResponse
 {
@@ -84,12 +84,10 @@ class TrdT1017Response extends TrdBaseResponse
         parent::process($message);
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
             $payBnk = ArrayUtil::get('PayBnk', $this->responseData, []);
-            if ($payBnk) {
-                $this->paybnk_bkid = ArrayUtil::get('BkId', $payBnk);
-                $this->paybnk_openbkcd = ArrayUtil::get('OpenBkCd', $payBnk);
-                $this->paybnk_openbknm = ArrayUtil::get('OpenBkNm', $payBnk);
-                $this->paybnk_citycd = ArrayUtil::get('CityCd', $payBnk);
-            }
+            $this->paybnk_bkid = ArrayUtil::get('BkId', $payBnk);
+            $this->paybnk_openbkcd = ArrayUtil::get('OpenBkCd', $payBnk);
+            $this->paybnk_openbknm = ArrayUtil::get('OpenBkNm', $payBnk);
+            $this->paybnk_citycd = ArrayUtil::get('CityCd', $payBnk);
         }
     }
 }

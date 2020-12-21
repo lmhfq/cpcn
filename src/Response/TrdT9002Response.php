@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Response;
 
 
-use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Constant\ResponseCode;
+use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT9002Response extends TrdBaseResponse
 {
@@ -546,36 +546,34 @@ class TrdT9002Response extends TrdBaseResponse
             $this->curpag = ArrayUtil::get('CurPag', $this->responseData);
             $this->talrcd = ArrayUtil::get('TalRcd', $this->responseData);
             $quyDa = ArrayUtil::get('QuyDa', $this->responseData, []);
-            if ($quyDa) {
-                $this->quyda_dte = ArrayUtil::get('dte', $quyDa);
-                $this->quyda_tme = ArrayUtil::get('tme', $quyDa);
-                $this->quyda_subno = ArrayUtil::get('SubNo', $quyDa);
-                $this->quyda_cltnm = ArrayUtil::get('CltNm', $quyDa);
-                $this->quyda_tye = ArrayUtil::get('tye', $quyDa);
-                $this->quyda_aclamt = ArrayUtil::get('AclAmt', $quyDa);
-                $this->quyda_feeamt = ArrayUtil::get('FeeAmt', $quyDa);
-                $this->quyda_ptnsrl = ArrayUtil::get('PtnSrl', $quyDa);
-                $this->quyda_platsrl = ArrayUtil::get('PlatSrl', $quyDa);
-                $this->quyda_usage = ArrayUtil::get('Usage', $quyDa);
-                $this->quyda_paytype = ArrayUtil::get('PayType', $quyDa);
-                $this->quyda_secpaytype = ArrayUtil::get('SecPayType', $quyDa);
-                $this->quyda_trsflag = ArrayUtil::get('TrsFlag', $quyDa);
-                $this->quyda_state = ArrayUtil::get('State', $quyDa);
-                $this->quyda_merchantid = ArrayUtil::get('MerchantId', $quyDa);
-                $this->quyda_resttime = ArrayUtil::get('RestTime', $quyDa);
-                $this->quyda_ccycd = ArrayUtil::get('CcyCd', $quyDa);
-                $this->quyda_bkid = ArrayUtil::get('BkId', $quyDa);
-                $this->quyda_accno = ArrayUtil::get('AccNo', $quyDa);
-                $this->quyda_accnm = ArrayUtil::get('AccNm', $quyDa);
-                $this->quyda_openbkcd = ArrayUtil::get('OpenBkCd', $quyDa);
-                $this->quyda_openbknm = ArrayUtil::get('OpenBkNm', $quyDa);
-                $this->quyda_dremark1 = ArrayUtil::get('DRemark1', $quyDa);
-                $this->quyda_dremark2 = ArrayUtil::get('DRemark2', $quyDa);
-                $this->quyda_dremark3 = ArrayUtil::get('DRemark3', $quyDa);
-                $this->quyda_dremark4 = ArrayUtil::get('DRemark4', $quyDa);
-                $this->quyda_dremark5 = ArrayUtil::get('DRemark5', $quyDa);
-                $this->quyda_dremark6 = ArrayUtil::get('DRemark6', $quyDa);
-            }
+            $this->quyda_dte = ArrayUtil::get('dte', $quyDa);
+            $this->quyda_tme = ArrayUtil::get('tme', $quyDa);
+            $this->quyda_subno = ArrayUtil::get('SubNo', $quyDa);
+            $this->quyda_cltnm = ArrayUtil::get('CltNm', $quyDa);
+            $this->quyda_tye = ArrayUtil::get('tye', $quyDa);
+            $this->quyda_aclamt = ArrayUtil::get('AclAmt', $quyDa);
+            $this->quyda_feeamt = ArrayUtil::get('FeeAmt', $quyDa);
+            $this->quyda_ptnsrl = ArrayUtil::get('PtnSrl', $quyDa);
+            $this->quyda_platsrl = ArrayUtil::get('PlatSrl', $quyDa);
+            $this->quyda_usage = ArrayUtil::get('Usage', $quyDa);
+            $this->quyda_paytype = ArrayUtil::get('PayType', $quyDa);
+            $this->quyda_secpaytype = ArrayUtil::get('SecPayType', $quyDa);
+            $this->quyda_trsflag = ArrayUtil::get('TrsFlag', $quyDa);
+            $this->quyda_state = ArrayUtil::get('State', $quyDa);
+            $this->quyda_merchantid = ArrayUtil::get('MerchantId', $quyDa);
+            $this->quyda_resttime = ArrayUtil::get('RestTime', $quyDa);
+            $this->quyda_ccycd = ArrayUtil::get('CcyCd', $quyDa);
+            $this->quyda_bkid = ArrayUtil::get('BkId', $quyDa);
+            $this->quyda_accno = ArrayUtil::get('AccNo', $quyDa);
+            $this->quyda_accnm = ArrayUtil::get('AccNm', $quyDa);
+            $this->quyda_openbkcd = ArrayUtil::get('OpenBkCd', $quyDa);
+            $this->quyda_openbknm = ArrayUtil::get('OpenBkNm', $quyDa);
+            $this->quyda_dremark1 = ArrayUtil::get('DRemark1', $quyDa);
+            $this->quyda_dremark2 = ArrayUtil::get('DRemark2', $quyDa);
+            $this->quyda_dremark3 = ArrayUtil::get('DRemark3', $quyDa);
+            $this->quyda_dremark4 = ArrayUtil::get('DRemark4', $quyDa);
+            $this->quyda_dremark5 = ArrayUtil::get('DRemark5', $quyDa);
+            $this->quyda_dremark6 = ArrayUtil::get('DRemark6', $quyDa);
         }
     }
 }

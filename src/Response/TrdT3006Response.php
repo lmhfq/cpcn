@@ -315,24 +315,22 @@ class TrdT3006Response extends TrdBaseResponse
         parent::process($message);
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
             $billInfo = ArrayUtil::get('billInfo', $this->responseData, []);
-            if ($billInfo) {
-                $this->billinfo_billno = ArrayUtil::get('BillNo', $billInfo);
-                $this->billinfo_platsrl = ArrayUtil::get('PlatSrl', $billInfo);
-                $this->billinfo_psubno = ArrayUtil::get('PSubNo', $billInfo);
-                $this->billinfo_pnm = ArrayUtil::get('PNm', $billInfo);
-                $this->billinfo_rsubno = ArrayUtil::get('RSubNo', $billInfo);
-                $this->billinfo_rcltnm = ArrayUtil::get('RCltNm', $billInfo);
-                $this->billinfo_orderno = ArrayUtil::get('OrderNo', $billInfo);
-                $this->billinfo_aclamt = ArrayUtil::get('AclAmt', $billInfo);
-                $this->billinfo_payfee = ArrayUtil::get('PayFee', $billInfo);
-                $this->billinfo_payeefee = ArrayUtil::get('PayeeFee', $billInfo);
-                $this->billinfo_ccycd = ArrayUtil::get('CcyCd', $billInfo);
-                $this->billinfo_usage = ArrayUtil::get('Usage', $billInfo);
-                $this->billinfo_goodsmess = ArrayUtil::get('GoodsMess', $billInfo);
-                $this->billinfo_billstate = ArrayUtil::get('BillState', $billInfo);
-                $this->billinfo_opion = ArrayUtil::get('Opion', $billInfo);
-                $this->billinfo_resttime = ArrayUtil::get('RestTime', $billInfo);
-            }
+            $this->billinfo_billno = ArrayUtil::get('BillNo', $billInfo);
+            $this->billinfo_platsrl = ArrayUtil::get('PlatSrl', $billInfo);
+            $this->billinfo_psubno = ArrayUtil::get('PSubNo', $billInfo);
+            $this->billinfo_pnm = ArrayUtil::get('PNm', $billInfo);
+            $this->billinfo_rsubno = ArrayUtil::get('RSubNo', $billInfo);
+            $this->billinfo_rcltnm = ArrayUtil::get('RCltNm', $billInfo);
+            $this->billinfo_orderno = ArrayUtil::get('OrderNo', $billInfo);
+            $this->billinfo_aclamt = ArrayUtil::get('AclAmt', $billInfo);
+            $this->billinfo_payfee = ArrayUtil::get('PayFee', $billInfo);
+            $this->billinfo_payeefee = ArrayUtil::get('PayeeFee', $billInfo);
+            $this->billinfo_ccycd = ArrayUtil::get('CcyCd', $billInfo);
+            $this->billinfo_usage = ArrayUtil::get('Usage', $billInfo);
+            $this->billinfo_goodsmess = ArrayUtil::get('GoodsMess', $billInfo);
+            $this->billinfo_billstate = ArrayUtil::get('BillState', $billInfo);
+            $this->billinfo_opion = ArrayUtil::get('Opion', $billInfo);
+            $this->billinfo_resttime = ArrayUtil::get('RestTime', $billInfo);
             $this->trsflag = ArrayUtil::get('TrsFlag', $this->responseData);
         }
     }

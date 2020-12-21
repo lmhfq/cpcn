@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Response;
 
 
-use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Constant\ResponseCode;
+use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT1008Response extends TrdBaseResponse
 {
@@ -118,14 +118,12 @@ class TrdT1008Response extends TrdBaseResponse
         parent::process($message);
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
             $bankInfo = ArrayUtil::get('BankInfo', $this->responseData, []);
-            if ($bankInfo) {
-                $this->bankinfo_bkid = ArrayUtil::get('BkId', $bankInfo);
-                $this->bankinfo_bknm = ArrayUtil::get('BkNm', $bankInfo);
-                $this->bankinfo_sta = ArrayUtil::get('Sta', $bankInfo);
-                $this->bankinfo_reason = ArrayUtil::get('Reason', $bankInfo);
-                $this->bankinfo_zhbankid = ArrayUtil::get('ZhBankid', $bankInfo);
-                $this->bankinfo_busitype = ArrayUtil::get('BusiType', $bankInfo);
-            }
+            $this->bankinfo_bkid = ArrayUtil::get('BkId', $bankInfo);
+            $this->bankinfo_bknm = ArrayUtil::get('BkNm', $bankInfo);
+            $this->bankinfo_sta = ArrayUtil::get('Sta', $bankInfo);
+            $this->bankinfo_reason = ArrayUtil::get('Reason', $bankInfo);
+            $this->bankinfo_zhbankid = ArrayUtil::get('ZhBankid', $bankInfo);
+            $this->bankinfo_busitype = ArrayUtil::get('BusiType', $bankInfo);
         }
     }
 }

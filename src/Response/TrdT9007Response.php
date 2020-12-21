@@ -17,7 +17,7 @@ class TrdT9007Response extends TrdBaseResponse
     /**
      * @var array
      */
-    protected $quyDa;
+    protected $quyDa = [];
 
     /**
      * @return mixed
@@ -91,9 +91,6 @@ class TrdT9007Response extends TrdBaseResponse
             $this->curpag = ArrayUtil::get('CurPag', $this->responseData);
             $this->talrcd = ArrayUtil::get('TalRcd', $this->responseData);
             $quyDa = ArrayUtil::get('QuyDa', $this->responseData, []);
-            if (!$quyDa) {
-                return;
-            }
             foreach ($quyDa as $item) {
                 $responseQuyDaEntity = new QuyDaEntity();
                 $responseQuyDaEntity->setQuydaDte(ArrayUtil::get('dte', $item));

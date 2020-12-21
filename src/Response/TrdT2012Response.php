@@ -317,16 +317,12 @@ class TrdT2012Response extends TrdBaseResponse
         parent::process($message);
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
             $cltAcc = ArrayUtil::get('CltAcc', $this->responseData, []);
-            if ($cltAcc) {
-                $this->cltacc_subno = ArrayUtil::get('SubNo', $cltAcc);
-                $this->cltacc_cltnm = ArrayUtil::get('CltNm', $cltAcc);
-            }
+            $this->cltacc_subno = ArrayUtil::get('SubNo', $cltAcc);
+            $this->cltacc_cltnm = ArrayUtil::get('CltNm', $cltAcc);
             $amt = ArrayUtil::get('Amt', $this->responseData, []);
-            if ($amt) {
-                $this->amt_aclamt = ArrayUtil::get('AclAmt', $amt);
-                $this->amt_feeamt = ArrayUtil::get('FeeAmt', $amt);
-                $this->amt_ccycd = ArrayUtil::get('CcyCd', $amt);
-            }
+            $this->amt_aclamt = ArrayUtil::get('AclAmt', $amt);
+            $this->amt_feeamt = ArrayUtil::get('FeeAmt', $amt);
+            $this->amt_ccycd = ArrayUtil::get('CcyCd', $amt);
             $this->state = ArrayUtil::get('State', $this->responseData);
             $this->resttime = ArrayUtil::get('RestTime', $this->responseData);
             $this->opion = ArrayUtil::get('Opion', $this->responseData);

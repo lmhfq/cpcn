@@ -15,6 +15,9 @@ class ArrayUtil
      */
     public static function get($key, array $search, $default = '')
     {
+        if (empty($search)) {
+            return $default;
+        }
         return array_key_exists($key, $search) ? $search[$key] : $default;
     }
 }

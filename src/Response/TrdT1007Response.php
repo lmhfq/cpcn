@@ -29,7 +29,7 @@ class TrdT1007Response extends TrdBaseResponse
     /**
      * @var array
      */
-    protected $bkAcc;
+    protected $bkAcc = [];
 
     /**
      * @return mixed
