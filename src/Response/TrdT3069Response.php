@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Response;
 
 
-use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Constant\ResponseCode;
+use Lmh\Cpcn\Support\ArrayUtil;
 
 class TrdT3069Response extends TrdBaseResponse
 {
