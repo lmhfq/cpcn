@@ -15,7 +15,7 @@ class TrdT1031Request extends TrdBaseRequest
     protected $msghd_trcd = "T1031";
 
     /**
-     * @var string 功能标示 (1:开户;2变更 3 销户)
+     * @var string 功能标示 (1:开户 2变更 3 销户)
      */
     public $fcflg = '1';
     /**
