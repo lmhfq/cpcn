@@ -52,7 +52,7 @@ class TrdT1004Response extends TrdBaseResponse
     {
         parent::process($message);
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
-            $this->state = ArrayUtil::get('Amount', $this->responseData);
+            $this->state = ArrayUtil::get('State', $this->responseData);
             $this->actiinfo = ArrayUtil::get('ActiInfo', $this->responseData);
         }
     }
