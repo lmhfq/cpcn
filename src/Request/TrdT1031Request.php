@@ -35,7 +35,7 @@ class TrdT1031Request extends TrdBaseRequest
      */
     protected $cltacc_cltnm;
     /**
-     * @var string 客户性质(0 个人;1 公司)
+     * @var string 客户性质(0 个人;1 公司) FcFlg=1 时必填
      */
     protected $clt_kd;
     /**
@@ -105,7 +105,7 @@ class TrdT1031Request extends TrdBaseRequest
 
     protected $clt_busiscope;
     /**
-     * @var string 经办人姓名
+     * @var string 经办人姓名 FcFlg=1 时必填 企业开户时填写
      */
     protected $oper_nm;
     /**
@@ -116,9 +116,8 @@ class TrdT1031Request extends TrdBaseRequest
      * @var string 经办人手机号
      */
     protected $oper_mobno;
-
     /**
-     * @var array[FileInfoEntity] 证件照片信息(0~N 条)
+     * @var array[FileInfoEntity] 证件照片信息(0~N 条) FcFlg=1 时必填
      * @see FileInfoEntity
      */
     public $fleinfo = [];
