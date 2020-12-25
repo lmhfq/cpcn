@@ -34,7 +34,7 @@ class Xml
      */
     public static function build($data, $root = 'MSG', $item = 'FleInfo')
     {
-        $xml = "<?xml version=\"1.0\" encoding=\"GBK\"?><{$root}>";
+        $xml = '<?xml version="1.0" encoding="GBK"?><' . $root . '>';
         $xml .= self::data2Xml($data, $item);
         $xml .= "</{$root}>";
         return $xml;
