@@ -130,8 +130,7 @@ abstract class TrdBaseResponse
     {
         $this->responseMessage = $message;
         $this->responsePlainText = trim(base64_decode($message));
-        $this->responsePlainText = str_replace('encoding="GBK"', 'encoding="UTF-8"', $this->responsePlainText);
-        $this->responseData = Xml::parse($this->responsePlainText);
+        $this->responseData = Xml::parse(str_replace('encoding="GBK"', 'encoding="UTF-8"', $this->responsePlainText));
         $msgHd = ArrayUtil::get('MSGHD', $this->responseData, []);
         $srl = ArrayUtil::get('Srl', $this->responseData, []);
 
@@ -145,7 +144,7 @@ abstract class TrdBaseResponse
     /**
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return get_object_vars($this);
     }
