@@ -12,11 +12,59 @@ class TrdT9005Request extends TrdBaseRequest
 {
     protected $msghd_trcd = "T9005";
 
-    public $subno;
+    protected $subno;
 
-    public $pagsiz;
+    protected $pagsiz;
 
-    public $curpag;
+    protected $curpag;
+
+    /**
+     * @return mixed
+     */
+    public function getSubno()
+    {
+        return $this->subno;
+    }
+
+    /**
+     * @param mixed $subno
+     */
+    public function setSubno($subno): void
+    {
+        $this->subno = $subno;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPagsiz()
+    {
+        return $this->pagsiz;
+    }
+
+    /**
+     * @param mixed $pagsiz
+     */
+    public function setPagsiz($pagsiz): void
+    {
+        $this->pagsiz = $pagsiz;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCurpag()
+    {
+        return $this->curpag;
+    }
+
+    /**
+     * @param mixed $curpag
+     */
+    public function setCurpag($curpag): void
+    {
+        $this->curpag = $curpag;
+    }
 
     /**
      * @throws InvalidConfigException
