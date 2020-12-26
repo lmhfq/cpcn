@@ -35,6 +35,24 @@ class ResponseCode
      * 请稍后查询结果
      */
     public const SJYCLZ = 'SJYCLZ';
-
-
+    /**
+     * 每日转账金额超限
+     */
+    public const DB3136 = 'DB3136';
+    /**
+     * 账户可用资金不足
+     */
+    public const DB3139 = 'DB3139';
+    /**
+     * 账户可解冻资金不足
+     */
+    public const DB3155 = 'DB3155';
+    /**
+     * 交易金额错误
+     */
+    public const DB3151 = 'DB3151';
+    /**
+     * 合作方交易流水号重复使用
+     */
+    public const DB3192 = 'DB3192';
 }
