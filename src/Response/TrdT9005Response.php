@@ -6,7 +6,6 @@ namespace Lmh\Cpcn\Response;
 
 
 use Lmh\Cpcn\Constant\ResponseCode;
-use Lmh\Cpcn\Entity\ResponseQuyDaEntity;
 use Lmh\Cpcn\Entity\ResponseQuyDaT9005Entity;
 use Lmh\Cpcn\Support\ArrayUtil;
 
@@ -16,7 +15,7 @@ class TrdT9005Response extends TrdBaseResponse
     protected $curpag;
     protected $talrcd;
     /**
-     * @var array
+     * @var array[ResponseQuyDaT9005Entity]
      */
     protected $quyDa = [];
 
