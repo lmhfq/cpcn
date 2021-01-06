@@ -56,7 +56,7 @@ class TrdT3004Request extends TrdBaseRequest
      */
     protected $billinfo_goodsmess;
     /**
-     * @var string 业务标示 A00 普通订单支付 B00 收款方收款成功后，再冻结资金 B01 付款方解冻资金后，再 支付给收款方 Y01 预付款 资金资金支付 后生成预付款 Y02 冲抵预付款 按照预付 款生产时间积累减少预付款 可用额度
+     * @var string 业务标示 A00 普通订单支付 B00 收款方收款成功后，再冻结资金 B01 付款方解冻资金后，再支付给收款方 Y01 预付款资金资金支付 后生成预付款 Y02 冲抵预付款 按照预付 款生产时间积累减少预付款 可用额度
      */
     protected $trsflag;
 
