@@ -15,7 +15,7 @@ class TrdT9005Response extends TrdBaseResponse
     protected $curpag;
     protected $talrcd;
     /**
-     * @var array[ResponseQuyDaT9005Entity]
+     * @var array
      */
     protected $quyDa = [];
 
@@ -91,6 +91,9 @@ class TrdT9005Response extends TrdBaseResponse
             $this->curpag = ArrayUtil::get('CurPag', $this->responseData);
             $this->talrcd = ArrayUtil::get('TalRcd', $this->responseData);
             $quyDa = ArrayUtil::get('QuyDa', $this->responseData, []);
+            if (!isset($quyDa[0])) {
+                $quyDa = [$quyDa];
+            }
             foreach ($quyDa as $item) {
                 $responseQuyDaT9005Entity = new ResponseQuyDaT9005Entity();
                 $responseQuyDaT9005Entity->setQuydaCltno(ArrayUtil::get('CltNo', $item));

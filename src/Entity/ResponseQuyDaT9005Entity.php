@@ -5,11 +5,29 @@ namespace Lmh\Cpcn\Entity;
 
 class ResponseQuyDaT9005Entity
 {
+    /**
+     * @var string 客户号
+     */
     protected $quyda_cltno;
+    /**
+     * @var string 资金账号
+     */
     protected $quyda_subno;
+    /**
+     * @var string 户名
+     */
     protected $quyda_cltnm;
+    /**
+     * @var integer 资金余额
+     */
     protected $quyda_balamt;
+    /**
+     * @var integer 冻结余额
+     */
     protected $quyda_frzamt;
+    /**
+     * @var integer 状态:1 已开户;4 冻结
+     */
     protected $quyda_state;
     protected $quyda_ccycd;
 
