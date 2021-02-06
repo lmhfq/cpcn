@@ -15,13 +15,13 @@ class RefundDtrcd
     /**
      * @var string UIN:渠道入金
      */
-    public const UIN = '';
+    public const UIN = 'UIN';
     /**
      * @var string 订单支付  3001-3007
      */
-    public const PAY = '';
+    public const PAY = 'PAY';
     /**
      * @var string 入金支付  3061-3069
      */
-    public const INPAY = '';
+    public const INPAY = 'INPAY';
 }
