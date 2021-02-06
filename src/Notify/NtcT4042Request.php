@@ -296,10 +296,10 @@ class NtcT4042Request extends NtcBaseRequest
             $this->opion = ArrayUtil::get('Opion', $this->noticeData);
 
             $amt = ArrayUtil::get('Amt', $this->noticeData);
-            $this->amt_aclamt = ArrayUtil::get('AclAmt', $amt);
-            $this->amt_payfee = ArrayUtil::get('PayFee', $amt);
-            $this->amt_payeefee = ArrayUtil::get('PayeeFee', $amt);
-            $this->amt_ccycd = ArrayUtil::get('CcyCd', $amt);
+            $this->amt_aclamt = intval(ArrayUtil::get('AclAmt', $amt));
+            $this->amt_payfee = intval(ArrayUtil::get('PayFee', $amt));
+            $this->amt_payeefee = intval(ArrayUtil::get('PayeeFee', $amt));
+            $this->amt_ccycd = intval(ArrayUtil::get('CcyCd', $amt));
         }
     }
 }
