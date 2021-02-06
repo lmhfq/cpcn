@@ -216,7 +216,7 @@ abstract class NtcBaseRequest
     }
 
     /**
-     * @param string $srl_platsrl
+     * @param string|null $srl_platsrl
      */
     public function setSrlPlatsrl(?string $srl_platsrl): void
     {
