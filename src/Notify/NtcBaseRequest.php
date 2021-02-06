@@ -210,7 +210,7 @@ abstract class NtcBaseRequest
     /**
      * @return string
      */
-    public function getSrlPlatsrl(): string
+    public function getSrlPlatsrl(): ?string
     {
         return $this->srl_platsrl;
     }
@@ -218,7 +218,7 @@ abstract class NtcBaseRequest
     /**
      * @param string $srl_platsrl
      */
-    public function setSrlPlatsrl(string $srl_platsrl): void
+    public function setSrlPlatsrl(?string $srl_platsrl): void
     {
         $this->srl_platsrl = $srl_platsrl;
     }
