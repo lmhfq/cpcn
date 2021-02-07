@@ -505,7 +505,9 @@ class NtcT2008Request extends NtcBaseRequest
     {
         parent::process($message, $signature);
         if ($this->noticeData) {
-            $this->srl_srcptnsrl = ArrayUtil::get('SrcPtnSrl', $this->noticeData);
+
+            $srl = ArrayUtil::get('Srl', $this->noticeData, []);
+            $this->srl_srcptnsrl = ArrayUtil::get('SrcPtnSrl', $srl, '');
 
             $cltAcc = ArrayUtil::get('CltAcc', $this->noticeData);
             $this->cltacc_subno = ArrayUtil::get('SubNo', $cltAcc);
