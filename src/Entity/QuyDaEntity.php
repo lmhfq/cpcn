@@ -3,8 +3,12 @@ declare(strict_types=1);
 
 namespace Lmh\Cpcn\Entity;
 
+use Lmh\Cpcn\Support\ArrayTrait;
+
 class QuyDaEntity
 {
+    use ArrayTrait;
+
     protected $quyda_dte;
     protected $quyda_tme;
     protected $quyda_mnychgno;

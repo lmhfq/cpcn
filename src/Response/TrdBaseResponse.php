@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Response;
 
 
+use Lmh\Cpcn\Support\ArrayTrait;
 use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Support\Xml;
 
 abstract class TrdBaseResponse
 {
+    use ArrayTrait;
     /**
      * @var array
      */
@@ -139,13 +141,5 @@ abstract class TrdBaseResponse
 
         $this->srl_ptnsrl = ArrayUtil::get('PtnSrl', $srl, '');
         $this->srl_platsrl = ArrayUtil::get('PlatSrl', $srl, '');
-    }
-
-    /**
-     * @return array
-     */
-    public function toArray(): array
-    {
-        return get_object_vars($this);
     }
 }
