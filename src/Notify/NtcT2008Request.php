@@ -24,7 +24,7 @@ class NtcT2008Request extends NtcBaseRequest
      */
     protected $cltacc_cltnm;
     /**
-     * @var string 户名
+     * @var string 客户号
      */
     protected $cltacc_cltno;
     /**
