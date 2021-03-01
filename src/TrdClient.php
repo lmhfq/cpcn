@@ -43,8 +43,8 @@ class TrdClient extends ServiceContainer
         /**
          * @var LoggerInterface $logger
          */
-        $logger = $this->offsetGet("logger");
-        if ($this->offsetGet("config")['debug']) {
+        $logger = $this->offsetGet("config")['logger'] ?? $this->offsetGet("logger");
+        if ($logger instanceof LoggerInterface && $this->offsetGet("config")['debug']) {
             $logger->debug("请求原文", [$request->getRequestPlainText()]);
         }
         $params = [
@@ -55,7 +55,7 @@ class TrdClient extends ServiceContainer
         ];
         $resultMessage = $this->request($params);
         $response->handle($resultMessage);
-        if ($this->offsetGet("config")['debug']) {
+        if ($logger instanceof LoggerInterface && $this->offsetGet("config")['debug']) {
             $logger->debug("响应原文", [$response->getResponsePlainText()]);
         }
         return $response;
