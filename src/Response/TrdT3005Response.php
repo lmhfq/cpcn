@@ -38,6 +38,9 @@ class TrdT3005Response extends TrdBaseResponse
         parent::process($message);
         if ($this->msghd_rspcode == ResponseCode::SUCCESS) {
             $billInfo = ArrayUtil::get('billInfo', $this->responseData, []);
+            if (!isset($billInfo[0])) {
+                $billInfo = [$billInfo];
+            }
             foreach ($billInfo as $item) {
                 $payResultEntity = new ResponseBillInfoT3005Entity();
                 $payResultEntity->setOrderNo(ArrayUtil::get('OrderNo', $item));
