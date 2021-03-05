@@ -166,9 +166,9 @@ class RequestBillInfoT3005Entity
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getBillinfoPayfee(): string
+    public function getBillinfoPayfee(): int
     {
         return $this->billinfo_payfee;
     }
@@ -182,9 +182,9 @@ class RequestBillInfoT3005Entity
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getBillinfoPayeefee(): string
+    public function getBillinfoPayeefee(): int
     {
         return $this->billinfo_payeefee;
     }
