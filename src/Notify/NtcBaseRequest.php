@@ -242,8 +242,6 @@ abstract class NtcBaseRequest
         $this->noticeData = Xml::parse($this->plainText);
 
         $msgHd = ArrayUtil::get('MSGHD', $this->noticeData, []);
-        $srl = ArrayUtil::get('Srl', $this->noticeData, []);
-
         $this->msghd_trcd = ArrayUtil::get('TrCd', $msgHd, '');
         $this->msghd_trdt = ArrayUtil::get('TrDt', $msgHd, '');
         $this->msghd_trtm = ArrayUtil::get('TrTm', $msgHd, '');
@@ -251,6 +249,7 @@ abstract class NtcBaseRequest
         $this->msghd_ptncd = ArrayUtil::get('PtnCd', $msgHd, '');
         $this->msghd_bkcd = ArrayUtil::get('BkCd', $msgHd, '');
 
+        $srl = ArrayUtil::get('Srl', $this->noticeData, []);
         $this->srl_ptnsrl = ArrayUtil::get('PtnSrl', $srl, '');
         $this->srl_platsrl = ArrayUtil::get('PlatSrl', $srl, '');
     }
