@@ -60,7 +60,6 @@ class TrdT1038Response extends TrdBaseResponse
             $srl = ArrayUtil::get('Srl', $this->responseData, []);
             $this->srl_ptnsrl = ArrayUtil::get('PtnSrl', $srl);
             $this->srl_platsrl = ArrayUtil::get('PlatSrl', $srl);
-            $this->option = $cltAcc = ArrayUtil::get('Opion', $this->responseData);
         }
     }
 }
