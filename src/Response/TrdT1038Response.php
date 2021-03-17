@@ -18,14 +18,6 @@ class TrdT1038Response extends TrdBaseResponse
      * @var string 失败原因
      */
     protected $option;
-    /**
-     * @var string
-     */
-    protected $srl_ptnsrl;
-    /**
-     * @var string
-     */
-    protected $srl_platsrl;
 
     /**
      * @return string
@@ -58,39 +50,6 @@ class TrdT1038Response extends TrdBaseResponse
     {
         $this->option = $option;
     }
-
-    /**
-     * @return string
-     */
-    public function getSrlPtnsrl(): string
-    {
-        return $this->srl_ptnsrl;
-    }
-
-    /**
-     * @param string $srl_ptnsrl
-     */
-    public function setSrlPtnsrl($srl_ptnsrl): void
-    {
-        $this->srl_ptnsrl = $srl_ptnsrl;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSrlPlatsrl(): string
-    {
-        return $this->srl_platsrl;
-    }
-
-    /**
-     * @param string $srl_platsrl
-     */
-    public function setSrlPlatsrl(string $srl_platsrl): void
-    {
-        $this->srl_platsrl = $srl_platsrl;
-    }
-
 
     public function handle(string $message)
     {
