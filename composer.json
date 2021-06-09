@@ -9,11 +9,11 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.2",
         "psr/log": "^1.0",
-        "monolog/monolog": "^1.25.5",
+        "monolog/monolog": "^2.2.0",
         "pimple/pimple": "^3.0",
-        "guzzlehttp/guzzle": "^6.5",
+        "guzzlehttp/guzzle": "^7.3",
         "ext-openssl": "*",
         "ext-mbstring": "*",
         "ext-libxml": "*",
