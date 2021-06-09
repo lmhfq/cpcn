@@ -1,5 +1,7 @@
 {
     "name": "lmh/cpcn",
+    "description": "中金支付PHP SDK",
+    "keywords" : ["中金","中金支付"],
     "authors": [
         {
             "name": "lmh",
