@@ -1125,6 +1125,9 @@ class TrdT1031Request extends TrdBaseRequest
             'ActiFlag' => $this->actiflag,
             'NotificationURL' => $this->notificationurl,
         ]);
+        if ($fileInfo) {
+            $data = array_merge($data, $fileInfo);
+        }
         if ($this->clt_kd == 1) {
             $data = array_merge($data, [
                 'Oper' => [
@@ -1133,8 +1136,8 @@ class TrdT1031Request extends TrdBaseRequest
                     'MobNo' => $this->oper_mobno,
                 ]
             ]);
-            $data = array_merge($data, $fileInfo);
         }
+
         $xml = Xml::build($data, 'MSG', 'FleInfo');
         parent::process($xml);
     }
