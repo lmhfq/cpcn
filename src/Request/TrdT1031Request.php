@@ -1022,19 +1022,48 @@ class TrdT1031Request extends TrdBaseRequest
         $data = [];
         $data = array_merge($data, parent::getMsghd());
         $data = array_merge($data, parent::getSrl());
-        $clt = [
-            'Kd' => $this->clt_kd,
-            'Nm' => $this->clt_nm,
-            'CdTp' => $this->clt_cdtp,
-            'CdNo' => $this->clt_cdno,
-            'MobNo' => $this->clt_mobno,
-            'Email' => $this->clt_email,
-            'Addr' => $this->clt_addr,
-            'CityCd' => $this->clt_citycd,
-            'InduCode' => $this->clt_inducode,
-            'Scale' => $this->clt_scale,
-            'BasicAcctNo' => $this->clt_basicacctno
-        ];
+        $clt = [];
+        if ($this->fcflg == 1) {
+            $clt['Kd'] = $this->clt_kd;
+            $clt['Nm'] = $this->clt_nm;
+            $clt['CdTp'] = $this->clt_cdtp;
+            $clt['CdNo'] = $this->clt_cdno;
+            $clt['MobNo'] = $this->clt_mobno;
+        } else {
+            if ($this->clt_kd) {
+                $clt['Kd'] = $this->clt_kd;
+            }
+            if ($this->clt_nm) {
+                $clt['Nm'] = $this->clt_nm;
+            }
+            if ($this->clt_cdtp) {
+                $clt['CdTp'] = $this->clt_cdtp;
+            }
+            if ($this->clt_cdno) {
+                $clt['CdNo'] = $this->clt_cdno;
+            }
+            if ($this->clt_mobno) {
+                $clt['MobNo'] = $this->clt_mobno;
+            }
+        }
+        if ($this->clt_email) {
+            $clt['Email'] = $this->clt_email;
+        }
+        if ($this->clt_addr) {
+            $clt['Addr'] = $this->clt_addr;
+        }
+        if ($this->clt_citycd) {
+            $clt['CityCd'] = $this->clt_citycd;
+        }
+        if ($this->clt_inducode) {
+            $clt['InduCode'] = $this->clt_inducode;
+        }
+        if ($this->clt_scale) {
+            $clt['Scale'] = $this->clt_scale;
+        }
+        if ($this->clt_basicacctno) {
+            $clt['BasicAcctNo'] = $this->clt_basicacctno;
+        }
         if ($this->clt_authcapital) {
             $clt['AuthCapital'] = $this->clt_authcapital;
         }
@@ -1044,7 +1073,8 @@ class TrdT1031Request extends TrdBaseRequest
         if ($this->clt_postno) {
             $clt['PostNo'] = $this->clt_postno;
         }
-        if ($this->clt_kd) {
+        //企业
+        if ($this->clt_kd == 1) {
             $clt = array_merge($clt, [
                 'CdIsDt' => $this->clt_cdisdt,
                 'CdExDt' => $this->clt_cdexdt,
@@ -1053,16 +1083,17 @@ class TrdT1031Request extends TrdBaseRequest
                 'OrgCd' => $this->clt_orgcd,
             ]);
         }
-        $bkAcc = [
-            'BkId' => $this->bkacc_bkid,
-            'AccNo' => $this->bkacc_accno,
-            'CrdTp' => $this->bkacc_crdtp,
-            'CdTp' => $this->bkacc_cdtp,
-            'CdNo' => $this->bkacc_cdno,
-            'Phone' => $this->bkacc_phone,
-            'CrsMk' => $this->bkacc_crsmk,
-            'OpenBkCd' => $this->bkacc_openbkcd
-        ];
+        $bkAcc = [];
+        if ($this->fcflg == 1) {
+            $bkAcc['BkId'] = $this->bkacc_bkid;
+            $bkAcc['AccNo'] = $this->bkacc_accno;
+            $bkAcc['CrdTp'] = $this->bkacc_crdtp;
+            $bkAcc['CdTp'] = $this->bkacc_cdtp;
+            $bkAcc['CdNo'] = $this->bkacc_cdno;
+            $bkAcc['Phone'] = $this->bkacc_phone;
+            $bkAcc['CrsMk'] = $this->bkacc_crsmk;
+            $bkAcc['OpenBkCd'] = $this->bkacc_openbkcd;
+        }
         if ($this->bkacc_openbknm) {
             $bkAcc['OpenBkNm'] = $this->bkacc_openbknm;
         }
@@ -1094,7 +1125,7 @@ class TrdT1031Request extends TrdBaseRequest
             'ActiFlag' => $this->actiflag,
             'NotificationURL' => $this->notificationurl,
         ]);
-        if ($this->clt_kd) {
+        if ($this->clt_kd == 1) {
             $data = array_merge($data, [
                 'Oper' => [
                     'Nm' => $this->oper_nm,
