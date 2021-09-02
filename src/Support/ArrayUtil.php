@@ -9,13 +9,13 @@ class ArrayUtil
 {
     /**
      * @param $key
-     * @param array $search
-     * @param string $default
+     * @param $search
+     * @param string|array $default
      * @return mixed|string
      */
-    public static function get($key, array $search, $default = '')
+    public static function get($key,  $search, $default = '')
     {
-        if (empty($search)) {
+        if (empty($search) || !is_array($search)) {
             return $default;
         }
         return array_key_exists($key, $search) ? $search[$key] : $default;
