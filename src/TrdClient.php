@@ -10,7 +10,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use Lmh\Cpcn\Notify\NtcBaseRequest;
 use Lmh\Cpcn\Request\TrdBaseRequest;
 use Lmh\Cpcn\Response\TrdBaseResponse;
-use Lmh\Cpcn\Support\PriKeySigner;
+use Lmh\Cpcn\Support\RSASigner;
 use Lmh\Cpcn\Support\ServiceContainer;
 use Lmh\Cpcn\Support\SignatureFactory;
 use Psr\Log\LoggerInterface;
@@ -32,7 +32,7 @@ class TrdClient extends ServiceContainer
         if (!$request->getMsghdBkcd()) {
             $request->setMsghdBkcd($this->offsetGet("config")['bkCode']);
         }
-        SignatureFactory::setSigner(new PriKeySigner(
+        SignatureFactory::setSigner(new RSASigner(
             $this->offsetGet("config")['keystoreFilename'],
             $this->offsetGet("config")['keystorePassword'],
             $this->offsetGet("config")['keyContent'],
@@ -90,7 +90,7 @@ class TrdClient extends ServiceContainer
      */
     public function notify(string $message, string $signature, NtcBaseRequest $noticeRequest): NtcBaseRequest
     {
-        SignatureFactory::setSigner(new PriKeySigner(
+        SignatureFactory::setSigner(new RSASigner(
             $this->offsetGet("config")['keystoreFilename'],
             $this->offsetGet("config")['keystorePassword'],
             $this->offsetGet("config")['keyContent'],

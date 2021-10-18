@@ -8,14 +8,14 @@ namespace Lmh\Cpcn\Support;
 class SignatureFactory
 {
     /**
-     * @var PriKeySigner
+     * @var RSASigner
      */
     private static $signer;
 
     /**
-     * @return PriKeySigner
+     * @return RSASigner
      */
-    public static function getSigner(): ?PriKeySigner
+    public static function getSigner(): ?RSASigner
     {
         return self::$signer;
     }
@@ -23,7 +23,7 @@ class SignatureFactory
     /**
      * @param mixed $signer
      */
-    public static function setSigner(PriKeySigner $signer): void
+    public static function setSigner(RSASigner $signer): void
     {
         self::$signer = $signer;
     }

@@ -7,7 +7,7 @@ namespace Lmh\Cpcn\Support;
 use Exception;
 use Lmh\Cpcn\Exception\InvalidConfigException;
 
-class PriKeySigner
+class RSASigner
 {
     /**
      * @var string
@@ -40,6 +40,7 @@ class PriKeySigner
     }
 
     /**
+     * 生成签名
      * @param string $plainText
      * @return string
      * @throws InvalidConfigException
@@ -64,6 +65,7 @@ class PriKeySigner
     }
 
     /**
+     * 验证签名
      * @param string $plainText
      * @param string $signature
      * @return int
