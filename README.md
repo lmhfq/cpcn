@@ -13,8 +13,10 @@
         ],
         'ptnCode' => 'ZWYA2019',
         'bkCode' => 'ZBANK001',
-        'keystoreFilename' =>__DIR__ . '/../../config/ptntest.pfx',
-        'certificateFilename' => __DIR__ . '/../../config/pfdstest.cer',
+        'keyContent' => 'keyContent',
+        'certContent' => 'certContent',
+        //'keystoreFilename' =>__DIR__ . '/../../config/ptntest.pfx',
+        //'certificateFilename' => __DIR__ . '/../../config/pfdstest.cer',
   ];
 
   $trdClient = new TrdClient($config);
