@@ -32,7 +32,7 @@ class Xml
      * @param string $item
      * @return string
      */
-    public static function build($data, $root = 'MSG', $item = 'FleInfo')
+    public static function build($data, string $root = 'MSG', string $item = 'FleInfo'): string
     {
         $xml = '<?xml version="1.0" encoding="GBK"?><' . $root . '>';
         $xml .= self::data2Xml($data, $item);
@@ -91,7 +91,7 @@ class Xml
      * @param string $item
      * @return string
      */
-    protected static function data2Xml(array $data, $item = 'item')
+    protected static function data2Xml(array $data, string $item = 'item'): string
     {
         $xml = '';
         foreach ($data as $key => $val) {
