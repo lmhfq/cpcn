@@ -11,7 +11,6 @@ use Pimple\Container;
 
 class ServiceContainer extends Container
 {
-    protected $sandbox = false;
     /**
      * @var array
      */
@@ -36,7 +35,7 @@ class ServiceContainer extends Container
      *
      * @return array
      */
-    public function getProviders()
+    public function getProviders(): array
     {
         return array_merge([
             ConfigServiceProvider::class,
@@ -47,7 +46,7 @@ class ServiceContainer extends Container
     /**
      * @return array
      */
-    public function getConfig()
+    public function getConfig(): array
     {
         $base = [
             'http' => [
