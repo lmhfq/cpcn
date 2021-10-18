@@ -10,9 +10,9 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Support;
 
 
-use Exception;
 use InvalidArgumentException;
 use RuntimeException;
+use Throwable;
 
 /**
  * Class Base64Image
@@ -78,7 +78,7 @@ class Base64Image
     {
         try {
             $imgInfo = getimagesize($path);
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             throw new RuntimeException("文件不存在");
         }
         $mimeType = $imgInfo['mime'];

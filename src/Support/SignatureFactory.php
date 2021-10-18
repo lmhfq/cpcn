@@ -13,9 +13,9 @@ class SignatureFactory
     private static $signer;
 
     /**
-     * @return mixed
+     * @return PriKeySigner
      */
-    public static function getSigner()
+    public static function getSigner(): ?PriKeySigner
     {
         return self::$signer;
     }

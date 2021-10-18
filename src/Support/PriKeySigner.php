@@ -44,7 +44,7 @@ class PriKeySigner
      * @return string
      * @throws InvalidConfigException
      */
-    public function sign(string $plainText)
+    public function sign(string $plainText): string
     {
         if ($this->keyContent) {
             $privateKeyId = $this->keyContent;
@@ -69,7 +69,7 @@ class PriKeySigner
      * @return int
      * @throws InvalidConfigException
      */
-    public function verify(string $plainText, string $signature)
+    public function verify(string $plainText, string $signature): int
     {
         if ($this->certContent) {
             $cert = $this->certContent;

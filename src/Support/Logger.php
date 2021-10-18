@@ -3,6 +3,7 @@
 namespace Lmh\Cpcn\Support;
 
 
+use Exception;
 use Monolog\Handler\StreamHandler;
 use Psr\Log\LoggerInterface;
 
@@ -18,7 +19,7 @@ class Logger implements LoggerInterface
     /**
      * Logger constructor.
      * @param array $config
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(array $config)
     {
@@ -31,7 +32,7 @@ class Logger implements LoggerInterface
      * @param mixed $level
      * @param mixed $message
      * @param array $context
-     * @throws \Exception
+     * @throws Exception
      */
     public function log($level, $message, array $context = array())
     {
