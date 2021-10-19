@@ -53,8 +53,8 @@ class TrdClient extends ServiceContainer
             'trdcode' => $request->getMsghdTrcd(),
             'ptncode' => $request->getMsghdPtncd(),
         ];
-        $resultMessage = $this->request($params);
-        $response->handle($resultMessage);
+        $result = $this->request($params);
+        $response->handle($result);
         if ($logger instanceof LoggerInterface && $this->offsetGet("config")['debug']) {
             $logger->debug("响应原文：" . $response->getResponsePlainText());
         }
