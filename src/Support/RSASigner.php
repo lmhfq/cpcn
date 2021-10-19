@@ -42,15 +42,14 @@ class RSASigner
      */
     public function sign(string $plainText): string
     {
-        if ($this->keyContent) {
-            $privateKeyId = $this->keyContent;
-        } else {
+        if (!$this->keyContent) {
             throw new InvalidConfigException('合作方的签名证书配置错误');
         }
         $signature = "";
         try {
-            openssl_sign($plainText, $signature, $privateKeyId, OPENSSL_ALGO_SHA1);
+            openssl_sign($plainText, $signature, $this->keyContent, OPENSSL_ALGO_SHA1);
         } catch (Exception $e) {
+            throw new InvalidConfigException('合作方的签名证书配置错误');
         }
         return bin2hex($signature);
     }
@@ -64,12 +63,10 @@ class RSASigner
      */
     public function verify(string $plainText, string $signature): int
     {
-        if ($this->certContent) {
-            $cert = $this->certContent;
-        } else {
+        if (!$this->certContent) {
             throw new InvalidConfigException('合作方的签名证书配置错误');
         }
         $binarySignature = pack("H" . strlen($signature), $signature);
-        return openssl_verify($plainText, $binarySignature, $cert, OPENSSL_ALGO_SHA1);
+        return openssl_verify($plainText, $binarySignature, $this->certContent, OPENSSL_ALGO_SHA1);
     }
 }
