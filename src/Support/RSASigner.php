@@ -12,31 +12,26 @@ class RSASigner
     /**
      * @var string
      */
-    private $keystoreFilename;
-    /**
-     * @var string
-     */
-    private $password;
-    /**
-     * @var string
-     */
     private $keyContent;
-    /**
-     * @var string
-     */
-    private $certificateFilename;
     /**
      * @var string
      */
     private $certContent;
 
-    public function __construct(string $filepath = '', string $password = '', string $keyContent = '', string $certificateFilename = '', string $certContent = '')
+    public function __construct(string $filepath = '', string $password = '', string $keyContent = '', string $certificateFilePath = '', string $certContent = '')
     {
-        $this->keystoreFilename = $filepath;
-        $this->password = $password;
-        $this->keyContent = $keyContent;
-        $this->certificateFilename = $certificateFilename;
-        $this->certContent = $certContent;
+        if ($certContent) {
+            $this->certContent = $certContent;
+        } else if ($certificateFilePath) {
+            $this->certContent = file_get_contents($certificateFilePath);
+        }
+        if ($keyContent) {
+            $this->keyContent = $keyContent;
+        } else if ($filepath) {
+            $pkcs12 = file_get_contents($filepath);
+            openssl_pkcs12_read($pkcs12, $p12cert, $password);
+            $this->keyContent = $p12cert["pkey"];
+        }
     }
 
     /**
@@ -49,10 +44,6 @@ class RSASigner
     {
         if ($this->keyContent) {
             $privateKeyId = $this->keyContent;
-        } else if ($this->keystoreFilename) {
-            $certStore = file_get_contents($this->keystoreFilename);
-            openssl_pkcs12_read($certStore, $p12cert, $this->password);
-            $privateKeyId = $p12cert["pkey"];
         } else {
             throw new InvalidConfigException('合作方的签名证书配置错误');
         }
@@ -75,8 +66,6 @@ class RSASigner
     {
         if ($this->certContent) {
             $cert = $this->certContent;
-        } else if ($this->certificateFilename) {
-            $cert = file_get_contents($this->certificateFilename);
         } else {
             throw new InvalidConfigException('合作方的签名证书配置错误');
         }
