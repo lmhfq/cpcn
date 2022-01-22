@@ -12,6 +12,7 @@ namespace Lmh\Cpcn\Request;
  */
 abstract class BaseRequest
 {
+    protected $uri = '/acswk/interfaceII.htm';
     /**
      * @var string 合作方编号
      */
@@ -20,9 +21,26 @@ abstract class BaseRequest
      * @var string 交易码
      */
     protected $msghd_trcd;
+    /**
+     * @var string 请求报文明文
+     */
     protected $requestPlainText;
+    /**
+     * @var string 请求报文字节数
+     */
     protected $requestMessage;
+    /**
+     * @var string 请求报文signature
+     */
     protected $requestSignature;
+
+    /**
+     * @return string
+     */
+    public function getUri(): string
+    {
+        return $this->uri;
+    }
 
     /**
      * @return mixed

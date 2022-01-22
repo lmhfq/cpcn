@@ -15,4 +15,72 @@ abstract class BaseRequest
      * @var string
      */
     protected $uri = '/Gateway/InterfaceII';
+    /**
+     * @var string 请求报文明文
+     */
+    protected $requestPlainText;
+    /**
+     * @var string 请求报文字节数
+     */
+    protected $requestMessage;
+    /**
+     * @var string 请求报文signature
+     */
+    protected $requestSignature;
+
+    /**
+     * @return string
+     */
+    public function getUri(): string
+    {
+        return $this->uri;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRequestPlainText(): string
+    {
+        return $this->requestPlainText;
+    }
+
+    /**
+     * @param string $requestPlainText
+     */
+    public function setRequestPlainText(string $requestPlainText): void
+    {
+        $this->requestPlainText = $requestPlainText;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRequestMessage(): string
+    {
+        return $this->requestMessage;
+    }
+
+    /**
+     * @param string $requestMessage
+     */
+    public function setRequestMessage(string $requestMessage): void
+    {
+        $this->requestMessage = $requestMessage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRequestSignature(): string
+    {
+        return $this->requestSignature;
+    }
+
+    /**
+     * @param string $requestSignature
+     */
+    public function setRequestSignature(string $requestSignature): void
+    {
+        $this->requestSignature = $requestSignature;
+    }
 }

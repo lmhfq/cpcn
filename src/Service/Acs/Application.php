@@ -12,6 +12,7 @@ namespace Lmh\Cpcn\Service\Acs;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Lmh\Cpcn\Notify\NtcBaseRequest;
+use Lmh\Cpcn\Request\BaseRequest;
 use Lmh\Cpcn\Request\TrdBaseRequest;
 use Lmh\Cpcn\Response\TrdBaseResponse;
 use Lmh\Cpcn\Support\RSASigner;
@@ -50,13 +51,7 @@ class Application extends ServiceContainer
         if ($logger instanceof LoggerInterface && $this->offsetGet("config")['debug']) {
             $logger->debug("请求原文：" . $request->getRequestPlainText());
         }
-        $params = [
-            'message' => $request->getRequestMessage(),
-            'signature' => $request->getRequestSignature(),
-            'trdcode' => $request->getMsghdTrcd(),
-            'ptncode' => $request->getMsghdPtncd(),
-        ];
-        $result = $this->request($params);
+        $result = $this->request($request);
         $response->handle($result);
         if ($logger instanceof LoggerInterface && $this->offsetGet("config")['debug']) {
             $logger->debug("响应原文：" . $response->getResponsePlainText());
@@ -64,23 +59,28 @@ class Application extends ServiceContainer
         return $response;
     }
 
-
     /**
-     * @param array $data
+     * @param BaseRequest $request
      * @return string
      * @throws GuzzleException
      */
-    private function request(array $data)
+    private function request(BaseRequest $request): string
     {
         $client = new Client($this->offsetGet("config")['http']);
+        $params = [
+            'message' => $request->getRequestMessage(),
+            'signature' => $request->getRequestSignature(),
+            'trdcode' => $request->getMsghdTrcd(),
+            'ptncode' => $request->getMsghdPtncd(),
+        ];
         $options = [
             'headers' => [
                 'Accept' => 'text/xml; charset=UTF8',
             ],
-            'form_params' => $data,
+            'form_params' => $params,
             'verify' => false
         ];
-        $response = $client->request('POST', '/acswk/interfaceII.htm', $options);
+        $response = $client->request('POST', $request->getUri(), $options);
         return $response->getBody()->getContents();
     }
 

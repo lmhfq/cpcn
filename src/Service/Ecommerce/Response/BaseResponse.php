@@ -9,7 +9,34 @@ declare(strict_types=1);
 
 namespace Lmh\Cpcn\Service\Ecommerce\Response;
 
+use Lmh\Cpcn\Support\ArrayTrait;
+
 class BaseResponse
 {
+    use ArrayTrait;
 
+    /**
+     * @var array
+     */
+    protected $responseData = [];
+    /**
+     * @var string
+     */
+    protected $responsePlainText;
+
+    /**
+     * @return array
+     */
+    public function getResponseData(): array
+    {
+        return $this->responseData;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponsePlainText(): string
+    {
+        return $this->responsePlainText;
+    }
 }
