@@ -1,9 +1,13 @@
 <?php
 declare(strict_types=1);
+/**
+ * Created by PhpStorm.
+ * User: lmh <lmh@weiyian.com>
+ * Date: 2022/1/22
+ * Time: 下午2:59
+ */
 
-
-namespace Lmh\Cpcn;
-
+namespace Lmh\Cpcn\Service\Acs;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -15,14 +19,7 @@ use Lmh\Cpcn\Support\ServiceContainer;
 use Lmh\Cpcn\Support\SignatureFactory;
 use Psr\Log\LoggerInterface;
 
-/**
- * Class TrdClient
- * @package Lmh\Cpcn
- * User: lmh <lmh@weiyian.com>
- * Date: 2022/1/22
- * @deprecated 2.0版本废弃，2.0之后移除该类，请使用Factory工厂类
- */
-class TrdClient extends ServiceContainer
+class Application extends ServiceContainer
 {
     /**
      * @param TrdBaseRequest $request

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace tests;
 
 
+use Lmh\Cpcn\Factory;
 use Lmh\Cpcn\Request\TrdT1001Request;
 use Lmh\Cpcn\Response\TrdT1001Response;
 use Lmh\Cpcn\Constant\ResponseCode;
@@ -32,7 +33,7 @@ class T1001Test extends TestCase
             'certificateFilename' => __DIR__ . '/../../config/pfdstest.cer',
         ];
 
-        $trdClient = new TrdClient($config);
+        $trdClient = Factory::acs($config);
         $trdT1001Request = new TrdT1001Request();
         /**
          * @var TrdT1001Response $response
