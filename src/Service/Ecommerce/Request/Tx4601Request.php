@@ -12,4 +12,5 @@ namespace Lmh\Cpcn\Service\Ecommerce\Request;
 class Tx4601Request extends BaseRequest
 {
 
+    protected $txCode = 'Tx4601';
 }

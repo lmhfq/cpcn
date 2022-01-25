@@ -16,6 +16,14 @@ abstract class BaseRequest
      */
     protected $uri = '/Gateway/InterfaceII';
     /**
+     * @var string 交易编码
+     */
+    protected $txCode;
+    /**
+     * @var string 机构编号
+     */
+    protected $institutionId;
+    /**
      * @var string 请求报文明文
      */
     protected $requestPlainText;
@@ -27,6 +35,14 @@ abstract class BaseRequest
      * @var string 请求报文signature
      */
     protected $requestSignature;
+
+    /**
+     * @return string
+     */
+    public function getTxCode(): string
+    {
+        return $this->txCode;
+    }
 
     /**
      * @return string
@@ -44,13 +60,6 @@ abstract class BaseRequest
         return $this->requestPlainText;
     }
 
-    /**
-     * @param string $requestPlainText
-     */
-    public function setRequestPlainText(string $requestPlainText): void
-    {
-        $this->requestPlainText = $requestPlainText;
-    }
 
     /**
      * @return string
