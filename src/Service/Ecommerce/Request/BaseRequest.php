@@ -146,35 +146,17 @@ abstract class BaseRequest
         $this->txSn = $txSn;
     }
 
-
     public abstract function handle();
-
-    /**
-     * @param array $params
-     * @return array
-     * @author lmh
-     */
-    protected function getData(array $params): array
-    {
-        $data = [
-            'Request' => [
-                'Head' => $this->getHead(),
-                'Body' => [
-                    'InstitutionID' => $this->getInstitutionId()
-                ]
-            ]
-        ];
-        $data = array_merge($data['Request']['Body'], $params);
-        return $data;
-    }
 
     /**
      * @return array[]
      */
-    private function getHead(): array
+    protected function getHead(): array
     {
         return [
-            'TxCode' => $this->getTxCode()
+            'Head' => [
+                'TxCode' => $this->getTxCode()
+            ],
         ];
     }
 

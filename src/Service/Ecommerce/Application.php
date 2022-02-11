@@ -46,14 +46,14 @@ class Application extends ServiceContainer
          * @var LoggerInterface $logger
          */
         $logger = $this->offsetGet("config")['logger'] ?? $this->offsetGet("logger");
-        if ($logger instanceof LoggerInterface && $this->offsetGet("config")['debug']) {
+      //  if ($logger instanceof LoggerInterface && $this->offsetGet("config")['debug']) {
             $logger->debug("请求原文：" . $request->getRequestPlainText());
-        }
+        //}
         $result = $this->request($request);
         $response->handle($result);
-        if ($logger instanceof LoggerInterface && $this->offsetGet("config")['debug']) {
+      //  if ($logger instanceof LoggerInterface && $this->offsetGet("config")['debug']) {
             $logger->debug("响应原文：" . $response->getResponsePlainText());
-        }
+       // }
         return $response;
     }
 

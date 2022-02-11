@@ -245,7 +245,10 @@ class Tx4601Request extends BaseRequest
      */
     public function handle()
     {
+        $data = [];
+        $data = array_merge($data, parent::getHead());
         $body = [
+            'InstitutionID' => $this->getInstitutionId(),
             'TxSN' => $this->getTxSn(),
             'UserID' => $this->getUserId(),
             'UserType' => $this->getUserType(),
@@ -266,8 +269,10 @@ class Tx4601Request extends BaseRequest
                 break;
         }
         $body['BankAccount'] = $this->getBankAccount();
-        $data = $this->getData($body);
-        $this->requestPlainText = Xml::build($data);
+        $data = array_merge($data, [
+            'Body' => $body
+        ]);
+        $this->requestPlainText = Xml::build($data, 'Request version="2.0"', '', 'UTF-8');
         parent::process();
     }
 }

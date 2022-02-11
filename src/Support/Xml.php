@@ -30,11 +30,12 @@ class Xml
      * @param mixed $data
      * @param string $root
      * @param string $item
+     * @param string $encoding
      * @return string
      */
-    public static function build($data, string $root = 'MSG', string $item = 'FleInfo'): string
+    public static function build($data, string $root = 'MSG', string $item = 'FleInfo', $encoding = 'GBK'): string
     {
-        $xml = '<?xml version="1.0" encoding="GBK"?><' . $root . '>';
+        $xml = '<?xml version="1.0" encoding="' . $encoding . '"?><' . $root . '>';
         $xml .= self::data2Xml($data, $item);
         $xml .= "</{$root}>";
         return $xml;
