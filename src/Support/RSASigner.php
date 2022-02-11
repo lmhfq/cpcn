@@ -30,6 +30,8 @@ class RSASigner
         } else if ($filepath) {
             $pkcs12 = file_get_contents($filepath);
             openssl_pkcs12_read($pkcs12, $p12cert, $password);
+            var_dump($password);
+            exit;
             $this->keyContent = $p12cert["pkey"];
         }
     }
@@ -45,7 +47,7 @@ class RSASigner
         if (!$this->keyContent) {
             throw new InvalidConfigException('合作方的签名证书配置错误');
         }
-        $signature = "";
+        $signature = '';
         try {
             openssl_sign($plainText, $signature, $this->keyContent, OPENSSL_ALGO_SHA1);
         } catch (Exception $e) {

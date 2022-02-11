@@ -9,6 +9,9 @@ declare(strict_types=1);
 
 namespace Lmh\Cpcn\Service\Ecommerce\Request;
 
+use Lmh\Cpcn\Exception\InvalidConfigException;
+use Lmh\Cpcn\Support\SignatureFactory;
+
 abstract class BaseRequest
 {
     /**
@@ -35,6 +38,15 @@ abstract class BaseRequest
      * @var string 请求报文signature
      */
     protected $requestSignature;
+    /**
+     * @var int 1表示证书使用的国密证书，2为国际证书
+     */
+    protected $certificate = 2;
+    /**
+     * @var string 交易流水号 流水号前17位必须是时间戳 yyyyMMddHHmmssSSS，数字
+     */
+    protected $txSn;
+
 
     /**
      * @return string
@@ -43,6 +55,23 @@ abstract class BaseRequest
     {
         return $this->txCode;
     }
+
+    /**
+     * @return string
+     */
+    public function getInstitutionId(): ?string
+    {
+        return $this->institutionId;
+    }
+
+    /**
+     * @param string $institutionId
+     */
+    public function setInstitutionId(string $institutionId): void
+    {
+        $this->institutionId = $institutionId;
+    }
+
 
     /**
      * @return string
@@ -86,10 +115,76 @@ abstract class BaseRequest
     }
 
     /**
-     * @param string $requestSignature
+     * @return int
      */
-    public function setRequestSignature(string $requestSignature): void
+    public function getCertificate(): int
     {
-        $this->requestSignature = $requestSignature;
+        return $this->certificate;
+    }
+
+    /**
+     * @param int $certificate
+     */
+    public function setCertificate(int $certificate): void
+    {
+        $this->certificate = $certificate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTxSn(): string
+    {
+        return $this->txSn ?: '';
+    }
+
+    /**
+     * @param string $txSn
+     */
+    public function setTxSn(string $txSn): void
+    {
+        $this->txSn = $txSn;
+    }
+
+
+    public abstract function handle();
+
+    /**
+     * @param array $params
+     * @return array
+     * @author lmh
+     */
+    protected function getData(array $params): array
+    {
+        $data = [
+            'Request' => [
+                'Head' => $this->getHead(),
+                'Body' => [
+                    'InstitutionID' => $this->getInstitutionId()
+                ]
+            ]
+        ];
+        $data = array_merge($data['Request']['Body'], $params);
+        return $data;
+    }
+
+    /**
+     * @return array[]
+     */
+    private function getHead(): array
+    {
+        return [
+            'TxCode' => $this->getTxCode()
+        ];
+    }
+
+    /**
+     * @throws InvalidConfigException
+     * @author lmh
+     */
+    protected function process()
+    {
+        $this->requestMessage = base64_encode(trim($this->requestPlainText));
+        $this->requestSignature = SignatureFactory::getSigner()->sign(trim($this->requestPlainText));
     }
 }

@@ -26,18 +26,14 @@ class Application extends ServiceContainer
      * @param BaseRequest $request
      * @param BaseResponse $response
      * @return BaseResponse
+     * @throws GuzzleException
      * @author lmh
      */
     public function execute(BaseRequest $request, BaseResponse $response): BaseResponse
     {
-
-        var_dump($this->offsetGet("config"));
-//        if (!$request->getMsghdPtncd()) {
-//            $request->setMsghdPtncd($this->offsetGet("config")['ptnCode']);
-//        }
-//        if (!$request->getMsghdBkcd()) {
-//            $request->setMsghdBkcd($this->offsetGet("config")['bkCode']);
-//        }
+        if (!$request->getInstitutionId()) {
+            $request->setInstitutionId($this->offsetGet("config")['institutionId']);
+        }
         SignatureFactory::setSigner(new RSASigner(
             $this->offsetGet("config")['keystoreFilename'],
             $this->offsetGet("config")['keystorePassword'],
@@ -45,7 +41,7 @@ class Application extends ServiceContainer
             $this->offsetGet("config")['certificateFilename'],
             $this->offsetGet("config")['certContent']
         ));
-     //   $request->handle();
+        $request->handle();
         /**
          * @var LoggerInterface $logger
          */
@@ -54,7 +50,7 @@ class Application extends ServiceContainer
             $logger->debug("请求原文：" . $request->getRequestPlainText());
         }
         $result = $this->request($request);
-        //$response->handle($result);
+        $response->handle($result);
         if ($logger instanceof LoggerInterface && $this->offsetGet("config")['debug']) {
             $logger->debug("响应原文：" . $response->getResponsePlainText());
         }

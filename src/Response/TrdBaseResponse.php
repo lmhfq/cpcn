@@ -13,11 +13,11 @@ abstract class TrdBaseResponse
 {
     use ArrayTrait;
     /**
-     * @var array
+     * @var array 响应信息
      */
     protected $responseData = [];
     /**
-     * @var string
+     * @var string 响应报文
      */
     protected $responsePlainText;
     /**
