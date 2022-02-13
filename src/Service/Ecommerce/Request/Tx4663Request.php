@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Service\Ecommerce\Request;
 
 
+use Lmh\Cpcn\Constant\Operation;
 use Lmh\Cpcn\Support\Xml;
 
 class Tx4663Request extends BaseRequest
@@ -132,11 +133,15 @@ class Tx4663Request extends BaseRequest
             'UserID' => $this->getUserId(),
             'TxSN' => $this->getTxSn(),
             'OperationType' => $this->getOperationType(),
-            'AcceptanceConfirmType' => $this->getAcceptanceConfirmType(),
             'Amount' => $this->getAmount(),
-            'ArrivalType' => $this->getArrivalType(),
+            'Remark' => $this->getRemark(),
         ];
-        if ($this->operationType==20)
+        if ($this->operationType==Operation::TYPE_THAWING){
+            $body['FreezeTxSN'] = $this->getFreezeTxSn();
+        }else if ( $this->operationType==Operation::TYPE_SHARE_FREEZE){
+            $body['FreezeTxSN'] = $this->getFreezeTxSn();
+            $body['SourceTxSN'] = $this->getSourceTxSn();
+        }
         $data = array_merge($data, [
             'Body' => $body
         ]);

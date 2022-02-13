@@ -17,7 +17,6 @@ class BankAccountEntity
      * 流水号前 17 位必须是时间戳
      */
     protected $bindingTxSn;
-
     /**
      * @var string 绑定银行 ID
      */

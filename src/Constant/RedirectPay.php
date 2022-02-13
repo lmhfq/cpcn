@@ -23,8 +23,6 @@ class RedirectPay
     public const SOURCE_H5 = 20;
     public const SOURCE_OFFICIAL_ACCOUNT = 30;
     public const SOURCE_MINI_PROGRAM = 40;
-
-
     /**
      *支付方式
      * 45=H5 支付
@@ -40,14 +38,12 @@ class RedirectPay
      * 51=小程序支付
      * （PayType=31）
      */
-
     public const PAYWAY_H5 = 45;
     public const PAYWAY_APP = 46;
     public const PAYWAY_MOBILE_MINI = 47;
     public const PAYWAY_MOBILE_PAY = 48;
     public const PAYWAY_JSAPI = 50;
     public const PAYWAY_MINI_PROGRAM = 51;
-
     /**
      * 支付类型
      * 30=手机网银

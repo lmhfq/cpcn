@@ -13,7 +13,7 @@ namespace Lmh\Cpcn\Constant;
 class PayType
 {
     /**
-     *  网银
+     * 网银
      */
     public const ONLINE_BANK = '2';
     /**
@@ -44,4 +44,18 @@ class PayType
      * 移动大额支付
      */
     public const TRANSFER = 'L';
+
+    /**
+     * 支付类别
+     * 00-正扫
+     * 01-反扫
+     * 10-APP
+     * 11-JSAPI
+     * 12-小程序
+     * 13-H5
+     */
+    public const TX_SCAN = '00';
+    public const TX_JSAPI = '11';
+    public const TX_MINI_PROGRAM = '12';
+    public const TX_H5 = '13';
 }

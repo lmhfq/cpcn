@@ -32,7 +32,7 @@ class Tx4641Request extends BaseRequest
      * @var int 交易金额
      * 单位：分
      */
-    protected $amount = 0;
+    protected $amount;
     /**
      * @var string 交易失效时间
      * 目前仅支持聚合支付， 默认为 30 天 （30*24*60 分钟），单位：分钟
@@ -41,11 +41,11 @@ class Tx4641Request extends BaseRequest
     /**
      * @var string 回调 URL 地址
      */
-    protected $noticeUrl;
-    /**
-     * @var string 回调 URL 地址
-     */
     protected $pageUrl;
+    /**
+     * @var string 后台通知地址
+     */
+    protected $noticeUrl;
     /**
      * @var string  商品名称
      * PaymentWay=40/80 必填
@@ -86,7 +86,6 @@ class Tx4641Request extends BaseRequest
      * <MerchantAppID/>
      */
     protected $qRPay = [];
-
     /**
      * @var array 跳转支付选择域
      * 支付方式：80 时必填
