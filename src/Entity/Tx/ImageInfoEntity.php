@@ -13,6 +13,11 @@ namespace Lmh\Cpcn\Entity\Tx;
 class ImageInfoEntity
 {
     /**
+     * @var string 明细流水号
+     * 只能为数字字母 开头和结尾, 中间可以包含 -,流水号前 17 位必须是时间戳（ yyyyMMddHHmmssSSS，数字）
+     */
+    protected $itemNo;
+    /**
      * @var int
      * 影印件类别：
      * 10=身份证人像面
