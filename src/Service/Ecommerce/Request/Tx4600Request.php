@@ -16,7 +16,7 @@ class Tx4600Request extends BaseRequest
      */
     protected $uri = '/Gateway4File/InterfaceII';
 
-    protected $txCode = 'Tx4600';
+    protected $txCode = '4600';
 
     /**
      * @var int 业务类型：

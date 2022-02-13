@@ -16,7 +16,7 @@ use Lmh\Cpcn\Support\Xml;
 class Tx4601Request extends BaseRequest
 {
 
-    protected $txCode = 'Tx4601';
+    protected $txCode = '4601';
     /**
      * @var string
      * 用户 ID 上送规则：数字/字母/数字+字母
@@ -272,7 +272,7 @@ class Tx4601Request extends BaseRequest
         $data = array_merge($data, [
             'Body' => $body
         ]);
-        $this->requestPlainText = Xml::build($data, 'Request version="2.0"', '', 'UTF-8');
+        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
         parent::process();
     }
 }

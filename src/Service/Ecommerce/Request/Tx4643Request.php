@@ -3,20 +3,16 @@ declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: lmh <lmh@weiyian.com>
- * Date: 2022/1/22
- * Time: 下午4:40
+ * Date: 2022/2/11
+ * Time: 下午6:18
  */
 
 namespace Lmh\Cpcn\Service\Ecommerce\Request;
 
-class Tx5012Request extends BaseRequest
-{
-    /**
-     * @var string
-     */
-    protected $uri = '/AggrateGateway/InterfaceI';
 
-    protected $txCode = '5012';
+class Tx4643Request extends BaseRequest
+{
+    protected $txCode = '4643';
 
     public function handle()
     {
