@@ -23,7 +23,11 @@ class Tx4601Request extends BaseRequest
      * 12=企业
      * 13=个体户
      */
-    protected $userType = 11;
+    protected $userType;
+    /**
+     * @var string 归属父级用户 ID
+     */
+    protected $parentUserId;
     /**
      * @var string 确权方式
      * 第一位=数字证书
@@ -88,6 +92,22 @@ class Tx4601Request extends BaseRequest
     public function setUserType(int $userType): void
     {
         $this->userType = $userType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getParentUserId(): string
+    {
+        return $this->parentUserId;
+    }
+
+    /**
+     * @param string $parentUserId
+     */
+    public function setParentUserId(string $parentUserId): void
+    {
+        $this->parentUserId = $parentUserId;
     }
 
     /**
