@@ -18,11 +18,6 @@ class Tx4601Request extends BaseRequest
 
     protected $txCode = '4601';
     /**
-     * @var string
-     * 用户 ID 上送规则：数字/字母/数字+字母
-     */
-    protected $userId;
-    /**
      * @var int 用户类型：
      * 11=个人
      * 12=企业
@@ -44,7 +39,7 @@ class Tx4601Request extends BaseRequest
      * 如 1011111，表示数字证书、短信验证、邮件验证、支付密码、指纹、电子签名五种确权信息，而人脸识别、默认自动支付、签约自动支付不是上送确权信息
      * 中金账户必填
      */
-    protected $acceptanceConfirmType = '1011111';
+    protected $acceptanceConfirmType = '';
     /**
      * @var int 账户层级
      * 中金账户必填，层级分为 1-10 级
@@ -78,21 +73,6 @@ class Tx4601Request extends BaseRequest
      */
     protected $bankAccount = [];
 
-    /**
-     * @return string
-     */
-    public function getUserId(): string
-    {
-        return $this->userId ?: '';
-    }
-
-    /**
-     * @param string $userId
-     */
-    public function setUserId(string $userId): void
-    {
-        $this->userId = $userId;
-    }
 
     /**
      * @return int
@@ -257,14 +237,14 @@ class Tx4601Request extends BaseRequest
         ];
         $body['BusinessType'] = $this->getBusinessType();
         switch ($this->userType) {
-            case UserType::INDIVIDUAL;
+            case UserType::INDIVIDUAL:
                 $body['Individual'] = $this->getIndividual();
                 break;
-            case UserType::CORPORATION;
+            case UserType::CORPORATION:
                 $body['ImageCollectionTxSN'] = $this->getImageCollectionTxSN();
                 $body['Corporation'] = $this->getCorporation();
                 break;
-            case UserType::RETAILER;
+            case UserType::RETAILER:
                 $body['Retailer'] = $this->getRetailer();
                 break;
         }

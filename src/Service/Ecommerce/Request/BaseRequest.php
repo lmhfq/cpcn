@@ -46,7 +46,11 @@ abstract class BaseRequest
      * @var string 交易流水号 流水号前17位必须是时间戳 yyyyMMddHHmmssSSS，数字
      */
     protected $txSn;
-
+    /**
+     * @var string
+     * 用户 ID 上送规则：数字/字母/数字+字母
+     */
+    protected $userId;
 
     /**
      * @return string
@@ -144,6 +148,22 @@ abstract class BaseRequest
     public function setTxSn(string $txSn): void
     {
         $this->txSn = $txSn;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserId(): string
+    {
+        return $this->userId ?: '';
+    }
+
+    /**
+     * @param string $userId
+     */
+    public function setUserId(string $userId): void
+    {
+        $this->userId = $userId;
     }
 
     public abstract function handle();
