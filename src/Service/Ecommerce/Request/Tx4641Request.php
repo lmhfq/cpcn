@@ -11,6 +11,7 @@ namespace Lmh\Cpcn\Service\Ecommerce\Request;
 
 
 use Lmh\Cpcn\Constant\PaymentWay;
+use Lmh\Cpcn\Entity\Tx\PayDataEntity;
 use Lmh\Cpcn\Support\Xml;
 
 class Tx4641Request extends BaseRequest
@@ -64,36 +65,9 @@ class Tx4641Request extends BaseRequest
      */
     protected $clientIP;
     /**
-     * @var array 快捷支付选择域
-     * 支付方式：10 时必填（UserID 对应为个人才支持）
-     * [BindingTxSN]
+     * @var PayDataEntity
      */
-    protected $quickPay = [];
-    /**
-     * @var array 网银支付方式选择域
-     * 支付方式：20 时必填
-     */
-    protected $eBankPay = [];
-    /**
-     * @var array 聚合支付方式选择域
-     * 支付方式：40 时必填
-     * <QRPaymentType/>
-     * <QRPaymentWay/>
-     * <PaymentScene/>
-     * <PreTxSN/>
-     * <QRPayCode/>
-     * <OpenID/>
-     * <MerchantAppID/>
-     */
-    protected $qRPay = [];
-    /**
-     * @var array 跳转支付选择域
-     * 支付方式：80 时必填
-     * <PayWay/>
-     * <PayType/>
-     * <RedirectPayBankID/>
-     */
-    protected $redirectPay = [];
+    protected $payData;
 
     /**
      * @return int
@@ -256,68 +230,21 @@ class Tx4641Request extends BaseRequest
     }
 
     /**
-     * @return array
+     * @return PayDataEntity
      */
-    public function getQuickPay(): array
+    public function getPayData(): PayDataEntity
     {
-        return $this->quickPay;
+        return $this->payData;
     }
 
     /**
-     * @param array $quickPay
+     * @param PayDataEntity $payData
      */
-    public function setQuickPay(array $quickPay): void
+    public function setPayData(PayDataEntity $payData): void
     {
-        $this->quickPay = $quickPay;
+        $this->payData = $payData;
     }
 
-    /**
-     * @return array
-     */
-    public function getEBankPay(): array
-    {
-        return $this->eBankPay;
-    }
-
-    /**
-     * @param array $eBankPay
-     */
-    public function setEBankPay(array $eBankPay): void
-    {
-        $this->eBankPay = $eBankPay;
-    }
-
-    /**
-     * @return array
-     */
-    public function getQRPay(): array
-    {
-        return $this->qRPay;
-    }
-
-    /**
-     * @param array $qRPay
-     */
-    public function setQRPay(array $qRPay): void
-    {
-        $this->qRPay = $qRPay;
-    }
-
-    /**
-     * @return array
-     */
-    public function getRedirectPay(): array
-    {
-        return $this->redirectPay;
-    }
-
-    /**
-     * @param array $redirectPay
-     */
-    public function setRedirectPay(array $redirectPay): void
-    {
-        $this->redirectPay = $redirectPay;
-    }
 
     public function handle()
     {
@@ -328,7 +255,6 @@ class Tx4641Request extends BaseRequest
             'TxSN' => $this->getTxSn(),
             'UserID' => $this->getUserId(),
             'PaymentWay' => $this->getPaymentWay(),
-            'AcceptanceConfirmType' => $this->getAcceptanceConfirmType(),
             'Amount' => $this->getAmount(),
             'ExpirePeriod' => $this->getExpirePeriod(),
             'NoticeURL' => $this->getNoticeUrl(),
@@ -339,16 +265,27 @@ class Tx4641Request extends BaseRequest
         ];
         switch ($this->paymentWay) {
             case PaymentWay::QUICK_PAY:
-                $body['QuickPay'] = $this->getQuickPay();
+                //（UserID 对应为个人才支持）
+                $body['QuickPay'] = [
+                    'BindingTxSN' => $this->payData->getBindingTxSn(),
+                    'SMSVerification' => $this->payData->getSmsVerification(),
+                ];
                 break;
             case PaymentWay::EBANK_PAY:
-                $body['EBankPay>'] = $this->getEBankPay();
+                $body['EBankPay'] = [];
                 break;
             case PaymentWay::QR_PAY:
-                $body['QRPay'] = $this->getQRPay();
+                $body['QRPay'] = [];
                 break;
             case PaymentWay::REDIRECT_PAY:
-                $body['RedirectPay'] = $this->getRedirectPay();
+                $body['RedirectPay'] = [
+                    'RedirectSource' => $this->payData->getRedirectSource(),
+                    'PayWay' => $this->payData->getRedirectSource(),
+                    'PayType' => $this->payData->getRedirectSource(),
+                    'RedirectPayBankID' => $this->payData->getRedirectPayBankId(),
+                    'SubAppID' => $this->payData->getSubAppId(),
+                    'SubOpenID' => $this->payData->getSubOpenId(),
+                ];
                 $body['PlatformName'] = $this->getPlatformName();
                 break;
         }
@@ -356,5 +293,6 @@ class Tx4641Request extends BaseRequest
             'Body' => $body
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
+        parent::handle();
     }
 }
