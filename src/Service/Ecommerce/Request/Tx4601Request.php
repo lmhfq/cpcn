@@ -11,6 +11,7 @@ namespace Lmh\Cpcn\Service\Ecommerce\Request;
 
 use Lmh\Cpcn\Constant\UserType;
 use Lmh\Cpcn\Entity\Tx\AccountEntity;
+use Lmh\Cpcn\Entity\Tx\BankAccountEntity;
 use Lmh\Cpcn\Exception\InvalidConfigException;
 use Lmh\Cpcn\Support\Xml;
 
@@ -69,10 +70,10 @@ class Tx4601Request extends BaseRequest
      */
     protected $accountData;
     /**
-     * @var array 绑定银行账户域
+     * @var BankAccountEntity 绑定银行账户域
      * 业务类型：20=开户并绑卡时必填
      */
-    protected $bankAccount = [];
+    protected $bankAccount;
 
     /**
      * @return int
@@ -203,17 +204,17 @@ class Tx4601Request extends BaseRequest
     }
 
     /**
-     * @return array
+     * @return BankAccountEntity
      */
-    public function getBankAccount(): array
+    public function getBankAccount(): BankAccountEntity
     {
         return $this->bankAccount;
     }
 
     /**
-     * @param array $bankAccount
+     * @param BankAccountEntity $bankAccount
      */
-    public function setBankAccount(array $bankAccount): void
+    public function setBankAccount(BankAccountEntity $bankAccount): void
     {
         $this->bankAccount = $bankAccount;
     }
@@ -289,7 +290,19 @@ class Tx4601Request extends BaseRequest
                 $body['Retailer'] = [];
                 break;
         }
-        $body['BankAccount'] = $this->getBankAccount();
+        if ($this->businessType == 20) {
+            $body['BankAccount'] = [
+                'BindingTxSN' => $this->bankAccount->getBindingTxSn(),
+                'BankID' => $this->bankAccount->getBankId(),
+                'BankAccountNumber' => $this->bankAccount->getBankAccountNumber(),
+                'BankPhoneNumber' => $this->bankAccount->getBankPhoneNumber(),
+            ];
+            if ($this->userType == UserType::CORPORATION) {
+                $body['BankAccount']['BranchName'] = $this->bankAccount->getBranchName();
+                $body['BankAccount']['BankProvince'] = $this->bankAccount->getProvince();
+                $body['BankAccount']['BankCity'] = $this->bankAccount->getCity();
+            }
+        }
         $data = array_merge($data, [
             'Body' => $body
         ]);

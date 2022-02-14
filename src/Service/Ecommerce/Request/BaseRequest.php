@@ -51,7 +51,6 @@ abstract class BaseRequest
      * 用户 ID 上送规则：数字/字母/数字+字母
      */
     protected $userId;
-
     /**
      * @return string
      */

@@ -48,8 +48,6 @@ class ServiceContainer extends Container
      */
     public function getConfig(): array
     {
-
-
         $service = get_called_class();
         $serviceData = explode('\\', $service);
         if (isset($serviceData[3]) && $serviceData[3] == 'Ecommerce') {
