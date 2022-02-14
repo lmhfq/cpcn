@@ -35,7 +35,6 @@ class BaseResponse
     protected $responseMessage;
 
 
-
     /**
      * @var array
      */
@@ -166,7 +165,6 @@ class BaseResponse
         $this->code = ArrayUtil::get('Code', $head);
         $this->message = ArrayUtil::get('Message', $head);
         $this->txSn = ArrayUtil::get('TxSN', $this->responseBody);
-
 
         $this->responseCode = ArrayUtil::get('ResponseCode', $this->responseBody);
         $this->responseMessage = ArrayUtil::get('ResponseMessage', $this->responseBody);

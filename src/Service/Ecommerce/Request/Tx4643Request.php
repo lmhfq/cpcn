@@ -34,7 +34,10 @@ class Tx4643Request extends BaseRequest
      * 20=D0
      */
     protected $arrivalType = 10;
-
+    /**
+     * @var string 后台通知地址
+     */
+    protected $noticeUrl;
     /**
      * @return string
      */
@@ -99,6 +102,22 @@ class Tx4643Request extends BaseRequest
         $this->arrivalType = $arrivalType;
     }
 
+    /**
+     * @return string
+     */
+    public function getNoticeUrl(): string
+    {
+        return $this->noticeUrl;
+    }
+
+    /**
+     * @param string $noticeUrl
+     */
+    public function setNoticeUrl(string $noticeUrl): void
+    {
+        $this->noticeUrl = $noticeUrl;
+    }
+
 
     public function handle()
     {
@@ -109,13 +128,14 @@ class Tx4643Request extends BaseRequest
             'TxSN' => $this->getTxSn(),
             'UserID' => $this->getUserId(),
             'BindingTxSN' => $this->getBindingTxSn(),
-            'AcceptanceConfirmType' => $this->getAcceptanceConfirmType(),
             'Amount' => $this->getAmount(),
             'ArrivalType' => $this->getArrivalType(),
+            'NoticeURL' => $this->getNoticeUrl(),
         ];
         $data = array_merge($data, [
             'Body' => $body
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
+        parent::handle();
     }
 }

@@ -35,7 +35,7 @@ class Tx4641Request extends BaseRequest
      */
     protected $amount;
     /**
-     * @var string 交易失效时间
+     * @var int 交易失效时间
      * 目前仅支持聚合支付， 默认为 30 天 （30*24*60 分钟），单位：分钟
      */
     protected $expirePeriod = 60;
@@ -63,7 +63,7 @@ class Tx4641Request extends BaseRequest
     /**
      * @var string 用户 IP
      */
-    protected $clientIP;
+    protected $clientIp;
     /**
      * @var PayDataEntity
      */
@@ -118,17 +118,17 @@ class Tx4641Request extends BaseRequest
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getExpirePeriod(): string
+    public function getExpirePeriod(): int
     {
         return $this->expirePeriod;
     }
 
     /**
-     * @param string $expirePeriod
+     * @param int $expirePeriod
      */
-    public function setExpirePeriod(string $expirePeriod): void
+    public function setExpirePeriod(int $expirePeriod): void
     {
         $this->expirePeriod = $expirePeriod;
     }
@@ -138,7 +138,7 @@ class Tx4641Request extends BaseRequest
      */
     public function getNoticeUrl(): string
     {
-        return $this->noticeUrl;
+        return $this->noticeUrl ?: '';
     }
 
     /**
@@ -154,7 +154,7 @@ class Tx4641Request extends BaseRequest
      */
     public function getPageUrl(): string
     {
-        return $this->pageUrl;
+        return $this->pageUrl ?: '';
     }
 
     /**
@@ -170,7 +170,7 @@ class Tx4641Request extends BaseRequest
      */
     public function getGoodsName(): string
     {
-        return $this->goodsName;
+        return $this->goodsName ?: '';
     }
 
     /**
@@ -216,18 +216,19 @@ class Tx4641Request extends BaseRequest
     /**
      * @return string
      */
-    public function getClientIP(): string
+    public function getClientIp(): string
     {
-        return $this->clientIP;
+        return $this->clientIp ?: '';
     }
 
     /**
-     * @param string $clientIP
+     * @param string $clientIp
      */
-    public function setClientIP(string $clientIP): void
+    public function setClientIp(string $clientIp): void
     {
-        $this->clientIP = $clientIP;
+        $this->clientIp = $clientIp;
     }
+
 
     /**
      * @return PayDataEntity
@@ -261,7 +262,7 @@ class Tx4641Request extends BaseRequest
             'PageURL' => $this->getPageUrl(),
             'GoodsName' => $this->getGoodsName(),
             'Remark' => $this->getRemark(),
-            'ClientIP' => $this->getClientIP(),
+            'ClientIP' => $this->getClientIp(),
         ];
         switch ($this->paymentWay) {
             case PaymentWay::QUICK_PAY:

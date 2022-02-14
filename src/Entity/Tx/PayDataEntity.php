@@ -18,9 +18,10 @@ class PayDataEntity
      */
     protected $bindingTxSn;
     /**
-     * @var string 验短标识:
+     * @var int 验短标识:
+     * 0-不需要 1-需要
      */
-    protected $smsVerification;
+    protected $smsVerification = 1;
 
     /**
      * @var string 银行 ID
@@ -106,17 +107,17 @@ class PayDataEntity
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getSmsVerification(): string
+    public function getSmsVerification(): int
     {
         return $this->smsVerification;
     }
 
     /**
-     * @param string $smsVerification
+     * @param int $smsVerification
      */
-    public function setSmsVerification(string $smsVerification): void
+    public function setSmsVerification(int $smsVerification): void
     {
         $this->smsVerification = $smsVerification;
     }

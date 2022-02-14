@@ -51,6 +51,7 @@ abstract class BaseRequest
      * 用户 ID 上送规则：数字/字母/数字+字母
      */
     protected $userId;
+
     /**
      * @return string
      */
@@ -75,7 +76,6 @@ abstract class BaseRequest
         $this->institutionId = $institutionId;
     }
 
-
     /**
      * @return string
      */
@@ -91,7 +91,6 @@ abstract class BaseRequest
     {
         return $this->requestPlainText;
     }
-
 
     /**
      * @return string
