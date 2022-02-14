@@ -116,6 +116,6 @@ class Tx4600Request extends BaseRequest
             'Body' => $body
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', 'ImageInfo', 'UTF-8');
-        parent::process();
+        parent::handle();
     }
 }

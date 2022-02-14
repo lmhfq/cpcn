@@ -165,8 +165,6 @@ abstract class BaseRequest
         $this->userId = $userId;
     }
 
-    public abstract function handle();
-
     /**
      * @return array[]
      */
@@ -183,7 +181,7 @@ abstract class BaseRequest
      * @throws InvalidConfigException
      * @author lmh
      */
-    protected function process()
+    public function handle()
     {
         $this->requestMessage = base64_encode(trim($this->requestPlainText));
         $this->requestSignature = SignatureFactory::getSigner()->sign(trim($this->requestPlainText));

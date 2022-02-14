@@ -4,12 +4,13 @@ declare(strict_types=1);
  * Created by PhpStorm.
  * User: lmh <lmh@weiyian.com>
  * Date: 2022/2/14
- * Time: 下午2:35
+ * Time: 下午4:06
  */
 
 namespace Lmh\Cpcn\Service\Ecommerce\Response;
 
 
-class Tx4600Response extends BaseResponse
+class Tx7703Response extends BaseResponse
 {
+
 }

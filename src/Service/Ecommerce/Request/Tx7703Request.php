@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Service\Ecommerce\Request;
 
 use Lmh\Cpcn\Constant\ProtocolSigner;
+use Lmh\Cpcn\Entity\Tx\BankAccountEntity;
 use Lmh\Cpcn\Support\Xml;
 
 class Tx7703Request extends BaseRequest
@@ -64,46 +65,11 @@ class Tx7703Request extends BaseRequest
      * @var int 操作类型
      * （10-签约，20-绑卡并签约）
      */
-    protected $operationType = 10;
+    protected $operationType = 20;
     /**
-     * @var string 银行账户绑定流水号
+     * @var BankAccountEntity 绑定银行卡信息
      */
-    protected $bindingTxSN;
-    /**
-     * @var string 绑定银行 ID
-     * OperationType=20 时，必填
-     */
-    protected $bankId;
-    /**
-     * @var string 账户名称
-     * OperationType=20 时，必填
-     */
-    protected $bankAccountName;
-    /**
-     * @var string 账户号码
-     * OperationType=20 时必填
-     */
-    protected $bankAccountNumber;
-    /**
-     * @var string 银行卡预留手机号码
-     * 个人用户开户绑卡时，不填默认为开户手机号码
-     */
-    protected $bankPhoneNumber;
-    /**
-     * @var string 分支行名称
-     * OperationType=20 和企业时必填
-     */
-    protected $branchName;
-    /**
-     * @var string 省份
-     * OperationType=20 时必填
-     */
-    protected $province;
-    /**
-     * @var string 城市
-     * OperationType=20 时必填
-     */
-    protected $city;
+    protected $bankAccount;
 
     /**
      * @return string
@@ -266,132 +232,21 @@ class Tx7703Request extends BaseRequest
     }
 
     /**
-     * @return string
+     * @return BankAccountEntity
      */
-    public function getBindingTxSN(): string
+    public function getBankAccount(): BankAccountEntity
     {
-        return $this->bindingTxSN;
+        return $this->bankAccount;
     }
 
     /**
-     * @param string $bindingTxSN
+     * @param BankAccountEntity $bankAccount
      */
-    public function setBindingTxSN(string $bindingTxSN): void
+    public function setBankAccount(BankAccountEntity $bankAccount): void
     {
-        $this->bindingTxSN = $bindingTxSN;
+        $this->bankAccount = $bankAccount;
     }
 
-    /**
-     * @return string
-     */
-    public function getBankId(): string
-    {
-        return $this->bankId;
-    }
-
-    /**
-     * @param string $bankId
-     */
-    public function setBankId(string $bankId): void
-    {
-        $this->bankId = $bankId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBankAccountName(): string
-    {
-        return $this->bankAccountName;
-    }
-
-    /**
-     * @param string $bankAccountName
-     */
-    public function setBankAccountName(string $bankAccountName): void
-    {
-        $this->bankAccountName = $bankAccountName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBankAccountNumber(): string
-    {
-        return $this->bankAccountNumber;
-    }
-
-    /**
-     * @param string $bankAccountNumber
-     */
-    public function setBankAccountNumber(string $bankAccountNumber): void
-    {
-        $this->bankAccountNumber = $bankAccountNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBankPhoneNumber(): string
-    {
-        return $this->bankPhoneNumber;
-    }
-
-    /**
-     * @param string $bankPhoneNumber
-     */
-    public function setBankPhoneNumber(string $bankPhoneNumber): void
-    {
-        $this->bankPhoneNumber = $bankPhoneNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBranchName(): string
-    {
-        return $this->branchName;
-    }
-
-    /**
-     * @param string $branchName
-     */
-    public function setBranchName(string $branchName): void
-    {
-        $this->branchName = $branchName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getProvince(): string
-    {
-        return $this->province;
-    }
-
-    /**
-     * @param string $province
-     */
-    public function setProvince(string $province): void
-    {
-        $this->province = $province;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCity(): string
-    {
-        return $this->city;
-    }
-
-    /**
-     * @param string $city
-     */
-    public function setCity(string $city): void
-    {
-        $this->city = $city;
-    }
 
     public function handle()
     {
@@ -415,17 +270,18 @@ class Tx7703Request extends BaseRequest
         $body['ImmediatelySign'] = $this->getImmediatelySign();
         $body['OperationType'] = $this->getOperationType();
         if ($this->operationType == 20) {
-            $body['BindingTxSN'] = $this->getBindingTxSN();
-            $body['BankID'] = $this->getBankId();
-            $body['BankAccountName'] = $this->getBankAccountName();
-            $body['BankAccountNumber'] = $this->getBankAccountNumber();
-            $body['BranchName'] = $this->getBranchName();
-            $body['Province'] = $this->getProvince();
-            $body['City'] = $this->getCity();
+            $body['BindingTxSN'] = $this->bankAccount->getBindingTxSn();
+            $body['BankID'] = $this->bankAccount->getBankId();
+            $body['BankAccountName'] = $this->bankAccount->getBankAccountName();
+            $body['BankAccountNumber'] = $this->bankAccount->getBankAccountNumber();
+            $body['BranchName'] = $this->bankAccount->getBranchName();
+            $body['Province'] = $this->bankAccount->getProvince();
+            $body['City'] = $this->bankAccount->getCity();
         }
         $data = array_merge($data, [
             'Body' => $body
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
+        parent::handle();
     }
 }

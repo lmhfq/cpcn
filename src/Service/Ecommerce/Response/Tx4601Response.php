@@ -20,14 +20,6 @@ class Tx4601Response extends BaseResponse
      */
     protected $institutionId;
     /**
-     * @var string 响应码
-     */
-    protected $responseCode;
-    /**
-     * @var string 响应信息
-     */
-    protected $responseMessage;
-    /**
      * @var string
      */
     protected $userId;
@@ -71,38 +63,6 @@ class Tx4601Response extends BaseResponse
     /**
      * @return string
      */
-    public function getResponseCode(): string
-    {
-        return $this->responseCode;
-    }
-
-    /**
-     * @param string $responseCode
-     */
-    public function setResponseCode(string $responseCode): void
-    {
-        $this->responseCode = $responseCode;
-    }
-
-    /**
-     * @return string
-     */
-    public function getResponseMessage(): string
-    {
-        return $this->responseMessage;
-    }
-
-    /**
-     * @param string $responseMessage
-     */
-    public function setResponseMessage(string $responseMessage): void
-    {
-        $this->responseMessage = $responseMessage;
-    }
-
-    /**
-     * @return string
-     */
     public function getUserId(): string
     {
         return $this->userId;
@@ -117,9 +77,9 @@ class Tx4601Response extends BaseResponse
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getStatus()
+    public function getStatus(): int
     {
         return $this->status;
     }
@@ -170,8 +130,7 @@ class Tx4601Response extends BaseResponse
      */
     public function handle(string $message)
     {
-        $this->responseMessage = $message;
-        parent::process();
+        parent::handle($message);
         if ($this->code == TxResponseCode::SUCCESS) {
             $this->userId = ArrayUtil::get('UserID', $this->responseBody);
             $this->status = ArrayUtil::get('Status', $this->responseBody);

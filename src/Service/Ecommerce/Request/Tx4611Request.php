@@ -110,6 +110,10 @@ class Tx4611Request extends BaseRequest
      * 1=开通
      */
     protected $transferChargeFlag = 0;
+    /**
+     * @var string 后台通知地址
+     */
+    protected $noticeUrl = '';
 
     /**
      * @return string
@@ -383,6 +387,23 @@ class Tx4611Request extends BaseRequest
         $this->transferChargeFlag = $transferChargeFlag;
     }
 
+    /**
+     * @return string
+     */
+    public function getNoticeUrl(): string
+    {
+        return $this->noticeUrl;
+    }
+
+    /**
+     * @param string $noticeUrl
+     */
+    public function setNoticeUrl(string $noticeUrl): void
+    {
+        $this->noticeUrl = $noticeUrl;
+    }
+
+
     public function handle()
     {
         $data = [];
@@ -392,21 +413,20 @@ class Tx4611Request extends BaseRequest
             'BindingTxSN' => $this->getBindingTxSn(),
             'UserID' => $this->getUserId(),
             'OperationFlag' => $this->getOperationFlag(),
-
         ];
         $body['BankAccountType'] = $this->getBankAccountType();
         $body['BindingWay'] = $this->getBindingWay();
         switch ($this->operationFlag) {
             case Operation::FLAG_BIND:
                 if ($this->bankAccountType == UserType::INDIVIDUAL) {
-                    $body['BankCardType'] = $this->getBankAccountType();
+                    $body['BankCardType'] = $this->getBankCardType();
                     $body['CredentialType'] = $this->getCredentialType();
                     $body['CredentialNumber'] = $this->getCredentialNumber();
                     $body['BankPhoneNumber'] = $this->getBankPhoneNumber();
                 } else {
                     $body['BranchName'] = $this->getBranchName();
                     $body['Province'] = $this->getProvince();
-                    $body['Province'] = $this->getCity();
+                    $body['City'] = $this->getCity();
                 }
                 $body['BankID'] = $this->getBankId();
                 $body['BankAccountName'] = $this->getBankAccountName();
@@ -419,9 +439,11 @@ class Tx4611Request extends BaseRequest
                 break;
         }
         $body['TransferChargeFlag'] = $this->getTransferChargeFlag();
+        $body['NoticeURL'] = $this->getNoticeUrl();
         $data = array_merge($data, [
             'Body' => $body
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
+        parent::handle();
     }
 }

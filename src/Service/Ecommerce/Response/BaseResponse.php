@@ -13,7 +13,7 @@ use Lmh\Cpcn\Support\ArrayTrait;
 use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Support\Xml;
 
-abstract class BaseResponse
+class BaseResponse
 {
     use ArrayTrait;
 
@@ -26,6 +26,17 @@ abstract class BaseResponse
      */
     protected $message;
     /**
+     * @var string 响应码
+     */
+    protected $responseCode;
+    /**
+     * @var string 响应信息
+     */
+    protected $responseMessage;
+
+
+
+    /**
      * @var array
      */
     protected $responseData = [];
@@ -33,10 +44,6 @@ abstract class BaseResponse
      * @var string 响应报文
      */
     protected $responsePlainText;
-    /**
-     * @var string
-     */
-    protected $responseMessage;
     /**
      * @var string 交易流水号 流水号前17位必须是时间戳 yyyyMMddHHmmssSSS，数字
      */
@@ -110,13 +117,46 @@ abstract class BaseResponse
         $this->txSn = $txSn;
     }
 
-    public abstract function handle(string $message);
     /**
+     * @return string
+     */
+    public function getResponseCode(): string
+    {
+        return $this->responseCode;
+    }
+
+    /**
+     * @param string $responseCode
+     */
+    public function setResponseCode(string $responseCode): void
+    {
+        $this->responseCode = $responseCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponseMessage(): string
+    {
+        return $this->responseMessage;
+    }
+
+    /**
+     * @param string $responseMessage
+     */
+    public function setResponseMessage(string $responseMessage): void
+    {
+        $this->responseMessage = $responseMessage;
+    }
+
+
+    /**
+     * @param string $message
      * @author lmh
      */
-    protected function process()
+    public function handle(string $message)
     {
-        $messageData = explode(",", $this->responseMessage);
+        $messageData = explode(",", $message);
         $this->responsePlainText = trim(base64_decode($messageData[0]));
         $this->responseData = Xml::parse($this->responsePlainText);
 
@@ -126,5 +166,9 @@ abstract class BaseResponse
         $this->code = ArrayUtil::get('Code', $head);
         $this->message = ArrayUtil::get('Message', $head);
         $this->txSn = ArrayUtil::get('TxSN', $this->responseBody);
+
+
+        $this->responseCode = ArrayUtil::get('ResponseCode', $this->responseBody);
+        $this->responseMessage = ArrayUtil::get('ResponseMessage', $this->responseBody);
     }
 }
