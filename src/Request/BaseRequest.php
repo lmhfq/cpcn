@@ -83,9 +83,9 @@ abstract class BaseRequest
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getRequestMessage()
+    public function getRequestMessage(): string
     {
         return $this->requestMessage;
     }

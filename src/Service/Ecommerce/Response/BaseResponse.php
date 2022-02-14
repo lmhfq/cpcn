@@ -13,7 +13,7 @@ use Lmh\Cpcn\Support\ArrayTrait;
 use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Support\Xml;
 
-class BaseResponse
+abstract class BaseResponse
 {
     use ArrayTrait;
 
@@ -110,7 +110,7 @@ class BaseResponse
         $this->txSn = $txSn;
     }
 
-
+    public abstract function handle(string $message);
     /**
      * @author lmh
      */

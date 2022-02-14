@@ -82,7 +82,7 @@ class Tx2734Request extends BaseRequest
                 ]
             ];
         }
-        $body['AttachInfoList'] = $attachInfoList;
+        $body = array_merge($body, $attachInfoList);
         $data = array_merge($data, [
             'Body' => $body
         ]);

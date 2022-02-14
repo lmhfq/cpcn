@@ -25,8 +25,7 @@ class ImageInfoEntity
      * 12=活体照片
      * 20=统一社会信用代码证
      * 30=个体工商营业执照
-     * 业务类型为 30 时，需上传 10、
-     * 11、12、20 或 30；
+     * 业务类型为 30 时，需上传 10、11、12、20 或 30；
      */
     protected $imageType;
     /**
@@ -36,6 +35,22 @@ class ImageInfoEntity
      * BASE64 编码
      */
     protected $imageContent;
+
+    /**
+     * @return string
+     */
+    public function getItemNo(): string
+    {
+        return $this->itemNo;
+    }
+
+    /**
+     * @param string $itemNo
+     */
+    public function setItemNo(string $itemNo): void
+    {
+        $this->itemNo = $itemNo;
+    }
 
     /**
      * @return int

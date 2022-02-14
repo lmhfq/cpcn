@@ -116,7 +116,7 @@ class Tx5031Request extends BaseRequest
             /**
              * @var $v SplitItemsEntity
              */
-            $fileInfo[] = [
+            $splitItems[] = [
                 'SplitTxSN' => $v->getSplitTxSn(),
                 'SplitUserID' => $v->getSpLitUserId(),
                 'SplitAccountNumber' => $v->getSplitAccountNumber(),
@@ -124,7 +124,7 @@ class Tx5031Request extends BaseRequest
                 'Note' => $v->getNote(),
             ];
         }
-        $body['SplitItems'] = $splitItems;
+        $body = array_merge($body, $splitItems);
         $data = array_merge($data, [
             'Body' => $body
         ]);

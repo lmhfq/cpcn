@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Lmh\Cpcn\Service\Ecommerce\Request;
 
+use Lmh\Cpcn\Entity\Tx\ImageInfoEntity;
 use Lmh\Cpcn\Support\Xml;
 
 class Tx4600Request extends BaseRequest
@@ -19,7 +20,6 @@ class Tx4600Request extends BaseRequest
     protected $uri = '/Gateway4File/InterfaceII';
 
     protected $txCode = '4600';
-
     /**
      * @var int 业务类型：
      * 10-壹企付-开户上传身份影印图片（默认）
@@ -37,8 +37,9 @@ class Tx4600Request extends BaseRequest
     protected $oCRFlag = 20;
     /**
      * @var array
+     * @see ImageInfoEntity
      */
-    public $imageInfo = [];
+    protected $imageInfo = [];
 
     /**
      * @return int
@@ -99,9 +100,22 @@ class Tx4600Request extends BaseRequest
             'BusinessType' => $this->getBusinessType(),
             'OCRFlag' => $this->getOCRFlag(),
         ];
+        $imageInfo = [];
+        foreach ($this->imageInfo as $v) {
+            /**
+             * @var $v ImageInfoEntity
+             */
+            $imageInfo[] = [
+                'ItemNo' => $v->getItemNo(),
+                'ImageType' => $v->getImageType(),
+                'ImageContent' => $v->getImageContent(),
+            ];
+        }
+        $body = array_merge($body, $imageInfo);
         $data = array_merge($data, [
             'Body' => $body
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', 'ImageInfo', 'UTF-8');
+        parent::process();
     }
 }

@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Constant;
 
 
-class Code
+class TxResponseCode
 {
     /**
      * 表示交易成功 以“交易状态”为准
@@ -20,5 +20,8 @@ class Code
      * 重复交易请求。
      */
     public const REPEAT = '2008';
+
+
+
 
 }

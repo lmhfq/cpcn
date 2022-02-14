@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Service\Ecommerce\Request;
 
 use Lmh\Cpcn\Constant\UserType;
+use Lmh\Cpcn\Entity\Tx\AccountEntity;
 use Lmh\Cpcn\Exception\InvalidConfigException;
 use Lmh\Cpcn\Support\Xml;
 
@@ -53,30 +54,25 @@ class Tx4601Request extends BaseRequest
      * @var string 影印件采集交易流水号
      * 中金账户必填、电子账户模式众邦银行企业用户必填，4600 接口中的 TxSN；
      */
-    protected $imageCollectionTxSN;
+    protected $imageCollectionTxSn = '';
     /**
      * @var int 业务类型
      * 10=开户 20=开户并绑卡
      */
-    protected $businessType = 20;
+    protected $businessType = 10;
     /**
-     * @var array 个人开户选择域
+     * @var string 后台通知地址
      */
-    protected $individual = [];
+    protected $noticeUrl = '';
     /**
-     * @var array 企业开户选择域
+     * @var AccountEntity 开户选择域数据
      */
-    protected $corporation = [];
-    /**
-     * @var array  个体户开户域
-     */
-    protected $retailer = [];
+    protected $accountData;
     /**
      * @var array 绑定银行账户域
      * 业务类型：20=开户并绑卡时必填
      */
     protected $bankAccount = [];
-
 
     /**
      * @return int
@@ -126,7 +122,6 @@ class Tx4601Request extends BaseRequest
         $this->acceptanceConfirmType = $acceptanceConfirmType;
     }
 
-
     /**
      * @return int
      */
@@ -146,17 +141,17 @@ class Tx4601Request extends BaseRequest
     /**
      * @return string
      */
-    public function getImageCollectionTxSN(): string
+    public function getImageCollectionTxSn(): string
     {
-        return $this->imageCollectionTxSN;
+        return $this->imageCollectionTxSn ?: '';
     }
 
     /**
-     * @param string $imageCollectionTxSN
+     * @param string $imageCollectionTxSn
      */
-    public function setImageCollectionTxSN(string $imageCollectionTxSN): void
+    public function setImageCollectionTxSn(string $imageCollectionTxSn): void
     {
-        $this->imageCollectionTxSN = $imageCollectionTxSN;
+        $this->imageCollectionTxSn = $imageCollectionTxSn;
     }
 
     /**
@@ -176,51 +171,35 @@ class Tx4601Request extends BaseRequest
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getIndividual(): array
+    public function getNoticeUrl(): string
     {
-        return $this->individual;
+        return $this->noticeUrl;
     }
 
     /**
-     * @param array $individual
+     * @param string $noticeUrl
      */
-    public function setIndividual(array $individual): void
+    public function setNoticeUrl(string $noticeUrl): void
     {
-        $this->individual = $individual;
+        $this->noticeUrl = $noticeUrl;
     }
 
     /**
-     * @return array
+     * @return AccountEntity
      */
-    public function getCorporation(): array
+    public function getAccountData(): ?AccountEntity
     {
-        return $this->corporation;
+        return $this->accountData;
     }
 
     /**
-     * @param array $corporation
+     * @param AccountEntity|null $accountData
      */
-    public function setCorporation(array $corporation): void
+    public function setAccountData(?AccountEntity $accountData): void
     {
-        $this->corporation = $corporation;
-    }
-
-    /**
-     * @return array
-     */
-    public function getRetailer(): array
-    {
-        return $this->retailer;
-    }
-
-    /**
-     * @param array $retailer
-     */
-    public function setRetailer(array $retailer): void
-    {
-        $this->retailer = $retailer;
+        $this->accountData = $accountData;
     }
 
     /**
@@ -252,20 +231,62 @@ class Tx4601Request extends BaseRequest
             'TxSN' => $this->getTxSn(),
             'UserID' => $this->getUserId(),
             'UserType' => $this->getUserType(),
-            'AcceptanceConfirmType' => $this->getAcceptanceConfirmType(),
-            'AccountLevel' => $this->getAccountLevel(),
         ];
         $body['BusinessType'] = $this->getBusinessType();
+        $body['NoticeURL'] = $this->getNoticeUrl();
         switch ($this->userType) {
             case UserType::INDIVIDUAL:
-                $body['Individual'] = $this->getIndividual();
+                $body['Individual'] = [
+                    'PhoneNumber' => $this->accountData->getContactNumber(),
+                    'UserName' => $this->accountData->getUserName(),
+                    'CredentialType' => $this->accountData->getCredentialType(),
+                    'CredentialNumber' => $this->accountData->getCredentialNumber(),
+                    'IssDate' => $this->accountData->getIssDate(),
+                    'ExpiryDate' => $this->accountData->getExpiryDate(),
+                    'IndAddress' => $this->accountData->getAddress(),
+                    'IndEmail' => $this->accountData->getEmail(),
+                ];
                 break;
             case UserType::CORPORATION:
-                $body['ImageCollectionTxSN'] = $this->getImageCollectionTxSN();
-                $body['Corporation'] = $this->getCorporation();
+                $body['ImageCollectionTxSN'] = $this->getImageCollectionTxSn();
+                $body['Corporation'] = [
+                    'CorporationName' => $this->accountData->getCorporationName(),
+                    'CorporationShort' => $this->accountData->getCorporationShort(),
+                    'CorEmail' => $this->accountData->getEmail(),
+                    'CorAddress' => $this->accountData->getAddress(),
+                    'Scale' => $this->accountData->getScale(),
+                    'UnifiedSocialCreditCode' => $this->accountData->getUnifiedSocialCreditCode(),
+                    'AllLicenceIssDate' => $this->accountData->getAllLicenceIssDate(),
+                    'AllLicenceExpiryDate' => $this->accountData->getAllLicenceExpiryDate(),
+                    'LegalPersonName' => $this->accountData->getUserName(),
+                    'LegalCredentialType' => $this->accountData->getCredentialType(),
+                    'LegalCredentialNumber' => $this->accountData->getCredentialNumber(),
+                    'LegalPersonIssDate' => $this->accountData->getIssDate(),
+                    'LegalPersonExpiryDate' => $this->accountData->getExpiryDate(),
+                    'LegalPersonContactNumber' => $this->accountData->getContactNumber(),
+                ];
+                if ($this->accountData->getProvince()) {
+                    $body['Corporation']['Province'] = $this->accountData->getProvince();
+                    $body['Corporation']['City'] = $this->accountData->getCity();
+                    $body['Corporation']['District'] = $this->accountData->getDistrict();
+                }
+                if ($this->accountData->getBasicAcctNo()) {
+                    $body['Corporation']['BasicAcctNo'] = $this->accountData->getBasicAcctNo();
+                }
+                if ($this->accountData->getApprovalNo()) {
+                    $body['Corporation']['ApprovalNo'] = $this->accountData->getApprovalNo();
+                }
+                if ($this->accountData->getConsigneeName()) {
+                    $body['Corporation']['ConsigneeName'] = $this->accountData->getConsigneeName();
+                    $body['Corporation']['ConsigneeCredentialType'] = $this->accountData->getConsigneeCredentialType();
+                    $body['Corporation']['ConsigneeCredentialNumber'] = $this->accountData->getConsigneeCredentialNumber();
+                    $body['Corporation']['ConsigneeIssDate'] = $this->accountData->getConsigneeIssDate();
+                    $body['Corporation']['ConsigneeExpiryDate'] = $this->accountData->getConsigneeExpiryDate();
+                    $body['Corporation']['ConsigneeContactNumber'] = $this->accountData->getConsigneeContactNumber();
+                }
                 break;
             case UserType::RETAILER:
-                $body['Retailer'] = $this->getRetailer();
+                $body['Retailer'] = [];
                 break;
         }
         $body['BankAccount'] = $this->getBankAccount();
