@@ -7,9 +7,9 @@ namespace Lmh\Cpcn;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Lmh\Cpcn\Notify\NtcBaseRequest;
-use Lmh\Cpcn\Request\TrdBaseRequest;
-use Lmh\Cpcn\Response\TrdBaseResponse;
+use Lmh\Cpcn\Service\Acs\Notify\NtcBaseRequest;
+use Lmh\Cpcn\Service\Acs\Request\TrdBaseRequest;
+use Lmh\Cpcn\Service\Acs\Response\TrdBaseResponse;
 use Lmh\Cpcn\Support\RSASigner;
 use Lmh\Cpcn\Support\ServiceContainer;
 use Lmh\Cpcn\Support\SignatureFactory;
