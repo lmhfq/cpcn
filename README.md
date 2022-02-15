@@ -19,7 +19,7 @@
         //'certificateFilename' => __DIR__ . '/../../config/pfdstest.cer',
   ];
 
-  $trdClient = new TrdClient($config);
+  $trdClient = Factory::acs($config);
   $trdT1001Request = new TrdT1002Request();
   /**
    * @var TrdT1002Response $response
