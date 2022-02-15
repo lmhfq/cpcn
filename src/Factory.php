@@ -18,7 +18,7 @@ use Illuminate\Support\Str;
  * User: lmh <lmh@weiyian.com>
  * Date: 2022/1/22
  * @method static Service\Acs\Application    acs(array $config)
- * @method static Service\Ecommerce\Application    ecommerce(array $config)
+ * @method static Service\Ep\Application    ep(array $config)
  */
 class Factory
 {

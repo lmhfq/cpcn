@@ -27,10 +27,10 @@ class PaymentWay
      */
     public const BALANCE_PAY = '00';
     public const CREDIT_PAY = '02';
-    public const QUICK_PAY = 10;
-    public const EBANK_PAY = 20;
-    public const QR_PAY = 40;
-    public const BARCODE_PAY = 42;
-    public const REDIRECT_PAY = 80;
+    public const QUICK_PAY = '10';
+    public const EBANK_PAY = '20';
+    public const QR_PAY = '40';
+    public const BARCODE_PAY = '42';
+    public const REDIRECT_PAY = '80';
 
 }

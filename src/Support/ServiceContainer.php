@@ -50,7 +50,7 @@ class ServiceContainer extends Container
     {
         $service = get_called_class();
         $serviceData = explode('\\', $service);
-        if (isset($serviceData[3]) && $serviceData[3] == 'Ecommerce') {
+        if (isset($serviceData[3]) && $serviceData[3] == 'Ep') {
             $baseUri = 'https://www.china-clearing.com';
             if (isset($this->userConfig['sandbox']) && $this->userConfig['sandbox'] == true) {
                 $baseUri = 'https://test.cpcn.com.cn';

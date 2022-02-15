@@ -22,6 +22,12 @@ class BankAccountEntity
      */
     protected $bankId;
     /**
+     * @var int 账户类型：
+     * 11=个人账户
+     * 12=企业账户
+     */
+    protected $bankAccountType;
+    /**
      * @var string 账户名称
      */
     protected $bankAccountName;
@@ -80,6 +86,22 @@ class BankAccountEntity
     public function setBankId(string $bankId): void
     {
         $this->bankId = $bankId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBankAccountType(): int
+    {
+        return $this->bankAccountType;
+    }
+
+    /**
+     * @param int $bankAccountType
+     */
+    public function setBankAccountType(int $bankAccountType): void
+    {
+        $this->bankAccountType = $bankAccountType;
     }
 
     /**
