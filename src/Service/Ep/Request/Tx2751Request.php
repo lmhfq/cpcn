@@ -48,5 +48,6 @@ class Tx2751Request extends BaseRequest
             'Body' => $body
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
+        parent::handle();
     }
 }
