@@ -12,15 +12,13 @@ namespace Lmh\Cpcn\Service\Ep\Request;
 
 use Lmh\Cpcn\Constant\Operation;
 use Lmh\Cpcn\Constant\UserType;
+use Lmh\Cpcn\Entity\Tx\BankAccountEntity;
+use Lmh\Cpcn\Exception\InvalidConfigException;
 use Lmh\Cpcn\Support\Xml;
 
 class Tx4611Request extends BaseRequest
 {
     protected $txCode = '4611';
-    /**
-     * @var string 银行账户绑定流水号
-     */
-    protected $bindingTxSn;
     /**
      * @var string 收款用户ID
      * 仅支持实名企业用户
@@ -42,7 +40,7 @@ class Tx4611Request extends BaseRequest
     /**
      * @var string 绑卡升级交易流水号
      */
-    protected $upgradeTxSN;
+    protected $upgradeTxSn;
     /**
      * @var string 绑卡验证方式：
      * 10=短信验证-快捷绑卡
@@ -64,46 +62,10 @@ class Tx4611Request extends BaseRequest
      */
     protected $credentialNumber;
     /**
-     * @var string 绑定银行 ID
+     * @var BankAccountEntity
+     * 当收款账户类型为 30-银行账户时，
      */
-    protected $bankId;
-    /**
-     * @var int 账户类型：
-     * 11=个人账户
-     * 12=企业账户
-     * OperationFlag=10 时必填
-     */
-    protected $bankAccountType;
-    /**
-     * @var string 银行账户名称
-     * OperationFlag=10 时必填
-     */
-    protected $bankAccountName;
-    /**
-     * @var string 银行账户号码
-     * OperationFlag=10 时必填
-     */
-    protected $bankAccountNumber;
-    /**
-     * @var string 银行卡预留手机号码
-     * 个人用户开户绑卡时必填；
-     */
-    protected $bankPhoneNumber;
-    /**
-     * @var string 分支行名称
-     * 企业用户开户绑卡时必填；
-     */
-    protected $branchName;
-    /**
-     * @var string 省份
-     * 企业用户开户绑卡时必填；
-     */
-    protected $province;
-    /**
-     * @var string 分支行名称
-     * 企业用户开户绑卡时必填；
-     */
-    protected $city;
+    protected $bankAccount;
     /**
      * @var int 转账充值开通标识：
      * 0=不开通
@@ -114,22 +76,6 @@ class Tx4611Request extends BaseRequest
      * @var string 后台通知地址
      */
     protected $noticeUrl = '';
-
-    /**
-     * @return string
-     */
-    public function getBindingTxSn(): string
-    {
-        return $this->bindingTxSn;
-    }
-
-    /**
-     * @param string $bindingTxSn
-     */
-    public function setBindingTxSn(string $bindingTxSn): void
-    {
-        $this->bindingTxSn = $bindingTxSn;
-    }
 
     /**
      * @return string
@@ -182,22 +128,6 @@ class Tx4611Request extends BaseRequest
     /**
      * @return string
      */
-    public function getUpgradeTxSN(): string
-    {
-        return $this->upgradeTxSN;
-    }
-
-    /**
-     * @param string $upgradeTxSN
-     */
-    public function setUpgradeTxSN(string $upgradeTxSN): void
-    {
-        $this->upgradeTxSN = $upgradeTxSN;
-    }
-
-    /**
-     * @return string
-     */
     public function getBindingWay()
     {
         return $this->bindingWay;
@@ -244,134 +174,6 @@ class Tx4611Request extends BaseRequest
     }
 
     /**
-     * @return string
-     */
-    public function getBankId(): string
-    {
-        return $this->bankId;
-    }
-
-    /**
-     * @param string $bankId
-     */
-    public function setBankId(string $bankId): void
-    {
-        $this->bankId = $bankId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getBankAccountType(): int
-    {
-        return $this->bankAccountType;
-    }
-
-    /**
-     * @param int $bankAccountType
-     */
-    public function setBankAccountType(int $bankAccountType): void
-    {
-        $this->bankAccountType = $bankAccountType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBankAccountName(): string
-    {
-        return $this->bankAccountName;
-    }
-
-    /**
-     * @param string $bankAccountName
-     */
-    public function setBankAccountName(string $bankAccountName): void
-    {
-        $this->bankAccountName = $bankAccountName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBankAccountNumber(): string
-    {
-        return $this->bankAccountNumber;
-    }
-
-    /**
-     * @param string $bankAccountNumber
-     */
-    public function setBankAccountNumber(string $bankAccountNumber): void
-    {
-        $this->bankAccountNumber = $bankAccountNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBankPhoneNumber(): string
-    {
-        return $this->bankPhoneNumber;
-    }
-
-    /**
-     * @param string $bankPhoneNumber
-     */
-    public function setBankPhoneNumber(string $bankPhoneNumber): void
-    {
-        $this->bankPhoneNumber = $bankPhoneNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBranchName(): string
-    {
-        return $this->branchName;
-    }
-
-    /**
-     * @param string $branchName
-     */
-    public function setBranchName(string $branchName): void
-    {
-        $this->branchName = $branchName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getProvince(): string
-    {
-        return $this->province;
-    }
-
-    /**
-     * @param string $province
-     */
-    public function setProvince(string $province): void
-    {
-        $this->province = $province;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCity(): string
-    {
-        return $this->city;
-    }
-
-    /**
-     * @param string $city
-     */
-    public function setCity(string $city): void
-    {
-        $this->city = $city;
-    }
-
-    /**
      * @return int
      */
     public function getTransferChargeFlag(): int
@@ -403,39 +205,74 @@ class Tx4611Request extends BaseRequest
         $this->noticeUrl = $noticeUrl;
     }
 
+    /**
+     * @return string
+     */
+    public function getUpgradeTxSn(): string
+    {
+        return $this->upgradeTxSn;
+    }
 
+    /**
+     * @param string $upgradeTxSn
+     */
+    public function setUpgradeTxSn(string $upgradeTxSn): void
+    {
+        $this->upgradeTxSn = $upgradeTxSn;
+    }
+
+    /**
+     * @return BankAccountEntity
+     */
+    public function getBankAccount(): BankAccountEntity
+    {
+        return $this->bankAccount;
+    }
+
+    /**
+     * @param BankAccountEntity $bankAccount
+     */
+    public function setBankAccount(BankAccountEntity $bankAccount): void
+    {
+        $this->bankAccount = $bankAccount;
+    }
+
+    /**
+     * @throws InvalidConfigException
+     * @author lmh
+     */
     public function handle()
     {
         $data = [];
         $data = array_merge($data, parent::getHead());
         $body = [
             'InstitutionID' => $this->getInstitutionId(),
-            'BindingTxSN' => $this->getBindingTxSn(),
+            'BindingTxSN' => $this->bankAccount->getBindingTxSn(),
             'UserID' => $this->getUserId(),
             'OperationFlag' => $this->getOperationFlag(),
         ];
-        $body['BankAccountType'] = $this->getBankAccountType();
+        $body['BankAccountType'] = $this->bankAccount->getBankAccountType();
         $body['BindingWay'] = $this->getBindingWay();
         switch ($this->operationFlag) {
             case Operation::FLAG_BIND:
-                if ($this->bankAccountType == UserType::INDIVIDUAL) {
+                if ($this->bankAccount->getBankAccountType() == UserType::INDIVIDUAL) {
                     $body['BankCardType'] = $this->getBankCardType();
                     $body['CredentialType'] = $this->getCredentialType();
                     $body['CredentialNumber'] = $this->getCredentialNumber();
-                    $body['BankPhoneNumber'] = $this->getBankPhoneNumber();
+                    $body['BankPhoneNumber'] = $this->bankAccount->getBankPhoneNumber();
                 } else {
-                    $body['BranchName'] = $this->getBranchName();
-                    $body['Province'] = $this->getProvince();
-                    $body['City'] = $this->getCity();
+                    $body['BranchName'] = $this->bankAccount->getBranchName();
+                    $body['Province'] = $this->bankAccount->getProvince();
+                    $body['City'] = $this->bankAccount->getCity();
                 }
-                $body['BankID'] = $this->getBankId();
-                $body['BankAccountName'] = $this->getBankAccountName();
-                $body['BankAccountNumber'] = $this->getBankAccountNumber();
+                $body['BankID'] = $this->bankAccount->getBankId();
+                $body['BankAccountName'] = $this->bankAccount->getBankAccountName();
+                $body['BankAccountNumber'] = $this->bankAccount->getBankAccountNumber();
                 break;
             case Operation::FLAG_UNBIND:
                 break;
             case Operation::FLAG_UPGRADE;
-                $body['UpgradeTxSN'] = $this->getUpgradeTxSN();
+                $body['UpgradeTxSN'] = $this->getUpgradeTxSn();
                 break;
         }
         $body['TransferChargeFlag'] = $this->getTransferChargeFlag();
