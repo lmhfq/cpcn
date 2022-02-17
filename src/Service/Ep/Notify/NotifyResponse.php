@@ -18,26 +18,46 @@ class NotifyResponse
     /**
      * @var string 返回码
      */
-    protected $code = TxResponseCode::SUCCESS;
+    protected $responseCode = TxResponseCode::SUCCESS;
     /**
      * @var string 返回信息
      */
-    protected $message = '处理成功';
+    protected $responseMessage = '处理成功';
+    /**
+     * @var string
+     */
+    protected $message;
 
     /**
      * @return string
      */
-    public function getCode(): string
+    public function getResponseCode(): string
     {
-        return $this->code;
+        return $this->responseCode;
     }
 
     /**
-     * @param string $code
+     * @param string $responseCode
      */
-    public function setCode(string $code): void
+    public function setResponseCode(string $responseCode): void
     {
-        $this->code = $code;
+        $this->responseCode = $responseCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponseMessage(): string
+    {
+        return $this->responseMessage;
+    }
+
+    /**
+     * @param string $responseMessage
+     */
+    public function setResponseMessage(string $responseMessage): void
+    {
+        $this->responseMessage = $responseMessage;
     }
 
     /**
@@ -64,22 +84,21 @@ class NotifyResponse
     {
         return [
             'Head' => [
-                'Code' => $this->getCode(),
-                'Message' => $this->getMessage(),
+                'Code' => $this->getResponseCode(),
+                'Message' => $this->getResponseMessage(),
             ],
         ];
     }
 
 
     /**
-     * @return string
      * @author lmh
      */
-    public function handle(): string
+    public function handle()
     {
         $data = [];
         $data = array_merge($data, self::getHead());
         $xml = Xml::build($data, 'Response', '', 'UTF-8');
-        return base64_encode(trim($xml));
+        $this->message = base64_encode(trim($xml));
     }
 }
