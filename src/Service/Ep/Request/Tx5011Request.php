@@ -86,7 +86,7 @@ class Tx5011Request extends BaseRequest
     /**
      * @var string 实时扣收手续费挂账的结算标识
      */
-    protected $deductionSettlementFlag;
+    protected $deductionSettlementFlag = '0001';
     /**
      * @var string 扩展字段 JSON 对象数据
      */
@@ -154,7 +154,7 @@ class Tx5011Request extends BaseRequest
      */
     public function getPayeeAccountNumber(): string
     {
-        return $this->payeeAccountNumber;
+        return $this->payeeAccountNumber ?: '';
     }
 
     /**
@@ -266,7 +266,7 @@ class Tx5011Request extends BaseRequest
      */
     public function getPlatformName(): string
     {
-        return $this->platformName;
+        return $this->platformName ?: '';
     }
 
     /**
@@ -346,7 +346,7 @@ class Tx5011Request extends BaseRequest
      */
     public function getExtension(): string
     {
-        return $this->extension;
+        return $this->extension ?: '';
     }
 
     /**
@@ -428,8 +428,8 @@ class Tx5011Request extends BaseRequest
             case PaymentWay::REDIRECT_PAY:
                 $body['RedirectPay'] = [
                     'RedirectSource' => $this->payData->getRedirectSource(),
-                    'PayWay' => $this->payData->getRedirectSource(),
-                    'PayType' => $this->payData->getRedirectSource(),
+                    'PayWay' => $this->payData->getPayWay(),
+                    'PayType' => $this->payData->getPayType(),
                     'RedirectPayBankID' => $this->payData->getRedirectPayBankId(),
                     'SubAppID' => $this->payData->getSubAppId(),
                     'SubOpenID' => $this->payData->getSubOpenId(),

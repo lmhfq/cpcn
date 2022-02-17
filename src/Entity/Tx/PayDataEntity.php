@@ -161,7 +161,7 @@ class PayDataEntity
     /**
      * @var string 成功前台跳转页面
      */
-    protected $RedirectPageUrl;
+    protected $redirectPageUrl;
 
     /**
      * @return string
@@ -280,7 +280,7 @@ class PayDataEntity
      */
     public function getRedirectPayBankId(): string
     {
-        return $this->redirectPayBankId;
+        return $this->redirectPayBankId ?: '';
     }
 
     /**
@@ -312,7 +312,7 @@ class PayDataEntity
      */
     public function getSubOpenId(): string
     {
-        return $this->subOpenId;
+        return $this->subOpenId ?: '';
     }
 
     /**
@@ -494,7 +494,7 @@ class PayDataEntity
     /**
      * @param string $scanPageUrlType
      */
-    public function setScanPageUrlType($scanPageUrlType): void
+    public function setScanPageUrlType(string $scanPageUrlType): void
     {
         $this->scanPageUrlType = $scanPageUrlType;
     }
@@ -504,15 +504,15 @@ class PayDataEntity
      */
     public function getRedirectPageUrl(): string
     {
-        return $this->RedirectPageUrl;
+        return $this->redirectPageUrl;
     }
 
     /**
-     * @param string $RedirectPageUrl
+     * @param string $redirectPageUrl
      */
-    public function setRedirectPageUrl(string $RedirectPageUrl): void
+    public function setRedirectPageUrl(string $redirectPageUrl): void
     {
-        $this->RedirectPageUrl = $RedirectPageUrl;
+        $this->redirectPageUrl = $redirectPageUrl;
     }
 
 }
