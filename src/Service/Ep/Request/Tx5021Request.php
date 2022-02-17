@@ -54,6 +54,22 @@ class Tx5021Request extends BaseRequest
     /**
      * @return string
      */
+    public function getPaymentTxSn(): string
+    {
+        return $this->paymentTxSn;
+    }
+
+    /**
+     * @param string $paymentTxSn
+     */
+    public function setPaymentTxSn(string $paymentTxSn): void
+    {
+        $this->paymentTxSn = $paymentTxSn;
+    }
+
+    /**
+     * @return string
+     */
     public function getSourceTxTime(): string
     {
         return $this->sourceTxTime;
@@ -67,6 +83,103 @@ class Tx5021Request extends BaseRequest
         $this->sourceTxTime = $sourceTxTime;
     }
 
+    /**
+     * @return int
+     */
+    public function getRefundWay(): int
+    {
+        return $this->refundWay;
+    }
+
+    /**
+     * @param int $refundWay
+     */
+    public function setRefundWay(int $refundWay): void
+    {
+        $this->refundWay = $refundWay;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAmount(): int
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param int $amount
+     */
+    public function setAmount(int $amount): void
+    {
+        $this->amount = $amount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCancelAmount(): int
+    {
+        return $this->cancelAmount;
+    }
+
+    /**
+     * @param int $cancelAmount
+     */
+    public function setCancelAmount(int $cancelAmount): void
+    {
+        $this->cancelAmount = $cancelAmount;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNoticeUrl(): string
+    {
+        return $this->noticeUrl;
+    }
+
+    /**
+     * @param string $noticeUrl
+     */
+    public function setNoticeUrl(string $noticeUrl): void
+    {
+        $this->noticeUrl = $noticeUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRemark(): string
+    {
+        return $this->remark;
+    }
+
+    /**
+     * @param string $remark
+     */
+    public function setRemark(string $remark): void
+    {
+        $this->remark = $remark;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSplitItems(): array
+    {
+        return $this->splitItems;
+    }
+
+    /**
+     * @param array $splitItems
+     */
+    public function setSplitItems(array $splitItems): void
+    {
+        $this->splitItems = $splitItems;
+    }
+
+
     public function handle()
     {
         $data = [];
@@ -74,9 +187,15 @@ class Tx5021Request extends BaseRequest
         $body = [
             'InstitutionID' => $this->getInstitutionId(),
             'TxSN' => $this->getTxSn(),
+            'PaymentTxSN' => $this->getPaymentTxSn(),
+            'RefundWay' => $this->getRefundWay(),
+            'Amount' => $this->getAmount(),
         ];
         if ($this->sourceTxTime) {
             $body['SourceTxTime'] = $this->getSourceTxTime();
+        }
+        if ($this->cancelAmount) {
+            $body['CancelAmount'] = $this->getCancelAmount();
         }
         $data = array_merge($data, [
             'Body' => $body
