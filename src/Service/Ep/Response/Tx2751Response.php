@@ -31,6 +31,54 @@ class Tx2751Response extends BaseResponse
     protected $bankName;
 
     /**
+     * @return int
+     */
+    public function getCardMediaType(): int
+    {
+        return $this->cardMediaType;
+    }
+
+    /**
+     * @param int $cardMediaType
+     */
+    public function setCardMediaType(int $cardMediaType): void
+    {
+        $this->cardMediaType = $cardMediaType;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBankId(): int
+    {
+        return intval($this->bankId);
+    }
+
+    /**
+     * @param int $bankId
+     */
+    public function setBankId(int $bankId): void
+    {
+        $this->bankId = $bankId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBankName(): string
+    {
+        return $this->bankName ?: '';
+    }
+
+    /**
+     * @param string $bankName
+     */
+    public function setBankName(string $bankName): void
+    {
+        $this->bankName = $bankName;
+    }
+
+    /**
      * @param string $message
      * @author lmh
      */
