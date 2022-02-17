@@ -16,14 +16,6 @@ use Lmh\Cpcn\Support\ArrayUtil;
 class Tx4601Response extends BaseResponse
 {
     /**
-     * @var string 机构编号
-     */
-    protected $institutionId;
-    /**
-     * @var string
-     */
-    protected $userId;
-    /**
      * @var int 状态:
      * 10=受理成功
      * 20=处理中
@@ -43,38 +35,6 @@ class Tx4601Response extends BaseResponse
      * 40=失败
      */
     protected $bindingStatus;
-
-    /**
-     * @return string
-     */
-    public function getInstitutionId(): string
-    {
-        return $this->institutionId;
-    }
-
-    /**
-     * @param string $institutionId
-     */
-    public function setInstitutionId(string $institutionId): void
-    {
-        $this->institutionId = $institutionId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUserId(): string
-    {
-        return $this->userId;
-    }
-
-    /**
-     * @param string $userId
-     */
-    public function setUserId(string $userId): void
-    {
-        $this->userId = $userId;
-    }
 
     /**
      * @return int

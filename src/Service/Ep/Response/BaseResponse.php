@@ -48,6 +48,14 @@ class BaseResponse
      */
     protected $txSn;
     /**
+     * @var string 机构编号
+     */
+    protected $institutionId;
+    /**
+     * @var string 用户ID
+     */
+    protected $userId;
+    /**
      * @var array
      */
     protected $responseBody = [];
@@ -119,6 +127,38 @@ class BaseResponse
     /**
      * @return string
      */
+    public function getInstitutionId(): string
+    {
+        return $this->institutionId;
+    }
+
+    /**
+     * @param string $institutionId
+     */
+    public function setInstitutionId(string $institutionId): void
+    {
+        $this->institutionId = $institutionId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserId(): string
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param string $userId
+     */
+    public function setUserId(string $userId): void
+    {
+        $this->userId = $userId;
+    }
+
+    /**
+     * @return string
+     */
     public function getResponseCode(): string
     {
         return $this->responseCode;
@@ -165,6 +205,8 @@ class BaseResponse
         $this->code = ArrayUtil::get('Code', $head);
         $this->message = ArrayUtil::get('Message', $head);
         $this->txSn = ArrayUtil::get('TxSN', $this->responseBody);
+        $this->institutionId = ArrayUtil::get('InstitutionID', $this->responseBody);
+        $this->userId = ArrayUtil::get('UserID', $this->responseBody);
 
         $this->responseCode = ArrayUtil::get('ResponseCode', $this->responseBody);
         $this->responseMessage = ArrayUtil::get('ResponseMessage', $this->responseBody);
