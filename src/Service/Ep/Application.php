@@ -103,7 +103,7 @@ class Application extends ServiceContainer
 
         $logger = $this->offsetGet("logger");
         if ($this->offsetGet("config")['debug']) {
-            $logger->debug("回调原文", [$baseNotify->getPlainText()]);
+            $logger->debug("回调原文", [$baseNotify->getNoticePlainText()]);
         }
         return $baseNotify;
     }

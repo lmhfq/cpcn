@@ -37,6 +37,14 @@ class BaseNotify
     /**
      * @return string
      */
+    public function getNoticePlainText(): string
+    {
+        return $this->noticePlainText;
+    }
+
+    /**
+     * @return string
+     */
     public function getTxCode(): string
     {
         return $this->txCode;
