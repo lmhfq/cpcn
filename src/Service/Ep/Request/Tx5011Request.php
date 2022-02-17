@@ -22,10 +22,6 @@ class Tx5011Request extends BaseRequest
      */
     protected $orderNo;
     /**
-     * @var string
-     */
-    protected $terminalUserId;
-    /**
      * @var string 付款用户ID
      */
     protected $payerUserId;
@@ -119,22 +115,6 @@ class Tx5011Request extends BaseRequest
     public function setOrderNo(string $orderNo): void
     {
         $this->orderNo = $orderNo;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTerminalUserId(): string
-    {
-        return $this->terminalUserId;
-    }
-
-    /**
-     * @param string $terminalUserId
-     */
-    public function setTerminalUserId(string $terminalUserId): void
-    {
-        $this->terminalUserId = $terminalUserId;
     }
 
     /**
@@ -417,7 +397,6 @@ class Tx5011Request extends BaseRequest
             'InstitutionID' => $this->getInstitutionId(),
             'TxSN' => $this->getTxSn(),
             'OrderNo' => $this->getOrderNo(),
-            'TerminalUserID' => $this->getTerminalUserId(),
             'PayerUserID' => $this->getPayerUserId(),
             'PayeeUserID' => $this->getPayeeUserId(),
             'PayeeAccountNumber' => $this->getPayeeAccountNumber(),

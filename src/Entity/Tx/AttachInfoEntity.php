@@ -52,7 +52,7 @@ class AttachInfoEntity
      */
     public function getAppId(): string
     {
-        return $this->appId;
+        return $this->appId ?: '';
     }
 
     /**
@@ -68,7 +68,7 @@ class AttachInfoEntity
      */
     public function getAuthPath(): string
     {
-        return $this->authPath;
+        return $this->authPath ?: '';
     }
 
     /**

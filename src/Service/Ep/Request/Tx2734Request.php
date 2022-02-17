@@ -56,6 +56,71 @@ class Tx2734Request extends BaseRequest
         $this->applyNo = $applyNo;
     }
 
+    /**
+     * @return string
+     */
+    public function getBindingTxSn(): string
+    {
+        return $this->bindingTxSn;
+    }
+
+    /**
+     * @param string $bindingTxSn
+     */
+    public function setBindingTxSn(string $bindingTxSn): void
+    {
+        $this->bindingTxSn = $bindingTxSn;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPayWay()
+    {
+        return $this->payWay;
+    }
+
+    /**
+     * @param string $payWay
+     */
+    public function setPayWay(string $payWay): void
+    {
+        $this->payWay = $payWay;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCategory(): int
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param int $category
+     */
+    public function setCategory(int $category): void
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAttachInfoList(): array
+    {
+        return $this->attachInfoList;
+    }
+
+    /**
+     * @param array $attachInfoList
+     */
+    public function setAttachInfoList(array $attachInfoList): void
+    {
+        $this->attachInfoList = $attachInfoList;
+    }
+
+
     public function handle()
     {
         $data = [];
@@ -65,9 +130,9 @@ class Tx2734Request extends BaseRequest
         $body = [
             'ApplyNo' => $this->getApplyNo(),
             'UserID' => $this->getUserId(),
-            'BindingTxSN' => $this->getUserId(),
-            'PayWay' => $this->getUserId(),
-            'Category' => $this->getUserId(),
+            'BindingTxSN' => $this->getBindingTxSn(),
+            'PayWay' => $this->getPayWay(),
+            'Category' => $this->getCategory(),
         ];
         $attachInfoList = [];
         foreach ($this->attachInfoList as $v) {

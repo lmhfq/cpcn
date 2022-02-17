@@ -53,10 +53,10 @@ class RedirectPay
      * 34=Apple Pay
      * 35=Android Pay
      */
-    public const PayType_ONLINE_BANK = 30;
-    public const PayType_WECHAT = 31;
-    public const PayType_ALIPAY = 32;
-    public const PayType_UNIONPAY = 33;
+    public const PAYTYPE_ONLINE_BANK = 30;
+    public const PAYTYPE_WECHAT = 31;
+    public const PAYTYPE_ALIPAY = 32;
+    public const PAYTYPE_UNIONPAY = 33;
     public const PAYTYPE_APPLE_PAY = 34;
     public const PAYTYPE_ANDROID_PAY = 35;
 }
