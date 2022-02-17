@@ -108,7 +108,7 @@ class Tx4643Request extends BaseRequest
      */
     public function getNoticeUrl(): string
     {
-        return $this->noticeUrl;
+        return $this->noticeUrl ?: '';
     }
 
     /**

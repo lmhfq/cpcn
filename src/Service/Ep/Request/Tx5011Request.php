@@ -234,7 +234,7 @@ class Tx5011Request extends BaseRequest
      */
     public function getNoticeUrl(): string
     {
-        return $this->noticeUrl;
+        return $this->noticeUrl ?: '';
     }
 
     /**
