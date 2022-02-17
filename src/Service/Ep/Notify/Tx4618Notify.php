@@ -10,8 +10,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Service\Ep\Notify;
 
 
-class Tx4618Notify extends BaseNotify
+class Tx4618Notify extends TBaseNotify
 {
-
     protected $sourceTxCode;
 }

@@ -34,6 +34,22 @@ class BaseNotify
      */
     protected $txCode;
 
+    /**
+     * @return string
+     */
+    public function getTxCode(): string
+    {
+        return $this->txCode;
+    }
+
+    /**
+     * @return array
+     */
+    public function getNoticeBody(): array
+    {
+        return $this->noticeBody;
+    }
+
     public function handle(string $message, string $signature)
     {
         $this->noticePlainText = trim(base64_decode($message));

@@ -83,6 +83,7 @@ class Application extends ServiceContainer
     }
 
     /**
+     * 处理回调信息
      * @param string $message
      * @param string $signature
      * @param BaseNotify $baseNotify

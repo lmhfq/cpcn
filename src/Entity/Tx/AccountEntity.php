@@ -293,7 +293,7 @@ class AccountEntity
      */
     public function getAllLicenceExpiryDate(): string
     {
-        return $this->allLicenceExpiryDate;
+        return $this->allLicenceExpiryDate ?: '';
     }
 
     /**
