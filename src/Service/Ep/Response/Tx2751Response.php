@@ -86,7 +86,7 @@ class Tx2751Response extends BaseResponse
     {
         parent::handle($message);
         if ($this->code == TxResponseCode::SUCCESS) {
-            $this->cardMediaType = ArrayUtil::get('CardMediaType', $this->responseBody);
+            $this->cardMediaType = intval(ArrayUtil::get('CardMediaType', $this->responseBody));
             $this->bankId = ArrayUtil::get('BankID', $this->responseBody);
             $this->bankName = ArrayUtil::get('BankName', $this->responseBody);
         }

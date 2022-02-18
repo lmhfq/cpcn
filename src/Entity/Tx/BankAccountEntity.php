@@ -41,6 +41,10 @@ class BankAccountEntity
      */
     protected $bankPhoneNumber;
     /**
+     * @var string 人民银行联行号
+     */
+    protected $cNAPSCode;
+    /**
      * @var string 分支行名称
      * 企业用户开户绑卡时必填；
      */
@@ -55,6 +59,23 @@ class BankAccountEntity
      * 企业用户开户绑卡时必填；
      */
     protected $city;
+
+    /**
+     * @return string
+     */
+    public function getCNAPSCode(): string
+    {
+        return $this->cNAPSCode?:'';
+    }
+
+    /**
+     * @param string $cNAPSCode
+     */
+    public function setCNAPSCode(string $cNAPSCode): void
+    {
+        $this->cNAPSCode = $cNAPSCode;
+    }
+
 
     /**
      * @return string

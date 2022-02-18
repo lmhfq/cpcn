@@ -26,6 +26,10 @@ abstract class TBaseNotify
      * @var string 用户ID
      */
     protected $userId;
+    /**
+     * @var array
+     */
+    protected $noticeBody;
 
     /**
      * @return string
@@ -81,9 +85,9 @@ abstract class TBaseNotify
      */
     public function __construct(BaseNotify $baseNotify)
     {
-        $noticeBody = $baseNotify->getNoticeBody();
-        $this->institutionId = ArrayUtil::get('InstitutionID', $noticeBody, []);
-        $this->txSn = ArrayUtil::get('TxSN', $noticeBody, []);
-        $this->userId = ArrayUtil::get('UserID', $noticeBody);
+        $this->noticeBody = $baseNotify->getNoticeBody();
+        $this->institutionId = ArrayUtil::get('InstitutionID', $this->noticeBody, []);
+        $this->txSn = ArrayUtil::get('TxSN', $this->noticeBody, []);
+        $this->userId = ArrayUtil::get('UserID', $this->noticeBody);
     }
 }

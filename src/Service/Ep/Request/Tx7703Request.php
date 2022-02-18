@@ -275,6 +275,9 @@ class Tx7703Request extends BaseRequest
             $body['BankAccountName'] = $this->bankAccount->getBankAccountName();
             $body['BankAccountNumber'] = $this->bankAccount->getBankAccountNumber();
             $body['BranchName'] = $this->bankAccount->getBranchName();
+            if ($this->bankAccount->getCNAPSCode()) {
+                $body['CNAPSCode'] = $this->bankAccount->getCNAPSCode();
+            }
             $body['Province'] = $this->bankAccount->getProvince();
             $body['City'] = $this->bankAccount->getCity();
         }
