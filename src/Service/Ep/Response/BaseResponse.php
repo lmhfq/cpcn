@@ -202,7 +202,7 @@ class BaseResponse
         $head = ArrayUtil::get('Head', $this->responseData, []);
         $this->responseBody = ArrayUtil::get('Body', $this->responseData, []);
 
-        $this->code = ArrayUtil::get('Code', $head);
+        $this->code = strval(ArrayUtil::get('Code', $head));
         $this->message = ArrayUtil::get('Message', $head);
         $this->txSn = ArrayUtil::get('TxSN', $this->responseBody);
         $this->institutionId = ArrayUtil::get('InstitutionID', $this->responseBody);
