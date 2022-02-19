@@ -90,6 +90,6 @@ class Tx4618Notify extends TBaseNotify
     public function __construct(BaseNotify $baseNotify)
     {
         parent::__construct($baseNotify);
-        $this->status = ArrayUtil::get('Status', $this->noticeBody, []);
+        $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
     }
 }
