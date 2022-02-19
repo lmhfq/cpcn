@@ -43,17 +43,17 @@ class Tx7709Notify extends TBaseNotify
     /**
      * @return string
      */
-    public function getSignTime()
+    public function getSignTime(): string
     {
-        return $this->signTime;
+        return $this->signTime ?: '';
     }
 
     /**
      * @return string
      */
-    public function getPhoneNumber()
+    public function getPhoneNumber(): string
     {
-        return $this->phoneNumber;
+        return $this->phoneNumber ?: '';
     }
 
     /**

@@ -161,7 +161,7 @@ class BaseResponse
      */
     public function getResponseCode(): string
     {
-        return $this->responseCode;
+        return $this->responseCode ?: '';
     }
 
     /**
