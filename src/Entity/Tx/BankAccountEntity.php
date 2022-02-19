@@ -163,7 +163,7 @@ class BankAccountEntity
      */
     public function getBankPhoneNumber(): string
     {
-        return $this->bankPhoneNumber;
+        return $this->bankPhoneNumber ?: '';
     }
 
     /**
