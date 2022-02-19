@@ -21,7 +21,7 @@ class RedirectPay
      */
     public const SOURCE_APP = 10;
     public const SOURCE_H5 = 20;
-    public const SOURCE_WECHAR = 30;
+    public const SOURCE_WECHAT = 30;
     public const SOURCE_MINI_PROGRAM = 40;
     /**
      *支付方式
