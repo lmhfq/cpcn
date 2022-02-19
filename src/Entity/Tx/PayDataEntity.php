@@ -232,7 +232,7 @@ class PayDataEntity
      */
     public function getRedirectSource(): string
     {
-        return $this->redirectSource;
+        return $this->redirectSource ?: '';
     }
 
     /**
