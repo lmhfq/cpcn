@@ -20,6 +20,10 @@ class TxResponseCode
      * 重复交易请求。
      */
     public const REPEAT = '2008';
+    /**
+     *
+     */
+    public const TRADE_SUCCESS = '000000';
 
 
 

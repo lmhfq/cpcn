@@ -44,7 +44,7 @@ class Tx2734Response extends BaseResponse
     {
         parent::handle($message);
         if ($this->code == TxResponseCode::SUCCESS) {
-            $this->status = ArrayUtil::get('Status', $this->responseBody);
+            $this->status = intval(ArrayUtil::get('Status', $this->responseBody));
         }
     }
 }

@@ -61,7 +61,7 @@ class Tx2734Request extends BaseRequest
      */
     public function getBindingTxSn(): string
     {
-        return $this->bindingTxSn;
+        return $this->bindingTxSn ?: '';
     }
 
     /**
