@@ -65,7 +65,7 @@ class Tx7703Response extends BaseResponse
         parent::handle($message);
         if ($this->code == TxResponseCode::SUCCESS) {
             $this->phoneNumber = ArrayUtil::get('PhoneNumber', $this->responseBody);
-            $this->status = ArrayUtil::get('Status', $this->responseBody);
+            $this->status = intval(ArrayUtil::get('Status', $this->responseBody));
         }
     }
 
