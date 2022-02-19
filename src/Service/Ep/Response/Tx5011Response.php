@@ -129,7 +129,7 @@ class Tx5011Response extends BaseResponse
      */
     public function getBankTraceNo(): string
     {
-        return $this->bankTraceNo;
+        return $this->bankTraceNo ?: '';
     }
 
     /**
