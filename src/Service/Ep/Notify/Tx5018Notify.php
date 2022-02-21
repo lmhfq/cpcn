@@ -19,7 +19,7 @@ class Tx5018Notify extends TBaseNotify
      */
     protected $orderNo;
     /**
-     * @var string 支付金额，单位： 分
+     * @var int 支付金额，单位： 分
      */
     protected $amount;
     /**
@@ -27,7 +27,12 @@ class Tx5018Notify extends TBaseNotify
      */
     protected $availableSplitAmount;
     /**
-     * @var string 订单号
+     * @var int 支付状态:
+     * 10=未支付
+     * 20=支付处理中
+     * 30=支付成功
+     * 40=支付失败
+     * 50=订单关闭
      */
     protected $status;
     /**
@@ -72,17 +77,17 @@ class Tx5018Notify extends TBaseNotify
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getAmount(): string
+    public function getAmount(): int
     {
         return $this->amount;
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getStatus(): string
+    public function getStatus(): int
     {
         return $this->status;
     }
