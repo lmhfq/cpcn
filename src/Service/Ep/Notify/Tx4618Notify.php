@@ -31,7 +31,9 @@ class Tx4618Notify extends TBaseNotify
      */
     protected $parentUserId;
     /**
-     * @var int
+     * @var int 状态:
+    18=被动已打款待验证
+    30=成功
      */
     protected $status;
     /**
@@ -91,5 +93,8 @@ class Tx4618Notify extends TBaseNotify
     {
         parent::__construct($baseNotify);
         $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
+        $this->userType =  intval(ArrayUtil::get('UserType', $this->noticeBody));
+        $this->sourceTxCode = strval(ArrayUtil::get('SourceTxCode', $this->noticeBody));
+        $this->sourceTxSn = ArrayUtil::get('SourceTxSN', $this->noticeBody);
     }
 }
