@@ -106,7 +106,7 @@ class Tx4692Request extends BaseRequest
         $data = array_merge($data, parent::getHead());
         $body = [
             'InstitutionID' => $this->getInstitutionId(),
-            'UserID' => $this->getTxSn(),
+            'UserID' => $this->getUserId(),
             'StartDate' => $this->getStartDate(),
             'EndDate' => $this->getEndDate(),
             'PageIndex' => $this->getPageIndex(),
