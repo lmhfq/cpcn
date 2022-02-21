@@ -4,7 +4,7 @@ declare(strict_types=1);
  * Created by PhpStorm.
  * User: lmh <lmh@weiyian.com>
  * Date: 2022/2/21
- * Time: 上午11:04
+ * Time: 下午1:55
  */
 
 namespace Lmh\Cpcn\Service\Ep\Response;
@@ -13,32 +13,40 @@ namespace Lmh\Cpcn\Service\Ep\Response;
 use Lmh\Cpcn\Constant\TxResponseCode;
 use Lmh\Cpcn\Support\ArrayUtil;
 
-class Tx5031Response extends BaseResponse
+class Tx5021Response extends BaseResponse
 {
     /**
-     * @var int
+     * @var string 退款回单流水号
+     */
+    protected $refundTraceNo;
+    /**
+     * @var int  退款金额，单位：分
      */
     protected $amount;
     /**
-     * @var int
+     * @var int 返还收款用户手续费总金额,单位：分
      */
-    protected $availableSplitAmount;
+    protected $returnPayeeUserFee;
     /**
-     * @var int 分账状态:
-     * 10=处理中
-     * 20=成功
-     * 30=失败
+     * @var int 退款状态
+     * 10=受理成功
+     * 20=退款成功
+     * 30=退款失败
+     * 40=退票
      */
     protected $status;
     /**
-     * @var int 收款用户手续费
-     * 总金额，单位：分
-     */
-    protected $sumPayeeFee;
-    /**
-     * @var string  分账成功时间
+     * @var string
      */
     protected $responseTime;
+
+    /**
+     * @return string
+     */
+    public function getRefundTraceNo(): string
+    {
+        return $this->refundTraceNo;
+    }
 
     /**
      * @return int
@@ -51,9 +59,9 @@ class Tx5031Response extends BaseResponse
     /**
      * @return int
      */
-    public function getAvailableSplitAmount(): int
+    public function getReturnPayeeUserFee(): int
     {
-        return $this->availableSplitAmount;
+        return $this->returnPayeeUserFee;
     }
 
     /**
@@ -62,14 +70,6 @@ class Tx5031Response extends BaseResponse
     public function getStatus(): int
     {
         return $this->status;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSumPayeeFee(): int
-    {
-        return $this->sumPayeeFee;
     }
 
     /**
@@ -89,9 +89,9 @@ class Tx5031Response extends BaseResponse
         parent::handle($message);
         if ($this->code == TxResponseCode::SUCCESS) {
             $this->amount = intval(ArrayUtil::get('Amount', $this->responseBody));
-            $this->availableSplitAmount = intval(ArrayUtil::get('AvailableSplitAmount', $this->responseBody));
+            $this->returnPayeeUserFee = intval(ArrayUtil::get('ReturnPayeeUserFee', $this->responseBody));
             $this->status = intval(ArrayUtil::get('Status', $this->responseBody));
-            $this->sumPayeeFee = intval(ArrayUtil::get('SumPayeeFee', $this->responseBody));
+            $this->refundTraceNo = ArrayUtil::get('RefundTraceNo', $this->responseBody);
             $this->responseTime = ArrayUtil::get('ResponseTime', $this->responseBody);
         }
     }
