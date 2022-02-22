@@ -49,6 +49,23 @@ class SplitItemsEntity
      * @var string 分账备注
      */
     protected $note;
+    /**
+     * @var int
+     */
+    protected $splitFee;
+    /**
+     * @var int
+     */
+    protected $splitPayFee;
+    /**
+     * @var int 结算金额
+     * 单位：分，不可为空或 0
+     */
+    protected $splitStatus;
+    /**
+     * @var string
+     */
+    protected $splitResponseTime;
 
     /**
      * @return string
@@ -87,7 +104,7 @@ class SplitItemsEntity
      */
     public function getSplitAccountNumber(): string
     {
-        return $this->splitAccountNumber;
+        return $this->splitAccountNumber ?: '';
     }
 
     /**
@@ -167,7 +184,7 @@ class SplitItemsEntity
      */
     public function getNote(): string
     {
-        return $this->note;
+        return $this->note ?: '';
     }
 
     /**
@@ -178,4 +195,67 @@ class SplitItemsEntity
         $this->note = $note;
     }
 
+    /**
+     * @return int
+     */
+    public function getSplitStatus(): int
+    {
+        return $this->splitStatus;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSplitFee(): int
+    {
+        return $this->splitFee;
+    }
+
+    /**
+     * @param int $splitFee
+     */
+    public function setSplitFee(int $splitFee): void
+    {
+        $this->splitFee = $splitFee;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSplitPayFee(): int
+    {
+        return $this->splitPayFee;
+    }
+
+    /**
+     * @param int $splitPayFee
+     */
+    public function setSplitPayFee(int $splitPayFee): void
+    {
+        $this->splitPayFee = $splitPayFee;
+    }
+
+    /**
+     * @param int $splitStatus
+     */
+    public function setSplitStatus(int $splitStatus): void
+    {
+        $this->splitStatus = $splitStatus;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSplitResponseTime(): string
+    {
+        return $this->splitResponseTime;
+    }
+
+    /**
+     * @param string $splitResponseTime
+     */
+    public function setSplitResponseTime(string $splitResponseTime): void
+    {
+        $this->splitResponseTime = $splitResponseTime;
+    }
 }

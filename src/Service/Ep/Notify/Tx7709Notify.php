@@ -69,8 +69,8 @@ class Tx7709Notify extends TBaseNotify
     {
         parent::__construct($baseNotify);
         $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
-        $this->signTime = ArrayUtil::get('SignTime', $this->noticeBody, []);
-        $this->phoneNumber = ArrayUtil::get('PhoneNumber', $this->noticeBody, []);
-        $this->applyNo = ArrayUtil::get('ApplyNo', $this->noticeBody, []);
+        $this->signTime = ArrayUtil::get('SignTime', $this->noticeBody);
+        $this->phoneNumber = ArrayUtil::get('PhoneNumber', $this->noticeBody);
+        $this->applyNo = ArrayUtil::get('ApplyNo', $this->noticeBody);
     }
 }

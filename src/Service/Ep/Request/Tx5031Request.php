@@ -19,7 +19,7 @@ class Tx5031Request extends BaseRequest
      * @var string 原支付交易流水号，
      * 5011 接口返回的支付交易流水号
      */
-    protected $paymentTxSN;
+    protected $paymentTxSn;
     /**
      * @var int 本次分账后剩余资金处理方式:
      * 1=结算给收款人,
@@ -31,24 +31,25 @@ class Tx5031Request extends BaseRequest
      */
     protected $noticeUrl = '';
     /**
-     * @var array 分账退款结算域
+     * @var array[SplitItemsEntity] 分账退款结算域
+     * @see SplitItemsEntity
      */
     protected $splitItems;
 
     /**
      * @return string
      */
-    public function getPaymentTxSN(): string
+    public function getPaymentTxSn(): string
     {
-        return $this->paymentTxSN;
+        return $this->paymentTxSn;
     }
 
     /**
-     * @param string $paymentTxSN
+     * @param string $paymentTxSn
      */
-    public function setPaymentTxSN(string $paymentTxSN): void
+    public function setPaymentTxSn(string $paymentTxSn): void
     {
-        $this->paymentTxSN = $paymentTxSN;
+        $this->paymentTxSn = $paymentTxSn;
     }
 
     /**
@@ -107,7 +108,7 @@ class Tx5031Request extends BaseRequest
         $body = [
             'InstitutionID' => $this->getInstitutionId(),
             'TxSN' => $this->getTxSn(),
-            'PaymentTxSN' => $this->getPaymentTxSN(),
+            'PaymentTxSN' => $this->getPaymentTxSn(),
             'RemainFundsProcess' => $this->getRemainFundsProcess(),
             'NoticeURL' => $this->getNoticeUrl(),
         ];

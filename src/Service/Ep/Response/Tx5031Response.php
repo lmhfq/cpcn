@@ -16,6 +16,10 @@ use Lmh\Cpcn\Support\ArrayUtil;
 class Tx5031Response extends BaseResponse
 {
     /**
+     * @var string 原支付交易流水号
+     */
+    protected $paymentTxSn;
+    /**
      * @var int
      */
     protected $amount;
