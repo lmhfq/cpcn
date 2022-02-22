@@ -38,6 +38,10 @@ class Tx4643Request extends BaseRequest
      * @var string 后台通知地址
      */
     protected $noticeUrl;
+    /**
+     * @var string 备注
+     */
+    protected $remark;
 
     /**
      * @return string
@@ -119,6 +123,22 @@ class Tx4643Request extends BaseRequest
         $this->noticeUrl = $noticeUrl;
     }
 
+    /**
+     * @return string
+     */
+    public function getRemark(): string
+    {
+        return $this->remark;
+    }
+
+    /**
+     * @param string $remark
+     */
+    public function setRemark(string $remark): void
+    {
+        $this->remark = $remark;
+    }
+
     public function handle()
     {
         $data = [];
@@ -131,6 +151,7 @@ class Tx4643Request extends BaseRequest
             'Amount' => $this->getAmount(),
             'ArrivalType' => $this->getArrivalType(),
             'NoticeURL' => $this->getNoticeUrl(),
+            'Remark' => $this->getRemark(),
         ];
         $data = array_merge($data, [
             'Body' => $body
