@@ -128,7 +128,7 @@ class Tx4643Request extends BaseRequest
      */
     public function getRemark(): string
     {
-        return $this->remark;
+        return $this->remark ?: '';
     }
 
     /**
