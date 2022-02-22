@@ -35,9 +35,9 @@ class Tx7709Notify extends TBaseNotify
     /**
      * @return string
      */
-    public function getApplyNo()
+    public function getApplyNo(): string
     {
-        return $this->applyNo;
+        return $this->applyNo ?: '';
     }
 
     /**
