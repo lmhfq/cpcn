@@ -36,6 +36,10 @@ class Tx2736Notify extends TBaseNotify
      * @var string
      */
     protected $applyNo;
+    /**
+     * @var string
+     */
+    protected $responseTime;
 
     /**
      * @return int
@@ -69,6 +73,14 @@ class Tx2736Notify extends TBaseNotify
         return $this->applyNo ?: '';
     }
 
+    /**
+     * @return string
+     */
+    public function getResponseTime(): string
+    {
+        return $this->responseTime ?: '';
+    }
+
 
     public function __construct(BaseNotify $baseNotify)
     {
@@ -77,5 +89,6 @@ class Tx2736Notify extends TBaseNotify
         $this->authStatus = intval(ArrayUtil::get('AuthStatus', $this->noticeBody));
         $this->bankSubBranchNo = ArrayUtil::get('BankSubBranchNo', $this->noticeBody);
         $this->applyNo = ArrayUtil::get('ApplyNo', $this->noticeBody);
+        $this->responseTime = ArrayUtil::get('ResponseTime', $this->noticeBody);
     }
 }
