@@ -23,13 +23,17 @@ class Tx4641Response extends BaseResponse
      * @var int
      */
     protected $status;
+    /**
+     * @var string
+     */
+    protected $responseTime;
 
     /**
      * @return int
      */
     public function getAmount(): int
     {
-        return $this->amount;
+        return intval($this->amount);
     }
 
     /**
@@ -38,6 +42,14 @@ class Tx4641Response extends BaseResponse
     public function getStatus(): int
     {
         return $this->status;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponseTime(): string
+    {
+        return $this->responseTime;
     }
 
     /**
@@ -50,6 +62,7 @@ class Tx4641Response extends BaseResponse
         if ($this->code == TxResponseCode::SUCCESS) {
             $this->status = intval(ArrayUtil::get('Status', $this->responseBody));
             $this->amount = ArrayUtil::get('Amount', $this->responseBody);
+            $this->responseTime = ArrayUtil::get('ResponseTime', $this->responseBody);
         }
     }
 }
