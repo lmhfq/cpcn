@@ -28,7 +28,10 @@ class Tx4616Request extends BaseRequest
      */
     protected $operationFlag;
     /**
-     * @var int
+     * @var int 用户类型：
+     * 11=个人用户
+     * 12=企业用户
+     * 13=个体工商
      */
     protected $userType;
 

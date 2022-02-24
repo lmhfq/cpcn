@@ -67,21 +67,22 @@ class Tx5036Response extends BaseResponse
         if ($this->code == TxResponseCode::SUCCESS) {
             $this->amount = intval(ArrayUtil::get('Amount', $this->responseBody));
             $this->availableSplitAmount = intval(ArrayUtil::get('AvailableSplitAmount', $this->responseBody));
-
-            $splitItems = ArrayUtil::get('SplitItems', $this->responseBody,[]);
-            if (!isset($splitItems[0])) {
-                $splitItems = [$splitItems];
-            }
-            foreach ($splitItems as $v) {
-                $splitItemsEntity = new SplitItemsEntity();
-                $splitItemsEntity->setSplitTxSn($v['SplitTxSN'] ?? '');
-                $splitItemsEntity->setSpLitUserId($v['SplitUserID'] ?? '');
-                $splitItemsEntity->setSplitAmount(intval($v['SplitAmount'] ?? 0));
-                $splitItemsEntity->setSplitResponseTime($v['ResponseTime']);
-                $splitItemsEntity->setSplitStatus(intval($v['SplitStatus']) ?? 0);
-                $splitItemsEntity->setSplitFee(intval($v['SplitFee']) ?? 0);
-                $splitItemsEntity->setSplitPayFee(intval($v['SplitPayFee']) ?? 0);
-                $this->splitItems[] = $splitItemsEntity;
+            $splitItems = ArrayUtil::get('SplitItems', $this->responseBody, []);
+            if ($splitItems) {
+                if (!isset($splitItems[0])) {
+                    $splitItems = [$splitItems];
+                }
+                foreach ($splitItems as $v) {
+                    $splitItemsEntity = new SplitItemsEntity();
+                    $splitItemsEntity->setSplitTxSn($v['SplitTxSN'] ?? '');
+                    $splitItemsEntity->setSpLitUserId($v['SplitUserID'] ?? '');
+                    $splitItemsEntity->setSplitAmount(intval($v['SplitAmount'] ?? 0));
+                    $splitItemsEntity->setSplitResponseTime($v['ResponseTime'] ?? '');
+                    $splitItemsEntity->setSplitStatus(intval($v['SplitStatus'] ?? 0));
+                    $splitItemsEntity->setSplitFee(intval($v['SplitFee'] ?? 0));
+                    $splitItemsEntity->setSplitPayFee(intval($v['SplitPayFee'] ?? 0));
+                    $this->splitItems[] = $splitItemsEntity;
+                }
             }
         }
     }

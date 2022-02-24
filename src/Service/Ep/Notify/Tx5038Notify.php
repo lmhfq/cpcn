@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Service\Ep\Notify;
 
 
-use Lmh\Cpcn\Entity\Tx\SplitItemsEntity;
 use Lmh\Cpcn\Support\ArrayUtil;
 
 class Tx5038Notify extends TBaseNotify
@@ -49,25 +48,75 @@ class Tx5038Notify extends TBaseNotify
      */
     protected $splitItems;
 
+    /**
+     * @return string
+     */
+    public function getPaymentTxSn(): string
+    {
+        return $this->paymentTxSn ?: '';
+    }
+
+    /**
+     * @return int
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAvailableSplitAmount(): int
+    {
+        return $this->availableSplitAmount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatus(): int
+    {
+        return $this->status;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSumPayeeFee(): int
+    {
+        return $this->sumPayeeFee;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponseTime(): string
+    {
+        return $this->responseTime;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSplitItems(): array
+    {
+        return $this->splitItems;
+    }
+
     public function __construct(BaseNotify $baseNotify)
     {
         parent::__construct($baseNotify);
         $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
-        $this->amount = ArrayUtil::get('Amount', $this->noticeBody);
-        $this->availableSplitAmount = ArrayUtil::get('AvailableSplitAmount', $this->noticeBody);
+        $this->amount = intval(ArrayUtil::get('Amount', $this->noticeBody));
+        $this->availableSplitAmount = intval(ArrayUtil::get('AvailableSplitAmount', $this->noticeBody));
         $this->paymentTxSn = ArrayUtil::get('PaymentTxSN', $this->noticeBody);
         $splitItems = ArrayUtil::get('SplitItems', $this->noticeBody, []);
         if (!isset($splitItems[0])) {
             $splitItems = [$splitItems];
         }
         foreach ($splitItems as $v) {
-            $splitItemsEntity = new SplitItemsEntity();
-            $splitItemsEntity->setSplitTxSn($v['SplitTxSN'] ?? '');
-            $splitItemsEntity->setSplitAmount(intval($v['SplitAmount'] ?? 0));
-            $splitItemsEntity->setSplitResponseTime($v['SplitResponseTime']);
-            $splitItemsEntity->setSplitStatus(intval($v['SplitStatus']) ?? 0);
-            $splitItemsEntity->setSplitFee(intval($v['SplitFee']) ?? 0);
-            $this->splitItems[] = $splitItemsEntity;
+            $this->splitItems[] = $v;
         }
     }
 }
