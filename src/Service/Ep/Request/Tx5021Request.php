@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Lmh\Cpcn\Service\Ep\Request;
 
+use Lmh\Cpcn\Entity\Tx\SplitItemsEntity;
 use Lmh\Cpcn\Support\Xml;
 
 class Tx5021Request extends BaseRequest
@@ -197,10 +198,24 @@ class Tx5021Request extends BaseRequest
         if ($this->cancelAmount) {
             $body['CancelAmount'] = $this->getCancelAmount();
         }
+        if ($this->splitItems) {
+            $splitItems = [];
+            foreach ($this->splitItems as $v) {
+                /**
+                 * @var $v SplitItemsEntity
+                 */
+                $splitItems[] = [
+                    'SplitPaymentTxS' => $v->getSplitTxSn(),
+                    'SplitAmount' => $v->getSplitAmount(),
+                    'Note' => $v->getNote(),
+                ];
+            }
+            $body = array_merge($body, $splitItems);
+        }
         $data = array_merge($data, [
             'Body' => $body
         ]);
-        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
+        $this->requestPlainText = Xml::build($data, 'Request', 'SplitItems', 'UTF-8');
         parent::handle();
     }
 }

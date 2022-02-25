@@ -64,7 +64,7 @@ class Tx4643Response extends BaseResponse
     {
         parent::handle($message);
         if ($this->code == TxResponseCode::SUCCESS) {
-            $this->amount = ArrayUtil::get('Amount', $this->responseBody);
+            $this->amount = intval(ArrayUtil::get('Amount', $this->responseBody));
             $this->status = intval(ArrayUtil::get('Status', $this->responseBody));
         }
     }
