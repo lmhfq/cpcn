@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace Lmh\Cpcn\Service\Ep\Response;
 
+use Illuminate\Support\Arr;
 use Lmh\Cpcn\Support\ArrayTrait;
-use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Support\Xml;
 
 class BaseResponse
@@ -199,16 +199,16 @@ class BaseResponse
         $this->responsePlainText = trim(base64_decode($messageData[0]));
         $this->responseData = Xml::parse($this->responsePlainText);
 
-        $head = ArrayUtil::get('Head', $this->responseData, []);
-        $this->responseBody = ArrayUtil::get('Body', $this->responseData, []);
+        $head = Arr::get($this->responseData, 'Head', []);
+        $this->responseBody = Arr::get($this->responseData, 'Body', []);
 
-        $this->code = strval(ArrayUtil::get('Code', $head));
-        $this->message = ArrayUtil::get('Message', $head);
-        $this->txSn = ArrayUtil::get('TxSN', $this->responseBody);
-        $this->institutionId = ArrayUtil::get('InstitutionID', $this->responseBody);
-        $this->userId = ArrayUtil::get('UserID', $this->responseBody);
+        $this->code = strval(Arr::get($head, 'Code'));
+        $this->message = Arr::get($head, 'Message');
+        $this->txSn = Arr::get($this->responseBody, 'TxSN');
+        $this->institutionId = Arr::get($this->responseBody, 'InstitutionID');
+        $this->userId = Arr::get($this->responseBody, 'UserID');
 
-        $this->responseCode = ArrayUtil::get('ResponseCode', $this->responseBody);
-        $this->responseMessage = ArrayUtil::get('ResponseMessage', $this->responseBody);
+        $this->responseCode = Arr::get($this->responseBody, 'ResponseCode');
+        $this->responseMessage = Arr::get($this->responseBody, 'ResponseMessage');
     }
 }
