@@ -37,17 +37,18 @@ class RSASigner
     /**
      * 生成签名
      * @param string $plainText
+     * @param int $algorithm
      * @return string
      * @throws InvalidConfigException
      */
-    public function sign(string $plainText): string
+    public function sign(string $plainText,$algorithm = OPENSSL_ALGO_SHA1): string
     {
         if (!$this->keyContent) {
             throw new InvalidConfigException('合作方的签名证书配置错误');
         }
         $signature = '';
         try {
-            openssl_sign($plainText, $signature, $this->keyContent, OPENSSL_ALGO_SHA1);
+            openssl_sign($plainText, $signature, $this->keyContent, $algorithm);
         } catch (Exception $e) {
             throw new InvalidConfigException('合作方的签名证书配置错误');
         }
@@ -58,15 +59,16 @@ class RSASigner
      * 验证签名
      * @param string $plainText
      * @param string $signature
+     * @param int $algorithm
      * @return int
      * @throws InvalidConfigException
      */
-    public function verify(string $plainText, string $signature): int
+    public function verify(string $plainText, string $signature, $algorithm = OPENSSL_ALGO_SHA1): int
     {
         if (!$this->certContent) {
             throw new InvalidConfigException('合作方的签名证书配置错误');
         }
         $binarySignature = pack("H" . strlen($signature), $signature);
-        return openssl_verify($plainText, $binarySignature, $this->certContent, OPENSSL_ALGO_SHA1);
+        return openssl_verify($plainText, $binarySignature, $this->certContent, $algorithm);
     }
 }
