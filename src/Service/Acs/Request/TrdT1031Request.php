@@ -63,6 +63,10 @@ class TrdT1031Request extends TrdBaseRequest
      */
     protected $clt_uscid;
     /**
+     * @var string 统一社会信用代码签发日期
+     */
+    protected $clt_uscisdt;
+    /**
      * @var string 统一社会信用代码到期日 (公司必填) 如证件未记录有效期则设定 为 21000101，当证件长期有 效时为 99991231
      */
     protected $clt_uscexdt;
@@ -116,6 +120,14 @@ class TrdT1031Request extends TrdBaseRequest
      * @var string 经办人手机号
      */
     protected $oper_mobno;
+    /**
+     * @var string 经办人证件签发日期
+     */
+    protected $oper_cdisdt;
+    /**
+     * @var string 经办人证件到期日期
+     */
+    protected $oper_cdexdt;
     /**
      * @var array[FileInfoEntity] 证件照片信息(0~N 条) FcFlg=1 时必填
      * @see FileInfoEntity
@@ -1079,6 +1091,7 @@ class TrdT1031Request extends TrdBaseRequest
                 'CdIsDt' => $this->clt_cdisdt,
                 'CdExDt' => $this->clt_cdexdt,
                 'UscId' => $this->clt_uscid,
+                'UscIsDt' => $this->clt_uscisdt,
                 'UscExDt' => $this->clt_uscexdt,
                 'OrgCd' => $this->clt_orgcd,
             ]);
@@ -1134,6 +1147,8 @@ class TrdT1031Request extends TrdBaseRequest
                     'Nm' => $this->oper_nm,
                     'CdNo' => $this->oper_cdno,
                     'MobNo' => $this->oper_mobno,
+                    'CdIsDt' => $this->oper_cdisdt,
+                    'CdExDt' => $this->oper_cdexdt,
                 ]
             ]);
         }
