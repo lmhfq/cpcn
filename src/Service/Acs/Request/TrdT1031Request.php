@@ -369,6 +369,23 @@ class TrdT1031Request extends TrdBaseRequest
     }
 
     /**
+     * @return string
+     */
+    public function getCltUscisdt(): string
+    {
+        return $this->clt_uscisdt;
+    }
+
+    /**
+     * @param string $clt_uscisdt
+     */
+    public function setCltUscisdt(string $clt_uscisdt): void
+    {
+        $this->clt_uscisdt = $clt_uscisdt;
+    }
+
+
+    /**
      * @return mixed
      */
     public function getCltUscexdt()
@@ -638,6 +655,38 @@ class TrdT1031Request extends TrdBaseRequest
     public function setOperMobno($oper_mobno): void
     {
         $this->oper_mobno = $oper_mobno;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOperCdisdt(): string
+    {
+        return $this->oper_cdisdt;
+    }
+
+    /**
+     * @param string $oper_cdisdt
+     */
+    public function setOperCdisdt(string $oper_cdisdt): void
+    {
+        $this->oper_cdisdt = $oper_cdisdt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOperCdexdt(): string
+    {
+        return $this->oper_cdexdt;
+    }
+
+    /**
+     * @param string $oper_cdexdt
+     */
+    public function setOperCdexdt(string $oper_cdexdt): void
+    {
+        $this->oper_cdexdt = $oper_cdexdt;
     }
 
     /**
