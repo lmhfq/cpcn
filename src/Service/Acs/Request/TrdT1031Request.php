@@ -1143,8 +1143,6 @@ class TrdT1031Request extends TrdBaseRequest
         //企业
         if ($this->clt_kd == 1) {
             $clt = array_merge($clt, [
-                'CdIsDt' => $this->clt_cdisdt,
-                'CdExDt' => $this->clt_cdexdt,
                 'UscId' => $this->clt_uscid,
                 'UscIsDt' => $this->clt_uscisdt,
                 'UscExDt' => $this->clt_uscexdt,
