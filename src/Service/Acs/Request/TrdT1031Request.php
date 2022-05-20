@@ -1107,6 +1107,12 @@ class TrdT1031Request extends TrdBaseRequest
                 $clt['MobNo'] = $this->clt_mobno;
             }
         }
+        if ( $this->clt_cdisdt){
+            $clt['CdIsDt'] = $this->clt_cdisdt;
+        }
+        if ( $this->clt_cdexdt){
+            $clt['CdExDt'] = $this->clt_cdexdt;
+        }
         if ($this->clt_email) {
             $clt['Email'] = $this->clt_email;
         }
