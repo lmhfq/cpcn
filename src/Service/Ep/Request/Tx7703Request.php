@@ -1,11 +1,6 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: lmh <lmh@weiyian.com>
- * Date: 2022/2/13
- * Time: 下午4:40
- */
+
 
 namespace Lmh\Cpcn\Service\Ep\Request;
 
@@ -46,15 +41,14 @@ class Tx7703Request extends BaseRequest
      * ProtocolSignerType=20 时必填
      */
     protected $agentIdNumber;
-
     /**
      * @var string 协议签署人手机号
      */
     protected $protocolSignPhoneNumber;
     /**
      * @var int 立即签约
-     * 10-是
-     * 20-否
+     * 10-是：给签署人下发短信验 证码，签署人在商户页面输入短信验证码跳转到中金商户自助入网系统进行签约
+     * 20-否：签署人在中金商户自助入网页面登录签约
      */
     protected $immediatelySign = 10;
     /**
@@ -63,7 +57,7 @@ class Tx7703Request extends BaseRequest
     protected $noticeUrl = '';
     /**
      * @var int 操作类型
-     * （10-签约，20-绑卡并签约）
+     * 10-签约，20-绑卡并签约
      */
     protected $operationType = 20;
     /**

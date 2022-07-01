@@ -1,11 +1,6 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: lmh <lmh@weiyian.com>
- * Date: 2022/2/11
- * Time: 下午5:49
- */
+
 
 namespace Lmh\Cpcn\Constant;
 

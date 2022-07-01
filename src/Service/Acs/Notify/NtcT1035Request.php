@@ -1,11 +1,6 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: lmh <lmh@weiyian.com>
- * Date: 2021/3/16
- * Time: 下午5:54
- */
+
 
 namespace Lmh\Cpcn\Service\Acs\Notify;
 
