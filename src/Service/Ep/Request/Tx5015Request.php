@@ -19,22 +19,6 @@ class Tx5015Request extends BaseRequest
      */
     protected $smsValidationCode;
 
-    /**
-     * @return string
-     */
-    public function getSmsValidationCode(): string
-    {
-        return $this->smsValidationCode;
-    }
-
-    /**
-     * @param string $smsValidationCode
-     */
-    public function setSmsValidationCode(string $smsValidationCode): void
-    {
-        $this->smsValidationCode = $smsValidationCode;
-    }
-
     public function handle()
     {
         $data = [];
@@ -49,5 +33,21 @@ class Tx5015Request extends BaseRequest
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
         parent::handle();
+    }
+
+    /**
+     * @return string
+     */
+    public function getSmsValidationCode(): string
+    {
+        return $this->smsValidationCode;
+    }
+
+    /**
+     * @param string $smsValidationCode
+     */
+    public function setSmsValidationCode(string $smsValidationCode): void
+    {
+        $this->smsValidationCode = $smsValidationCode;
     }
 }

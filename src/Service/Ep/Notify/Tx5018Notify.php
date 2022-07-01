@@ -68,6 +68,22 @@ class Tx5018Notify extends TBaseNotify
      */
     protected $payeeUserFee;
 
+    public function __construct(BaseNotify $baseNotify)
+    {
+        parent::__construct($baseNotify);
+        $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
+        $this->traceNo = ArrayUtil::get('TraceNo', $this->noticeBody);
+        $this->orderNo = ArrayUtil::get('OrderNo', $this->noticeBody);
+        $this->amount = intval(ArrayUtil::get('Amount', $this->noticeBody));
+        $this->availableSplitAmount = intval(ArrayUtil::get('AvailableSplitAmount', $this->noticeBody));
+        $this->bankTraceNo = ArrayUtil::get('BankTraceNo', $this->noticeBody);
+        $this->paymentWay = ArrayUtil::get('PaymentWay', $this->noticeBody);
+        $this->payeeUserId = ArrayUtil::get('PayeeUserID', $this->noticeBody);
+        $this->payerId = ArrayUtil::get('PayerID', $this->noticeBody);
+        $this->responseTime = ArrayUtil::get('ResponseTime', $this->noticeBody);
+        $this->payeeUserFee = intval(ArrayUtil::get('PayeeUserFee', $this->noticeBody));
+    }
+
     /**
      * @return string
      */
@@ -162,21 +178,5 @@ class Tx5018Notify extends TBaseNotify
     public function getPayeeUserFee(): int
     {
         return $this->payeeUserFee;
-    }
-
-    public function __construct(BaseNotify $baseNotify)
-    {
-        parent::__construct($baseNotify);
-        $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
-        $this->traceNo = ArrayUtil::get('TraceNo', $this->noticeBody);
-        $this->orderNo = ArrayUtil::get('OrderNo', $this->noticeBody);
-        $this->amount = intval(ArrayUtil::get('Amount', $this->noticeBody));
-        $this->availableSplitAmount = intval(ArrayUtil::get('AvailableSplitAmount', $this->noticeBody));
-        $this->bankTraceNo = ArrayUtil::get('BankTraceNo', $this->noticeBody);
-        $this->paymentWay = ArrayUtil::get('PaymentWay', $this->noticeBody);
-        $this->payeeUserId = ArrayUtil::get('PayeeUserID', $this->noticeBody);
-        $this->payerId = ArrayUtil::get('PayerID', $this->noticeBody);
-        $this->responseTime = ArrayUtil::get('ResponseTime', $this->noticeBody);
-        $this->payeeUserFee = intval(ArrayUtil::get('PayeeUserFee', $this->noticeBody));
     }
 }

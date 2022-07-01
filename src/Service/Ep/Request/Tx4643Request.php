@@ -46,22 +46,6 @@ class Tx4643Request extends BaseRequest
     /**
      * @return string
      */
-    public function getBindingTxSn(): string
-    {
-        return $this->bindingTxSn;
-    }
-
-    /**
-     * @param string $bindingTxSn
-     */
-    public function setBindingTxSn(string $bindingTxSn): void
-    {
-        $this->bindingTxSn = $bindingTxSn;
-    }
-
-    /**
-     * @return string
-     */
     public function getAcceptanceConfirmType(): string
     {
         return $this->acceptanceConfirmType;
@@ -73,6 +57,43 @@ class Tx4643Request extends BaseRequest
     public function setAcceptanceConfirmType(string $acceptanceConfirmType): void
     {
         $this->acceptanceConfirmType = $acceptanceConfirmType;
+    }
+
+    public function handle()
+    {
+        $data = [];
+        $data = array_merge($data, parent::getHead());
+        $body = [
+            'InstitutionID' => $this->getInstitutionId(),
+            'TxSN' => $this->getTxSn(),
+            'UserID' => $this->getUserId(),
+            'BindingTxSN' => $this->getBindingTxSn(),
+            'Amount' => $this->getAmount(),
+            'ArrivalType' => $this->getArrivalType(),
+            'NoticeURL' => $this->getNoticeUrl(),
+            'Remark' => $this->getRemark(),
+        ];
+        $data = array_merge($data, [
+            'Body' => $body
+        ]);
+        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
+        parent::handle();
+    }
+
+    /**
+     * @return string
+     */
+    public function getBindingTxSn(): string
+    {
+        return $this->bindingTxSn;
+    }
+
+    /**
+     * @param string $bindingTxSn
+     */
+    public function setBindingTxSn(string $bindingTxSn): void
+    {
+        $this->bindingTxSn = $bindingTxSn;
     }
 
     /**
@@ -110,9 +131,9 @@ class Tx4643Request extends BaseRequest
     /**
      * @return string
      */
-    public function getNoticeUrl(): string
+    public function getNoticeUrl(): ?string
     {
-        return $this->noticeUrl ?: '';
+        return $this->noticeUrl;
     }
 
     /**
@@ -126,9 +147,9 @@ class Tx4643Request extends BaseRequest
     /**
      * @return string
      */
-    public function getRemark(): string
+    public function getRemark(): ?string
     {
-        return $this->remark ?: '';
+        return $this->remark;
     }
 
     /**
@@ -137,26 +158,5 @@ class Tx4643Request extends BaseRequest
     public function setRemark(string $remark): void
     {
         $this->remark = $remark;
-    }
-
-    public function handle()
-    {
-        $data = [];
-        $data = array_merge($data, parent::getHead());
-        $body = [
-            'InstitutionID' => $this->getInstitutionId(),
-            'TxSN' => $this->getTxSn(),
-            'UserID' => $this->getUserId(),
-            'BindingTxSN' => $this->getBindingTxSn(),
-            'Amount' => $this->getAmount(),
-            'ArrivalType' => $this->getArrivalType(),
-            'NoticeURL' => $this->getNoticeUrl(),
-            'Remark' => $this->getRemark(),
-        ];
-        $data = array_merge($data, [
-            'Body' => $body
-        ]);
-        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
-        parent::handle();
     }
 }

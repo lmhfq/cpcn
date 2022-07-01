@@ -30,6 +30,10 @@ class AttachInfoEntity
      * @var string 当开通微信公众号支付时此字段必填,最多可填写 5 个路径，不同的路径使用英文逗号分隔
      */
     protected $authPath;
+    /**
+     * @var string
+     */
+    protected $deviceInfo;
 
     /**
      * @return string
@@ -50,9 +54,9 @@ class AttachInfoEntity
     /**
      * @return string
      */
-    public function getAppId(): string
+    public function getAppId(): ?string
     {
-        return $this->appId ?: '';
+        return $this->appId;
     }
 
     /**
@@ -66,9 +70,9 @@ class AttachInfoEntity
     /**
      * @return string
      */
-    public function getAuthPath(): string
+    public function getAuthPath(): ?string
     {
-        return $this->authPath ?: '';
+        return $this->authPath;
     }
 
     /**
@@ -79,5 +83,11 @@ class AttachInfoEntity
         $this->authPath = $authPath;
     }
 
-
+    /**
+     * @return string
+     */
+    public function getDeviceInfo(): string
+    {
+        return $this->deviceInfo;
+    }
 }

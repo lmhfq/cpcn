@@ -46,6 +46,27 @@ class Tx4671Request extends BaseRequest
      */
     protected $remark = '';
 
+    public function handle()
+    {
+        $data = [];
+        $data = array_merge($data, parent::getHead());
+        $body = [
+            'InstitutionID' => $this->getInstitutionId(),
+            'TxSN' => $this->getTxSn(),
+            'PayerUserID' => $this->getPayerUserId(),
+            'PayerUserName' => $this->getPayerUserName(),
+            'PayeeInstitutionID' => $this->getPayeeInstitutionId(),
+            'PayeeUserID' => $this->getPayeeUserId(),
+            'PayeeUserName' => $this->getPayeeUserName(),
+            'Amount' => $this->getAmount(),
+            'Remark' => $this->getRemark(),
+        ];
+        $data = array_merge($data, [
+            'Body' => $body
+        ]);
+        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
+    }
+
     /**
      * @return string
      */
@@ -156,26 +177,5 @@ class Tx4671Request extends BaseRequest
     public function setRemark(string $remark): void
     {
         $this->remark = $remark;
-    }
-
-    public function handle()
-    {
-        $data = [];
-        $data = array_merge($data, parent::getHead());
-        $body = [
-            'InstitutionID' => $this->getInstitutionId(),
-            'TxSN' => $this->getTxSn(),
-            'PayerUserID' => $this->getPayerUserId(),
-            'PayerUserName' => $this->getPayerUserName(),
-            'PayeeInstitutionID' => $this->getPayeeInstitutionId(),
-            'PayeeUserID' => $this->getPayeeUserId(),
-            'PayeeUserName' => $this->getPayeeUserName(),
-            'Amount' => $this->getAmount(),
-            'Remark' => $this->getRemark(),
-        ];
-        $data = array_merge($data, [
-            'Body' => $body
-        ]);
-        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
     }
 }

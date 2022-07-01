@@ -41,12 +41,21 @@ class Tx4618Notify extends TBaseNotify
      */
     protected $rejectImageType;
 
+    public function __construct(BaseNotify $baseNotify)
+    {
+        parent::__construct($baseNotify);
+        $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
+        $this->userType = intval(ArrayUtil::get('UserType', $this->noticeBody));
+        $this->sourceTxCode = ArrayUtil::get('SourceTxCode', $this->noticeBody);
+        $this->sourceTxSn = ArrayUtil::get('SourceTxSN', $this->noticeBody);
+    }
+
     /**
      * @return string
      */
-    public function getSourceTxCode(): string
+    public function getSourceTxCode(): ?string
     {
-        return $this->sourceTxCode ?: '';
+        return $this->sourceTxCode;
     }
 
     /**
@@ -87,14 +96,5 @@ class Tx4618Notify extends TBaseNotify
     public function getRejectImageType(): string
     {
         return $this->rejectImageType;
-    }
-
-    public function __construct(BaseNotify $baseNotify)
-    {
-        parent::__construct($baseNotify);
-        $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
-        $this->userType = intval(ArrayUtil::get('UserType', $this->noticeBody));
-        $this->sourceTxCode = ArrayUtil::get('SourceTxCode', $this->noticeBody);
-        $this->sourceTxSn = ArrayUtil::get('SourceTxSN', $this->noticeBody);
     }
 }

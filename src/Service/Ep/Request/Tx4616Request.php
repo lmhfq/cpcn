@@ -35,6 +35,28 @@ class Tx4616Request extends BaseRequest
      */
     protected $userType;
 
+    public function handle()
+    {
+        $data = [];
+        $data = array_merge($data, parent::getHead());
+        $body = [
+            'InstitutionID' => $this->getInstitutionId(),
+            'SourceTxSN' => $this->getSourceTxSn(),
+            'SourceTxCode' => $this->getSourceTxCode(),
+        ];
+        if ($this->operationFlag) {
+            $body['OperationFlag'] = $this->getOperationFlag();
+        }
+        if ($this->userType) {
+            $body['UserType'] = $this->getUserType();
+        }
+        $data = array_merge($data, [
+            'Body' => $body
+        ]);
+        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
+        parent::handle();
+    }
+
     /**
      * @return string
      */
@@ -97,27 +119,5 @@ class Tx4616Request extends BaseRequest
     public function setUserType(int $userType): void
     {
         $this->userType = $userType;
-    }
-
-    public function handle()
-    {
-        $data = [];
-        $data = array_merge($data, parent::getHead());
-        $body = [
-            'InstitutionID' => $this->getInstitutionId(),
-            'SourceTxSN' => $this->getSourceTxSn(),
-            'SourceTxCode' => $this->getSourceTxCode(),
-        ];
-        if ($this->operationFlag) {
-            $body['OperationFlag'] = $this->getOperationFlag();
-        }
-        if ($this->userType) {
-            $body['UserType'] = $this->getUserType();
-        }
-        $data = array_merge($data, [
-            'Body' => $body
-        ]);
-        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
-        parent::handle();
     }
 }

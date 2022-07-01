@@ -29,15 +29,15 @@ class AccountEntity
      */
     protected $address;
     /**
-     * @var string 省份、城市、区县
+     * @var string 省份
      */
     protected $province;
     /**
-     * @var string
+     * @var string 城市
      */
     protected $city;
     /**
-     * @var string
+     * @var string 区县
      */
     protected $district;
     /**
@@ -85,7 +85,7 @@ class AccountEntity
      */
     protected $credentialType = 0;
     /**
-     * @var string 证件号码
+     * @var string 法人证件号码
      */
     protected $credentialNumber;
     /**
@@ -106,7 +106,7 @@ class AccountEntity
      */
     protected $consigneeName;
     /**
-     * @var string 经办人证件类型：0-身份证
+     * @var int 经办人证件类型：0-身份证
      */
     protected $consigneeCredentialType = 0;
     /**
@@ -129,9 +129,9 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getCorporationName(): string
+    public function getCorporationName(): ?string
     {
-        return $this->corporationName ?: '';
+        return $this->corporationName;
     }
 
     /**
@@ -145,9 +145,9 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getCorporationShort(): string
+    public function getCorporationShort(): ?string
     {
-        return $this->corporationShort ?: '';
+        return $this->corporationShort;
     }
 
     /**
@@ -161,9 +161,9 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getProvince(): string
+    public function getProvince(): ?string
     {
-        return $this->province ?: '';
+        return $this->province;
     }
 
     /**
@@ -178,9 +178,9 @@ class AccountEntity
      * @return string
      * @author lmh
      */
-    public function getCity(): string
+    public function getCity(): ?string
     {
-        return $this->city ?: '';
+        return $this->city;
     }
 
     /**
@@ -195,7 +195,7 @@ class AccountEntity
      * @return string
      * @author lmh
      */
-    public function getDistrict(): string
+    public function getDistrict(): ?string
     {
         return $this->district;
     }
@@ -205,7 +205,7 @@ class AccountEntity
      */
     public function setDistrict(string $district): void
     {
-        $this->district = $district ?: '';
+        $this->district = $district;
     }
 
     /**
@@ -227,9 +227,9 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getBasicAcctNo(): string
+    public function getBasicAcctNo(): ?string
     {
-        return $this->basicAcctNo ?: '';
+        return $this->basicAcctNo;
     }
 
     /**
@@ -243,9 +243,9 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getApprovalNo(): string
+    public function getApprovalNo(): ?string
     {
-        return $this->approvalNo ?: '';
+        return $this->approvalNo;
     }
 
     /**
@@ -259,9 +259,9 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getUnifiedSocialCreditCode(): string
+    public function getUnifiedSocialCreditCode(): ?string
     {
-        return $this->unifiedSocialCreditCode ?: '';
+        return $this->unifiedSocialCreditCode;
     }
 
     /**
@@ -275,9 +275,9 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getAllLicenceIssDate(): string
+    public function getAllLicenceIssDate(): ?string
     {
-        return $this->allLicenceIssDate ?: '';
+        return $this->allLicenceIssDate;
     }
 
     /**
@@ -291,9 +291,9 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getAllLicenceExpiryDate(): string
+    public function getAllLicenceExpiryDate(): ?string
     {
-        return $this->allLicenceExpiryDate ?: '';
+        return $this->allLicenceExpiryDate;
     }
 
     /**
@@ -339,9 +339,9 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getUserName(): string
+    public function getUserName(): ?string
     {
-        return $this->userName ?: '';
+        return $this->userName;
     }
 
     /**
@@ -371,9 +371,9 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getCredentialNumber(): string
+    public function getCredentialNumber(): ?string
     {
-        return $this->credentialNumber ?: '';
+        return $this->credentialNumber;
     }
 
     /**
@@ -387,9 +387,9 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getIssDate(): string
+    public function getIssDate(): ?string
     {
-        return $this->issDate ?: '';
+        return $this->issDate;
     }
 
     /**
@@ -403,9 +403,9 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getExpiryDate(): string
+    public function getExpiryDate(): ?string
     {
-        return $this->expiryDate ?: '';
+        return $this->expiryDate;
     }
 
     /**
@@ -419,9 +419,9 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getContactNumber(): string
+    public function getContactNumber(): ?string
     {
-        return $this->contactNumber ?: '';
+        return $this->contactNumber;
     }
 
     /**
@@ -435,9 +435,9 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getConsigneeName(): string
+    public function getConsigneeName(): ?string
     {
-        return $this->consigneeName ?: '';
+        return $this->consigneeName;
     }
 
     /**
@@ -449,15 +449,15 @@ class AccountEntity
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getConsigneeCredentialType()
+    public function getConsigneeCredentialType(): int
     {
         return $this->consigneeCredentialType;
     }
 
     /**
-     * @param string $consigneeCredentialType
+     * @param  $consigneeCredentialType
      */
     public function setConsigneeCredentialType($consigneeCredentialType): void
     {
@@ -515,7 +515,7 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getConsigneeContactNumber(): string
+    public function getConsigneeContactNumber(): ?string
     {
         return $this->consigneeContactNumber;
     }

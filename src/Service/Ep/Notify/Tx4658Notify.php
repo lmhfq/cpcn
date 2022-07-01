@@ -57,6 +57,17 @@ class Tx4658Notify extends TBaseNotify
      */
     protected $responseTime;
 
+    public function __construct(BaseNotify $baseNotify)
+    {
+        parent::__construct($baseNotify);
+        $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
+        $this->amount = intval(ArrayUtil::get('Amount', $this->noticeBody));
+        $this->sourceTxCode = ArrayUtil::get('SourceTxCode', $this->noticeBody);
+        $this->sourceTxSn = ArrayUtil::get('SourceTxSN', $this->noticeBody);
+        $this->bindingTxSn = ArrayUtil::get('BindingTxSN', $this->noticeBody);
+        $this->responseTime = ArrayUtil::get('ResponseTime', $this->noticeBody);
+    }
+
     /**
      * @return string
      */
@@ -100,9 +111,9 @@ class Tx4658Notify extends TBaseNotify
     /**
      * @return string
      */
-    public function getBindingTxSn(): string
+    public function getBindingTxSn(): ?string
     {
-        return $this->bindingTxSn ?: '';
+        return $this->bindingTxSn;
     }
 
     /**
@@ -119,17 +130,6 @@ class Tx4658Notify extends TBaseNotify
     public function getResponseTime(): string
     {
         return $this->responseTime;
-    }
-
-    public function __construct(BaseNotify $baseNotify)
-    {
-        parent::__construct($baseNotify);
-        $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
-        $this->amount = intval(ArrayUtil::get('Amount', $this->noticeBody));
-        $this->sourceTxCode = ArrayUtil::get('SourceTxCode', $this->noticeBody);
-        $this->sourceTxSn = ArrayUtil::get('SourceTxSN', $this->noticeBody);
-        $this->bindingTxSn = ArrayUtil::get('BindingTxSN', $this->noticeBody);
-        $this->responseTime = ArrayUtil::get('ResponseTime', $this->noticeBody);
     }
 
 }

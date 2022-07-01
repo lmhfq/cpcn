@@ -32,28 +32,37 @@ class Tx7709Notify extends TBaseNotify
      */
     protected $status;
 
-    /**
-     * @return string
-     */
-    public function getApplyNo(): string
+    public function __construct(BaseNotify $baseNotify)
     {
-        return $this->applyNo ?: '';
+        parent::__construct($baseNotify);
+        $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
+        $this->signTime = ArrayUtil::get('SignTime', $this->noticeBody);
+        $this->phoneNumber = ArrayUtil::get('PhoneNumber', $this->noticeBody);
+        $this->applyNo = ArrayUtil::get('ApplyNo', $this->noticeBody);
     }
 
     /**
      * @return string
      */
-    public function getSignTime(): string
+    public function getApplyNo(): ?string
     {
-        return $this->signTime ?: '';
+        return $this->applyNo;
     }
 
     /**
      * @return string
      */
-    public function getPhoneNumber(): string
+    public function getSignTime(): ?string
     {
-        return $this->phoneNumber ?: '';
+        return $this->signTime;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phoneNumber;
     }
 
     /**
@@ -62,15 +71,5 @@ class Tx7709Notify extends TBaseNotify
     public function getStatus(): int
     {
         return $this->status;
-    }
-
-
-    public function __construct(BaseNotify $baseNotify)
-    {
-        parent::__construct($baseNotify);
-        $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
-        $this->signTime = ArrayUtil::get('SignTime', $this->noticeBody);
-        $this->phoneNumber = ArrayUtil::get('PhoneNumber', $this->noticeBody);
-        $this->applyNo = ArrayUtil::get('ApplyNo', $this->noticeBody);
     }
 }

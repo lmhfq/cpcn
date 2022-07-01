@@ -19,22 +19,6 @@ class Tx2751Request extends BaseRequest
      */
     protected $accountNumber;
 
-    /**
-     * @return string
-     */
-    public function getAccountNumber(): string
-    {
-        return $this->accountNumber;
-    }
-
-    /**
-     * @param string $accountNumber
-     */
-    public function setAccountNumber(string $accountNumber): void
-    {
-        $this->accountNumber = $accountNumber;
-    }
-
     public function handle()
     {
         $data = [];
@@ -49,5 +33,21 @@ class Tx2751Request extends BaseRequest
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
         parent::handle();
+    }
+
+    /**
+     * @return string
+     */
+    public function getAccountNumber(): string
+    {
+        return $this->accountNumber;
+    }
+
+    /**
+     * @param string $accountNumber
+     */
+    public function setAccountNumber(string $accountNumber): void
+    {
+        $this->accountNumber = $accountNumber;
     }
 }

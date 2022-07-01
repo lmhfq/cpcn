@@ -32,6 +32,18 @@ abstract class TBaseNotify
     protected $noticeBody;
 
     /**
+     * TBaseNotify constructor.
+     * @param BaseNotify $baseNotify
+     */
+    public function __construct(BaseNotify $baseNotify)
+    {
+        $this->noticeBody = $baseNotify->getNoticeBody();
+        $this->institutionId = ArrayUtil::get('InstitutionID', $this->noticeBody, []);
+        $this->txSn = ArrayUtil::get('TxSN', $this->noticeBody, []);
+        $this->userId = ArrayUtil::get('UserID', $this->noticeBody);
+    }
+
+    /**
      * @return string
      */
     public function getTxSn(): string
@@ -77,17 +89,5 @@ abstract class TBaseNotify
     public function setUserId(string $userId): void
     {
         $this->userId = $userId;
-    }
-
-    /**
-     * TBaseNotify constructor.
-     * @param BaseNotify $baseNotify
-     */
-    public function __construct(BaseNotify $baseNotify)
-    {
-        $this->noticeBody = $baseNotify->getNoticeBody();
-        $this->institutionId = ArrayUtil::get('InstitutionID', $this->noticeBody, []);
-        $this->txSn = ArrayUtil::get('TxSN', $this->noticeBody, []);
-        $this->userId = ArrayUtil::get('UserID', $this->noticeBody);
     }
 }

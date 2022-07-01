@@ -31,6 +31,46 @@ class NotifyResponse
     /**
      * @return string
      */
+    public function getMessage(): string
+    {
+        return $this->message;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function setMessage(string $message): void
+    {
+        $this->message = $message;
+    }
+
+    /**
+     * @author lmh
+     */
+    public function handle()
+    {
+        $data = [];
+        $data = array_merge($data, self::getHead());
+        $xml = Xml::build($data, 'Response', '', 'UTF-8');
+        $this->message = base64_encode(trim($xml));
+    }
+
+    /**
+     * @return array[]
+     */
+    protected function getHead(): array
+    {
+        return [
+            'Head' => [
+                'Code' => $this->getResponseCode(),
+                'Message' => $this->getResponseMessage(),
+            ],
+        ];
+    }
+
+    /**
+     * @return string
+     */
     public function getResponseCode(): string
     {
         return $this->responseCode;
@@ -58,47 +98,5 @@ class NotifyResponse
     public function setResponseMessage(string $responseMessage): void
     {
         $this->responseMessage = $responseMessage;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMessage(): string
-    {
-        return $this->message;
-    }
-
-    /**
-     * @param string $message
-     */
-    public function setMessage(string $message): void
-    {
-        $this->message = $message;
-    }
-
-
-    /**
-     * @return array[]
-     */
-    protected function getHead(): array
-    {
-        return [
-            'Head' => [
-                'Code' => $this->getResponseCode(),
-                'Message' => $this->getResponseMessage(),
-            ],
-        ];
-    }
-
-
-    /**
-     * @author lmh
-     */
-    public function handle()
-    {
-        $data = [];
-        $data = array_merge($data, self::getHead());
-        $xml = Xml::build($data, 'Response', '', 'UTF-8');
-        $this->message = base64_encode(trim($xml));
     }
 }

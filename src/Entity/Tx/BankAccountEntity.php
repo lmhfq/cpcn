@@ -63,9 +63,9 @@ class BankAccountEntity
     /**
      * @return string
      */
-    public function getCNAPSCode(): string
+    public function getCNAPSCode(): ?string
     {
-        return $this->cNAPSCode ?: '';
+        return $this->cNAPSCode;
     }
 
     /**
@@ -141,7 +141,6 @@ class BankAccountEntity
         $this->bankAccountName = $bankAccountName;
     }
 
-
     /**
      * @return string
      */
@@ -161,9 +160,9 @@ class BankAccountEntity
     /**
      * @return string
      */
-    public function getBankPhoneNumber(): string
+    public function getBankPhoneNumber(): ?string
     {
-        return $this->bankPhoneNumber ?: '';
+        return $this->bankPhoneNumber;
     }
 
     /**
@@ -177,9 +176,9 @@ class BankAccountEntity
     /**
      * @return string
      */
-    public function getBranchName(): string
+    public function getBranchName(): ?string
     {
-        return $this->branchName ?: '';
+        return $this->branchName;
     }
 
     /**
@@ -193,9 +192,9 @@ class BankAccountEntity
     /**
      * @return string
      */
-    public function getProvince(): string
+    public function getProvince(): ?string
     {
-        return $this->province ?: '';
+        return $this->province;
     }
 
     /**
@@ -209,9 +208,9 @@ class BankAccountEntity
     /**
      * @return string
      */
-    public function getCity(): string
+    public function getCity(): ?string
     {
-        return $this->city ?: '';
+        return $this->city;
     }
 
     /**

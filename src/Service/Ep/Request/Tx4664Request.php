@@ -23,22 +23,6 @@ class Tx4664Request extends BaseRequest
      */
     protected $operationType;
 
-    /**
-     * @return int
-     */
-    public function getOperationType(): int
-    {
-        return $this->operationType;
-    }
-
-    /**
-     * @param int $operationType
-     */
-    public function setOperationType(int $operationType): void
-    {
-        $this->operationType = $operationType;
-    }
-
     public function handle()
     {
         $data = [];
@@ -53,5 +37,21 @@ class Tx4664Request extends BaseRequest
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
         parent::handle();
+    }
+
+    /**
+     * @return int
+     */
+    public function getOperationType(): int
+    {
+        return $this->operationType;
+    }
+
+    /**
+     * @param int $operationType
+     */
+    public function setOperationType(int $operationType): void
+    {
+        $this->operationType = $operationType;
     }
 }

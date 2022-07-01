@@ -44,6 +44,31 @@ class Tx4663Request extends BaseRequest
      */
     protected $remark;
 
+    public function handle()
+    {
+        $data = [];
+        $data = array_merge($data, parent::getHead());
+        $body = [
+            'InstitutionID' => $this->getInstitutionId(),
+            'UserID' => $this->getUserId(),
+            'TxSN' => $this->getTxSn(),
+            'OperationType' => $this->getOperationType(),
+            'Amount' => $this->getAmount(),
+            'Remark' => $this->getRemark(),
+        ];
+        if ($this->operationType == Operation::TYPE_THAWING) {
+            $body['FreezeTxSN'] = $this->getFreezeTxSn();
+        } else if ($this->operationType == Operation::TYPE_SHARE_FREEZE) {
+            $body['FreezeTxSN'] = $this->getFreezeTxSn();
+            $body['SourceTxSN'] = $this->getSourceTxSn();
+        }
+        $data = array_merge($data, [
+            'Body' => $body
+        ]);
+        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
+        parent::handle();
+    }
+
     /**
      * @return int
      */
@@ -58,38 +83,6 @@ class Tx4663Request extends BaseRequest
     public function setOperationType(int $operationType): void
     {
         $this->operationType = $operationType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFreezeTxSn(): string
-    {
-        return $this->freezeTxSn;
-    }
-
-    /**
-     * @param string $freezeTxSn
-     */
-    public function setFreezeTxSn(string $freezeTxSn): void
-    {
-        $this->freezeTxSn = $freezeTxSn;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSourceTxSn(): string
-    {
-        return $this->sourceTxSn;
-    }
-
-    /**
-     * @param string $sourceTxSn
-     */
-    public function setSourceTxSn(string $sourceTxSn): void
-    {
-        $this->sourceTxSn = $sourceTxSn;
     }
 
     /**
@@ -124,28 +117,35 @@ class Tx4663Request extends BaseRequest
         $this->remark = $remark;
     }
 
-    public function handle()
+    /**
+     * @return string
+     */
+    public function getFreezeTxSn(): string
     {
-        $data = [];
-        $data = array_merge($data, parent::getHead());
-        $body = [
-            'InstitutionID' => $this->getInstitutionId(),
-            'UserID' => $this->getUserId(),
-            'TxSN' => $this->getTxSn(),
-            'OperationType' => $this->getOperationType(),
-            'Amount' => $this->getAmount(),
-            'Remark' => $this->getRemark(),
-        ];
-        if ($this->operationType==Operation::TYPE_THAWING){
-            $body['FreezeTxSN'] = $this->getFreezeTxSn();
-        }else if ( $this->operationType==Operation::TYPE_SHARE_FREEZE){
-            $body['FreezeTxSN'] = $this->getFreezeTxSn();
-            $body['SourceTxSN'] = $this->getSourceTxSn();
-        }
-        $data = array_merge($data, [
-            'Body' => $body
-        ]);
-        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
-        parent::handle();
+        return $this->freezeTxSn;
+    }
+
+    /**
+     * @param string $freezeTxSn
+     */
+    public function setFreezeTxSn(string $freezeTxSn): void
+    {
+        $this->freezeTxSn = $freezeTxSn;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSourceTxSn(): string
+    {
+        return $this->sourceTxSn;
+    }
+
+    /**
+     * @param string $sourceTxSn
+     */
+    public function setSourceTxSn(string $sourceTxSn): void
+    {
+        $this->sourceTxSn = $sourceTxSn;
     }
 }

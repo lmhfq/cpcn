@@ -55,86 +55,6 @@ class Tx5021Request extends BaseRequest
     /**
      * @return string
      */
-    public function getPaymentTxSn(): string
-    {
-        return $this->paymentTxSn;
-    }
-
-    /**
-     * @param string $paymentTxSn
-     */
-    public function setPaymentTxSn(string $paymentTxSn): void
-    {
-        $this->paymentTxSn = $paymentTxSn;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSourceTxTime(): string
-    {
-        return $this->sourceTxTime;
-    }
-
-    /**
-     * @param string $sourceTxTime
-     */
-    public function setSourceTxTime(string $sourceTxTime): void
-    {
-        $this->sourceTxTime = $sourceTxTime;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRefundWay(): int
-    {
-        return $this->refundWay;
-    }
-
-    /**
-     * @param int $refundWay
-     */
-    public function setRefundWay(int $refundWay): void
-    {
-        $this->refundWay = $refundWay;
-    }
-
-    /**
-     * @return int
-     */
-    public function getAmount(): int
-    {
-        return $this->amount;
-    }
-
-    /**
-     * @param int $amount
-     */
-    public function setAmount(int $amount): void
-    {
-        $this->amount = $amount;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCancelAmount(): int
-    {
-        return $this->cancelAmount;
-    }
-
-    /**
-     * @param int $cancelAmount
-     */
-    public function setCancelAmount(int $cancelAmount): void
-    {
-        $this->cancelAmount = $cancelAmount;
-    }
-
-    /**
-     * @return string
-     */
     public function getNoticeUrl(): string
     {
         return $this->noticeUrl;
@@ -180,7 +100,6 @@ class Tx5021Request extends BaseRequest
         $this->splitItems = $splitItems;
     }
 
-
     public function handle()
     {
         $data = [];
@@ -217,5 +136,85 @@ class Tx5021Request extends BaseRequest
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', 'SplitItems', 'UTF-8');
         parent::handle();
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentTxSn(): string
+    {
+        return $this->paymentTxSn;
+    }
+
+    /**
+     * @param string $paymentTxSn
+     */
+    public function setPaymentTxSn(string $paymentTxSn): void
+    {
+        $this->paymentTxSn = $paymentTxSn;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRefundWay(): int
+    {
+        return $this->refundWay;
+    }
+
+    /**
+     * @param int $refundWay
+     */
+    public function setRefundWay(int $refundWay): void
+    {
+        $this->refundWay = $refundWay;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAmount(): int
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param int $amount
+     */
+    public function setAmount(int $amount): void
+    {
+        $this->amount = $amount;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSourceTxTime(): string
+    {
+        return $this->sourceTxTime;
+    }
+
+    /**
+     * @param string $sourceTxTime
+     */
+    public function setSourceTxTime(string $sourceTxTime): void
+    {
+        $this->sourceTxTime = $sourceTxTime;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCancelAmount(): int
+    {
+        return $this->cancelAmount;
+    }
+
+    /**
+     * @param int $cancelAmount
+     */
+    public function setCancelAmount(int $cancelAmount): void
+    {
+        $this->cancelAmount = $cancelAmount;
     }
 }

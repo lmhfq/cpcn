@@ -94,134 +94,6 @@ class Tx4611Request extends BaseRequest
     }
 
     /**
-     * @return int
-     */
-    public function getBankCardType(): int
-    {
-        return $this->bankCardType;
-    }
-
-    /**
-     * @param int $bankCardType
-     */
-    public function setBankCardType(int $bankCardType): void
-    {
-        $this->bankCardType = $bankCardType;
-    }
-
-    /**
-     * @return int
-     */
-    public function getOperationFlag(): int
-    {
-        return $this->operationFlag;
-    }
-
-    /**
-     * @param int $operationFlag
-     */
-    public function setOperationFlag(int $operationFlag): void
-    {
-        $this->operationFlag = $operationFlag;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBindingWay()
-    {
-        return $this->bindingWay;
-    }
-
-    /**
-     * @param string $bindingWay
-     */
-    public function setBindingWay($bindingWay): void
-    {
-        $this->bindingWay = $bindingWay;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCredentialType(): int
-    {
-        return $this->credentialType;
-    }
-
-    /**
-     * @param int $credentialType
-     */
-    public function setCredentialType(int $credentialType): void
-    {
-        $this->credentialType = $credentialType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCredentialNumber(): string
-    {
-        return $this->credentialNumber;
-    }
-
-    /**
-     * @param string $credentialNumber
-     */
-    public function setCredentialNumber(string $credentialNumber): void
-    {
-        $this->credentialNumber = $credentialNumber;
-    }
-
-    /**
-     * @return int
-     */
-    public function getTransferChargeFlag(): int
-    {
-        return $this->transferChargeFlag;
-    }
-
-    /**
-     * @param int $transferChargeFlag
-     */
-    public function setTransferChargeFlag(int $transferChargeFlag): void
-    {
-        $this->transferChargeFlag = $transferChargeFlag;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNoticeUrl(): string
-    {
-        return $this->noticeUrl ?: '';
-    }
-
-    /**
-     * @param string $noticeUrl
-     */
-    public function setNoticeUrl(string $noticeUrl): void
-    {
-        $this->noticeUrl = $noticeUrl;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUpgradeTxSn(): string
-    {
-        return $this->upgradeTxSn;
-    }
-
-    /**
-     * @param string $upgradeTxSn
-     */
-    public function setUpgradeTxSn(string $upgradeTxSn): void
-    {
-        $this->upgradeTxSn = $upgradeTxSn;
-    }
-
-    /**
      * @return BankAccountEntity
      */
     public function getBankAccount(): BankAccountEntity
@@ -282,5 +154,133 @@ class Tx4611Request extends BaseRequest
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
         parent::handle();
+    }
+
+    /**
+     * @return int
+     */
+    public function getOperationFlag(): int
+    {
+        return $this->operationFlag;
+    }
+
+    /**
+     * @param int $operationFlag
+     */
+    public function setOperationFlag(int $operationFlag): void
+    {
+        $this->operationFlag = $operationFlag;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBindingWay()
+    {
+        return $this->bindingWay;
+    }
+
+    /**
+     * @param string $bindingWay
+     */
+    public function setBindingWay($bindingWay): void
+    {
+        $this->bindingWay = $bindingWay;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBankCardType(): int
+    {
+        return $this->bankCardType;
+    }
+
+    /**
+     * @param int $bankCardType
+     */
+    public function setBankCardType(int $bankCardType): void
+    {
+        $this->bankCardType = $bankCardType;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCredentialType(): int
+    {
+        return $this->credentialType;
+    }
+
+    /**
+     * @param int $credentialType
+     */
+    public function setCredentialType(int $credentialType): void
+    {
+        $this->credentialType = $credentialType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCredentialNumber(): string
+    {
+        return $this->credentialNumber;
+    }
+
+    /**
+     * @param string $credentialNumber
+     */
+    public function setCredentialNumber(string $credentialNumber): void
+    {
+        $this->credentialNumber = $credentialNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUpgradeTxSn(): string
+    {
+        return $this->upgradeTxSn;
+    }
+
+    /**
+     * @param string $upgradeTxSn
+     */
+    public function setUpgradeTxSn(string $upgradeTxSn): void
+    {
+        $this->upgradeTxSn = $upgradeTxSn;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTransferChargeFlag(): int
+    {
+        return $this->transferChargeFlag;
+    }
+
+    /**
+     * @param int $transferChargeFlag
+     */
+    public function setTransferChargeFlag(int $transferChargeFlag): void
+    {
+        $this->transferChargeFlag = $transferChargeFlag;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNoticeUrl(): ?string
+    {
+        return $this->noticeUrl;
+    }
+
+    /**
+     * @param string $noticeUrl
+     */
+    public function setNoticeUrl(string $noticeUrl): void
+    {
+        $this->noticeUrl = $noticeUrl;
     }
 }

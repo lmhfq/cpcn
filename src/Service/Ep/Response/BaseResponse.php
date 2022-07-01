@@ -159,9 +159,9 @@ class BaseResponse
     /**
      * @return string
      */
-    public function getResponseCode(): string
+    public function getResponseCode(): ?string
     {
-        return $this->responseCode ?: '';
+        return $this->responseCode;
     }
 
     /**

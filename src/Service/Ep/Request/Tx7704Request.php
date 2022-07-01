@@ -19,22 +19,6 @@ class Tx7704Request extends BaseRequest
      */
     protected $applyNo;
 
-    /**
-     * @return string
-     */
-    public function getApplyNo(): string
-    {
-        return $this->applyNo;
-    }
-
-    /**
-     * @param string $applyNo
-     */
-    public function setApplyNo(string $applyNo): void
-    {
-        $this->applyNo = $applyNo;
-    }
-
     public function handle()
     {
         $data = [];
@@ -49,5 +33,21 @@ class Tx7704Request extends BaseRequest
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
         parent::handle();
+    }
+
+    /**
+     * @return string
+     */
+    public function getApplyNo(): string
+    {
+        return $this->applyNo;
+    }
+
+    /**
+     * @param string $applyNo
+     */
+    public function setApplyNo(string $applyNo): void
+    {
+        $this->applyNo = $applyNo;
     }
 }

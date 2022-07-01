@@ -72,6 +72,62 @@ class Tx7703Request extends BaseRequest
     protected $bankAccount;
 
     /**
+     * @return BankAccountEntity
+     */
+    public function getBankAccount(): BankAccountEntity
+    {
+        return $this->bankAccount;
+    }
+
+    /**
+     * @param BankAccountEntity $bankAccount
+     */
+    public function setBankAccount(BankAccountEntity $bankAccount): void
+    {
+        $this->bankAccount = $bankAccount;
+    }
+
+    public function handle()
+    {
+        $data = [];
+        $head = parent::getHead();
+        $head['Head']['InstitutionID'] = $this->getInstitutionId();
+        $data = array_merge($data, $head);
+        $body = [
+            'ApplyNo' => $this->getApplyNo(),
+            'UserID' => $this->getUserId(),
+            'ProtocolNumber' => $this->getProtocolNumber(),
+            'ProtocolSignerType' => $this->getProtocolSignerType(),
+            'NoticeURL' => $this->getNoticeUrl(),
+        ];
+        if ($this->protocolSignerType == ProtocolSigner::TYPE_AGENT) {
+            $body['AgentPhoneNumber'] = $this->getAgentPhoneNumber();
+            $body['AgentName'] = $this->getAgentName();
+            $body['AgentIDNumber'] = $this->getAgentIdNumber();
+        }
+        $body['ProtocolSignPhoneNumber'] = $this->getProtocolSignPhoneNumber();
+        $body['ImmediatelySign'] = $this->getImmediatelySign();
+        $body['OperationType'] = $this->getOperationType();
+        if ($this->operationType == 20) {
+            $body['BindingTxSN'] = $this->bankAccount->getBindingTxSn();
+            $body['BankID'] = $this->bankAccount->getBankId();
+            $body['BankAccountName'] = $this->bankAccount->getBankAccountName();
+            $body['BankAccountNumber'] = $this->bankAccount->getBankAccountNumber();
+            $body['BranchName'] = $this->bankAccount->getBranchName();
+            if ($this->bankAccount->getCNAPSCode()) {
+                $body['CNAPSCode'] = $this->bankAccount->getCNAPSCode();
+            }
+            $body['Province'] = $this->bankAccount->getProvince();
+            $body['City'] = $this->bankAccount->getCity();
+        }
+        $data = array_merge($data, [
+            'Body' => $body
+        ]);
+        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
+        parent::handle();
+    }
+
+    /**
      * @return string
      */
     public function getApplyNo(): string
@@ -117,6 +173,22 @@ class Tx7703Request extends BaseRequest
     public function setProtocolSignerType(int $protocolSignerType): void
     {
         $this->protocolSignerType = $protocolSignerType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNoticeUrl(): ?string
+    {
+        return $this->noticeUrl;
+    }
+
+    /**
+     * @param string $noticeUrl
+     */
+    public function setNoticeUrl(string $noticeUrl): void
+    {
+        $this->noticeUrl = $noticeUrl;
     }
 
     /**
@@ -170,9 +242,9 @@ class Tx7703Request extends BaseRequest
     /**
      * @return string
      */
-    public function getProtocolSignPhoneNumber(): string
+    public function getProtocolSignPhoneNumber(): ?string
     {
-        return $this->protocolSignPhoneNumber ?: '';
+        return $this->protocolSignPhoneNumber;
     }
 
     /**
@@ -200,22 +272,6 @@ class Tx7703Request extends BaseRequest
     }
 
     /**
-     * @return string
-     */
-    public function getNoticeUrl(): string
-    {
-        return $this->noticeUrl ?: '';
-    }
-
-    /**
-     * @param string $noticeUrl
-     */
-    public function setNoticeUrl(string $noticeUrl): void
-    {
-        $this->noticeUrl = $noticeUrl;
-    }
-
-    /**
      * @return int
      */
     public function getOperationType(): int
@@ -229,62 +285,5 @@ class Tx7703Request extends BaseRequest
     public function setOperationType(int $operationType): void
     {
         $this->operationType = $operationType;
-    }
-
-    /**
-     * @return BankAccountEntity
-     */
-    public function getBankAccount(): BankAccountEntity
-    {
-        return $this->bankAccount;
-    }
-
-    /**
-     * @param BankAccountEntity $bankAccount
-     */
-    public function setBankAccount(BankAccountEntity $bankAccount): void
-    {
-        $this->bankAccount = $bankAccount;
-    }
-
-
-    public function handle()
-    {
-        $data = [];
-        $head = parent::getHead();
-        $head['Head']['InstitutionID'] = $this->getInstitutionId();
-        $data = array_merge($data, $head);
-        $body = [
-            'ApplyNo' => $this->getApplyNo(),
-            'UserID' => $this->getUserId(),
-            'ProtocolNumber' => $this->getProtocolNumber(),
-            'ProtocolSignerType' => $this->getProtocolSignerType(),
-            'NoticeURL' => $this->getNoticeUrl(),
-        ];
-        if ($this->protocolSignerType == ProtocolSigner::TYPE_AGENT) {
-            $body['AgentPhoneNumber'] = $this->getAgentPhoneNumber();
-            $body['AgentName'] = $this->getAgentName();
-            $body['AgentIDNumber'] = $this->getAgentIdNumber();
-        }
-        $body['ProtocolSignPhoneNumber'] = $this->getProtocolSignPhoneNumber();
-        $body['ImmediatelySign'] = $this->getImmediatelySign();
-        $body['OperationType'] = $this->getOperationType();
-        if ($this->operationType == 20) {
-            $body['BindingTxSN'] = $this->bankAccount->getBindingTxSn();
-            $body['BankID'] = $this->bankAccount->getBankId();
-            $body['BankAccountName'] = $this->bankAccount->getBankAccountName();
-            $body['BankAccountNumber'] = $this->bankAccount->getBankAccountNumber();
-            $body['BranchName'] = $this->bankAccount->getBranchName();
-            if ($this->bankAccount->getCNAPSCode()) {
-                $body['CNAPSCode'] = $this->bankAccount->getCNAPSCode();
-            }
-            $body['Province'] = $this->bankAccount->getProvince();
-            $body['City'] = $this->bankAccount->getCity();
-        }
-        $data = array_merge($data, [
-            'Body' => $body
-        ]);
-        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
-        parent::handle();
     }
 }

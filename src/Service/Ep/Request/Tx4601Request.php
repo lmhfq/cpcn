@@ -76,22 +76,6 @@ class Tx4601Request extends BaseRequest
     protected $bankAccount;
 
     /**
-     * @return int
-     */
-    public function getUserType(): int
-    {
-        return $this->userType;
-    }
-
-    /**
-     * @param int $userType
-     */
-    public function setUserType(int $userType): void
-    {
-        $this->userType = $userType;
-    }
-
-    /**
      * @return string
      */
     public function getParentUserId(): string
@@ -137,54 +121,6 @@ class Tx4601Request extends BaseRequest
     public function setAccountLevel(int $accountLevel): void
     {
         $this->accountLevel = $accountLevel;
-    }
-
-    /**
-     * @return string
-     */
-    public function getImageCollectionTxSn(): string
-    {
-        return $this->imageCollectionTxSn ?: '';
-    }
-
-    /**
-     * @param string $imageCollectionTxSn
-     */
-    public function setImageCollectionTxSn(string $imageCollectionTxSn): void
-    {
-        $this->imageCollectionTxSn = $imageCollectionTxSn;
-    }
-
-    /**
-     * @return int
-     */
-    public function getBusinessType(): int
-    {
-        return $this->businessType;
-    }
-
-    /**
-     * @param int $businessType
-     */
-    public function setBusinessType(int $businessType): void
-    {
-        $this->businessType = $businessType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNoticeUrl(): string
-    {
-        return $this->noticeUrl ?: '';
-    }
-
-    /**
-     * @param string $noticeUrl
-     */
-    public function setNoticeUrl(string $noticeUrl): void
-    {
-        $this->noticeUrl = $noticeUrl;
     }
 
     /**
@@ -238,12 +174,12 @@ class Tx4601Request extends BaseRequest
         switch ($this->userType) {
             case UserType::INDIVIDUAL:
                 $body['Individual'] = [
-                    'PhoneNumber' => $this->accountData->getContactNumber(),
                     'UserName' => $this->accountData->getUserName(),
                     'CredentialType' => $this->accountData->getCredentialType(),
                     'CredentialNumber' => $this->accountData->getCredentialNumber(),
                     'IssDate' => $this->accountData->getIssDate(),
                     'ExpiryDate' => $this->accountData->getExpiryDate(),
+                    'PhoneNumber' => $this->accountData->getContactNumber(),
                     'IndAddress' => $this->accountData->getAddress(),
                     'IndEmail' => $this->accountData->getEmail(),
                 ];
@@ -287,7 +223,26 @@ class Tx4601Request extends BaseRequest
                 }
                 break;
             case UserType::RETAILER:
-                $body['Retailer'] = [];
+                $body['Retailer'] = [
+                    'RetailerRegNumber' => $this->accountData->getUnifiedSocialCreditCode(),
+                    'RetailerName' => $this->accountData->getCorporationName(),
+                    'RetailerLicenseIssDate' => $this->accountData->getAllLicenceIssDate(),
+                    'RetailerLicenseExpiryDate' => $this->accountData->getAllLicenceExpiryDate(),
+                    'RetailerAddress' => $this->accountData->getAddress(),
+                    'ManagerNam' => $this->accountData->getUserName(),
+                    'ManagerCredentialType' => $this->accountData->getCredentialType(),
+                    'ManagerCredentialNumber' => $this->accountData->getCredentialNumber(),
+                    'ManagerIssDate' => $this->accountData->getIssDate(),
+                    'ManagerExpiryDate' => $this->accountData->getExpiryDate(),
+                    'ManagerContactNumber' => $this->accountData->getContactNumber(),
+
+                    'ManagerEmail' => $this->accountData->getEmail(),
+                ];
+                if ($this->accountData->getProvince()) {
+                    $body['Retailer']['RetailerProvince'] = $this->accountData->getProvince();
+                    $body['Retailer']['RetailerCity'] = $this->accountData->getCity();
+                    $body['Retailer']['RetailerDistrict'] = $this->accountData->getDistrict();
+                }
                 break;
         }
         if ($this->businessType == 20 || $this->businessType = 21) {
@@ -300,7 +255,7 @@ class Tx4601Request extends BaseRequest
                 $body['BankAccount']['BranchName'] = $this->bankAccount->getBranchName();
                 $body['BankAccount']['BankProvince'] = $this->bankAccount->getProvince();
                 $body['BankAccount']['BankCity'] = $this->bankAccount->getCity();
-            }else {
+            } else {
                 $body['BankAccount']['BankPhoneNumber'] = $this->bankAccount->getBankPhoneNumber();
             }
         }
@@ -309,5 +264,69 @@ class Tx4601Request extends BaseRequest
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
         parent::handle();
+    }
+
+    /**
+     * @return int
+     */
+    public function getUserType(): int
+    {
+        return $this->userType;
+    }
+
+    /**
+     * @param int $userType
+     */
+    public function setUserType(int $userType): void
+    {
+        $this->userType = $userType;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBusinessType(): int
+    {
+        return $this->businessType;
+    }
+
+    /**
+     * @param int $businessType
+     */
+    public function setBusinessType(int $businessType): void
+    {
+        $this->businessType = $businessType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNoticeUrl(): ?string
+    {
+        return $this->noticeUrl;
+    }
+
+    /**
+     * @param string $noticeUrl
+     */
+    public function setNoticeUrl(string $noticeUrl): void
+    {
+        $this->noticeUrl = $noticeUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImageCollectionTxSn(): ?string
+    {
+        return $this->imageCollectionTxSn;
+    }
+
+    /**
+     * @param string $imageCollectionTxSn
+     */
+    public function setImageCollectionTxSn(string $imageCollectionTxSn): void
+    {
+        $this->imageCollectionTxSn = $imageCollectionTxSn;
     }
 }

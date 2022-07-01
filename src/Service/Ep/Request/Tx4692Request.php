@@ -35,6 +35,25 @@ class Tx4692Request extends BaseRequest
      */
     protected $pageSize = 20;
 
+    public function handle()
+    {
+        $data = [];
+        $data = array_merge($data, parent::getHead());
+        $body = [
+            'InstitutionID' => $this->getInstitutionId(),
+            'UserID' => $this->getUserId(),
+            'StartDate' => $this->getStartDate(),
+            'EndDate' => $this->getEndDate(),
+            'PageIndex' => $this->getPageIndex(),
+            'PageSize' => $this->getPageSize(),
+        ];
+        $data = array_merge($data, [
+            'Body' => $body
+        ]);
+        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
+        parent::handle();
+    }
+
     /**
      * @return string
      */
@@ -97,25 +116,5 @@ class Tx4692Request extends BaseRequest
     public function setPageSize(int $pageSize): void
     {
         $this->pageSize = $pageSize;
-    }
-
-
-    public function handle()
-    {
-        $data = [];
-        $data = array_merge($data, parent::getHead());
-        $body = [
-            'InstitutionID' => $this->getInstitutionId(),
-            'UserID' => $this->getUserId(),
-            'StartDate' => $this->getStartDate(),
-            'EndDate' => $this->getEndDate(),
-            'PageIndex' => $this->getPageIndex(),
-            'PageSize' => $this->getPageSize(),
-        ];
-        $data = array_merge($data, [
-            'Body' => $body
-        ]);
-        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
-        parent::handle();
     }
 }

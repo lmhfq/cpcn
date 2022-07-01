@@ -79,9 +79,9 @@ class Tx5031Response extends BaseResponse
     /**
      * @return string
      */
-    public function getResponseTime(): string
+    public function getResponseTime(): ?string
     {
-        return $this->responseTime ?: '';
+        return $this->responseTime;
     }
 
     /**

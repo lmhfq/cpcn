@@ -65,9 +65,9 @@ class Tx2751Response extends BaseResponse
     /**
      * @return string
      */
-    public function getBankName(): string
+    public function getBankName(): ?string
     {
-        return $this->bankName ?: '';
+        return $this->bankName;
     }
 
     /**

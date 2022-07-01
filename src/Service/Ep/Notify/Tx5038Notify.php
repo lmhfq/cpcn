@@ -48,12 +48,28 @@ class Tx5038Notify extends TBaseNotify
      */
     protected $splitItems;
 
+    public function __construct(BaseNotify $baseNotify)
+    {
+        parent::__construct($baseNotify);
+        $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
+        $this->amount = intval(ArrayUtil::get('Amount', $this->noticeBody));
+        $this->availableSplitAmount = intval(ArrayUtil::get('AvailableSplitAmount', $this->noticeBody));
+        $this->paymentTxSn = ArrayUtil::get('PaymentTxSN', $this->noticeBody);
+        $splitItems = ArrayUtil::get('SplitItems', $this->noticeBody, []);
+        if (!isset($splitItems[0])) {
+            $splitItems = [$splitItems];
+        }
+        foreach ($splitItems as $v) {
+            $this->splitItems[] = $v;
+        }
+    }
+
     /**
      * @return string
      */
-    public function getPaymentTxSn(): string
+    public function getPaymentTxSn(): ?string
     {
-        return $this->paymentTxSn ?: '';
+        return $this->paymentTxSn;
     }
 
     /**
@@ -102,21 +118,5 @@ class Tx5038Notify extends TBaseNotify
     public function getSplitItems(): array
     {
         return $this->splitItems;
-    }
-
-    public function __construct(BaseNotify $baseNotify)
-    {
-        parent::__construct($baseNotify);
-        $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
-        $this->amount = intval(ArrayUtil::get('Amount', $this->noticeBody));
-        $this->availableSplitAmount = intval(ArrayUtil::get('AvailableSplitAmount', $this->noticeBody));
-        $this->paymentTxSn = ArrayUtil::get('PaymentTxSN', $this->noticeBody);
-        $splitItems = ArrayUtil::get('SplitItems', $this->noticeBody, []);
-        if (!isset($splitItems[0])) {
-            $splitItems = [$splitItems];
-        }
-        foreach ($splitItems as $v) {
-            $this->splitItems[] = $v;
-        }
     }
 }

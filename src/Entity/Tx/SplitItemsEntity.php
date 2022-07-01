@@ -102,9 +102,9 @@ class SplitItemsEntity
     /**
      * @return string
      */
-    public function getSplitAccountNumber(): string
+    public function getSplitAccountNumber(): ?string
     {
-        return $this->splitAccountNumber ?: '';
+        return $this->splitAccountNumber;
     }
 
     /**
@@ -182,9 +182,9 @@ class SplitItemsEntity
     /**
      * @return string
      */
-    public function getNote(): string
+    public function getNote(): ?string
     {
-        return $this->note ?: '';
+        return $this->note ;
     }
 
     /**

@@ -65,6 +65,61 @@ class Tx4645Request extends BaseRequest
     protected $remark;
 
     /**
+     * @return BankAccountEntity
+     */
+    public function getBankAccount(): BankAccountEntity
+    {
+        return $this->bankAccount;
+    }
+
+    /**
+     * @param BankAccountEntity $bankAccount
+     */
+    public function setBankAccount(BankAccountEntity $bankAccount): void
+    {
+        $this->bankAccount = $bankAccount;
+    }
+
+    public function handle()
+    {
+        $data = [];
+        $data = array_merge($data, parent::getHead());
+        $body = [
+            'InstitutionID' => $this->getInstitutionId(),
+            'TxSN' => $this->getTxSn(),
+            'ArrivalType' => $this->getArrivalType(),
+            'PayerAccountType' => $this->getPayerAccountType(),
+            'PayerUserID' => $this->getPayerUserId(),
+
+            'PayeeAccountType' => $this->getPayeeAccountType(),
+            'PayeeUserID' => $this->getPayeeUserId(),
+            'Amount' => $this->getAmount(),
+            'Remark' => $this->getRemark(),
+        ];
+        if ($this->payerAccountType == 10) {
+            $body['PayerAccountNumber'] = $this->getPayerAccountNumber();
+        }
+        if ($this->bankAccount) {
+            if ($this->bankAccount->getBindingTxSn()) {
+                $body['BindingTxSN'] = $this->bankAccount->getBindingTxSn();
+            } else {
+                $body['BankID'] = $this->bankAccount->getBankId();
+                $body['BankAccountName'] = $this->bankAccount->getBankAccountName();
+                $body['BankAccountNumber'] = $this->bankAccount->getBankAccountNumber();
+                $body['BankAccountType'] = $this->bankAccount->getBankAccountType();
+                $body['BranchName'] = $this->bankAccount->getBranchName();
+                $body['Province'] = $this->bankAccount->getProvince();
+                $body['City'] = $this->bankAccount->getCity();
+            }
+        }
+        $data = array_merge($data, [
+            'Body' => $body
+        ]);
+        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
+        parent::handle();
+    }
+
+    /**
      * @return int
      */
     public function getArrivalType(): int
@@ -113,22 +168,6 @@ class Tx4645Request extends BaseRequest
     }
 
     /**
-     * @return string
-     */
-    public function getPayerAccountNumber(): string
-    {
-        return $this->payerAccountNumber;
-    }
-
-    /**
-     * @param string $payerAccountNumber
-     */
-    public function setPayerAccountNumber(string $payerAccountNumber): void
-    {
-        $this->payerAccountNumber = $payerAccountNumber;
-    }
-
-    /**
      * @return int
      */
     public function getPayeeAccountType(): int
@@ -161,22 +200,6 @@ class Tx4645Request extends BaseRequest
     }
 
     /**
-     * @return BankAccountEntity
-     */
-    public function getBankAccount(): BankAccountEntity
-    {
-        return $this->bankAccount;
-    }
-
-    /**
-     * @param BankAccountEntity $bankAccount
-     */
-    public function setBankAccount(BankAccountEntity $bankAccount): void
-    {
-        $this->bankAccount = $bankAccount;
-    }
-
-    /**
      * @return int
      */
     public function getAmount(): int
@@ -195,9 +218,9 @@ class Tx4645Request extends BaseRequest
     /**
      * @return string
      */
-    public function getRemark(): string
+    public function getRemark(): ?string
     {
-        return $this->remark ?: '';
+        return $this->remark;
     }
 
     /**
@@ -208,42 +231,19 @@ class Tx4645Request extends BaseRequest
         $this->remark = $remark;
     }
 
-    public function handle()
+    /**
+     * @return string
+     */
+    public function getPayerAccountNumber(): string
     {
-        $data = [];
-        $data = array_merge($data, parent::getHead());
-        $body = [
-            'InstitutionID' => $this->getInstitutionId(),
-            'TxSN' => $this->getTxSn(),
-            'ArrivalType' => $this->getArrivalType(),
-            'PayerAccountType' => $this->getPayerAccountType(),
-            'PayerUserID' => $this->getPayerUserId(),
+        return $this->payerAccountNumber;
+    }
 
-            'PayeeAccountType' => $this->getPayeeAccountType(),
-            'PayeeUserID' => $this->getPayeeUserId(),
-            'Amount' => $this->getAmount(),
-            'Remark' => $this->getRemark(),
-        ];
-        if ($this->payerAccountType == 10) {
-            $body['PayerAccountNumber'] = $this->getPayerAccountNumber();
-        }
-        if ($this->bankAccount) {
-            if ($this->bankAccount->getBindingTxSn()) {
-                $body['BindingTxSN'] = $this->bankAccount->getBindingTxSn();
-            } else {
-                $body['BankID'] = $this->bankAccount->getBankId();
-                $body['BankAccountName'] = $this->bankAccount->getBankAccountName();
-                $body['BankAccountNumber'] = $this->bankAccount->getBankAccountNumber();
-                $body['BankAccountType'] = $this->bankAccount->getBankAccountType();
-                $body['BranchName'] = $this->bankAccount->getBranchName();
-                $body['Province'] = $this->bankAccount->getProvince();
-                $body['City'] = $this->bankAccount->getCity();
-            }
-        }
-        $data = array_merge($data, [
-            'Body' => $body
-        ]);
-        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
-        parent::handle();
+    /**
+     * @param string $payerAccountNumber
+     */
+    public function setPayerAccountNumber(string $payerAccountNumber): void
+    {
+        $this->payerAccountNumber = $payerAccountNumber;
     }
 }

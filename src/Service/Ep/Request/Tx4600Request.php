@@ -42,38 +42,6 @@ class Tx4600Request extends BaseRequest
     protected $imageInfo = [];
 
     /**
-     * @return int
-     */
-    public function getBusinessType(): int
-    {
-        return $this->businessType;
-    }
-
-    /**
-     * @param int $businessType
-     */
-    public function setBusinessType(int $businessType): void
-    {
-        $this->businessType = $businessType;
-    }
-
-    /**
-     * @return int
-     */
-    public function getOCRFlag(): int
-    {
-        return $this->oCRFlag;
-    }
-
-    /**
-     * @param int $oCRFlag
-     */
-    public function setOCRFlag(int $oCRFlag): void
-    {
-        $this->oCRFlag = $oCRFlag;
-    }
-
-    /**
      * @return array
      */
     public function getImageInfo(): array
@@ -117,5 +85,37 @@ class Tx4600Request extends BaseRequest
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', 'ImageInfo', 'UTF-8');
         parent::handle();
+    }
+
+    /**
+     * @return int
+     */
+    public function getBusinessType(): int
+    {
+        return $this->businessType;
+    }
+
+    /**
+     * @param int $businessType
+     */
+    public function setBusinessType(int $businessType): void
+    {
+        $this->businessType = $businessType;
+    }
+
+    /**
+     * @return int
+     */
+    public function getOCRFlag(): int
+    {
+        return $this->oCRFlag;
+    }
+
+    /**
+     * @param int $oCRFlag
+     */
+    public function setOCRFlag(int $oCRFlag): void
+    {
+        $this->oCRFlag = $oCRFlag;
     }
 }

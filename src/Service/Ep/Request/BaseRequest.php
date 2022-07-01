@@ -55,14 +55,6 @@ abstract class BaseRequest
     /**
      * @return string
      */
-    public function getTxCode(): string
-    {
-        return $this->txCode;
-    }
-
-    /**
-     * @return string
-     */
     public function getInstitutionId(): ?string
     {
         return $this->institutionId;
@@ -135,9 +127,9 @@ abstract class BaseRequest
     /**
      * @return string
      */
-    public function getTxSn(): string
+    public function getTxSn(): ?string
     {
-        return $this->txSn ?: '';
+        return $this->txSn;
     }
 
     /**
@@ -151,9 +143,9 @@ abstract class BaseRequest
     /**
      * @return string
      */
-    public function getUserId(): string
+    public function getUserId(): ?string
     {
-        return $this->userId ?: '';
+        return $this->userId;
     }
 
     /**
@@ -162,6 +154,16 @@ abstract class BaseRequest
     public function setUserId(string $userId): void
     {
         $this->userId = $userId;
+    }
+
+    /**
+     * @throws InvalidConfigException
+     * @author lmh
+     */
+    public function handle()
+    {
+        $this->requestMessage = base64_encode(trim($this->requestPlainText));
+        $this->requestSignature = SignatureFactory::getSigner()->sign(trim($this->requestPlainText));
     }
 
     /**
@@ -177,12 +179,10 @@ abstract class BaseRequest
     }
 
     /**
-     * @throws InvalidConfigException
-     * @author lmh
+     * @return string
      */
-    public function handle()
+    public function getTxCode(): string
     {
-        $this->requestMessage = base64_encode(trim($this->requestPlainText));
-        $this->requestSignature = SignatureFactory::getSigner()->sign(trim($this->requestPlainText));
+        return $this->txCode;
     }
 }

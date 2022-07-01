@@ -26,38 +26,6 @@ class Tx5036Request extends BaseRequest
     protected $sourceTxTime;
 
     /**
-     * @return string
-     */
-    public function getSourceTxCode(): string
-    {
-        return $this->sourceTxCode;
-    }
-
-    /**
-     * @param string $sourceTxCode
-     */
-    public function setSourceTxCode(string $sourceTxCode): void
-    {
-        $this->sourceTxCode = $sourceTxCode;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSourceTxTime(): string
-    {
-        return $this->sourceTxTime ?: '';
-    }
-
-    /**
-     * @param string $sourceTxTime
-     */
-    public function setSourceTxTime(string $sourceTxTime): void
-    {
-        $this->sourceTxTime = $sourceTxTime;
-    }
-
-    /**
      * @throws InvalidConfigException
      * @author lmh
      */
@@ -76,5 +44,37 @@ class Tx5036Request extends BaseRequest
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
         parent::handle();
+    }
+
+    /**
+     * @return string
+     */
+    public function getSourceTxCode(): string
+    {
+        return $this->sourceTxCode;
+    }
+
+    /**
+     * @param string $sourceTxCode
+     */
+    public function setSourceTxCode(string $sourceTxCode): void
+    {
+        $this->sourceTxCode = $sourceTxCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSourceTxTime(): ?string
+    {
+        return $this->sourceTxTime;
+    }
+
+    /**
+     * @param string $sourceTxTime
+     */
+    public function setSourceTxTime(string $sourceTxTime): void
+    {
+        $this->sourceTxTime = $sourceTxTime;
     }
 }

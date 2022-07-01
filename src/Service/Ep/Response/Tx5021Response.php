@@ -43,9 +43,9 @@ class Tx5021Response extends BaseResponse
     /**
      * @return string
      */
-    public function getRefundTraceNo(): string
+    public function getRefundTraceNo(): ?string
     {
-        return $this->refundTraceNo ?: '';
+        return $this->refundTraceNo;
     }
 
     /**
@@ -75,9 +75,9 @@ class Tx5021Response extends BaseResponse
     /**
      * @return string
      */
-    public function getResponseTime(): string
+    public function getResponseTime(): ?string
     {
-        return $this->responseTime ?: '';
+        return $this->responseTime;
     }
 
     /**

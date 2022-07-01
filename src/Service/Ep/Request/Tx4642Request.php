@@ -12,29 +12,13 @@ namespace Lmh\Cpcn\Service\Ep\Request;
 
 use Lmh\Cpcn\Support\Xml;
 
-class Tx4642Request  extends BaseRequest
+class Tx4642Request extends BaseRequest
 {
     protected $txCode = '4642';
     /**
      * @var string 短信验证码
      */
     protected $smsValidationCode;
-
-    /**
-     * @return string
-     */
-    public function getSmsValidationCode(): string
-    {
-        return $this->smsValidationCode;
-    }
-
-    /**
-     * @param string $smsValidationCode
-     */
-    public function setSmsValidationCode(string $smsValidationCode): void
-    {
-        $this->smsValidationCode = $smsValidationCode;
-    }
 
     public function handle()
     {
@@ -50,5 +34,21 @@ class Tx4642Request  extends BaseRequest
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
         parent::handle();
+    }
+
+    /**
+     * @return string
+     */
+    public function getSmsValidationCode(): string
+    {
+        return $this->smsValidationCode;
+    }
+
+    /**
+     * @param string $smsValidationCode
+     */
+    public function setSmsValidationCode(string $smsValidationCode): void
+    {
+        $this->smsValidationCode = $smsValidationCode;
     }
 }

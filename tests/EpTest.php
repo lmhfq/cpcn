@@ -17,6 +17,7 @@ use Lmh\Cpcn\Entity\Tx\AttachInfoEntity;
 use Lmh\Cpcn\Entity\Tx\BankAccountEntity;
 use Lmh\Cpcn\Entity\Tx\ImageInfoEntity;
 use Lmh\Cpcn\Entity\Tx\PayDataEntity;
+use Lmh\Cpcn\Entity\Tx\SplitItemsEntity;
 use Lmh\Cpcn\Factory;
 use Lmh\Cpcn\Service\Ep\Notify\BaseNotify;
 use Lmh\Cpcn\Service\Ep\Notify\Tx4618Notify;
@@ -35,6 +36,7 @@ use Lmh\Cpcn\Service\Ep\Request\Tx4691Request;
 use Lmh\Cpcn\Service\Ep\Request\Tx4693Request;
 use Lmh\Cpcn\Service\Ep\Request\Tx5011Request;
 use Lmh\Cpcn\Service\Ep\Request\Tx5021Request;
+use Lmh\Cpcn\Service\Ep\Request\Tx5026Request;
 use Lmh\Cpcn\Service\Ep\Request\Tx5031Request;
 use Lmh\Cpcn\Service\Ep\Request\Tx5036Request;
 use Lmh\Cpcn\Service\Ep\Request\Tx7703Request;
@@ -42,8 +44,12 @@ use Lmh\Cpcn\Service\Ep\Response\Tx2751Response;
 use Lmh\Cpcn\Service\Ep\Response\Tx4611Response;
 use Lmh\Cpcn\Service\Ep\Response\Tx4616Response;
 use Lmh\Cpcn\Service\Ep\Response\Tx4641Response;
+use Lmh\Cpcn\Service\Ep\Response\Tx4643Response;
 use Lmh\Cpcn\Service\Ep\Response\Tx4691Response;
 use Lmh\Cpcn\Service\Ep\Response\Tx4693Response;
+use Lmh\Cpcn\Service\Ep\Response\Tx5011Response;
+use Lmh\Cpcn\Service\Ep\Response\Tx5026Response;
+use Lmh\Cpcn\Service\Ep\Response\Tx5031Response;
 use Lmh\Cpcn\Service\Ep\Response\Tx5036Response;
 use Lmh\Cpcn\Support\Base64Image;
 use PHPUnit\Framework\TestCase;
@@ -102,7 +108,7 @@ class EpTest extends TestCase
 
 
         $request = new Tx4601Request();
-        $request->setUserId("217000001");
+        $request->setUserId("2170000222");
         $request->setTxSn(EpTest::get());
 //        $request->setParentUserId();
         $request->setUserType(UserType::CORPORATION);
@@ -110,24 +116,25 @@ class EpTest extends TestCase
         $request->setNoticeUrl('https://payment.wyawds.com/cpcn/ep/notify/notify');
         $request->setImageCollectionTxSn('20220217013739574909');
         $accountData = new AccountEntity();
-        $accountData->setCorporationName('济南市长清区丰酬熟食店');
+        $accountData->setCorporationName('济南市长清区');
         $accountData->setCorporationShort('丰酬熟食店');
         $accountData->setEmail('991564110@qq.com');
         $accountData->setAddress('浙江杭州');
         $accountData->setProvince('33');
         $accountData->setCity('330100');
         $accountData->setDistrict('330102');
-        $accountData->setUnifiedSocialCreditCode('92370113MA3HJP4T2C');
+        $accountData->setUnifiedSocialCreditCode('92370113MA3HJP4T2D');
         $accountData->setAllLicenceIssDate('20220101');
         $accountData->setAllLicenceExpiryDate('20990101');
         //法人
         $accountData->setUserName('颜竹茂');
-        $accountData->setCredentialNumber('330328198608220876');
+        $accountData->setCredentialNumber('3303281986082208768');
         $accountData->setIssDate('20100201');
         $accountData->setExpiryDate('20350201');
         $accountData->setContactNumber('18133344454');
         $request->setAccountData($accountData);
-
+//        $res = $client->execute($request, new Tx4691Response());
+//        var_dump($res);exit;
 
 //        $request = new Tx4601Request();
 //        $request->setUserId("111111115");
@@ -209,23 +216,27 @@ class EpTest extends TestCase
 
         $request = new Tx4641Request();
         $request->setTxSn(EpTest::get());
-        $request->setUserId("335234565918425088");
+        $request->setUserId("335655629202915328");
         $request->setPaymentWay(10);
-        $request->setAmount(10);
+        $request->setAmount(12911);
         $request->setExpirePeriod(10);
         $request->setNoticeUrl('https://payment.wyawds.com/cpcn/ep/notify/notify');
         $request->setRemark('10');
 
         $payDataEntity = new PayDataEntity();
-        $payDataEntity->setBindingTxSn(EpTest::get());
+        $payDataEntity->setBindingTxSn('22022107158033164211');
         $payDataEntity->setSmsVerification(0);
         $request->setPayData($payDataEntity);
 
+//        $res = $client->execute($request, new Tx4641Response());
+//        var_dump($res);exit;
 
-
+        //335234565918425088  335655629202915328
         $request = new Tx4691Request();
         $request->setUserId("335655629202915328");
-        $res = $client->execute($request, new Tx4691Response());
+//        $res = $client->execute($request, new Tx4691Response());
+//        var_dump($res);exit;
+
 
 
         $request = new Tx4693Request();
@@ -234,13 +245,15 @@ class EpTest extends TestCase
 
         $request = new Tx4643Request();
         $request->setTxSn(EpTest::get());
-        $request->setUserId("217000001");
-        $request->setBindingTxSn("20220217022707198757");
-        $request->setAmount(10);
+        $request->setUserId("335655629202915328");
+        $request->setBindingTxSn("22022107158033164211");
+        $request->setAmount(111111111);
         $request->setArrivalType(10);
+        $request->setRemark("30");
         $request->setNoticeUrl('https://payment.wyawds.com/cpcn/ep/notify/notify');
 
-
+//        $res = $client->execute($request, new Tx4643Response());
+//        var_dump($res);exit;
 
 
         $request = new Tx4645Request();
@@ -256,30 +269,32 @@ class EpTest extends TestCase
         $request->setSourceTxSn("20220215014339127891");
 
 
+        $tradeNo =EpTest::get();
         $request = new Tx5011Request();
-        $request->setTxSn(EpTest::get());
-        $request->setOrderNo(EpTest::get());
-        $request->setPayeeUserId('217000001');
-        $request->setPayerUserId('1');
-        $request->setPaymentWay('80');
+        $request->setTxSn($tradeNo);
+        $request->setOrderNo($tradeNo);
+        $request->setPayeeUserId('335234565918425088');
+        $request->setPayerUserId('335655629202915328');
+        $request->setPaymentWay('00');
         $request->setAmount(900);
         $request->setPageUrl('https://payment.wyawds.com/cpcn/ep/notify');
         $request->setNoticeUrl('https://payment.wyawds.com/cpcn/ep/notify');
         $request->setGoodsName('10');
-        $request->setPlatformName('31');
-        $request->setRemark('茅台酒');
+        $request->setRemark('茅台酒2');
         $request->setClientIP(  isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '');
         $request->setHasSubsequentSplit(2);
         $request->setDeductionSettlementFlag("0001");
 
 
-        $payDataEntity = new PayDataEntity();
-        $payDataEntity->setPayWay(RedirectPay::PAYWAY_MINI_PROGRAM);
-        $payDataEntity->setPayType(RedirectPay::PAYTYPE_WECHAT);
-        $payDataEntity->setSubAppId("wx55d46b918ab37285");
-        $payDataEntity->setSubOpenId("xxa");
-        $payDataEntity->setRedirectSource("20");
-        $request->setPayData($payDataEntity);
+//        $payDataEntity = new PayDataEntity();
+//        $payDataEntity->setPayWay(RedirectPay::PAYWAY_MINI_PROGRAM);
+//        $payDataEntity->setPayType(RedirectPay::PAYTYPE_WECHAT);
+//        $payDataEntity->setSubAppId("wx55d46b918ab37285");
+//        $payDataEntity->setSubOpenId("xxa");
+//        $payDataEntity->setRedirectSource("20");
+//        $request->setPayData($payDataEntity);
+//        $res = $client->execute($request, new Tx5011Response());
+//        var_dump($res);exit;
 
 
 
@@ -313,10 +328,11 @@ class EpTest extends TestCase
 
 
         $request = new Tx4616Request();
-        $request->setSourceTxCode("4601");
-        $request->setSourceTxSn("22021902360432134346");
-        $request->setUserType(11);
-
+        $request->setSourceTxCode("7703");
+        $request->setSourceTxSn("22021805779547113612");
+        $request->setUserType(12);
+//        $res = $client->execute($request, new Tx4616Response());
+//        var_dump($res);exit;
 
 
 
@@ -328,20 +344,40 @@ class EpTest extends TestCase
 
         $request = new Tx5031Request();
         $request->setTxSn(EpTest::get());
-        $request->setPaymentTxSN('22022108645299104917');
+        $request->setPaymentTxSn('22022204868735095206');
         $request->setRemainFundsProcess(2);
 
         $splitItems =[];
 
+        $splitItemsEntity = new SplitItemsEntity();
+        $splitItemsEntity->setSplitAmount(1);
+        $splitItemsEntity->setSpLitUserId('335655629202915328');
+        $splitItemsEntity->setSplitTxSn(EpTest::get());
+        $splitItems[]=$splitItemsEntity;
+
+        $splitItemsEntity = new SplitItemsEntity();
+        $splitItemsEntity->setSplitAmount(1);
+        $splitItemsEntity->setSpLitUserId('336431577326157824');
+        $splitItemsEntity->setSplitTxSn(EpTest::get());
+        $splitItems[]=$splitItemsEntity;
+
 
         $request->setSplitItems($splitItems);
-
+//        $res = $client->execute($request, new Tx5031Response());
+//        var_dump($res);exit;
 
         $request = new Tx5036Request();
-        $request->setTxSn('20220221142032806248');
+        $request->setTxSn('22022508637108175626');
         $request->setSourceTxCode("5011");
-        $request->setSourceTxTime("20220221");
+        $request->setSourceTxTime("20220225");
+
         $res = $client->execute($request, new Tx5036Response());
+        $request = new Tx5026Request();
+        $request->setTxSn('20220225133950041954');
+
+     //   $res = $client->execute($request, new Tx5026Response());
+
+
         var_dump($res);exit;
 
 

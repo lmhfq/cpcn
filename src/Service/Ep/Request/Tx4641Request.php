@@ -70,22 +70,6 @@ class Tx4641Request extends BaseRequest
     protected $payData;
 
     /**
-     * @return int
-     */
-    public function getPaymentWay(): int
-    {
-        return $this->paymentWay;
-    }
-
-    /**
-     * @param int $paymentWay
-     */
-    public function setPaymentWay(int $paymentWay): void
-    {
-        $this->paymentWay = $paymentWay;
-    }
-
-    /**
      * @return string
      */
     public function getAcceptanceConfirmType(): string
@@ -102,135 +86,6 @@ class Tx4641Request extends BaseRequest
     }
 
     /**
-     * @return int
-     */
-    public function getAmount(): int
-    {
-        return $this->amount;
-    }
-
-    /**
-     * @param int $amount
-     */
-    public function setAmount(int $amount): void
-    {
-        $this->amount = $amount;
-    }
-
-    /**
-     * @return int
-     */
-    public function getExpirePeriod(): int
-    {
-        return $this->expirePeriod;
-    }
-
-    /**
-     * @param int $expirePeriod
-     */
-    public function setExpirePeriod(int $expirePeriod): void
-    {
-        $this->expirePeriod = $expirePeriod;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNoticeUrl(): string
-    {
-        return $this->noticeUrl ?: '';
-    }
-
-    /**
-     * @param string $noticeUrl
-     */
-    public function setNoticeUrl(string $noticeUrl): void
-    {
-        $this->noticeUrl = $noticeUrl;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPageUrl(): string
-    {
-        return $this->pageUrl ?: '';
-    }
-
-    /**
-     * @param string $pageUrl
-     */
-    public function setPageUrl(string $pageUrl): void
-    {
-        $this->pageUrl = $pageUrl;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGoodsName(): string
-    {
-        return $this->goodsName ?: '';
-    }
-
-    /**
-     * @param string $goodsName
-     */
-    public function setGoodsName(string $goodsName): void
-    {
-        $this->goodsName = $goodsName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPlatformName(): string
-    {
-        return $this->platformName;
-    }
-
-    /**
-     * @param string $platformName
-     */
-    public function setPlatformName(string $platformName): void
-    {
-        $this->platformName = $platformName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRemark(): string
-    {
-        return $this->remark;
-    }
-
-    /**
-     * @param string $remark
-     */
-    public function setRemark(string $remark): void
-    {
-        $this->remark = $remark;
-    }
-
-    /**
-     * @return string
-     */
-    public function getClientIp(): string
-    {
-        return $this->clientIp ?: '';
-    }
-
-    /**
-     * @param string $clientIp
-     */
-    public function setClientIp(string $clientIp): void
-    {
-        $this->clientIp = $clientIp;
-    }
-
-
-    /**
      * @return PayDataEntity
      */
     public function getPayData(): PayDataEntity
@@ -245,7 +100,6 @@ class Tx4641Request extends BaseRequest
     {
         $this->payData = $payData;
     }
-
 
     public function handle()
     {
@@ -295,5 +149,149 @@ class Tx4641Request extends BaseRequest
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
         parent::handle();
+    }
+
+    /**
+     * @return int
+     */
+    public function getPaymentWay(): int
+    {
+        return $this->paymentWay;
+    }
+
+    /**
+     * @param int $paymentWay
+     */
+    public function setPaymentWay(int $paymentWay): void
+    {
+        $this->paymentWay = $paymentWay;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAmount(): int
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param int $amount
+     */
+    public function setAmount(int $amount): void
+    {
+        $this->amount = $amount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getExpirePeriod(): int
+    {
+        return $this->expirePeriod;
+    }
+
+    /**
+     * @param int $expirePeriod
+     */
+    public function setExpirePeriod(int $expirePeriod): void
+    {
+        $this->expirePeriod = $expirePeriod;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNoticeUrl(): ?string
+    {
+        return $this->noticeUrl;
+    }
+
+    /**
+     * @param string $noticeUrl
+     */
+    public function setNoticeUrl(string $noticeUrl): void
+    {
+        $this->noticeUrl = $noticeUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPageUrl(): ?string
+    {
+        return $this->pageUrl;
+    }
+
+    /**
+     * @param string $pageUrl
+     */
+    public function setPageUrl(string $pageUrl): void
+    {
+        $this->pageUrl = $pageUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGoodsName(): ?string
+    {
+        return $this->goodsName;
+    }
+
+    /**
+     * @param string $goodsName
+     */
+    public function setGoodsName(string $goodsName): void
+    {
+        $this->goodsName = $goodsName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRemark(): string
+    {
+        return $this->remark;
+    }
+
+    /**
+     * @param string $remark
+     */
+    public function setRemark(string $remark): void
+    {
+        $this->remark = $remark;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClientIp(): ?string
+    {
+        return $this->clientIp;
+    }
+
+    /**
+     * @param string $clientIp
+     */
+    public function setClientIp(string $clientIp): void
+    {
+        $this->clientIp = $clientIp;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlatformName(): string
+    {
+        return $this->platformName;
+    }
+
+    /**
+     * @param string $platformName
+     */
+    public function setPlatformName(string $platformName): void
+    {
+        $this->platformName = $platformName;
     }
 }

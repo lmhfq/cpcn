@@ -41,6 +41,16 @@ class Tx2736Notify extends TBaseNotify
      */
     protected $responseTime;
 
+    public function __construct(BaseNotify $baseNotify)
+    {
+        parent::__construct($baseNotify);
+        $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
+        $this->authStatus = intval(ArrayUtil::get('AuthStatus', $this->noticeBody));
+        $this->bankSubBranchNo = ArrayUtil::get('BankSubBranchNo', $this->noticeBody);
+        $this->applyNo = ArrayUtil::get('ApplyNo', $this->noticeBody);
+        $this->responseTime = ArrayUtil::get('ResponseTime', $this->noticeBody);
+    }
+
     /**
      * @return int
      */
@@ -60,35 +70,24 @@ class Tx2736Notify extends TBaseNotify
     /**
      * @return string
      */
-    public function getBankSubBranchNo(): string
+    public function getBankSubBranchNo(): ?string
     {
-        return $this->bankSubBranchNo ?: '';
+        return $this->bankSubBranchNo;
     }
 
     /**
      * @return string
      */
-    public function getApplyNo(): string
+    public function getApplyNo(): ?string
     {
-        return $this->applyNo ?: '';
+        return $this->applyNo;
     }
 
     /**
      * @return string
      */
-    public function getResponseTime(): string
+    public function getResponseTime(): ?string
     {
-        return $this->responseTime ?: '';
-    }
-
-
-    public function __construct(BaseNotify $baseNotify)
-    {
-        parent::__construct($baseNotify);
-        $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
-        $this->authStatus = intval(ArrayUtil::get('AuthStatus', $this->noticeBody));
-        $this->bankSubBranchNo = ArrayUtil::get('BankSubBranchNo', $this->noticeBody);
-        $this->applyNo = ArrayUtil::get('ApplyNo', $this->noticeBody);
-        $this->responseTime = ArrayUtil::get('ResponseTime', $this->noticeBody);
+        return $this->responseTime;
     }
 }

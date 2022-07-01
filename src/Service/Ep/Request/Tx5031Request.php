@@ -37,6 +37,54 @@ class Tx5031Request extends BaseRequest
     protected $splitItems;
 
     /**
+     * @return array
+     */
+    public function getSplitItems(): array
+    {
+        return $this->splitItems;
+    }
+
+    /**
+     * @param array $splitItems
+     */
+    public function setSplitItems(array $splitItems): void
+    {
+        $this->splitItems = $splitItems;
+    }
+
+    public function handle()
+    {
+        $data = [];
+        $data = array_merge($data, parent::getHead());
+        $body = [
+            'InstitutionID' => $this->getInstitutionId(),
+            'TxSN' => $this->getTxSn(),
+            'PaymentTxSN' => $this->getPaymentTxSn(),
+            'RemainFundsProcess' => $this->getRemainFundsProcess(),
+            'NoticeURL' => $this->getNoticeUrl(),
+        ];
+        $splitItems = [];
+        foreach ($this->splitItems as $v) {
+            /**
+             * @var $v SplitItemsEntity
+             */
+            $splitItems[] = [
+                'SplitTxSN' => $v->getSplitTxSn(),
+                'SplitUserID' => $v->getSpLitUserId(),
+                'SplitAccountNumber' => $v->getSplitAccountNumber(),
+                'SplitAmount' => $v->getSplitAmount(),
+                'Note' => $v->getNote(),
+            ];
+        }
+        $body = array_merge($body, $splitItems);
+        $data = array_merge($data, [
+            'Body' => $body
+        ]);
+        $this->requestPlainText = Xml::build($data, 'Request', 'SplitItems', 'UTF-8');
+        parent::handle();
+    }
+
+    /**
      * @return string
      */
     public function getPaymentTxSn(): string
@@ -71,9 +119,9 @@ class Tx5031Request extends BaseRequest
     /**
      * @return string
      */
-    public function getNoticeUrl(): string
+    public function getNoticeUrl(): ?string
     {
-        return $this->noticeUrl ?: '';
+        return $this->noticeUrl;
     }
 
     /**
@@ -82,54 +130,5 @@ class Tx5031Request extends BaseRequest
     public function setNoticeUrl(string $noticeUrl): void
     {
         $this->noticeUrl = $noticeUrl;
-    }
-
-    /**
-     * @return array
-     */
-    public function getSplitItems(): array
-    {
-        return $this->splitItems;
-    }
-
-    /**
-     * @param array $splitItems
-     */
-    public function setSplitItems(array $splitItems): void
-    {
-        $this->splitItems = $splitItems;
-    }
-
-
-    public function handle()
-    {
-        $data = [];
-        $data = array_merge($data, parent::getHead());
-        $body = [
-            'InstitutionID' => $this->getInstitutionId(),
-            'TxSN' => $this->getTxSn(),
-            'PaymentTxSN' => $this->getPaymentTxSn(),
-            'RemainFundsProcess' => $this->getRemainFundsProcess(),
-            'NoticeURL' => $this->getNoticeUrl(),
-        ];
-        $splitItems = [];
-        foreach ($this->splitItems as $v) {
-            /**
-             * @var $v SplitItemsEntity
-             */
-            $splitItems[] = [
-                'SplitTxSN' => $v->getSplitTxSn(),
-                'SplitUserID' => $v->getSpLitUserId(),
-                'SplitAccountNumber' => $v->getSplitAccountNumber(),
-                'SplitAmount' => $v->getSplitAmount(),
-                'Note' => $v->getNote(),
-            ];
-        }
-        $body = array_merge($body, $splitItems);
-        $data = array_merge($data, [
-            'Body' => $body
-        ]);
-        $this->requestPlainText = Xml::build($data, 'Request', 'SplitItems', 'UTF-8');
-        parent::handle();
     }
 }

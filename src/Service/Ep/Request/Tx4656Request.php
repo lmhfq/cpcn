@@ -28,6 +28,22 @@ class Tx4656Request extends BaseRequest
      */
     protected $sourceTxCode;
 
+    public function handle()
+    {
+        $data = [];
+        $data = array_merge($data, parent::getHead());
+        $body = [
+            'InstitutionID' => $this->getInstitutionId(),
+            'SourceTxSN' => $this->getSourceTxSn(),
+            'SourceTxCode' => $this->getSourceTxCode(),
+        ];
+        $data = array_merge($data, [
+            'Body' => $body
+        ]);
+        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
+        parent::handle();
+    }
+
     /**
      * @return string
      */
@@ -58,21 +74,5 @@ class Tx4656Request extends BaseRequest
     public function setSourceTxCode(string $sourceTxCode): void
     {
         $this->sourceTxCode = $sourceTxCode;
-    }
-
-    public function handle()
-    {
-        $data = [];
-        $data = array_merge($data, parent::getHead());
-        $body = [
-            'InstitutionID' => $this->getInstitutionId(),
-            'SourceTxSN' => $this->getSourceTxSn(),
-            'SourceTxCode' => $this->getSourceTxCode(),
-        ];
-        $data = array_merge($data, [
-            'Body' => $body
-        ]);
-        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
-        parent::handle();
     }
 }

@@ -46,12 +46,24 @@ class Tx5028Notify extends TBaseNotify
      */
     protected $responseTime;
 
+    public function __construct(BaseNotify $baseNotify)
+    {
+        parent::__construct($baseNotify);
+        $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
+        $this->refundTraceNo = ArrayUtil::get('RefundTraceNo', $this->noticeBody);
+        $this->responseTime = ArrayUtil::get('ResponseTime', $this->noticeBody);
+        $this->orderNo = ArrayUtil::get('OrderNo', $this->noticeBody);
+        $this->returnPayeeUserFee = intval(ArrayUtil::get('returnPayeeUserFee', $this->noticeBody));
+        $this->amount = intval(ArrayUtil::get('Amount', $this->noticeBody));
+        $this->cancelAmount = intval(ArrayUtil::get('CancelAmount', $this->noticeBody));
+    }
+
     /**
      * @return string
      */
-    public function getOrderNo(): string
+    public function getOrderNo(): ?string
     {
-        return $this->orderNo ?: '';
+        return $this->orderNo;
     }
 
     /**
@@ -73,9 +85,9 @@ class Tx5028Notify extends TBaseNotify
     /**
      * @return string
      */
-    public function getRefundTraceNo(): string
+    public function getRefundTraceNo(): ?string
     {
-        return $this->refundTraceNo ?: '';
+        return $this->refundTraceNo;
     }
 
     /**
@@ -100,17 +112,5 @@ class Tx5028Notify extends TBaseNotify
     public function getResponseTime(): string
     {
         return $this->responseTime;
-    }
-
-    public function __construct(BaseNotify $baseNotify)
-    {
-        parent::__construct($baseNotify);
-        $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
-        $this->refundTraceNo = ArrayUtil::get('RefundTraceNo', $this->noticeBody);
-        $this->responseTime = ArrayUtil::get('ResponseTime', $this->noticeBody);
-        $this->orderNo = ArrayUtil::get('OrderNo', $this->noticeBody);
-        $this->returnPayeeUserFee = intval(ArrayUtil::get('returnPayeeUserFee', $this->noticeBody));
-        $this->amount = intval(ArrayUtil::get('Amount', $this->noticeBody));
-        $this->cancelAmount = intval(ArrayUtil::get('CancelAmount', $this->noticeBody));
     }
 }

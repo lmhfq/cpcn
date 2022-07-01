@@ -102,262 +102,6 @@ class Tx5011Request extends BaseRequest
     protected $payData;
 
     /**
-     * @return string
-     */
-    public function getOrderNo(): string
-    {
-        return $this->orderNo;
-    }
-
-    /**
-     * @param string $orderNo
-     */
-    public function setOrderNo(string $orderNo): void
-    {
-        $this->orderNo = $orderNo;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPayerUserId(): string
-    {
-        return $this->payerUserId;
-    }
-
-    /**
-     * @param string $payerUserId
-     */
-    public function setPayerUserId(string $payerUserId): void
-    {
-        $this->payerUserId = $payerUserId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPayeeUserId(): string
-    {
-        return $this->payeeUserId;
-    }
-
-    /**
-     * @param string $payeeUserId
-     */
-    public function setPayeeUserId(string $payeeUserId): void
-    {
-        $this->payeeUserId = $payeeUserId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPayeeAccountNumber(): string
-    {
-        return $this->payeeAccountNumber ?: '';
-    }
-
-    /**
-     * @param string $payeeAccountNumber
-     */
-    public function setPayeeAccountNumber(string $payeeAccountNumber): void
-    {
-        $this->payeeAccountNumber = $payeeAccountNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPaymentWay(): string
-    {
-        return $this->paymentWay;
-    }
-
-    /**
-     * @param string $paymentWay
-     */
-    public function setPaymentWay(string $paymentWay): void
-    {
-        $this->paymentWay = $paymentWay;
-    }
-
-    /**
-     * @return int
-     */
-    public function getAmount(): int
-    {
-        return $this->amount;
-    }
-
-    /**
-     * @param int $amount
-     */
-    public function setAmount(int $amount): void
-    {
-        $this->amount = $amount;
-    }
-
-    /**
-     * @return string
-     */
-    public function getExpirePeriod()
-    {
-        return $this->expirePeriod;
-    }
-
-    /**
-     * @param string $expirePeriod
-     */
-    public function setExpirePeriod($expirePeriod): void
-    {
-        $this->expirePeriod = $expirePeriod;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPageUrl(): string
-    {
-        return $this->pageUrl;
-    }
-
-    /**
-     * @param string $pageUrl
-     */
-    public function setPageUrl(string $pageUrl): void
-    {
-        $this->pageUrl = $pageUrl;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNoticeUrl(): string
-    {
-        return $this->noticeUrl ?: '';
-    }
-
-    /**
-     * @param string $noticeUrl
-     */
-    public function setNoticeUrl(string $noticeUrl): void
-    {
-        $this->noticeUrl = $noticeUrl;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGoodsName(): string
-    {
-        return $this->goodsName;
-    }
-
-    /**
-     * @param string $goodsName
-     */
-    public function setGoodsName(string $goodsName): void
-    {
-        $this->goodsName = $goodsName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPlatformName(): string
-    {
-        return $this->platformName ?: '';
-    }
-
-    /**
-     * @param string $platformName
-     */
-    public function setPlatformName(string $platformName): void
-    {
-        $this->platformName = $platformName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getClientIP(): string
-    {
-        return $this->clientIP;
-    }
-
-    /**
-     * @param string $clientIP
-     */
-    public function setClientIP(string $clientIP): void
-    {
-        $this->clientIP = $clientIP;
-    }
-
-    /**
-     * @return int
-     */
-    public function getHasSubsequentSplit(): int
-    {
-        return $this->hasSubsequentSplit;
-    }
-
-    /**
-     * @param int $hasSubsequentSplit
-     */
-    public function setHasSubsequentSplit(int $hasSubsequentSplit): void
-    {
-        $this->hasSubsequentSplit = $hasSubsequentSplit;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRemark(): string
-    {
-        return $this->remark;
-    }
-
-    /**
-     * @param string $remark
-     */
-    public function setRemark(string $remark): void
-    {
-        $this->remark = $remark;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDeductionSettlementFlag(): string
-    {
-        return $this->deductionSettlementFlag;
-    }
-
-    /**
-     * @param string $deductionSettlementFlag
-     */
-    public function setDeductionSettlementFlag(string $deductionSettlementFlag): void
-    {
-        $this->deductionSettlementFlag = $deductionSettlementFlag;
-    }
-
-    /**
-     * @return string
-     */
-    public function getExtension(): string
-    {
-        return $this->extension ?: '';
-    }
-
-    /**
-     * @param string $extension
-     */
-    public function setExtension(string $extension): void
-    {
-        $this->extension = $extension;
-    }
-
-    /**
      * @return array
      */
     public function getSplitItems(): array
@@ -459,5 +203,261 @@ class Tx5011Request extends BaseRequest
         ]);
         $this->requestPlainText = Xml::build($data, 'Request', 'SplitItems', 'UTF-8');
         parent::handle();
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrderNo(): string
+    {
+        return $this->orderNo;
+    }
+
+    /**
+     * @param string $orderNo
+     */
+    public function setOrderNo(string $orderNo): void
+    {
+        $this->orderNo = $orderNo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPayerUserId(): string
+    {
+        return $this->payerUserId;
+    }
+
+    /**
+     * @param string $payerUserId
+     */
+    public function setPayerUserId(string $payerUserId): void
+    {
+        $this->payerUserId = $payerUserId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPayeeUserId(): string
+    {
+        return $this->payeeUserId;
+    }
+
+    /**
+     * @param string $payeeUserId
+     */
+    public function setPayeeUserId(string $payeeUserId): void
+    {
+        $this->payeeUserId = $payeeUserId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPayeeAccountNumber(): ?string
+    {
+        return $this->payeeAccountNumber;
+    }
+
+    /**
+     * @param string $payeeAccountNumber
+     */
+    public function setPayeeAccountNumber(string $payeeAccountNumber): void
+    {
+        $this->payeeAccountNumber = $payeeAccountNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentWay(): string
+    {
+        return $this->paymentWay;
+    }
+
+    /**
+     * @param string $paymentWay
+     */
+    public function setPaymentWay(string $paymentWay): void
+    {
+        $this->paymentWay = $paymentWay;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAmount(): int
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param int $amount
+     */
+    public function setAmount(int $amount): void
+    {
+        $this->amount = $amount;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExpirePeriod()
+    {
+        return $this->expirePeriod;
+    }
+
+    /**
+     * @param string $expirePeriod
+     */
+    public function setExpirePeriod($expirePeriod): void
+    {
+        $this->expirePeriod = $expirePeriod;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPageUrl(): string
+    {
+        return $this->pageUrl;
+    }
+
+    /**
+     * @param string $pageUrl
+     */
+    public function setPageUrl(string $pageUrl): void
+    {
+        $this->pageUrl = $pageUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNoticeUrl(): ?string
+    {
+        return $this->noticeUrl;
+    }
+
+    /**
+     * @param string $noticeUrl
+     */
+    public function setNoticeUrl(string $noticeUrl): void
+    {
+        $this->noticeUrl = $noticeUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClientIP(): string
+    {
+        return $this->clientIP;
+    }
+
+    /**
+     * @param string $clientIP
+     */
+    public function setClientIP(string $clientIP): void
+    {
+        $this->clientIP = $clientIP;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGoodsName(): string
+    {
+        return $this->goodsName;
+    }
+
+    /**
+     * @param string $goodsName
+     */
+    public function setGoodsName(string $goodsName): void
+    {
+        $this->goodsName = $goodsName;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHasSubsequentSplit(): int
+    {
+        return $this->hasSubsequentSplit;
+    }
+
+    /**
+     * @param int $hasSubsequentSplit
+     */
+    public function setHasSubsequentSplit(int $hasSubsequentSplit): void
+    {
+        $this->hasSubsequentSplit = $hasSubsequentSplit;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeductionSettlementFlag(): string
+    {
+        return $this->deductionSettlementFlag;
+    }
+
+    /**
+     * @param string $deductionSettlementFlag
+     */
+    public function setDeductionSettlementFlag(string $deductionSettlementFlag): void
+    {
+        $this->deductionSettlementFlag = $deductionSettlementFlag;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRemark(): string
+    {
+        return $this->remark;
+    }
+
+    /**
+     * @param string $remark
+     */
+    public function setRemark(string $remark): void
+    {
+        $this->remark = $remark;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExtension(): ?string
+    {
+        return $this->extension;
+    }
+
+    /**
+     * @param string $extension
+     */
+    public function setExtension(string $extension): void
+    {
+        $this->extension = $extension;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlatformName(): ?string
+    {
+        return $this->platformName;
+    }
+
+    /**
+     * @param string $platformName
+     */
+    public function setPlatformName(string $platformName): void
+    {
+        $this->platformName = $platformName;
     }
 }

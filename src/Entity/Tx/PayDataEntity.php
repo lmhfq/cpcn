@@ -230,9 +230,9 @@ class PayDataEntity
     /**
      * @return string
      */
-    public function getRedirectSource(): string
+    public function getRedirectSource(): ?string
     {
-        return $this->redirectSource ?: '';
+        return $this->redirectSource;
     }
 
     /**
@@ -278,9 +278,9 @@ class PayDataEntity
     /**
      * @return string
      */
-    public function getRedirectPayBankId(): string
+    public function getRedirectPayBankId(): ?string
     {
-        return $this->redirectPayBankId ?: '';
+        return $this->redirectPayBankId;
     }
 
     /**
@@ -310,9 +310,9 @@ class PayDataEntity
     /**
      * @return string
      */
-    public function getSubOpenId(): string
+    public function getSubOpenId(): ?string
     {
-        return $this->subOpenId ?: '';
+        return $this->subOpenId;
     }
 
     /**
