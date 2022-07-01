@@ -58,7 +58,7 @@ class Tx4601Request extends BaseRequest
     protected $imageCollectionTxSn = '';
     /**
      * @var int 业务类型
-     * 10=开户 20=开户并绑卡
+     * 10=开户 20=开户并静默绑卡 21-开户并打款绑卡
      */
     protected $businessType = 10;
     /**
@@ -290,17 +290,18 @@ class Tx4601Request extends BaseRequest
                 $body['Retailer'] = [];
                 break;
         }
-        if ($this->businessType == 20) {
+        if ($this->businessType == 20 || $this->businessType = 21) {
             $body['BankAccount'] = [
                 'BindingTxSN' => $this->bankAccount->getBindingTxSn(),
                 'BankID' => $this->bankAccount->getBankId(),
                 'BankAccountNumber' => $this->bankAccount->getBankAccountNumber(),
-                'BankPhoneNumber' => $this->bankAccount->getBankPhoneNumber(),
             ];
             if ($this->userType == UserType::CORPORATION) {
                 $body['BankAccount']['BranchName'] = $this->bankAccount->getBranchName();
                 $body['BankAccount']['BankProvince'] = $this->bankAccount->getProvince();
                 $body['BankAccount']['BankCity'] = $this->bankAccount->getCity();
+            }else {
+                $body['BankAccount']['BankPhoneNumber'] = $this->bankAccount->getBankPhoneNumber();
             }
         }
         $data = array_merge($data, [
