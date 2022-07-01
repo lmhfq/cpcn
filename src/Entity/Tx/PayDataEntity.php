@@ -99,7 +99,6 @@ class PayDataEntity
      * InstallmentType=20 时必填
      */
     protected $feeMode;
-
     /**
      * @var int 条码支付类型:
      * 10=微信
@@ -143,6 +142,10 @@ class PayDataEntity
      * 99=无关
      */
     protected $scanPaymentLimitFlag = 10;
+    /**
+     * @var string 10=不限定 20=仅支持借记卡 30=仅支持贷记卡
+     */
+    protected $limitPay = '10';
     /**
      * @var string 取消支付后的前台跳转页面
      */
@@ -508,6 +511,22 @@ class PayDataEntity
     public function setRedirectPageUrl(string $redirectPageUrl): void
     {
         $this->redirectPageUrl = $redirectPageUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLimitPay(): string
+    {
+        return $this->limitPay;
+    }
+
+    /**
+     * @param string $limitPay
+     */
+    public function setLimitPay(string $limitPay): void
+    {
+        $this->limitPay = $limitPay;
     }
 
 }

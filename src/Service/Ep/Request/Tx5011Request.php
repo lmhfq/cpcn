@@ -173,6 +173,7 @@ class Tx5011Request extends BaseRequest
                     'SubAppID' => $this->payData->getSubAppId(),
                     'SubOpenID' => $this->payData->getSubOpenId(),
                     'InstallmentType' => $this->payData->getInstallmentType(),
+                    'LimitPay' => $this->payData->getLimitPay(),
                 ];
                 $body['PlatformName'] = $this->getPlatformName();
                 break;
@@ -307,7 +308,7 @@ class Tx5011Request extends BaseRequest
     /**
      * @param string $expirePeriod
      */
-    public function setExpirePeriod($expirePeriod): void
+    public function setExpirePeriod(string $expirePeriod): void
     {
         $this->expirePeriod = $expirePeriod;
     }

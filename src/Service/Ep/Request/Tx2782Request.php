@@ -16,7 +16,9 @@ class Tx2782Request extends BaseRequest
     public function handle()
     {
         $data = [];
-        $data = array_merge($data, parent::getHead());
+        $head = parent::getHead();
+        $head['Head']['InstitutionID'] = $this->getInstitutionId();
+        $data = array_merge($data, $head);
         $body = [
             'ApplyNo' => $this->getApplyNo(),
             'UserID' => $this->getUserId(),
