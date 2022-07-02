@@ -149,6 +149,10 @@ class Tx4616Response extends BaseResponse
             $this->deadLine = ArrayUtil::get('DeadLine', $this->responseBody);
             $this->payerAccountName = ArrayUtil::get('PayerAccountName', $this->responseBody);
             $this->payerAccountNumber = ArrayUtil::get('PayerAccountNumber', $this->responseBody);
+            $this->bindingStatus = ArrayUtil::get('BindingStatus', $this->responseBody, null);
+            if ($this->bindingStatus) {
+                $this->bindingStatus = intval($this->bindingStatus);
+            }
         }
     }
 }
