@@ -6,6 +6,7 @@ namespace Lmh\Cpcn\Service\Ep;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Lmh\Cpcn\Exception\InvalidConfigException;
 use Lmh\Cpcn\Service\Ep\Notify\BaseNotify;
 use Lmh\Cpcn\Service\Ep\Request\BaseRequest;
 use Lmh\Cpcn\Service\Ep\Response\BaseResponse;
@@ -22,6 +23,7 @@ class Application extends ServiceContainer
      * @param BaseResponse $response
      * @return BaseResponse
      * @throws GuzzleException
+     * @throws InvalidConfigException
      * @author lmh
      */
     public function execute(BaseRequest $request, BaseResponse $response): BaseResponse

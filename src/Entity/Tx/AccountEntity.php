@@ -97,6 +97,7 @@ class AccountEntity
     protected $contactNumber;
     /**
      * @var string 经办人姓名
+     * 法人证件类型为身份证时， 可以不送
      * 如果上送，经办人信息必须全部上送；
      */
     protected $consigneeName;
@@ -302,7 +303,7 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -318,7 +319,7 @@ class AccountEntity
     /**
      * @return string
      */
-    public function getAddress(): string
+    public function getAddress(): ?string
     {
         return $this->address;
     }

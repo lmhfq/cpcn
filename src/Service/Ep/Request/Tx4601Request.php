@@ -169,12 +169,12 @@ class Tx4601Request extends BaseRequest
         switch ($this->userType) {
             case UserType::INDIVIDUAL:
                 $body['Individual'] = [
+                    'PhoneNumber' => $this->accountData->getContactNumber(),
                     'UserName' => $this->accountData->getUserName(),
                     'CredentialType' => $this->accountData->getCredentialType(),
                     'CredentialNumber' => $this->accountData->getCredentialNumber(),
                     'IssDate' => $this->accountData->getIssDate(),
                     'ExpiryDate' => $this->accountData->getExpiryDate(),
-                    'PhoneNumber' => $this->accountData->getContactNumber(),
                     'IndAddress' => $this->accountData->getAddress(),
                     'IndEmail' => $this->accountData->getEmail(),
                 ];
@@ -230,7 +230,6 @@ class Tx4601Request extends BaseRequest
                     'ManagerIssDate' => $this->accountData->getIssDate(),
                     'ManagerExpiryDate' => $this->accountData->getExpiryDate(),
                     'ManagerContactNumber' => $this->accountData->getContactNumber(),
-
                     'ManagerEmail' => $this->accountData->getEmail(),
                 ];
                 if ($this->accountData->getProvince()) {
