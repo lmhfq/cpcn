@@ -19,7 +19,7 @@ class Tx4601Response extends BaseResponse
      */
     protected $status;
     /**
-     * @var string
+     * @var array
      */
     protected $dBank;
     /**
@@ -48,9 +48,9 @@ class Tx4601Response extends BaseResponse
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function getDBank(): string
+    public function getDBank(): ?array
     {
         return $this->dBank;
     }
@@ -89,6 +89,7 @@ class Tx4601Response extends BaseResponse
         if ($this->code == TxResponseCode::SUCCESS) {
             $this->userId = ArrayUtil::get('UserID', $this->responseBody);
             $this->status = intval(ArrayUtil::get('Status', $this->responseBody));
+            $this->dBank = intval(ArrayUtil::get('DBank', $this->responseBody));
         }
     }
 }
