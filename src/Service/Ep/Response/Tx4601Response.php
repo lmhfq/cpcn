@@ -21,11 +21,7 @@ class Tx4601Response extends BaseResponse
      */
     protected $dBank;
     /**
-     * @var int 绑卡状态:
-     * 10=已受理
-     * 20=处理中
-     * 30=成功
-     * 40=失败
+     * @var int|null 绑卡状态:10=已受理 20=处理中 30=成功 40=失败
      */
     protected $bindingStatus;
 
@@ -64,7 +60,7 @@ class Tx4601Response extends BaseResponse
     /**
      * @return int
      */
-    public function getBindingStatus(): int
+    public function getBindingStatus(): ?int
     {
         return $this->bindingStatus;
     }
@@ -87,6 +83,10 @@ class Tx4601Response extends BaseResponse
         if ($this->code == TxResponseCode::SUCCESS) {
             $this->userId = ArrayUtil::get('UserID', $this->responseBody);
             $this->status = intval(ArrayUtil::get('Status', $this->responseBody));
+            $this->bindingStatus = ArrayUtil::get('BindingStatus', $this->responseBody, null);
+            if ($this->bindingStatus) {
+                $this->bindingStatus = intval($this->bindingStatus);
+            }
             $this->dBank = ArrayUtil::get('DBank', $this->responseBody, []);
         }
     }
