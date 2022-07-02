@@ -87,7 +87,7 @@ class Tx4601Response extends BaseResponse
         if ($this->code == TxResponseCode::SUCCESS) {
             $this->userId = ArrayUtil::get('UserID', $this->responseBody);
             $this->status = intval(ArrayUtil::get('Status', $this->responseBody));
-            $this->dBank = intval(ArrayUtil::get('DBank', $this->responseBody));
+            $this->dBank = ArrayUtil::get('DBank', $this->responseBody, []);
         }
     }
 }

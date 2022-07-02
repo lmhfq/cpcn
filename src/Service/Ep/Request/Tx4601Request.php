@@ -184,7 +184,7 @@ class Tx4601Request extends BaseRequest
                 }
                 break;
         }
-        if ($this->businessType == 20 || $this->businessType = 21) {
+        if ($this->businessType == 20 || $this->businessType == 21) {
             $body['BankAccount'] = [
                 'BindingTxSN' => $this->bankAccount->getBindingTxSn(),
                 'BankID' => $this->bankAccount->getBankId(),

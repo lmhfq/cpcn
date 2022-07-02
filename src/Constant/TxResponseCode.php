@@ -16,11 +16,7 @@ class TxResponseCode
      */
     public const REPEAT = '2008';
     /**
-     *
+     * 业务响应码成功
      */
     public const TRADE_SUCCESS = '000000';
-
-
-
-
 }
