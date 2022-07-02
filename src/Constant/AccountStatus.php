@@ -26,4 +26,8 @@ class AccountStatus
      * 8: 开户失败
      */
     public const ERROR = 8;
+
+
+
+
 }

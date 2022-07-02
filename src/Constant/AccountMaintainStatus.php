@@ -16,15 +16,15 @@ class AccountMaintainStatus
      */
     public const EXAMINE = 2;
     /**
-     *  3 短信验证激活
+     * 3 短信验证激活
      */
     public const SMS = 3;
     /**
-     *  4 企业被动打款激活
+     * 4 企业被动打款激活
      */
     public const PASSIVE_PAYMENT = 4;
     /**
-     *  5需要 异步网关页面激活
+     * 5需要 异步网关页面激活
      */
     public const ASYNC_NOTIFY = 5;
 }

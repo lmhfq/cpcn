@@ -12,10 +12,8 @@ class Tx4601Response extends BaseResponse
 {
     /**
      * @var int 状态:
-     * 10=受理成功
-     * 20=处理中
-     * 30=成功
-     * 40=失败
+     * 10=受理成功 20=处理中 28=待账户验证 29=审核中 30=成功 40=失败
+     * (开户并打款绑卡时会返回 28,29 状态)
      */
     protected $status;
     /**
