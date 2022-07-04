@@ -14,6 +14,24 @@ class Tx2902Response extends BaseResponse
      * @var array|null
      */
     protected $files;
+
+    /**
+     * @return array|null
+     */
+    public function getFiles(): ?array
+    {
+        return $this->files;
+    }
+
+    /**
+     * @param array|null $files
+     */
+    public function setFiles(?array $files): void
+    {
+        $this->files = $files;
+    }
+
+
     /**
      * @param string $message
      * @author lmh
@@ -28,7 +46,7 @@ class Tx2902Response extends BaseResponse
             }
             foreach ($files as $item) {
                 $fileEntity = new FileInfoEntity();
-                $fileEntity->setImageContent(ArrayUtil::get('FileName', $item));
+                $fileEntity->setFileName(ArrayUtil::get('FileName', $item));
                 $fileEntity->setFileId(ArrayUtil::get('FileID', $item));
                 $this->files[] = $fileEntity;
             }
