@@ -46,6 +46,10 @@ abstract class BaseRequest
      * 用户 ID 上送规则：数字/字母/数字+字母
      */
     protected $userId;
+    /**
+     * @var string 主用户ID
+     */
+    protected $mainUserID;
 
     /**
      * @return string

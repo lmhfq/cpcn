@@ -16,7 +16,7 @@ class Tx4601Request extends BaseRequest
     protected $txCode = '4601';
     /**
      * @var int 用户类型：
-      11=个人用户 12=企业用户 13=个体工商用户
+     * 11=个人用户 12=企业用户 13=个体工商用户
      */
     protected $userType;
     /**
@@ -25,7 +25,7 @@ class Tx4601Request extends BaseRequest
     protected $parentUserId;
     /**
      * @var string 影印件采集交易流水号
-     * 中金账户必填、电子账户模式众邦银行企业用户必填，4600 接口中的 TxSN；
+     * 4600 接口中的 TxSN；中金支付电子记账簿：个体工商户、企业用户必填
      */
     protected $imageCollectionTxSn = '';
     /**
@@ -163,13 +163,14 @@ class Tx4601Request extends BaseRequest
                 }
                 break;
             case UserType::RETAILER:
+                $body['ImageCollectionTxSN'] = $this->getImageCollectionTxSn();
                 $body['Retailer'] = [
                     'RetailerRegNumber' => $this->accountData->getUnifiedSocialCreditCode(),
                     'RetailerName' => $this->accountData->getCorporationName(),
                     'RetailerLicenseIssDate' => $this->accountData->getAllLicenceIssDate(),
                     'RetailerLicenseExpiryDate' => $this->accountData->getAllLicenceExpiryDate(),
                     'RetailerAddress' => $this->accountData->getAddress(),
-                    'ManagerNam' => $this->accountData->getUserName(),
+                    'ManagerName' => $this->accountData->getUserName(),
                     'ManagerCredentialType' => $this->accountData->getCredentialType(),
                     'ManagerCredentialNumber' => $this->accountData->getCredentialNumber(),
                     'ManagerIssDate' => $this->accountData->getIssDate(),

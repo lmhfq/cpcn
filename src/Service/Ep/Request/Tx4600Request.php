@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lmh\Cpcn\Service\Ep\Request;
 
-use Lmh\Cpcn\Entity\Tx\ImageInfoEntity;
+use Lmh\Cpcn\Entity\Tx\FileInfoEntity;
 use Lmh\Cpcn\Support\Xml;
 
 class Tx4600Request extends BaseRequest
@@ -27,12 +27,12 @@ class Tx4600Request extends BaseRequest
      * @var int 是否进行 OCR 标识：
      * 10-是
      * 20-否
-     * 说明：BusinessType-业务类型为 10、11 时有效且只有分批单笔上传时支持上送 10，其它业务一律按 20-否处理OCRFlag 为 10 时，只支持上送单张图片
+     * 说明：BusinessType-业务类型为 10、11 时有效且只有分批单笔上传时支持上送10，其它业务一律按 20-否处理OCRFlag为10时，只支持上送单张图片
      */
     protected $oCRFlag = 20;
     /**
      * @var array
-     * @see ImageInfoEntity
+     * @see FileInfoEntity
      */
     protected $imageInfo = [];
 
@@ -66,12 +66,12 @@ class Tx4600Request extends BaseRequest
         $imageInfo = [];
         foreach ($this->imageInfo as $v) {
             /**
-             * @var $v ImageInfoEntity
+             * @var $v FileInfoEntity
              */
             $imageInfo[] = [
                 'ItemNo' => $v->getItemNo(),
-                'ImageType' => $v->getImageType(),
-                'ImageContent' => $v->getImageContent(),
+                'ImageType' => $v->getFileType(),
+                'ImageContent' => $v->getFileContent(),
             ];
         }
         $body = array_merge($body, $imageInfo);

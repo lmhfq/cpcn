@@ -27,7 +27,8 @@ class Tx2734Request extends BaseRequest
      */
     protected $payWay = 10;
     /**
-     * @var int
+     * @var string 行业类别
+     * 支付方式为微信，且为个人小微商户进件时，行业类别可参考个体工商户
      */
     protected $category;
     /**
@@ -211,20 +212,21 @@ class Tx2734Request extends BaseRequest
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getCategory(): int
+    public function getCategory(): string
     {
         return $this->category;
     }
 
     /**
-     * @param int $category
+     * @param string $category
      */
-    public function setCategory(int $category): void
+    public function setCategory(string $category): void
     {
         $this->category = $category;
     }
+
 
     /**
      * @return string

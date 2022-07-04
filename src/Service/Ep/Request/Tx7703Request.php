@@ -21,9 +21,7 @@ class Tx7703Request extends BaseRequest
     protected $protocolNumber;
     /**
      * @var int 协议签署人类型
-     * 10-企业法人（企业）
-     * 20-经办人（企业）
-     * 30-个体工商户自身（个体）
+     * 10-企业法人（企业） 20-经办人（企业） 30-个体工商户自身 （个体） 40-个人小微商户
      */
     protected $protocolSignerType = 10;
     /**

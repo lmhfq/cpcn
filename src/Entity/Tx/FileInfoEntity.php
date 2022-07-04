@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Entity\Tx;
 
 
-class ImageInfoEntity
+class FileInfoEntity
 {
     /**
      * @var string 明细流水号
@@ -23,14 +23,22 @@ class ImageInfoEntity
      * 30=个体工商营业执照
      * 业务类型为 30 时，需上传 10、11、12、20 或 30；
      */
-    protected $imageType;
+    protected $fileType;
+    /**
+     * @var string 文件名称；
+     */
+    protected $fileName;
     /**
      * @var string
      * 影印件,图片 JPG 格式，大小不超过
      * 100KB，图片二进制数据转
      * BASE64 编码
      */
-    protected $imageContent;
+    protected $fileContent;
+    /**
+     * @var string
+     */
+    protected $fileId;
 
     /**
      * @return string
@@ -51,32 +59,64 @@ class ImageInfoEntity
     /**
      * @return int
      */
-    public function getImageType(): int
+    public function getFileType(): int
     {
-        return $this->imageType;
+        return $this->fileType;
     }
 
     /**
-     * @param int $imageType
+     * @param int $fileType
      */
-    public function setImageType(int $imageType): void
+    public function setFileType(int $fileType): void
     {
-        $this->imageType = $imageType;
+        $this->fileType = $fileType;
     }
 
     /**
      * @return string
      */
-    public function getImageContent(): string
+    public function getFileName(): string
     {
-        return $this->imageContent;
+        return $this->fileName;
     }
 
     /**
-     * @param string $imageContent
+     * @param string $fileName
      */
-    public function setImageContent(string $imageContent): void
+    public function setFileName(string $fileName): void
     {
-        $this->imageContent = $imageContent;
+        $this->fileName = $fileName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFileContent(): string
+    {
+        return $this->fileContent;
+    }
+
+    /**
+     * @param string $fileContent
+     */
+    public function setFileContent(string $fileContent): void
+    {
+        $this->fileContent = $fileContent;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFileId(): string
+    {
+        return $this->fileId;
+    }
+
+    /**
+     * @param string $fileId
+     */
+    public function setFileId(string $fileId): void
+    {
+        $this->fileId = $fileId;
     }
 }
