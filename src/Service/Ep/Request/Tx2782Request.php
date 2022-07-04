@@ -38,4 +38,11 @@ class Tx2782Request extends BaseRequest
         return $this->applyNo;
     }
 
+    /**
+     * @param string $applyNo
+     */
+    public function setApplyNo(string $applyNo): void
+    {
+        $this->applyNo = $applyNo;
+    }
 }

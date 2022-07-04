@@ -122,6 +122,15 @@ class Tx2781Request extends BaseRequest
     }
 
     /**
+     * @param string $applyNo
+     */
+    public function setApplyNo(string $applyNo): void
+    {
+        $this->applyNo = $applyNo;
+    }
+
+
+    /**
      * @return string
      */
     public function getContactName(): ?string

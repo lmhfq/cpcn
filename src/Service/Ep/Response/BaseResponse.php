@@ -198,7 +198,7 @@ class BaseResponse
         $this->responseBody = Arr::get($this->responseData, 'Body', []);
 
         $this->code = strval(Arr::get($head, 'Code'));
-        $this->message = Arr::get($head, 'Message');
+        $this->message = Arr::get($head, 'Message', '');
         $this->txSn = Arr::get($this->responseBody, 'TxSN');
         $this->institutionId = Arr::get($this->responseBody, 'InstitutionID');
         $this->userId = Arr::get($this->responseBody, 'UserID');

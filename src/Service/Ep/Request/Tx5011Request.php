@@ -42,10 +42,14 @@ class Tx5011Request extends BaseRequest
      */
     protected $amount;
     /**
-     * @var string 交易失效时间
+     * @var int|null 交易失效时间
      * 目前仅支持聚合支付， 默认为 30 天 （30*24*60 分钟），单位：分钟
      */
     protected $expirePeriod = 60;
+    /**
+     * @var string|null 商户交易发起的时间 yyyyMMddHHmmss
+     */
+    protected $sourceTxTime;
     /**
      * @var string 回调 URL 地址
      */
@@ -55,7 +59,7 @@ class Tx5011Request extends BaseRequest
      */
     protected $noticeUrl = '';
     /**
-     * @var string  商品名称
+     * @var string|null  商品名称
      * PaymentWay=40/80 必填
      */
     protected $goodsName;
@@ -65,7 +69,7 @@ class Tx5011Request extends BaseRequest
      */
     protected $platformName;
     /**
-     * @var string 用户 IP
+     * @var string|null 用户 IP
      * PaymentWay=80 必填
      */
     protected $clientIP;
@@ -141,16 +145,23 @@ class Tx5011Request extends BaseRequest
             'PayeeAccountNumber' => $this->getPayeeAccountNumber(),
             'PaymentWay' => $this->getPaymentWay(),
             'Amount' => $this->getAmount(),
-            'ExpirePeriod' => $this->getExpirePeriod(),
             'PageURL' => $this->getPageUrl(),
             'NoticeURL' => $this->getNoticeUrl(),
-            'ClientIP' => $this->getClientIP(),
             'GoodsName' => $this->getGoodsName(),
             'HasSubsequentSplit' => $this->getHasSubsequentSplit(),
             'DeductionSettlementFlag' => $this->getDeductionSettlementFlag(),
             'Remark' => $this->getRemark(),
             'Extension' => $this->getExtension(),
         ];
+        if ( $this->getExpirePeriod()){
+            $body['ExpirePeriod'] =$this->getExpirePeriod();
+        }
+        if ( $this->getSourceTxTime()){
+            $body['SourceTxTime'] =$this->getSourceTxTime();
+        }
+        if ( $this->getClientIP()){
+            $body['ClientIP'] =$this->getClientIP();
+        }
         switch ($this->paymentWay) {
             case PaymentWay::QUICK_PAY:
                 $body['QuickPay'] = [
@@ -220,7 +231,7 @@ class Tx5011Request extends BaseRequest
     /**
      * @return string
      */
-    public function getPayerUserId(): string
+    public function getPayerUserId(): ?string
     {
         return $this->payerUserId;
     }
@@ -298,19 +309,35 @@ class Tx5011Request extends BaseRequest
     }
 
     /**
-     * @return string
+     * @return int|null
      */
-    public function getExpirePeriod()
+    public function getExpirePeriod(): ?int
     {
         return $this->expirePeriod;
     }
 
     /**
-     * @param string $expirePeriod
+     * @param int|null $expirePeriod
      */
-    public function setExpirePeriod(string $expirePeriod): void
+    public function setExpirePeriod(?int $expirePeriod): void
     {
         $this->expirePeriod = $expirePeriod;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSourceTxTime(): ?string
+    {
+        return $this->sourceTxTime;
+    }
+
+    /**
+     * @param string $sourceTxTime
+     */
+    public function setSourceTxTime(string $sourceTxTime): void
+    {
+        $this->sourceTxTime = $sourceTxTime;
     }
 
     /**
@@ -348,7 +375,7 @@ class Tx5011Request extends BaseRequest
     /**
      * @return string
      */
-    public function getClientIP(): string
+    public function getClientIP(): ?string
     {
         return $this->clientIP;
     }
@@ -364,7 +391,7 @@ class Tx5011Request extends BaseRequest
     /**
      * @return string
      */
-    public function getGoodsName(): string
+    public function getGoodsName(): ?string
     {
         return $this->goodsName;
     }

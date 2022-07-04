@@ -44,7 +44,7 @@ class Application extends ServiceContainer
          */
         $logger = $this->offsetGet("config")['logger'] ?? $this->offsetGet("logger");
         //  if ($logger instanceof LoggerInterface && $this->offsetGet("config")['debug']) {
-        if ($request->getTxCode() != '4600') {
+        if ($request->getTxCode() != '4600' && $request->getTxCode() != '2902') {
             $logger->debug("请求原文：" . $request->getRequestPlainText());
         }
         //   }
