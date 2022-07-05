@@ -158,7 +158,7 @@ class BaseResponse
     /**
      * @return string
      */
-    public function getMainUserId(): string
+    public function getMainUserId(): ?string
     {
         return $this->mainUserId;
     }
