@@ -27,12 +27,18 @@ class Tx2784Notify extends TBaseNotify
      * @var string 小程序码图片，状态为 73/74/75/77 时返回
      */
     protected $qrcodeData;
+    /**
+     * @var string
+     */
+    protected $applyNo;
+
 
     public function __construct(BaseNotify $baseNotify)
     {
         parent::__construct($baseNotify);
         $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
-        $this->qrcodeData = intval(ArrayUtil::get('QrcodeData', $this->noticeBody));
+        $this->qrcodeData = ArrayUtil::get('QrcodeData', $this->noticeBody);
+        $this->applyNo = ArrayUtil::get('ApplyNo', $this->noticeBody);
     }
 
     /**
@@ -54,7 +60,7 @@ class Tx2784Notify extends TBaseNotify
     /**
      * @return string
      */
-    public function getQrcodeData()
+    public function getQrcodeData(): ?string
     {
         return $this->qrcodeData;
     }
@@ -62,8 +68,25 @@ class Tx2784Notify extends TBaseNotify
     /**
      * @param string $qrcodeData
      */
-    public function setQrcodeData($qrcodeData): void
+    public function setQrcodeData(string $qrcodeData): void
     {
         $this->qrcodeData = $qrcodeData;
     }
+
+    /**
+     * @return string
+     */
+    public function getApplyNo(): ?string
+    {
+        return $this->applyNo;
+    }
+
+    /**
+     * @param string $applyNo
+     */
+    public function setApplyNo(string $applyNo): void
+    {
+        $this->applyNo = $applyNo;
+    }
+
 }

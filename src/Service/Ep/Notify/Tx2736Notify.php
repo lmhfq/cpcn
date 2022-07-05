@@ -20,7 +20,6 @@ class Tx2736Notify extends TBaseNotify
      * @var int 商户号授权状态：（在接口进件支付方式为微信时返回）
      * 10=未授权
      * 20=已授权
-     *
      */
     protected $authStatus;
     /**
