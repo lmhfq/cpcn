@@ -39,7 +39,10 @@ class Tx4695Response extends BaseResponse
     {
         parent::handle($message);
         if ($this->code == TxResponseCode::SUCCESS) {
-            $this->item = ArrayUtil::get('Item', $this->responseBody, []);
+            $items = ArrayUtil::get('Item', $this->responseBody, []);
+            foreach ($items as $v) {
+                $this->item[$v['AuthType']] = $v;
+            }
         }
     }
 }
