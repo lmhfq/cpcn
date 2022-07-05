@@ -27,7 +27,4 @@ class AccountStatus
      */
     public const ERROR = 8;
 
-
-
-
 }

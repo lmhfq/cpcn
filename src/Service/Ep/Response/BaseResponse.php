@@ -51,6 +51,10 @@ class BaseResponse
      */
     protected $userId;
     /**
+     * @var string 用户ID
+     */
+    protected $mainUserId;
+    /**
      * @var array
      */
     protected $responseBody = [];
@@ -154,6 +158,24 @@ class BaseResponse
     /**
      * @return string
      */
+    public function getMainUserId(): string
+    {
+        return $this->mainUserId;
+    }
+
+    /**
+     * @param string $mainUserId
+     */
+    public function setMainUserId(string $mainUserId): void
+    {
+        $this->mainUserId = $mainUserId;
+    }
+
+
+
+    /**
+     * @return string
+     */
     public function getResponseCode(): ?string
     {
         return $this->responseCode;
@@ -202,6 +224,7 @@ class BaseResponse
         $this->txSn = Arr::get($this->responseBody, 'TxSN');
         $this->institutionId = Arr::get($this->responseBody, 'InstitutionID');
         $this->userId = Arr::get($this->responseBody, 'UserID');
+        $this->mainUserId = Arr::get($this->responseBody, 'MainUserID');
 
         $this->responseCode = Arr::get($this->responseBody, 'ResponseCode');
         $this->responseMessage = Arr::get($this->responseBody, 'ResponseMessage');
