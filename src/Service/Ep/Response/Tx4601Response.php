@@ -22,6 +22,7 @@ class Tx4601Response extends BaseResponse
     protected $dBank;
     /**
      * @var int|null 绑卡状态:10=已受理 20=处理中 30=成功 40=失败
+     * 开户并绑卡时出现且非空
      */
     protected $bindingStatus;
 

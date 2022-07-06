@@ -30,7 +30,9 @@ class Tx4601Request extends BaseRequest
     protected $imageCollectionTxSn = '';
     /**
      * @var int 业务类型
-     * 10=开户 20=开户并静默绑卡 21-开户并打款绑卡
+     * 10=开户
+     * 20=开户并静默绑卡
+     * 21-开户并打款绑卡
      */
     protected $businessType = 10;
     /**

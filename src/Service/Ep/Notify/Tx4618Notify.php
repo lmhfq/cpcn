@@ -27,8 +27,10 @@ class Tx4618Notify extends TBaseNotify
     protected $parentUserId;
     /**
      * @var int 状态:
-     * 18=被动已打款待验证
-     * 30=成功
+     * 开户交易包含如下状态：
+     * 28=待账户验证 30=成功 40=失败
+     * 绑卡交易包含如下状态：
+     * 18=被动已打款待验证 30=成功 40=失败
      */
     protected $status;
     /**

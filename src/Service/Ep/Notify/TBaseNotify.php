@@ -25,6 +25,14 @@ abstract class TBaseNotify
      * @var array
      */
     protected $noticeBody;
+    /**
+     * @var string 响应码
+     */
+    protected $responseCode;
+    /**
+     * @var string 响应信息
+     */
+    protected $responseMessage;
 
     /**
      * TBaseNotify constructor.
@@ -36,6 +44,8 @@ abstract class TBaseNotify
         $this->institutionId = ArrayUtil::get('InstitutionID', $this->noticeBody, []);
         $this->txSn = ArrayUtil::get('TxSN', $this->noticeBody, []);
         $this->userId = ArrayUtil::get('UserID', $this->noticeBody);
+        $this->responseCode = ArrayUtil::get($this->noticeBody, 'ResponseCode');
+        $this->responseMessage = ArrayUtil::get($this->noticeBody, 'ResponseMessage');
     }
 
     /**
@@ -85,4 +95,37 @@ abstract class TBaseNotify
     {
         $this->userId = $userId;
     }
+
+    /**
+     * @return string
+     */
+    public function getResponseCode(): string
+    {
+        return $this->responseCode;
+    }
+
+    /**
+     * @param string $responseCode
+     */
+    public function setResponseCode(string $responseCode): void
+    {
+        $this->responseCode = $responseCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponseMessage(): string
+    {
+        return $this->responseMessage;
+    }
+
+    /**
+     * @param string $responseMessage
+     */
+    public function setResponseMessage(string $responseMessage): void
+    {
+        $this->responseMessage = $responseMessage;
+    }
+
 }
