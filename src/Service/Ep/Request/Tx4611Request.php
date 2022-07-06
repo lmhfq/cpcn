@@ -118,10 +118,10 @@ class Tx4611Request extends BaseRequest
             'UserID' => $this->getUserId(),
             'OperationFlag' => $this->getOperationFlag(),
         ];
-        $body['BankAccountType'] = $this->bankAccount->getBankAccountType();
-        $body['BindingWay'] = $this->getBindingWay();
         switch ($this->operationFlag) {
             case Operation::FLAG_BIND:
+                $body['BindingWay'] = $this->getBindingWay();
+                $body['BankAccountType'] = $this->bankAccount->getBankAccountType();
                 if ($this->bankAccount->getBankAccountType() == UserType::INDIVIDUAL) {
                     $body['BankCardType'] = $this->getBankCardType();
                     $body['CredentialType'] = $this->getCredentialType();
@@ -139,6 +139,7 @@ class Tx4611Request extends BaseRequest
             case Operation::FLAG_UNBIND:
                 break;
             case Operation::FLAG_UPGRADE;
+                $body['BindingWay'] = $this->getBindingWay();
                 $body['UpgradeTxSN'] = $this->getUpgradeTxSn();
                 break;
         }

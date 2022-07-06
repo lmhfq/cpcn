@@ -11,7 +11,7 @@ use Lmh\Cpcn\Support\ArrayUtil;
 class Tx5011Response extends BaseResponse
 {
     /**
-     * @var string
+     * @var string 授权码
      */
     protected $qRAuthCode;
     /**
@@ -23,11 +23,15 @@ class Tx5011Response extends BaseResponse
      */
     protected $amount;
     /**
-     * @var int
+     * @var int 可用分账金额，单 位：分
      */
     protected $availableSplitAmount;
     /**
-     * @var int
+     * @var int 可用撤销金额，单 位：分 可撤销金额为支付金 额进去已分账金额
+     */
+    protected $availableCancelAmount;
+    /**
+     * @var int 10=未支付 20=支付处理中 30=支付成功 40=支付失败 50=订单关闭
      */
     protected $status;
     /**
@@ -163,6 +167,7 @@ class Tx5011Response extends BaseResponse
             $this->qRAuthCode = ArrayUtil::get('QRAuthCode', $this->responseBody);
             $this->orderNo = ArrayUtil::get('OrderNo', $this->responseBody);
             $this->payAmount = ArrayUtil::get('PayAmount', $this->responseBody);
+            $this->amount = intval(ArrayUtil::get('Amount', $this->responseBody));
         }
     }
 }
