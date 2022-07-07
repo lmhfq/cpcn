@@ -66,6 +66,7 @@ class Tx2735Response extends BaseResponse
         parent::handle($message);
         if ($this->code == TxResponseCode::SUCCESS) {
             $this->status = intval(ArrayUtil::get('Status', $this->responseBody));
+            $this->authStatus = intval(ArrayUtil::get('AuthStatus', $this->responseBody));
         }
     }
 }
