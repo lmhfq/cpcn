@@ -7,15 +7,21 @@ namespace Lmh\Cpcn;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Lmh\Cpcn\Notify\NtcBaseRequest;
-use Lmh\Cpcn\Request\TrdBaseRequest;
-use Lmh\Cpcn\Response\TrdBaseResponse;
+use Lmh\Cpcn\Service\Acs\Notify\NtcBaseRequest;
+use Lmh\Cpcn\Service\Acs\Request\TrdBaseRequest;
+use Lmh\Cpcn\Service\Acs\Response\TrdBaseResponse;
 use Lmh\Cpcn\Support\RSASigner;
 use Lmh\Cpcn\Support\ServiceContainer;
 use Lmh\Cpcn\Support\SignatureFactory;
 use Psr\Log\LoggerInterface;
 
-
+/**
+ * Class TrdClient
+ * @package Lmh\Cpcn
+ * User: lmh <lmh@weiyian.com>
+ * Date: 2022/1/22
+ * @deprecated 2.0版本废弃，2.0之后移除该类，请使用Factory工厂类
+ */
 class TrdClient extends ServiceContainer
 {
     /**
@@ -77,7 +83,7 @@ class TrdClient extends ServiceContainer
             'form_params' => $data,
             'verify' => false
         ];
-        $response = $client->request('POST', '', $options);
+        $response = $client->request('POST', '/acswk/interfaceII.htm', $options);
         return $response->getBody()->getContents();
     }
 

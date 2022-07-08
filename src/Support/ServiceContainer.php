@@ -48,10 +48,23 @@ class ServiceContainer extends Container
      */
     public function getConfig(): array
     {
+        $service = get_called_class();
+        $serviceData = explode('\\', $service);
+        if (isset($serviceData[3]) && $serviceData[3] == 'Ep') {
+            $baseUri = 'https://www.china-clearing.com';
+            if (isset($this->userConfig['sandbox']) && $this->userConfig['sandbox'] == true) {
+                $baseUri = 'https://test.cpcn.com.cn';
+            }
+        } else {
+            $baseUri = 'https://zhirong.cpcn.com.cn';
+            if (isset($this->userConfig['sandbox']) && $this->userConfig['sandbox'] == true) {
+                $baseUri = 'https://ctest.cpcn.com.cn';
+            }
+        }
         $base = [
             'http' => [
                 'timeout' => 60.0,
-                'base_uri' => 'https://zhirong.cpcn.com.cn/acswk/interfaceII.htm',
+                'base_uri' => $baseUri,
             ],
             'debug' => false,
             'log' => [
@@ -67,9 +80,7 @@ class ServiceContainer extends Container
             'certificateFilename' => '',
             'certContent' => '',
         ];
-        if (isset($this->userConfig['sandbox']) && $this->userConfig['sandbox'] == true) {
-            $base['http']['base_uri'] = 'https://ctest.cpcn.com.cn/acswk/interfaceII.htm';
-        }
+
         return array_replace_recursive($base, $this->userConfig);
     }
 

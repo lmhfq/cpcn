@@ -1,17 +1,11 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: lmh <lmh@weiyian.com>
- * Date: 2020/11/18
- * Time: 下午8:57
- */
 
 namespace Lmh\Cpcn\Test;
 
 
-use Lmh\Cpcn\Notify\NoticeResponse;
-use Lmh\Cpcn\Notify\NtcT2008Request;
+use Lmh\Cpcn\Service\Acs\Notify\NoticeResponse;
+use Lmh\Cpcn\Service\Acs\Notify\NtcT2008Request;
 use Lmh\Cpcn\TrdClient;
 use PHPUnit\Framework\TestCase;
 

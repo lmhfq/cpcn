@@ -1,0 +1,49 @@
+<?php
+declare(strict_types=1);
+
+
+namespace Lmh\Cpcn\Service\Ep\Request;
+
+
+use Lmh\Cpcn\Support\Xml;
+
+class Tx4642Request extends BaseRequest
+{
+    protected $txCode = '4642';
+    /**
+     * @var string 短信验证码
+     */
+    protected $smsValidationCode;
+
+    public function handle()
+    {
+        $data = [];
+        $data = array_merge($data, parent::getHead());
+        $body = [
+            'InstitutionID' => $this->getInstitutionId(),
+            'TxSN' => $this->getTxSn(),
+            'SMSValidationCode' => $this->getSmsValidationCode(),
+        ];
+        $data = array_merge($data, [
+            'Body' => $body
+        ]);
+        $this->requestPlainText = Xml::build($data, 'Request', '', 'UTF-8');
+        parent::handle();
+    }
+
+    /**
+     * @return string
+     */
+    public function getSmsValidationCode(): string
+    {
+        return $this->smsValidationCode;
+    }
+
+    /**
+     * @param string $smsValidationCode
+     */
+    public function setSmsValidationCode(string $smsValidationCode): void
+    {
+        $this->smsValidationCode = $smsValidationCode;
+    }
+}

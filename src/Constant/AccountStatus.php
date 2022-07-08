@@ -1,11 +1,5 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: lmh <lmh@weiyian.com>
- * Date: 2020/11/11
- * Time: 下午7:52
- */
 
 namespace Lmh\Cpcn\Constant;
 
@@ -32,4 +26,5 @@ class AccountStatus
      * 8: 开户失败
      */
     public const ERROR = 8;
+
 }
