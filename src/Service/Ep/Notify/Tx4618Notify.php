@@ -39,6 +39,15 @@ class Tx4618Notify extends TBaseNotify
      */
     protected $bindingStatus;
     /**
+     * @var int 线下转账充值开通 状态： 10=处理中 20=成功 30=失败
+     * 当绑卡状态为终态时，线下转 账充值开通状态才为终态。
+     */
+    protected $transferChargeStatus;
+    /**
+     * @var string 转账充值标识
+     */
+    protected $transferChargeFlag;
+    /**
      * @var string 驳回的影印件类型，以";"英文分号分隔
      */
     protected $rejectImageType;
@@ -54,6 +63,8 @@ class Tx4618Notify extends TBaseNotify
         if ($this->bindingStatus) {
             $this->bindingStatus = intval($this->bindingStatus);
         }
+        $this->transferChargeStatus = intval(ArrayUtil::get('TransferChargeStatus', $this->noticeBody));
+        $this->transferChargeFlag = ArrayUtil::get('TransferChargeFlag', $this->noticeBody);
     }
 
     /**

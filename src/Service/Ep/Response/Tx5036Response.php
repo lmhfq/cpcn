@@ -20,6 +20,11 @@ class Tx5036Response extends BaseResponse
      */
     protected $availableSplitAmount;
     /**
+     * @var int 可用撤销金额，单 位：分
+     * 可撤销金额为支付金 额进去已分账金额
+     */
+    protected $availableCancelAmount;
+    /**
      * @var array
      */
     protected $splitItems;

@@ -15,10 +15,6 @@ class Tx4643Request extends BaseRequest
      */
     protected $bindingTxSn;
     /**
-     * @var string 确权方式
-     */
-    protected $acceptanceConfirmType = '';
-    /**
      * @var int 交易金额
      * 单位：分
      */
@@ -34,6 +30,18 @@ class Tx4643Request extends BaseRequest
      */
     protected $noticeUrl;
     /**
+     * @var string
+     */
+    protected $branchName;
+    /**
+     * @var string
+     */
+    protected $province;
+    /**
+     * @var string
+     */
+    protected $city;
+    /**
      * @var string 备注
      */
     protected $remark;
@@ -41,18 +49,51 @@ class Tx4643Request extends BaseRequest
     /**
      * @return string
      */
-    public function getAcceptanceConfirmType(): string
+    public function getBranchName(): ?string
     {
-        return $this->acceptanceConfirmType;
+        return $this->branchName;
     }
 
     /**
-     * @param string $acceptanceConfirmType
+     * @param string $branchName
      */
-    public function setAcceptanceConfirmType(string $acceptanceConfirmType): void
+    public function setBranchName(string $branchName): void
     {
-        $this->acceptanceConfirmType = $acceptanceConfirmType;
+        $this->branchName = $branchName;
     }
+
+    /**
+     * @return string
+     */
+    public function getProvince(): ?string
+    {
+        return $this->province;
+    }
+
+    /**
+     * @param string $province
+     */
+    public function setProvince(string $province): void
+    {
+        $this->province = $province;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity(string $city): void
+    {
+        $this->city = $city;
+    }
+
 
     public function handle()
     {
@@ -68,6 +109,12 @@ class Tx4643Request extends BaseRequest
             'NoticeURL' => $this->getNoticeUrl(),
             'Remark' => $this->getRemark(),
         ];
+        if ($this->getProvince()) {
+            $body['Province'] = $this->getProvince();
+        }
+        if ($this->getCity()) {
+            $body['City'] = $this->getCity();
+        }
         $data = array_merge($data, [
             'Body' => $body
         ]);

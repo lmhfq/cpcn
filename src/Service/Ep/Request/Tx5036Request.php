@@ -12,11 +12,13 @@ class Tx5036Request extends BaseRequest
 {
     protected $txCode = '5036';
     /**
-     * @var string
+     * @var string 原交易编码
+     * 原交易编码为 5011、 5012：原支付交易流水号
+     * 原交易编码为 5031： 延迟分账交易流水号
      */
     protected $sourceTxCode;
     /**
-     * @var string
+     * @var string 原交易时间 格式：yyyyMMdd；
      */
     protected $sourceTxTime;
 

@@ -65,6 +65,7 @@ class Tx4611Request extends BaseRequest
      * @var int 转账充值开通标识：
      * 0=不开通
      * 1=开通
+     * 绑卡或者卡升级时上传
      */
     protected $transferChargeFlag = 0;
     /**
@@ -135,15 +136,16 @@ class Tx4611Request extends BaseRequest
                 $body['BankID'] = $this->bankAccount->getBankId();
                 $body['BankAccountName'] = $this->bankAccount->getBankAccountName();
                 $body['BankAccountNumber'] = $this->bankAccount->getBankAccountNumber();
+                $body['TransferChargeFlag'] = $this->getTransferChargeFlag();
                 break;
             case Operation::FLAG_UNBIND:
                 break;
             case Operation::FLAG_UPGRADE;
                 $body['BindingWay'] = $this->getBindingWay();
                 $body['UpgradeTxSN'] = $this->getUpgradeTxSn();
+                $body['TransferChargeFlag'] = $this->getTransferChargeFlag();
                 break;
         }
-        $body['TransferChargeFlag'] = $this->getTransferChargeFlag();
         $body['NoticeURL'] = $this->getNoticeUrl();
         $data = array_merge($data, [
             'Body' => $body
