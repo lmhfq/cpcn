@@ -10,8 +10,11 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Entity\Tx;
 
 
+use Lmh\Cpcn\Support\ArrayTrait;
+
 class CapitalItemEntity
 {
+    use ArrayTrait;
     /**
      * @var string
      */
@@ -50,20 +53,21 @@ class CapitalItemEntity
     protected $remark;
 
     /**
-     * @return string
+     * @return ?string
      */
-    public function getTxSn(): string
+    public function getTxSn(): ?string
     {
         return $this->txSn;
     }
 
     /**
-     * @param string $txSn
+     * @param string|null $txSn
      */
-    public function setTxSn(string $txSn): void
+    public function setTxSn(?string $txSn): void
     {
         $this->txSn = $txSn;
     }
+
 
     /**
      * @return int
@@ -178,17 +182,17 @@ class CapitalItemEntity
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    public function getRemark(): string
+    public function getRemark(): ?string
     {
         return $this->remark;
     }
 
     /**
-     * @param string $remark
+     * @param string|null $remark
      */
-    public function setRemark(string $remark): void
+    public function setRemark(?string $remark): void
     {
         $this->remark = $remark;
     }
