@@ -1,4 +1,4 @@
-# 中金支付PHP SDK
+# 中金 中金支付PHP SDK 
 
 ```
   $config = [
