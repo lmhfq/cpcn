@@ -46,7 +46,7 @@ class Tx5011Response extends BaseResponse
     /**
      * @return string
      */
-    public function getQRAuthCode(): string
+    public function getQRAuthCode(): ?string
     {
         return $this->qRAuthCode;
     }

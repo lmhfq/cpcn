@@ -163,9 +163,6 @@ class Tx5011Request extends BaseRequest
         if ( $this->getSourceTxTime()){
             $body['SourceTxTime'] =$this->getSourceTxTime();
         }
-        if ( $this->getClientIP()){
-            $body['ClientIP'] =$this->getClientIP();
-        }
         switch ($this->paymentWay) {
             case PaymentWay::QUICK_PAY:
                 $body['QuickPay'] = [
@@ -191,6 +188,7 @@ class Tx5011Request extends BaseRequest
                     'LimitPay' => $this->payData->getLimitPay(),
                 ];
                 $body['PlatformName'] = $this->getPlatformName();
+                $body['ClientIP'] =$this->getClientIP();
                 break;
         }
         if ($this->hasSubsequentSplit == 1) {
