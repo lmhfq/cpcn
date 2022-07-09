@@ -58,6 +58,22 @@ class Tx5036Response extends BaseResponse
     }
 
     /**
+     * @return int
+     */
+    public function getAvailableCancelAmount(): int
+    {
+        return $this->availableCancelAmount;
+    }
+
+    /**
+     * @param int $availableCancelAmount
+     */
+    public function setAvailableCancelAmount(int $availableCancelAmount): void
+    {
+        $this->availableCancelAmount = $availableCancelAmount;
+    }
+
+    /**
      * @param string $message
      * @author lmh
      */
@@ -67,6 +83,7 @@ class Tx5036Response extends BaseResponse
         if ($this->code == TxResponseCode::SUCCESS) {
             $this->amount = intval(ArrayUtil::get('Amount', $this->responseBody));
             $this->availableSplitAmount = intval(ArrayUtil::get('AvailableSplitAmount', $this->responseBody));
+            $this->availableCancelAmount = intval(ArrayUtil::get('AvailableCancelAmount', $this->responseBody));
             $splitItems = ArrayUtil::get('SplitItems', $this->responseBody, []);
             if ($splitItems) {
                 if (!isset($splitItems[0])) {

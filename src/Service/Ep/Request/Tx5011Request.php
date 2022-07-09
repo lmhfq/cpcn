@@ -30,7 +30,11 @@ class Tx5011Request extends BaseRequest
      */
     protected $payeeAccountNumber;
     /**
-     * @var string
+     * @var string 支付方式:
+     * 00=余额支付
+     * 10=快捷支付 20=网银支付 30=代收支付
+     * 42=条码支付 43-扫码预授权 50=O2O
+     * 80-跳转支付
      */
     protected $paymentWay;
     /**

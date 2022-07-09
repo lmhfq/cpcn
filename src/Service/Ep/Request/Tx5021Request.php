@@ -28,10 +28,12 @@ class Tx5021Request extends BaseRequest
     protected $refundWay = 20;
     /**
      * @var int 退款金额
+     * 不能大于可退款金额
      */
     protected $amount;
     /**
      * @var int 撤销金额
+     * 不能大于可用分账金额
      */
     protected $cancelAmount;
     /**
@@ -104,10 +106,12 @@ class Tx5021Request extends BaseRequest
             'TxSN' => $this->getTxSn(),
             'PaymentTxSN' => $this->getPaymentTxSn(),
             'RefundWay' => $this->getRefundWay(),
-            'Amount' => $this->getAmount(),
         ];
         if ($this->sourceTxTime) {
             $body['SourceTxTime'] = $this->getSourceTxTime();
+        }
+        if ($this->amount) {
+            $body['Amount'] = $this->getAmount();
         }
         if ($this->cancelAmount) {
             $body['CancelAmount'] = $this->getCancelAmount();
@@ -168,7 +172,7 @@ class Tx5021Request extends BaseRequest
     /**
      * @return int
      */
-    public function getAmount(): int
+    public function getAmount(): ?int
     {
         return $this->amount;
     }
@@ -200,7 +204,7 @@ class Tx5021Request extends BaseRequest
     /**
      * @return int
      */
-    public function getCancelAmount(): int
+    public function getCancelAmount(): ?int
     {
         return $this->cancelAmount;
     }
