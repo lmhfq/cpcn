@@ -99,7 +99,7 @@ class Tx4663Request extends BaseRequest
     /**
      * @return string
      */
-    public function getRemark(): string
+    public function getRemark(): ?string
     {
         return $this->remark;
     }
