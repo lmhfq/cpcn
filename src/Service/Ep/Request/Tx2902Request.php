@@ -8,6 +8,13 @@ use Lmh\Cpcn\Support\Xml;
 
 class Tx2902Request extends BaseRequest
 {
+    /**
+     * @var string
+     */
+    protected $uri = '/Gateway4File/InterfaceII';
+    /**
+     * @var string
+     */
     protected $txCode = '2902';
     /**
      * @var array

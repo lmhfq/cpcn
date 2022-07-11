@@ -40,6 +40,7 @@ class Tx5018Notify extends TBaseNotify
     protected $bankTraceNo;
     /**
      * @var string 平台订单号
+     * PaymentWay=80 时 为跳转支付平台订 单号
      */
     protected $traceNo;
     /**
@@ -114,7 +115,7 @@ class Tx5018Notify extends TBaseNotify
     /**
      * @return string
      */
-    public function getBankTraceNo(): string
+    public function getBankTraceNo(): ?string
     {
         return $this->bankTraceNo;
     }
@@ -122,7 +123,7 @@ class Tx5018Notify extends TBaseNotify
     /**
      * @return string
      */
-    public function getTraceNo(): string
+    public function getTraceNo(): ?string
     {
         return $this->traceNo;
     }
