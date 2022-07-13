@@ -17,7 +17,7 @@ class NotifyResponse
     /**
      * @var string 返回信息
      */
-    protected $responseMessage = '处理成功';
+    protected $responseMessage = 'OK';
     /**
      * @var string
      */
