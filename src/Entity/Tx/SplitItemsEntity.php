@@ -60,7 +60,7 @@ class SplitItemsEntity
     /**
      * @var string
      */
-    protected $splitResponseTime;
+    protected $responseTime;
 
     /**
      * @return string
@@ -241,16 +241,17 @@ class SplitItemsEntity
     /**
      * @return string
      */
-    public function getSplitResponseTime(): string
+    public function getResponseTime(): string
     {
-        return $this->splitResponseTime;
+        return $this->responseTime;
     }
 
     /**
-     * @param string $splitResponseTime
+     * @param string $responseTime
      */
-    public function setSplitResponseTime(string $splitResponseTime): void
+    public function setResponseTime(string $responseTime): void
     {
-        $this->splitResponseTime = $splitResponseTime;
+        $this->responseTime = $responseTime;
     }
+
 }

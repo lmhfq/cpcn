@@ -115,7 +115,7 @@ class Tx5036Response extends BaseResponse
                     $splitItemsEntity->setSplitTxSn($v['SplitTxSN'] ?? '');
                     $splitItemsEntity->setSpLitUserId($v['SplitUserID'] ?? '');
                     $splitItemsEntity->setSplitAmount(intval($v['SplitAmount'] ?? 0));
-                    $splitItemsEntity->setSplitResponseTime($v['ResponseTime'] ?? '');
+                    $splitItemsEntity->setResponseTime($v['ResponseTime'] ?? '');
                     $splitItemsEntity->setSplitStatus(intval($v['SplitStatus'] ?? 0));
                     $splitItemsEntity->setSplitFee(intval($v['SplitFee'] ?? 0));
                     $splitItemsEntity->setSplitPayFee(intval($v['SplitPayFee'] ?? 0));
