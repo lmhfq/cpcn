@@ -31,6 +31,10 @@ class Tx5036Response extends BaseResponse
     /**
      * @var int
      */
+    protected $status;
+    /**
+     * @var int
+     */
     protected $sumPayeeFee;
 
     /**
@@ -74,6 +78,22 @@ class Tx5036Response extends BaseResponse
     }
 
     /**
+     * @return int
+     */
+    public function getStatus(): int
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param int $status
+     */
+    public function setStatus(int $status): void
+    {
+        $this->status = $status;
+    }
+
+    /**
      * @param string $message
      * @author lmh
      */
@@ -82,6 +102,7 @@ class Tx5036Response extends BaseResponse
         parent::handle($message);
         if ($this->code == TxResponseCode::SUCCESS) {
             $this->amount = intval(ArrayUtil::get('Amount', $this->responseBody));
+            $this->status = intval(ArrayUtil::get('Status', $this->responseBody));
             $this->availableSplitAmount = intval(ArrayUtil::get('AvailableSplitAmount', $this->responseBody));
             $this->availableCancelAmount = intval(ArrayUtil::get('AvailableCancelAmount', $this->responseBody));
             $splitItems = ArrayUtil::get('SplitItems', $this->responseBody, []);
