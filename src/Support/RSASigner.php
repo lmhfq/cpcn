@@ -26,7 +26,7 @@ class RSASigner
      */
     private $password;
     /**
-     * @var int 1表示证书使用的国密证书，2为国际证书
+     * @var int 1国密证书，2国际证书
      */
     private $signerType;
     /**
@@ -115,13 +115,14 @@ class RSASigner
                 $signature = hex2bin($signature);
                 $signature = base64_encode($signature);
                 $result = cfca_verifyDataSignature_PKCS1('SM2', $plainText, $this->certContent, 'SM3', $signature);
-                return $result == 0 ? 1 : 0;
+                $verify = $result == 0 ? 1 : 0;
             } finally {
                 cfca_uninitialize();
             }
         } else {
             $binarySignature = pack("H" . strlen($signature), $signature);
-            return openssl_verify($plainText, $binarySignature, $this->certContent, $algorithm);
+            $verify = openssl_verify($plainText, $binarySignature, $this->certContent, $algorithm);
         }
+        return $verify;
     }
 }
