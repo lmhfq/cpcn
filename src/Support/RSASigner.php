@@ -64,9 +64,6 @@ class RSASigner
      */
     public function sign(string $plainText, int $algorithm = OPENSSL_ALGO_SHA1): string
     {
-        if (!$this->keyContent) {
-            throw new InvalidConfigException('合作方的签名证书配置错误');
-        }
         $signature = '';
         if ($this->signerType == 1) {
             $result = cfca_initialize($this->cfcaLogFilePath);
@@ -83,6 +80,9 @@ class RSASigner
                 cfca_uninitialize();
             }
         } else {
+            if (!$this->keyContent) {
+                throw new InvalidConfigException('合作方的签名证书配置错误');
+            }
             try {
                 openssl_sign($plainText, $signature, $this->keyContent, $algorithm);
             } catch (Exception $e) {
