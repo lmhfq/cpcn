@@ -36,7 +36,8 @@ class Application extends ServiceContainer
             $this->offsetGet("config")['keystorePassword'],
             $this->offsetGet("config")['keyContent'],
             $this->offsetGet("config")['certificateFilename'],
-            $this->offsetGet("config")['certContent']
+            $this->offsetGet("config")['certContent'],
+            $this->offsetGet("config")['signerType']
         ));
         $request->handle();
         /**

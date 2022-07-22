@@ -74,6 +74,7 @@ class ServiceContainer extends Container
             ],
             'ptnCode' => '',
             'bkCode' => '',
+            'signerType' => 2,
             'keystoreFilename' => '',
             'keystorePassword' => '',
             'keyContent' => '',
