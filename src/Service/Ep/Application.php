@@ -37,7 +37,8 @@ class Application extends ServiceContainer
             $this->offsetGet("config")['keyContent'],
             $this->offsetGet("config")['certificateFilename'],
             $this->offsetGet("config")['certContent'],
-            $this->offsetGet("config")['signerType']
+            $this->offsetGet("config")['signerType'],
+            $this->offsetGet("config")['cfcaLogFilePath'] ?? ''
         ));
         $request->handle();
         /**
@@ -98,7 +99,9 @@ class Application extends ServiceContainer
             $this->offsetGet("config")['keystorePassword'],
             $this->offsetGet("config")['keyContent'],
             $this->offsetGet("config")['certificateFilename'],
-            $this->offsetGet("config")['certContent']
+            $this->offsetGet("config")['certContent'],
+            $this->offsetGet("config")['signerType'],
+            $this->offsetGet("config")['cfcaLogFilePath'] ?? ''
         ));
         $baseNotify->handle($message, $signature);
 
