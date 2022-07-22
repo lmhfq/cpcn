@@ -66,18 +66,18 @@ class RSASigner
     {
         $signature = '';
         if ($this->signerType == 1) {
-            $result = cfca_initialize($this->cfcaLogFilePath);
+            $result = \cfca_initialize($this->cfcaLogFilePath);
             try {
                 if ($result != 0) {
                     throw new InvalidConfigException("cfca_Initialize error:" . $result);
                 }
-                $result = cfca_signData_PKCS1('SM2', $plainText, $this->keystoreFilePath, $this->password, 'SM3', $signature);
+                $result = \cfca_signData_PKCS1('SM2', $plainText, $this->keystoreFilePath, $this->password, 'SM3', $signature);
                 if ($result != 0) {
                     throw new InvalidConfigException(" cfca_signData_PKCS7Detached error:" . $result);
                 }
                 $signature = base64_decode($signature);
             } finally {
-                cfca_uninitialize();
+                \cfca_uninitialize();
             }
         } else {
             if (!$this->keyContent) {
@@ -107,17 +107,17 @@ class RSASigner
         }
         if ($this->signerType == 1) {
             $this->certContent = str_replace(["-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----"], "", $this->certContent);
-            $result = cfca_initialize($this->cfcaLogFilePath);
+            $result = \cfca_initialize($this->cfcaLogFilePath);
             try {
                 if ($result != 0) {
                     throw new InvalidConfigException("cfca_Initialize error:" . $result);
                 }
                 $signature = hex2bin($signature);
                 $signature = base64_encode($signature);
-                $result = cfca_verifyDataSignature_PKCS1('SM2', $plainText, $this->certContent, 'SM3', $signature);
+                $result = \cfca_verifyDataSignature_PKCS1('SM2', $plainText, $this->certContent, 'SM3', $signature);
                 $verify = $result == 0 ? 1 : 0;
             } finally {
-                cfca_uninitialize();
+                \cfca_uninitialize();
             }
         } else {
             $binarySignature = pack("H" . strlen($signature), $signature);
