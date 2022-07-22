@@ -32,7 +32,7 @@ class RSASigner
     /**
      * @var string
      */
-    public $cfcaLogFilePath = "./cfcalog.conf";
+    private $cfcaLogFilePath = "./cfcalog.conf";
 
     public function __construct(string $keyFilepath = '', string $password = '', string $keyContent = '', string $certificateFilePath = '', string $certContent = '', int $signerType = 2)
     {
@@ -42,8 +42,6 @@ class RSASigner
         } else if ($certificateFilePath) {
             $this->certContent = file_get_contents($certificateFilePath);
         }
-        $this->keystoreFilePath = $keyFilepath;
-        $this->password = $password;
         if ($this->signerType == 2) {
             if ($keyContent) {
                 $this->keyContent = $keyContent;
@@ -53,6 +51,8 @@ class RSASigner
                 $this->keyContent = $p12cert["pkey"];
             }
         }
+        $this->keystoreFilePath = $keyFilepath;
+        $this->password = $password;
     }
 
     /**
