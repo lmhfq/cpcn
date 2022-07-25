@@ -75,7 +75,7 @@ class RSASigner
                 }
                 $result = \cfca_signData_PKCS1('SM2', $plainText, $this->keystoreFilePath, $this->password, 'SM3', $signature);
                 if ($result != 0) {
-                    throw new InvalidConfigException(" cfca_signData_PKCS7Detached error:" . $result);
+                    throw new InvalidConfigException("cfca_signData_PKCS7Detached error:" . $result);
                 }
                 $signature = base64_decode($signature);
             } finally {
