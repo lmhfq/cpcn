@@ -64,6 +64,7 @@ class EpTest extends TestCase
                 'level' => 'debug',
             ],
             'sandbox' => true,
+            'signerType'=>2,
             'institutionId' => '006870',
             'keystoreFilename' => __DIR__ . '/config/test.pfx',
             'certificateFilename' => __DIR__ . '/config/paytest.cer',
