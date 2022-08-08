@@ -29,6 +29,14 @@ class Tx2781Request extends BaseRequest
      */
     protected $contactIdNumber;
     /**
+     * @var string
+     */
+    protected $contactCertBeginDate;
+    /**
+     * @var string
+     */
+    protected $contactCertEndDate;
+    /**
      * @var int 联系人证件类型：
      * 0-身份证
      * 2-外国护照
@@ -111,8 +119,8 @@ class Tx2781Request extends BaseRequest
             'ContactPhone' => $this->getContactPhone(),
             'ContactIdNumber' => $this->getContactIdNumber(),
             'ContactCertType' => $this->getContactCertType(),
-            'ContactCertBeginDate' => $this->getContactCertType(),
-            'ContactCertEndDate' => $this->getContactCertType(),
+            'ContactCertBeginDate' => $this->getContactCertBeginDate(),
+            'ContactCertEndDate' => $this->getContactCertEndDate(),
             'ContactCertFrontMediaID' => $this->getLrIdCardFrontMediaId(),
             'ContactCertBackMediaID' => $this->getLrIdCardBackMediaId(),
         ];
@@ -314,6 +322,38 @@ class Tx2781Request extends BaseRequest
     public function setContactCertType(int $contactCertType): void
     {
         $this->contactCertType = $contactCertType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContactCertBeginDate(): string
+    {
+        return $this->contactCertBeginDate;
+    }
+
+    /**
+     * @param string $contactCertBeginDate
+     */
+    public function setContactCertBeginDate(string $contactCertBeginDate): void
+    {
+        $this->contactCertBeginDate = $contactCertBeginDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContactCertEndDate(): string
+    {
+        return $this->contactCertEndDate;
+    }
+
+    /**
+     * @param string $contactCertEndDate
+     */
+    public function setContactCertEndDate(string $contactCertEndDate): void
+    {
+        $this->contactCertEndDate = $contactCertEndDate;
     }
 
 
