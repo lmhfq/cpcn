@@ -13,6 +13,10 @@ class Tx2781Request extends BaseRequest
      */
     protected $applyNo;
     /**
+     * @var int 联系人类型：10-经营者/法人20-经办人
+     */
+    protected $contactType = 10;
+    /**
      * @var string 联系人（2~30 个中文字符、英文字符、符号
      */
     protected $contactName;
@@ -24,6 +28,14 @@ class Tx2781Request extends BaseRequest
      * @var string 联系人身份证号码
      */
     protected $contactIdNumber;
+    /**
+     * @var int 联系人证件类型：
+     * 0-身份证
+     * 2-外国护照
+     * 5-港澳居民-来往内地通行证
+     * 6-台湾居民-来往内地通行证
+     */
+    protected $contactCertType = 0;
     /**
      * @var string 认证主体类型
      * 01=企业
@@ -47,47 +59,19 @@ class Tx2781Request extends BaseRequest
     /**
      * @var string 法人身份证正面照片 MediaID
      */
-    protected $lrIdCardFrontMediaID;
+    protected $lrIdCardFrontMediaId;
     /**
-     * @var string 法人身份证反面照片 MediaID
+     * @var string 法人身份证反面照片 MediaId
      */
-    protected $lrIdCardBackMediaIDD;
+    protected $lrIdCardBackMediaId;
+    /**
+     * @var string 法人证件居住地址 企业户必须
+     */
+    protected $lrIdCardAddress;
     /**
      * @var string 证书照片 MediaID 若主体类型为企业或者个体户请上送“营业执照照片”
      */
-    protected $certificateMediaID;
-
-    /**
-     * @return string
-     */
-    public function getLrIdCardFrontMediaID(): string
-    {
-        return $this->lrIdCardFrontMediaID;
-    }
-
-    /**
-     * @param string $lrIdCardFrontMediaID
-     */
-    public function setLrIdCardFrontMediaID(string $lrIdCardFrontMediaID): void
-    {
-        $this->lrIdCardFrontMediaID = $lrIdCardFrontMediaID;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLrIdCardBackMediaIDD(): string
-    {
-        return $this->lrIdCardBackMediaIDD;
-    }
-
-    /**
-     * @param string $lrIdCardBackMediaIDD
-     */
-    public function setLrIdCardBackMediaIDD(string $lrIdCardBackMediaIDD): void
-    {
-        $this->lrIdCardBackMediaIDD = $lrIdCardBackMediaIDD;
-    }
+    protected $certificateMediaId;
 
     public function handle()
     {
@@ -98,14 +82,41 @@ class Tx2781Request extends BaseRequest
         $body = [
             'ApplyNo' => $this->getApplyNo(),
             'UserID' => $this->getUserId(),
+
+        ];
+        //认证主体
+        $entity = [
+            'AuthEntityType' => $this->getAuthEntityType(),
+            'CertificationType' => $this->getAuthEntityType(),
+        ];
+        if ($this->getCertificationType()) {
+            $entity['CertificateMediaID'] = $this->getCertificateMediaId();
+        }
+        $body['Entity'] = $entity;
+        //法人信息
+        $legalPerson = [
+            'LrIdCardFrontMediaID' => $this->getLrIdCardFrontMediaId(),
+            'LrIdCardBackMediaID' => $this->getLrIdCardBackMediaId(),
+            'LrIdCardAddr' => $this->getLrIdCardAddress(),
+            'LrIsOwner' => 10,
+        ];
+        if ($this->getCertificationType()) {
+            $entity['CertificateMediaID'] = $this->getCertificateMediaId();
+        }
+        $body['Entity'] = $entity;
+        //联系人
+        $contact = [
+            'ContactType' => $this->getContactType(),
             'ContactName' => $this->getContactName(),
             'ContactPhone' => $this->getContactPhone(),
             'ContactIdNumber' => $this->getContactIdNumber(),
-            'AuthEntityType' => $this->getAuthEntityType(),
+            'ContactCertType' => $this->getContactCertType(),
+            'ContactCertBeginDate' => $this->getContactCertType(),
+            'ContactCertEndDate' => $this->getContactCertType(),
+            'ContactCertFrontMediaID' => $this->getLrIdCardFrontMediaId(),
+            'ContactCertBackMediaID' => $this->getLrIdCardBackMediaId(),
         ];
-        if ($this->getCertificationType()) {
-            $body['CertificateMediaID'] = $this->getCertificateMediaID();
-        }
+        $body['Contact'] = $contact;
         $data = array_merge($data, [
             'Body' => $body
         ]);
@@ -129,6 +140,117 @@ class Tx2781Request extends BaseRequest
         $this->applyNo = $applyNo;
     }
 
+    /**
+     * @return string
+     */
+    public function getAuthEntityType(): ?string
+    {
+        return $this->authEntityType;
+    }
+
+    /**
+     * @param string $authEntityType
+     */
+    public function setAuthEntityType(string $authEntityType): void
+    {
+        $this->authEntityType = $authEntityType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCertificationType(): ?string
+    {
+        return $this->certificationType;
+    }
+
+    /**
+     * @param string $certificationType
+     */
+    public function setCertificationType(string $certificationType): void
+    {
+        $this->certificationType = $certificationType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCertificateMediaId(): string
+    {
+        return $this->certificateMediaId;
+    }
+
+    /**
+     * @param string $certificateMediaId
+     */
+    public function setCertificateMediaId(string $certificateMediaId): void
+    {
+        $this->certificateMediaId = $certificateMediaId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLrIdCardFrontMediaId(): string
+    {
+        return $this->lrIdCardFrontMediaId;
+    }
+
+    /**
+     * @param string $lrIdCardFrontMediaId
+     */
+    public function setLrIdCardFrontMediaId(string $lrIdCardFrontMediaId): void
+    {
+        $this->lrIdCardFrontMediaId = $lrIdCardFrontMediaId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLrIdCardBackMediaId(): string
+    {
+        return $this->lrIdCardBackMediaId;
+    }
+
+    /**
+     * @param string $lrIdCardBackMediaId
+     */
+    public function setLrIdCardBackMediaId(string $lrIdCardBackMediaId): void
+    {
+        $this->lrIdCardBackMediaId = $lrIdCardBackMediaId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLrIdCardAddress(): ?string
+    {
+        return $this->lrIdCardAddress;
+    }
+
+    /**
+     * @param string $lrIdCardAddress
+     */
+    public function setLrIdCardAddress(string $lrIdCardAddress): void
+    {
+        $this->lrIdCardAddress = $lrIdCardAddress;
+    }
+
+    /**
+     * @return int
+     */
+    public function getContactType(): int
+    {
+        return $this->contactType;
+    }
+
+    /**
+     * @param int $contactType
+     */
+    public function setContactType(int $contactType): void
+    {
+        $this->contactType = $contactType;
+    }
 
     /**
      * @return string
@@ -179,51 +301,20 @@ class Tx2781Request extends BaseRequest
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getAuthEntityType(): ?string
+    public function getContactCertType(): int
     {
-        return $this->authEntityType;
+        return $this->contactCertType;
     }
 
     /**
-     * @param string $authEntityType
+     * @param int $contactCertType
      */
-    public function setAuthEntityType(string $authEntityType): void
+    public function setContactCertType(int $contactCertType): void
     {
-        $this->authEntityType = $authEntityType;
+        $this->contactCertType = $contactCertType;
     }
 
-    /**
-     * @return string
-     */
-    public function getCertificationType(): ?string
-    {
-        return $this->certificationType;
-    }
-
-    /**
-     * @param string $certificationType
-     */
-    public function setCertificationType(string $certificationType): void
-    {
-        $this->certificationType = $certificationType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCertificateMediaID(): string
-    {
-        return $this->certificateMediaID;
-    }
-
-    /**
-     * @param string $certificateMediaID
-     */
-    public function setCertificateMediaID(string $certificateMediaID): void
-    {
-        $this->certificateMediaID = $certificateMediaID;
-    }
 
 }
