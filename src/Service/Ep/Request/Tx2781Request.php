@@ -95,7 +95,7 @@ class Tx2781Request extends BaseRequest
         //认证主体
         $entity = [
             'AuthEntityType' => $this->getAuthEntityType(),
-            'CertificationType' => $this->getAuthEntityType(),
+            'CertificationType' => $this->getCertificationType(),
         ];
         if ($this->getCertificationType()) {
             $entity['CertificateMediaID'] = $this->getCertificateMediaId();
