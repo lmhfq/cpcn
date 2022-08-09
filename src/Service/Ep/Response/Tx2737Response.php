@@ -14,6 +14,9 @@ class Tx2737Response extends BaseResponse
      * @var int 进件修改状态： 40=成功 50=失败
      */
     protected $status;
+    /**
+     * @var string
+     */
     protected $modifyApplyNo;
 
     /**
