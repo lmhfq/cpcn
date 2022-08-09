@@ -50,6 +50,22 @@ class Tx2782Response extends BaseResponse
     }
 
     /**
+     * @return string
+     */
+    public function getQrcodeData(): string
+    {
+        return $this->qrcodeData;
+    }
+
+    /**
+     * @param string $qrcodeData
+     */
+    public function setQrcodeData(string $qrcodeData): void
+    {
+        $this->qrcodeData = $qrcodeData;
+    }
+
+    /**
      * @param string $message
      * @author lmh
      */
