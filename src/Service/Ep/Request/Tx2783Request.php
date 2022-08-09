@@ -41,7 +41,7 @@ class Tx2783Request extends BaseRequest
         $data = array_merge($data, $head);
         $body = [
             'RevokeApplyNo' => $this->getRevokeApplyNo(),
-            'AuthApplyNo' => $this->getUserId(),
+            'AuthApplyNo' => $this->getApplyNo(),
             'UserID' => $this->getUserId(),
         ];
         $data = array_merge($data, [
