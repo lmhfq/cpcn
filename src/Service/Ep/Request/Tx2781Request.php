@@ -108,6 +108,7 @@ class Tx2781Request extends BaseRequest
             'LrIdCardAddr' => $this->getLrIdCardAddress(),
             'LrIsOwner' => 10,
         ];
+        $body['LegalPerson'] = $legalPerson;
         if ($this->getCertificationType()) {
             $entity['CertificateMediaID'] = $this->getCertificateMediaId();
         }
