@@ -126,6 +126,9 @@ class Tx2781Request extends BaseRequest
             'ContactCertBackMediaID' => $this->getLrIdCardBackMediaId(),
         ];
         $body['Contact'] = $contact;
+        //主体类型为企业时需要填写。
+        //当经营者/法人不是最终受益所有人，则需提填写受益所有人信息，最多上传4个。
+        //若经营者/法人是最终受益所有人之一，可在此填写其他受益所有人信息，最多上传3个。
         $data = array_merge($data, [
             'Body' => $body
         ]);
