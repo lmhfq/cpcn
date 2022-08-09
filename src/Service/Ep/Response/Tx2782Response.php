@@ -28,6 +28,10 @@ class Tx2782Response extends BaseResponse
      * 78=已作废
      */
     protected $status;
+    /**
+     * @var string
+     */
+    protected $qrcodeData;
 
     /**
      * @return int
@@ -54,6 +58,7 @@ class Tx2782Response extends BaseResponse
         parent::handle($message);
         if ($this->code == TxResponseCode::SUCCESS) {
             $this->status = intval(ArrayUtil::get('Status', $this->responseBody));
+            $this->qrcodeData = ArrayUtil::get('QrcodeData', $this->responseBody);
         }
     }
 }
