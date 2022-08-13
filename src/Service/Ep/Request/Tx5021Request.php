@@ -123,7 +123,7 @@ class Tx5021Request extends BaseRequest
                  * @var $v SplitItemsEntity
                  */
                 $splitItems[] = [
-                    'SplitPaymentTxS' => $v->getSplitTxSn(),
+                    'SplitPaymentTxSN' => $v->getSplitTxSn(),
                     'SplitAmount' => $v->getSplitAmount(),
                     'Note' => $v->getNote(),
                 ];
