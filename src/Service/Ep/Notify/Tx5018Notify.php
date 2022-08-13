@@ -40,7 +40,7 @@ class Tx5018Notify extends TBaseNotify
     protected $bankTraceNo;
     /**
      * @var string 平台订单号
-     * PaymentWay=80 时 为跳转支付平台订 单号
+     * PaymentWay=80 时 为跳转支付平台订单号
      */
     protected $traceNo;
     /**
