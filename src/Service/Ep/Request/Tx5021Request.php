@@ -116,6 +116,9 @@ class Tx5021Request extends BaseRequest
         if ($this->cancelAmount) {
             $body['CancelAmount'] = $this->getCancelAmount();
         }
+        if ($this->remark) {
+            $body['Remark'] = $this->getRemark();
+        }
         if ($this->splitItems) {
             $splitItems = [];
             foreach ($this->splitItems as $v) {
@@ -170,7 +173,7 @@ class Tx5021Request extends BaseRequest
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getAmount(): ?int
     {
@@ -202,7 +205,7 @@ class Tx5021Request extends BaseRequest
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getCancelAmount(): ?int
     {

@@ -172,7 +172,6 @@ class BaseResponse
     }
 
 
-
     /**
      * @return string
      */
@@ -227,6 +226,6 @@ class BaseResponse
         $this->mainUserId = Arr::get($this->responseBody, 'MainUserID');
 
         $this->responseCode = Arr::get($this->responseBody, 'ResponseCode');
-        $this->responseMessage = Arr::get($this->responseBody, 'ResponseMessage');
+        $this->responseMessage = Arr::get($this->responseBody, 'ResponseMessage', '');
     }
 }
