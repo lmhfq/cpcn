@@ -44,8 +44,8 @@ abstract class TBaseNotify
         $this->institutionId = ArrayUtil::get('InstitutionID', $this->noticeBody, []);
         $this->txSn = ArrayUtil::get('TxSN', $this->noticeBody, []);
         $this->userId = ArrayUtil::get('UserID', $this->noticeBody);
-        $this->responseCode = ArrayUtil::get($this->noticeBody, 'ResponseCode');
-        $this->responseMessage = ArrayUtil::get($this->noticeBody, 'ResponseMessage');
+        $this->responseCode = ArrayUtil::get('ResponseCode', $this->noticeBody);
+        $this->responseMessage = ArrayUtil::get('ResponseMessage', $this->noticeBody);
     }
 
     /**
