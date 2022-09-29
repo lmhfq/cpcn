@@ -65,6 +65,7 @@ class Tx4618Notify extends TBaseNotify
         }
         $this->transferChargeStatus = intval(ArrayUtil::get('TransferChargeStatus', $this->noticeBody));
         $this->transferChargeFlag = ArrayUtil::get('TransferChargeFlag', $this->noticeBody);
+        $this->rejectImageType = ArrayUtil::get('RejectImageType', $this->noticeBody);
     }
 
     /**
@@ -110,7 +111,7 @@ class Tx4618Notify extends TBaseNotify
     /**
      * @return string
      */
-    public function getRejectImageType(): string
+    public function getRejectImageType(): ?string
     {
         return $this->rejectImageType;
     }
