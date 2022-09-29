@@ -80,7 +80,7 @@ class Tx4618Notify extends TBaseNotify
      */
     public function getSourceTxSn(): string
     {
-        return $this->sourceTxSn;
+        return $this->sourceTxSn ?: '';
     }
 
     /**
