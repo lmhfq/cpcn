@@ -23,6 +23,10 @@ class Tx2736Notify extends TBaseNotify
      */
     protected $authStatus;
     /**
+     * @var string|null 商户号
+     */
+    protected $merchantId;
+    /**
      * @var string
      */
     protected $bankSubBranchNo;
@@ -41,6 +45,7 @@ class Tx2736Notify extends TBaseNotify
         $this->status = intval(ArrayUtil::get('Status', $this->noticeBody));
         $this->authStatus = intval(ArrayUtil::get('AuthStatus', $this->noticeBody));
         $this->bankSubBranchNo = ArrayUtil::get('BankSubBranchNo', $this->noticeBody);
+        $this->merchantId = ArrayUtil::get('MerchantID', $this->noticeBody);
         $this->applyNo = ArrayUtil::get('ApplyNo', $this->noticeBody);
         $this->responseTime = ArrayUtil::get('ResponseTime', $this->noticeBody);
     }
@@ -75,6 +80,14 @@ class Tx2736Notify extends TBaseNotify
     public function getApplyNo(): ?string
     {
         return $this->applyNo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMerchantId(): ?string
+    {
+        return $this->merchantId;
     }
 
     /**
