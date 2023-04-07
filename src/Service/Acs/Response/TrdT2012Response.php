@@ -31,7 +31,7 @@ class TrdT2012Response extends TrdBaseResponse
      */
     protected $amt_ccycd;
     /**
-     * @var string 交易结果: 1 成功 2 失败 3 处理中
+     * @var string 交易结果: 1 成功 2 失败 3 处理中 9已冲正
      */
     protected $state;
     /**
