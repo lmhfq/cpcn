@@ -6,6 +6,7 @@ namespace Lmh\Cpcn;
 
 
 use Illuminate\Support\Str;
+use Lmh\Cpcn\Support\ServiceContainer;
 
 /**
  * Class Factory
@@ -20,7 +21,7 @@ class Factory
     /**
      * @param string $name
      * @param array $config
-     * @return mixed
+     * @return ServiceContainer
      * @author lmh
      */
     public static function make(string $name, array $config)
