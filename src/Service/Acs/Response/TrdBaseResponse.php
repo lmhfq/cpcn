@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Service\Acs\Response;
 
 
+use Lmh\Cpcn\Constant\ResponseCode;
+use Lmh\Cpcn\Exception\ResultErrorException;
 use Lmh\Cpcn\Support\ArrayTrait;
 use Lmh\Cpcn\Support\ArrayUtil;
 use Lmh\Cpcn\Support\Xml;
@@ -12,6 +14,7 @@ use Lmh\Cpcn\Support\Xml;
 abstract class TrdBaseResponse
 {
     use ArrayTrait;
+
     /**
      * @var array 响应信息
      */
@@ -142,4 +145,17 @@ abstract class TrdBaseResponse
         $this->srl_ptnsrl = ArrayUtil::get('PtnSrl', $srl, '');
         $this->srl_platsrl = ArrayUtil::get('PlatSrl', $srl, '');
     }
+
+    /**
+     * @param TrdBaseResponse $response
+     * @return void
+     * @throws ResultErrorException
+     */
+    public function checkResult(TrdBaseResponse $response)
+    {
+        if ($response->getMsghdRspcode() != ResponseCode::SUCCESS && $response->getMsghdRspcode() != ResponseCode::PYSUCC) {
+            throw new ResultErrorException($response->getMsghdRspmsg(), $response->getMsghdRspcode());
+        }
+    }
+
 }

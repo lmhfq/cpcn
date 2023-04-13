@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Lmh\Cpcn\Service\Ep\Response;
 
 use Illuminate\Support\Arr;
+use Lmh\Cpcn\Constant\TxResponseCode;
+use Lmh\Cpcn\Exception\ResultErrorException;
 use Lmh\Cpcn\Support\ArrayTrait;
 use Lmh\Cpcn\Support\Xml;
 
@@ -227,5 +229,17 @@ class BaseResponse
 
         $this->responseCode = Arr::get($this->responseBody, 'ResponseCode');
         $this->responseMessage = Arr::get($this->responseBody, 'ResponseMessage', '');
+    }
+
+    /**
+     * @param BaseResponse $response
+     * @return void
+     * @throws ResultErrorException
+     */
+    public function checkEpResult(BaseResponse $response)
+    {
+        if ($response->getCode() != TxResponseCode::SUCCESS) {
+            throw new ResultErrorException($response->getMessage(), $response->getCode());
+        }
     }
 }
