@@ -26,8 +26,8 @@ class Factory
      */
     public static function make(string $name, array $config)
     {
-        $namespace = Str::studly($name);
-        $application = "\\Lmh\\Cpcn\\Service\\{$namespace}\\Application";
+        $name = Str::studly($name);
+        $application = "\\Lmh\\Cpcn\\Service\\{$name}\\Application";
         return new $application($config);
     }
 
